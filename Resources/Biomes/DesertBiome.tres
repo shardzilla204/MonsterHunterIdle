@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DesertData" load_steps=12 format=3 uid="uid://g1wu334wxrok"]
+
+[ext_resource type="Texture2D" uid="uid://du01xq52bd7u3" path="res://Assets/Images/BiomeIcon/DesertBiomeIcon.png" id="1_kfegs"]
+[ext_resource type="Script" path="res://Scripts/Data/Biome/DesertData.cs" id="1_o4mpl"]
+[ext_resource type="Texture2D" uid="uid://r8f4x27mao1s" path="res://Assets/Images/Biome/Desert.png" id="1_o8o5b"]
+[ext_resource type="Texture2D" uid="uid://dsbs5tm1gnn2p" path="res://Assets/Images/GatherIcon/BoneGatherIcon.png" id="2_jqu2v"]
+[ext_resource type="Resource" uid="uid://bub2385tqjpli" path="res://Resources/BiomeMaterials/Desert/MonsterBone/MonsterBoneSmall.tres" id="4_8kf8b"]
+[ext_resource type="Resource" uid="uid://ccyujp25pmys5" path="res://Resources/BiomeMaterials/Desert/MonsterBone/MonsterBoneMedium.tres" id="5_q04c4"]
+[ext_resource type="Resource" uid="uid://dbniwrorra10d" path="res://Resources/BiomeMaterials/Desert/MonsterBone/MonsterBoneLarge.tres" id="6_6uklp"]
+[ext_resource type="Resource" uid="uid://dhiw4120bylak" path="res://Resources/BiomeMaterials/Desert/MonsterBone/MonsterBonePlus.tres" id="7_gsjcu"]
+[ext_resource type="Resource" uid="uid://duritx5xh4dvj" path="res://Resources/Monsters/GreatJagras.tres" id="8_anqkx"]
+[ext_resource type="Resource" uid="uid://bb6pus4807bd7" path="res://Resources/Monsters/KuluYaKu.tres" id="9_53jnn"]
+[ext_resource type="Resource" uid="uid://bds5nbqapebca" path="res://Resources/Monsters/PukeiPukei.tres" id="10_wrami"]
+
+[resource]
+script = ExtResource("1_o4mpl")
+Materials = [ExtResource("4_8kf8b"), ExtResource("5_q04c4"), ExtResource("6_6uklp"), ExtResource("7_gsjcu")]
+Name = "Desert"
+Description = ""
+Type = 1
+Icon = ExtResource("1_kfegs")
+Background = ExtResource("1_o8o5b")
+GatherIcon = ExtResource("2_jqu2v")
+Monsters = [ExtResource("8_anqkx"), ExtResource("9_53jnn"), ExtResource("10_wrami")]

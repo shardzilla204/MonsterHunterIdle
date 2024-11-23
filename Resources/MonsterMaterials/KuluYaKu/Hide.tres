@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="KuluYaKuMaterialData" load_steps=3 format=3 uid="uid://42xgb3n7ww05"]
+
+[ext_resource type="Texture2D" uid="uid://d2x5bh7ybejx8" path="res://Assets/Images/Hide/HideTanIcon.png" id="1_02dvl"]
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/KuluYaKuMaterialData.cs" id="1_tndvw"]
+
+[resource]
+script = ExtResource("1_tndvw")
+Material = 1
+_monsterLevel = 0
+_name = "Kulu-Ya-Ku Hide"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_02dvl")
+_rarity = 0

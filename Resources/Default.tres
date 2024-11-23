@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cqgod6012ly7m"]
+
+[ext_resource type="FontFile" uid="uid://dshsu3c5bdspv" path="res://Assets/Fonts/Nunito-VariableFont_wght.ttf" id="1_ul4ti"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp7tn"]
+
+[sub_resource type="FontVariation" id="FontVariation_gksin"]
+base_font = ExtResource("1_ul4ti")
+variation_opentype = {
+2003265652: 600
+}
+
+[resource]
+default_font = SubResource("FontVariation_gksin")
+Button/styles/focus = SubResource("StyleBoxEmpty_pp7tn")

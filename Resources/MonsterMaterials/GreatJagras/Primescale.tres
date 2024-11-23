@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GreatJagrasMaterialData" load_steps=3 format=3 uid="uid://btscinc603n12"]
+
+[ext_resource type="Texture2D" uid="uid://disbrsxhxo2kh" path="res://Assets/Images/Scale/ScaleYellowIcon.png" id="1_15j7x"]
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/GreatJagrasMaterialData.cs" id="1_yy5jl"]
+
+[resource]
+script = ExtResource("1_yy5jl")
+_material = 4
+_monsterLevel = 1000
+_name = "Great Jagras Primescale"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_15j7x")
+_rarity = 125

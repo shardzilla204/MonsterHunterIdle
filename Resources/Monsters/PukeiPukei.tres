@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="MonsterData" load_steps=11 format=3 uid="uid://bds5nbqapebca"]
+
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/MonsterData.cs" id="1_mv6cc"]
+[ext_resource type="Texture2D" uid="uid://db18cy8w6oohv" path="res://Assets/Images/MonsterIcon/PukeiPukeiIcon.png" id="1_v7gut"]
+[ext_resource type="Resource" uid="uid://g3ibif23dmj4" path="res://Resources/MonsterMaterials/PukeiPukei/Scale.tres" id="2_4kleb"]
+[ext_resource type="Texture2D" uid="uid://b77ct3d6g38x" path="res://Assets/Images/MonsterRender/PukeiPukeiRender.png" id="2_jex4j"]
+[ext_resource type="Resource" uid="uid://cr5eb47763xjp" path="res://Resources/MonsterMaterials/PukeiPukei/Shell.tres" id="3_v7ja7"]
+[ext_resource type="Resource" uid="uid://bjjmj5augx033" path="res://Resources/MonsterMaterials/PukeiPukei/Tail.tres" id="4_twwr2"]
+[ext_resource type="Resource" uid="uid://bnxjxjf7r2qk4" path="res://Resources/MonsterMaterials/PukeiPukei/Sac.tres" id="5_d6q1j"]
+[ext_resource type="Resource" uid="uid://b4qhs85kdu4ec" path="res://Resources/MonsterMaterials/PukeiPukei/Quill.tres" id="6_6tpd7"]
+[ext_resource type="Resource" uid="uid://b02un8hwt6kke" path="res://Resources/MonsterMaterials/PukeiPukei/Primescale.tres" id="7_1hgjf"]
+[ext_resource type="Resource" uid="uid://cg57ey6swd1h" path="res://Resources/MonsterMaterials/PukeiPukei/WyvernGemShard.tres" id="8_cvkfs"]
+
+[resource]
+script = ExtResource("1_mv6cc")
+_name = "Pukei-Pukei"
+_description = ""
+_species = 2
+_icon = ExtResource("1_v7gut")
+_render = ExtResource("2_jex4j")
+_health = 450
+_level = 2500
+_locale = [0, 1, 2]
+_elements = []
+_abnormalStatuses = [0]
+_elementalWeaknesses = [2]
+_abnormalStatusWeaknesses = [2]
+_materials = [ExtResource("7_1hgjf"), ExtResource("6_6tpd7"), ExtResource("5_d6q1j"), ExtResource("2_4kleb"), ExtResource("3_v7ja7"), ExtResource("4_twwr2"), ExtResource("8_cvkfs")]

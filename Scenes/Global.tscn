@@ -1,0 +1,39 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2ns481hjn578"]
+
+[ext_resource type="Script" path="res://Scripts/Manager/BiomeManager.cs" id="1_rlwmi"]
+[ext_resource type="Resource" uid="uid://dpjmf6vk5xrrq" path="res://Resources/Biomes/ForestBiome.tres" id="2_ewl8v"]
+[ext_resource type="Resource" uid="uid://g1wu334wxrok" path="res://Resources/Biomes/DesertBiome.tres" id="3_xnap7"]
+[ext_resource type="Resource" uid="uid://dr0olygbyw3et" path="res://Resources/Biomes/SwampBiome.tres" id="4_ej6tq"]
+[ext_resource type="Script" path="res://Scripts/Manager/MonsterManager.cs" id="5_fjcpx"]
+[ext_resource type="Script" path="res://Scripts/Manager/CollectionLogManager.cs" id="6_owojr"]
+[ext_resource type="Resource" uid="uid://duritx5xh4dvj" path="res://Resources/Monsters/GreatJagras.tres" id="6_tbox2"]
+[ext_resource type="PackedScene" uid="uid://bstf16dj3clka" path="res://Scenes/CollectionLog.tscn" id="7_441p0"]
+[ext_resource type="Script" path="res://Scripts/Manager/GameManager.cs" id="8_2fa7k"]
+[ext_resource type="PackedScene" uid="uid://b5qqn6nqcf0j7" path="res://Scenes/Display/CollectionLogDisplay.tscn" id="9_qjqql"]
+[ext_resource type="PackedScene" uid="uid://cdcn2eh3nvkj0" path="res://Scenes/Display/ItemBoxDisplay.tscn" id="10_wf4nx"]
+[ext_resource type="PackedScene" uid="uid://bnf8la1b7jt70" path="res://Scenes/Display/MonsterDisplay.tscn" id="12_n1iv6"]
+[ext_resource type="PackedScene" uid="uid://ksdf7gtoe15v" path="res://Scenes/Display/PlayerDisplay.tscn" id="13_88xed"]
+
+[node name="Global" type="Node"]
+
+[node name="BiomeManager" type="Node" parent="."]
+script = ExtResource("1_rlwmi")
+_forestData = ExtResource("2_ewl8v")
+_desertData = ExtResource("3_xnap7")
+_swampData = ExtResource("4_ej6tq")
+
+[node name="MonsterManager" type="Node" parent="."]
+script = ExtResource("5_fjcpx")
+Monster = ExtResource("6_tbox2")
+_maxEncounterChance = 10.0
+
+[node name="CollectionLogManager" type="Node" parent="."]
+script = ExtResource("6_owojr")
+_collectionLogScene = ExtResource("7_441p0")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("8_2fa7k")
+_collectionLogDisplayScene = ExtResource("9_qjqql")
+_itemBoxDisplayScene = ExtResource("10_wf4nx")
+_monsterDisplayScene = ExtResource("12_n1iv6")
+_playerDisplayScene = ExtResource("13_88xed")

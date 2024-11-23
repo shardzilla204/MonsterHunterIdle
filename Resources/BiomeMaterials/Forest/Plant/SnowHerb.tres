@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ForestMaterialData" load_steps=3 format=3 uid="uid://v1vctss2wyq7"]
+
+[ext_resource type="Texture2D" uid="uid://hsa6tykgxbqp" path="res://Assets/Images/Plant/PlantWhiteIcon.png" id="1_jj6o7"]
+[ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/ForestMaterialData.cs" id="1_mbg0c"]
+
+[resource]
+script = ExtResource("1_mbg0c")
+_material = 2
+_name = "Snow Herb"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_jj6o7")
+_rarity = 0

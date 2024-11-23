@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DesertMaterialData" load_steps=3 format=3 uid="uid://bub2385tqjpli"]
+
+[ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/DesertMaterialData.cs" id="1_4wyq2"]
+[ext_resource type="Texture2D" uid="uid://d2xp5bwie0ge6" path="res://Assets/Images/MonsterBone/MonsterBoneYellowIcon.png" id="1_6103k"]
+
+[resource]
+script = ExtResource("1_4wyq2")
+_material = 0
+_name = "Monster Bone S"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_6103k")
+_rarity = 0

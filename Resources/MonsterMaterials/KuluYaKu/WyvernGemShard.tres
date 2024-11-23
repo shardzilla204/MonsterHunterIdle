@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="KuluYaKuMaterialData" load_steps=3 format=3 uid="uid://deaguq3oe8she"]
+
+[ext_resource type="Texture2D" uid="uid://b56x6e0lscyfv" path="res://Assets/Images/Gem/GemLightBlueIcon.png" id="1_glbal"]
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/KuluYaKuMaterialData.cs" id="1_gxa45"]
+
+[resource]
+script = ExtResource("1_gxa45")
+Material = 6
+_monsterLevel = 150
+_name = "Wyvern Gem Shard"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_glbal")
+_rarity = 25

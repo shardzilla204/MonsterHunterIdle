@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PukeiPukeiMaterialData" load_steps=3 format=3 uid="uid://b4qhs85kdu4ec"]
+
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/PukeiPukeiMaterialData.cs" id="1_hk82f"]
+[ext_resource type="Texture2D" uid="uid://broq5oenrvbj2" path="res://Assets/Images/Wing/WingDeepGreenIcon.png" id="1_o8n7y"]
+
+[resource]
+script = ExtResource("1_hk82f")
+Material = 4
+_monsterLevel = 1000
+_name = "Pukei-Pukei Quill"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_o8n7y")
+_rarity = 125

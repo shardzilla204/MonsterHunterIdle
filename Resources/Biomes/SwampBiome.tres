@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="SwampData" load_steps=12 format=3 uid="uid://dr0olygbyw3et"]
+
+[ext_resource type="Texture2D" uid="uid://dxa8f4e3r7fah" path="res://Assets/Images/Biome/Swamp.png" id="1_42nms"]
+[ext_resource type="Script" path="res://Scripts/Data/Biome/SwampData.cs" id="1_pbg0v"]
+[ext_resource type="Texture2D" uid="uid://4xsmbuvstvin" path="res://Assets/Images/BiomeIcon/SwampBiomeIcon.png" id="1_scpaj"]
+[ext_resource type="Texture2D" uid="uid://beuby1tu28ehl" path="res://Assets/Images/GatherIcon/OreGatherIcon.png" id="2_ntb8b"]
+[ext_resource type="Resource" path="res://Resources/BiomeMaterials/Swamp/Ore/IronOre.tres" id="4_xvv2o"]
+[ext_resource type="Resource" path="res://Resources/BiomeMaterials/Swamp/Ore/MachaliteOre.tres" id="5_flllu"]
+[ext_resource type="Resource" uid="uid://c5o8txifviwh6" path="res://Resources/BiomeMaterials/Swamp/Ore/DragoniteOre.tres" id="6_uq4qm"]
+[ext_resource type="Resource" uid="uid://cdbjr4x2hoq3l" path="res://Resources/BiomeMaterials/Swamp/Ore/EarthCrystal.tres" id="7_wikvp"]
+[ext_resource type="Resource" uid="uid://duritx5xh4dvj" path="res://Resources/Monsters/GreatJagras.tres" id="8_cntyi"]
+[ext_resource type="Resource" uid="uid://bb6pus4807bd7" path="res://Resources/Monsters/KuluYaKu.tres" id="9_wgni8"]
+[ext_resource type="Resource" uid="uid://bds5nbqapebca" path="res://Resources/Monsters/PukeiPukei.tres" id="10_h1746"]
+
+[resource]
+script = ExtResource("1_pbg0v")
+Materials = [ExtResource("4_xvv2o"), ExtResource("5_flllu"), ExtResource("6_uq4qm"), ExtResource("7_wikvp")]
+Name = "Swamp"
+Description = ""
+Type = 2
+Icon = ExtResource("1_scpaj")
+Background = ExtResource("1_42nms")
+GatherIcon = ExtResource("2_ntb8b")
+Monsters = [ExtResource("8_cntyi"), ExtResource("9_wgni8"), ExtResource("10_h1746")]

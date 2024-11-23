@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ForestMaterialData" load_steps=3 format=3 uid="uid://dkx3nvbmbubwf"]
+
+[ext_resource type="Texture2D" uid="uid://ca5hbg4nucu5t" path="res://Assets/Images/Mushroom/MushroomYellowIcon.png" id="1_aqpqf"]
+[ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/ForestMaterialData.cs" id="1_ideag"]
+
+[resource]
+script = ExtResource("1_ideag")
+_material = 4
+_name = "Parashroom"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_aqpqf")
+_rarity = 0

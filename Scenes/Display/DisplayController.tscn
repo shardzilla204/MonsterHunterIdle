@@ -1,0 +1,264 @@
+[gd_scene load_steps=9 format=3 uid="uid://b61iq26ngrfk2"]
+
+[ext_resource type="Script" path="res://Scripts/DisplayController.cs" id="1_xe8gu"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_ubwlu"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="3_37m2c"]
+[ext_resource type="Script" path="res://Scripts/Button/DisplayButton.cs" id="3_43u0q"]
+[ext_resource type="Texture2D" uid="uid://mroj4o6ifgh5" path="res://Assets/Images/GatherIcon/PlantGatherIcon.png" id="4_2joal"]
+[ext_resource type="Texture2D" uid="uid://xqqp3y61ndj6" path="res://Assets/Images/UserInterface/ItemBoxIcon.png" id="5_0hjp0"]
+[ext_resource type="Texture2D" uid="uid://fcvktt0gtafq" path="res://Assets/Images/Armor/HelmetWhite.png" id="6_2laj4"]
+[ext_resource type="Texture2D" uid="uid://s57gpa547kdl" path="res://Assets/Images/UserInterface/PlayerIcon.png" id="8_kn0b3"]
+
+[node name="DisplayController" type="VBoxContainer" node_paths=PackedStringArray("_settingsButton", "_gatherButton", "_gatherIcon", "_itemBoxButton", "_loadoutButton", "_playerButton")]
+theme_override_constants/separation = 5
+script = ExtResource("1_xe8gu")
+_settingsButton = NodePath("SettingsButton/MarginContainer/SettingsButton")
+_gatherButton = NodePath("OtherButtons/MarginContainer/VBoxContainer/GatherButton")
+_gatherIcon = NodePath("OtherButtons/MarginContainer/VBoxContainer/GatherButton/NinePatchRect/MarginContainer/GatherIcon")
+_itemBoxButton = NodePath("OtherButtons/MarginContainer/VBoxContainer/ItemBoxButton")
+_loadoutButton = NodePath("OtherButtons/MarginContainer/VBoxContainer/LoadoutButton")
+_playerButton = NodePath("OtherButtons/MarginContainer/VBoxContainer/PlayerButton")
+
+[node name="SettingsButton" type="NinePatchRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(105, 105)
+layout_mode = 2
+texture = ExtResource("2_ubwlu")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="SettingsButton" type="Button" parent="SettingsButton/MarginContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+flat = true
+script = ExtResource("3_43u0q")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SettingsButton/MarginContainer/SettingsButton"]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_37m2c")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsButton/MarginContainer/SettingsButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="SettingsButton/MarginContainer/SettingsButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OtherButtons" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_ubwlu")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OtherButtons/MarginContainer"]
+layout_mode = 2
+
+[node name="GatherButton" type="Button" parent="OtherButtons/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="OtherButtons/MarginContainer/VBoxContainer/GatherButton"]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_37m2c")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherButtons/MarginContainer/VBoxContainer/GatherButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GatherIcon" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/GatherButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_2joal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemBoxButton" type="Button" parent="OtherButtons/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="OtherButtons/MarginContainer/VBoxContainer/ItemBoxButton"]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_37m2c")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherButtons/MarginContainer/VBoxContainer/ItemBoxButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/ItemBoxButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_0hjp0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LoadoutButton" type="Button" parent="OtherButtons/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="OtherButtons/MarginContainer/VBoxContainer/LoadoutButton"]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_37m2c")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherButtons/MarginContainer/VBoxContainer/LoadoutButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/LoadoutButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_2laj4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerButton" type="Button" parent="OtherButtons/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="OtherButtons/MarginContainer/VBoxContainer/PlayerButton"]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_37m2c")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="OtherButtons/MarginContainer/VBoxContainer/PlayerButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/PlayerButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("8_kn0b3")
+expand_mode = 1
+stretch_mode = 5

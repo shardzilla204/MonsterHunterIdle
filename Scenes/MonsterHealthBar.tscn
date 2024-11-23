@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://4y140m71x08b"]
+
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="1_7tajs"]
+[ext_resource type="Script" path="res://Scripts/MonsterHealthBar.cs" id="2_ewlxx"]
+
+[node name="MonsterHealthBar" type="NinePatchRect" node_paths=PackedStringArray("_healthProgress")]
+self_modulate = Color(0.5, 0, 0, 1)
+custom_minimum_size = Vector2(650, 30)
+size_flags_horizontal = 4
+texture = ExtResource("1_7tajs")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+script = ExtResource("2_ewlxx")
+_healthProgress = NodePath("Mask/HealthProgress")
+
+[node name="Mask" type="NinePatchRect" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7tajs")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="HealthProgress" type="TextureProgressBar" parent="Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 15
+stretch_margin_top = 15
+stretch_margin_right = 15
+stretch_margin_bottom = 15
+texture_progress = ExtResource("1_7tajs")
+tint_progress = Color(0.0105, 0.63, 0, 1)

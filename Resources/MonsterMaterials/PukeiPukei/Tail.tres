@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PukeiPukeiMaterialData" load_steps=3 format=3 uid="uid://bjjmj5augx033"]
+
+[ext_resource type="Texture2D" uid="uid://0k8ofsp5xukq" path="res://Assets/Images/Tail/TailDeepGreenIcon.png" id="1_82nys"]
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/PukeiPukeiMaterialData.cs" id="1_f585m"]
+
+[resource]
+script = ExtResource("1_f585m")
+Material = 2
+_monsterLevel = 2000
+_name = "Pukei-Pukei Tail"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_82nys")
+_rarity = 500

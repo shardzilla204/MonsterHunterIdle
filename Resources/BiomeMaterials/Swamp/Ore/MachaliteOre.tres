@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SwampMaterialData" load_steps=3 format=3 uid="uid://cnniyvmxn2j6l"]
+
+[ext_resource type="Texture2D" uid="uid://cq45ym46pldd0" path="res://Assets/Images/Ore/OreBlueIcon.png" id="1_miuw0"]
+[ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/SwampMaterialData.cs" id="1_qud2k"]
+
+[resource]
+script = ExtResource("1_qud2k")
+_material = 1
+_name = "Machalite Ore"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_miuw0")
+_rarity = 500

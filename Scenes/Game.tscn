@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://vpeocbhpex32"]
+
+[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_xxn33"]
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://Resources/Default.tres" id="2_bpjdc"]
+[ext_resource type="Script" path="res://Scripts/Display/BiomeDisplay.cs" id="3_6eo6j"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="4_bwl05"]
+[ext_resource type="FontFile" uid="uid://1q6rnlq3mobb" path="res://Assets/Fonts/MonsterHunter2.ttf" id="6_bm4ue"]
+[ext_resource type="PackedScene" uid="uid://ksdf7gtoe15v" path="res://Scenes/Display/PlayerDisplay.tscn" id="7_gwgaa"]
+[ext_resource type="PackedScene" uid="uid://b5qqn6nqcf0j7" path="res://Scenes/Display/CollectionLogDisplay.tscn" id="7_x5t1q"]
+[ext_resource type="PackedScene" uid="uid://b61iq26ngrfk2" path="res://Scenes/Display/DisplayController.tscn" id="9_dfbtb"]
+[ext_resource type="PackedScene" uid="uid://dcsiof323lxef" path="res://Scenes/CycleButton.tscn" id="10_srrxp"]
+[ext_resource type="PackedScene" uid="uid://bnf8la1b7jt70" path="res://Scenes/Display/MonsterDisplay.tscn" id="11_wdp74"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("MainContainer")]
+script = ExtResource("1_xxn33")
+MainContainer = NodePath("BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer")
+
+[node name="BiomeDisplay" type="Control" parent="." node_paths=PackedStringArray("_biomeLabel", "_biomeIcon", "_biomeBackground")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_bpjdc")
+script = ExtResource("3_6eo6j")
+_biomeLabel = NodePath("BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2/BiomeLabel")
+_biomeIcon = NodePath("BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2/BiomeIcon")
+_biomeBackground = NodePath("BiomeBackground")
+
+[node name="BiomeBackground" type="TextureRect" parent="BiomeDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BiomeDisplay/BiomeBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer"]
+layout_mode = 2
+
+[node name="DisplayController" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer" instance=ExtResource("9_dfbtb")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 105)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_bwl05")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="BiomeIcon" type="TextureRect" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BiomeLabel" type="Label" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_bm4ue")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="CycleButton" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("10_srrxp")]
+layout_mode = 2
+
+[node name="CycleButton2" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/NinePatchRect2/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("10_srrxp")]
+layout_mode = 2
+_isClockwise = true
+
+[node name="MainContainer" type="HBoxContainer" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="PlayerDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("7_gwgaa")]
+layout_mode = 2
+
+[node name="CollectionLogDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("7_x5t1q")]
+visible = false
+layout_mode = 2
+
+[node name="MonsterDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("11_wdp74")]
+layout_mode = 2

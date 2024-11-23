@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdcn2eh3nvkj0"]
+
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_nhaxt"]
+[ext_resource type="Script" path="res://Scripts/Display/ItemBoxDisplay.cs" id="2_vy0bq"]
+[ext_resource type="PackedScene" uid="uid://bdgbg84n18kya" path="res://Scenes/Display/MaterialDisplay.tscn" id="3_uc1ui"]
+
+[node name="ItemBoxDisplay" type="NinePatchRect" node_paths=PackedStringArray("_materialContainer")]
+custom_minimum_size = Vector2(350, 250)
+offset_right = 350.0
+offset_bottom = 40.0
+size_flags_vertical = 3
+texture = ExtResource("1_nhaxt")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource("2_vy0bq")
+_materialDisplayScene = ExtResource("3_uc1ui")
+_materialContainer = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MaterialContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "In Progress..."
+placeholder_text = "Search..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MaterialContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

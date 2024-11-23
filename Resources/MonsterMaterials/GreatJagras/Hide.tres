@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GreatJagrasMaterialData" load_steps=3 format=3 uid="uid://c8h07vlbi7n4v"]
+
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/GreatJagrasMaterialData.cs" id="1_it0ly"]
+[ext_resource type="Texture2D" uid="uid://bbxscojbmdo4s" path="res://Assets/Images/Hide/HideYellowIcon.png" id="1_vtnay"]
+
+[resource]
+script = ExtResource("1_it0ly")
+_material = 1
+_monsterLevel = 0
+_name = "Great Jagras Hide"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_vtnay")
+_rarity = 0

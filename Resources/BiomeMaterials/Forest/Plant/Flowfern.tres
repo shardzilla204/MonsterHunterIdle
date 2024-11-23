@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ForestMaterialData" load_steps=3 format=3 uid="uid://cpu8wfx6micbb"]
+
+[ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/ForestMaterialData.cs" id="1_3al6b"]
+[ext_resource type="Texture2D" uid="uid://swuxnlxqycqt" path="res://Assets/Images/Plant/PlantBlueIcon.png" id="1_mgclk"]
+
+[resource]
+script = ExtResource("1_3al6b")
+_material = 1
+_name = "Flowfern"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_mgclk")
+_rarity = 0

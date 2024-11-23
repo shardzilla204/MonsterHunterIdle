@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="KuluYaKuMaterialData" load_steps=3 format=3 uid="uid://cbukblydqv6nc"]
+
+[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/KuluYaKuMaterialData.cs" id="1_e1cay"]
+[ext_resource type="Texture2D" uid="uid://bgq2ummumoej4" path="res://Assets/Images/MonsterPart/MonsterPartDeepOrangeIcon.png" id="1_hm575"]
+
+[resource]
+script = ExtResource("1_e1cay")
+Material = 3
+_monsterLevel = 1500
+_name = "Kulu-Ya-Ku Plume"
+_description = ""
+_quantity = 0
+_icon = ExtResource("1_hm575")
+_rarity = 250
