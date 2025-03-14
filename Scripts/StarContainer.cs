@@ -10,43 +10,38 @@ public partial class StarContainer : Container
 	[Export]
 	private Texture2D _purpleStar;
 
-	public void Fill()
+	public void FillContainer()
 	{
-		Empty();
-		for (int i = 0; i < MonsterManager.Instance.GetLevelValue(); i++)
+		EmptyContainer();
+		Monster monster = MonsterHunterIdle.MonsterManager.Encounter.Monster;
+		for (int i = 0; i < monster.Level; i++)
 		{
 			AddChild(GetStarTexture());
 		}
 	}
 
-	private TextureRect GetStarTexture()
-	{
-		if (MonsterManager.Instance.GetLevelValue() <= 5)
-		{
-			TextureRect textureRect = new TextureRect()
-			{
-				Texture = _yellowStar,
-				StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
-			};
-			return textureRect;
-		}
-		else
-		{
-			TextureRect textureRect = new TextureRect()
-			{
-				Texture = _purpleStar,
-				StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
-			};
-			return textureRect;
-		}
-	}
-
-	public void Empty()
+	public void EmptyContainer()
 	{
 		foreach(Node star in GetChildren())
 		{
 			RemoveChild(star);
 			star.QueueFree();
 		}
+	}
+
+	private TextureRect GetStarTexture()
+	{
+		Monster monster = MonsterHunterIdle.MonsterManager.Encounter.Monster;
+
+		return monster.Level <= 5 ? GetStarTextureRect(_yellowStar) : GetStarTextureRect(_purpleStar);
+	}
+
+	private TextureRect GetStarTextureRect(Texture2D starTexture)
+	{
+		return new TextureRect()
+		{
+			Texture = starTexture,
+			StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
+		};
 	}
 }

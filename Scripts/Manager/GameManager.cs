@@ -20,31 +20,8 @@ public enum RarityLevel
 	// Six = 10
 }
 
-public enum ElementType
-{
-	Fire,
-	Water,
-	Thunder,
-	Ice,
-	Dragon
-}
-
-public enum AbnormalStatusType
-{
-	Poison,
-	Paralysis,
-	Sleep,
-	Stun,
-	BlastBlight,
-	BubbleBlight,
-	HellfireBlight,
-}
-
 public partial class GameManager : Node
 {
-	[Signal]
-	public delegate void LeveledUpEventHandler();
-
 	private static GameManager _instance;
 	public static GameManager Instance
 	{
@@ -63,36 +40,15 @@ public partial class GameManager : Node
 	}
 
 	[Export]
-	private PackedScene _collectionLogDisplayScene;
-
-	[Export]
-	private PackedScene _itemBoxDisplayScene;
-
-	[Export]
-	private PackedScene _monsterDisplayScene;
-
-	[Export]
-	private PackedScene _playerDisplayScene;
-
 	public ItemBoxData ItemBox = new ItemBoxData();
 
-	public PlayerData Player = new PlayerData();
+	[Export]
+	public PlayerData Player = new PlayerData(1, 250);
 
     public override void _Ready()
     {
         Instance = this;
-		Player.SetValues();
     }
-
-	public void ShowMaterials()
-	{
-		GD.Print("Item Box: ");
-		for (int i = 0; i < ItemBox.Materials.Count; i++)
-		{
-			GD.PrintRich($"\t[color=orange]{ItemBox.Materials[i].Name}[/color]");
-		}
-		GD.Print("");
-	}
 
 	public void ChangeDisplay(Display displayType)
 	{
@@ -100,15 +56,17 @@ public partial class GameManager : Node
 
 		Game.Instance.MainContainer.AddChild(displayType switch
 		{
-			Display.CollectionLog => CreateDisplay(_collectionLogDisplayScene),
-			Display.ItemBox => CreateDisplay(_itemBoxDisplayScene),
-			Display.Player => CreateDisplay(_playerDisplayScene),
-			_ => CreateDisplay(_collectionLogDisplayScene),
+			Display.CollectionLog => MonsterHunterIdle.PackedScenes.GetCollectionLogDisplay(),
+			Display.ItemBox => MonsterHunterIdle.PackedScenes.GetItemBoxDisplay(),
+			Display.Smithy => MonsterHunterIdle.PackedScenes.GetSmithyDisplay(),
+			Display.Player => MonsterHunterIdle.PackedScenes.GetPlayerDisplay(),
+			Display.Palico => MonsterHunterIdle.PackedScenes.GetPalicoDisplay(),
+			_ => MonsterHunterIdle.PackedScenes.GetCollectionLogDisplay(),
 		});
 
 		if (displayType == Display.Settings) return;
 		
-		Game.Instance.MainContainer.AddChild(CreateDisplay(_monsterDisplayScene));
+		Game.Instance.MainContainer.AddChild(MonsterHunterIdle.PackedScenes.GetMonsterDisplay());
 	}
 
 	public void ClearDisplays()
@@ -119,11 +77,6 @@ public partial class GameManager : Node
 			Game.Instance.MainContainer.RemoveChild(display);
 			display.QueueFree();
 		}
-	}
-
-	private dynamic CreateDisplay(PackedScene packedScene)
-	{
-		return packedScene.Instantiate<dynamic>();
 	}
 
 	// TODO: Save original monster data and copy from it when there is a monster encounter and store its current data
@@ -148,8 +101,6 @@ public partial class GameManager : Node
 		Player.HunterRank++;
 		Player.HunterProgress -= Player.MaxHunterProgress;
 		GetMaxHunterProgress();
-
-		EmitSignal(SignalName.LeveledUp);
 	}
 
 	private void GetMaxHunterProgress()

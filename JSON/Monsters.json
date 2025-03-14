@@ -1,0 +1,29 @@
+{
+   "Great Jagras":
+   {
+      "Description": "",
+      "Base Health": 500,
+      "Elements": [],
+      "Abnormal Statuses": [],
+      "Elemental Weaknesses": [ "Fire" ],
+      "Abnormal Status Weaknesses": [ "Poison", "Sleep", "Blast Blight" ]
+   },
+   "Kulu-Ya-Ku":
+   {
+      "Description": "",
+      "Base Health": 450,
+      "Elements": [],
+      "Abnormal Statuses": [],
+      "Elemental Weaknesses": [ "Water" ],
+      "Abnormal Status Weaknesses": []
+   },
+   "Pukei-Pukei":
+   {
+      "Description": "",
+      "Base Health": 450,
+      "Elements": [],
+      "Abnormal Statuses": [ "Poison" ],
+      "Elemental Weaknesses": [ "Thunder" ],
+      "Abnormal Status Weaknesses": [ "Sleep" ]
+   }
+}

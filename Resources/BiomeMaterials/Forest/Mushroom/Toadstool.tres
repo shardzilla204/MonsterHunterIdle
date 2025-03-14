@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ForestMaterialData" load_steps=3 format=3 uid="uid://dv03go8jxqxkx"]
 
-[ext_resource type="Texture2D" uid="uid://ccre5a1u0rpso" path="res://Assets/Images/Mushroom/MushroomPurpleIcon.png" id="1_bdwai"]
+[ext_resource type="Texture2D" uid="uid://ccre5a1u0rpso" path="res://Assets/Images/Biome/Material/Mushroom/MushroomPurpleIcon.png" id="1_bdwai"]
 [ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/ForestMaterialData.cs" id="1_fg2j6"]
 
 [resource]

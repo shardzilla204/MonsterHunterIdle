@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="PalicoArmorData" load_steps=8 format=3 uid="uid://ccf0ib55age7o"]
+
+[ext_resource type="Script" path="res://ElementalResistance.cs" id="1_tufxq"]
+[ext_resource type="Resource" uid="uid://b6kuli0qt8rrc" path="res://Resources/BiomeMaterials/Swamp/Ore/IronOre.tres" id="2_jqc8k"]
+[ext_resource type="Script" path="res://Scripts/Data/ResourceRequirementData.cs" id="3_nrvwv"]
+[ext_resource type="Texture2D" uid="uid://binej4xo2l7a4" path="res://Assets/Images/Palico/Armor/LeatherSet/FelyneLeatherVest.png" id="4_4kjv0"]
+[ext_resource type="Script" path="res://Scripts/Data/Palico/PalicoArmorData.cs" id="5_vagdv"]
+
+[sub_resource type="Resource" id="Resource_uqjwf"]
+script = ExtResource("1_tufxq")
+_elementType = 0
+_value = 2
+
+[sub_resource type="Resource" id="Resource_h8jja"]
+script = ExtResource("3_nrvwv")
+_material = ExtResource("2_jqc8k")
+_amount = 1
+
+[resource]
+script = ExtResource("5_vagdv")
+_defense = 2
+_resistances = [SubResource("Resource_uqjwf")]
+_health = 0
+_name = "Felyne Leather Vest"
+_description = ""
+_texture = ExtResource("4_4kjv0")
+_equipmentType = 2
+_resources = Array[Object]([SubResource("Resource_h8jja")])

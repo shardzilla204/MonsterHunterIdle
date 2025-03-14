@@ -4,13 +4,16 @@ namespace MonsterHunterIdle;
 
 public partial class MonsterHealthBar : NinePatchRect
 {
-	[Signal]
-	public delegate void DepletedEventHandler();
-
 	[Export]
 	private TextureProgressBar _healthProgress;
 
-	public void DamageMonster(int damage)
+    public override void _Ready()
+    {
+      MonsterHunterIdle.Signals.DamagedMonster += DamageMonster;
+		TreeExited += () => MonsterManager.Instance.Damaged -= DamageMonster;
+    }
+
+    private void DamageMonster(int damage)
 	{
 		_healthProgress.Value -= damage;
 
@@ -26,7 +29,7 @@ public partial class MonsterHealthBar : NinePatchRect
 
 	public void Fill()
 	{
-		_healthProgress.MaxValue = MonsterManager.Instance.Monster.Health;
-		_healthProgress.Value = MonsterManager.Instance.Monster.Health;
+		_healthProgress.MaxValue = MonsterManager.Instance.Encounter.Monster.Health;
+		_healthProgress.Value = MonsterManager.Instance.Encounter.Monster.Health;
 	}
 }

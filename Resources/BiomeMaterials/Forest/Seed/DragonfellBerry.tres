@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ForestMaterialData" load_steps=3 format=3 uid="uid://bjbsaebobhdgv"]
 
 [ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/ForestMaterialData.cs" id="1_2ljyb"]
-[ext_resource type="Texture2D" uid="uid://c7e86eqde87k" path="res://Assets/Images/Seed/SeedDarkRedIcon.png" id="1_36m1a"]
+[ext_resource type="Texture2D" uid="uid://c7e86eqde87k" path="res://Assets/Images/Biome/Material/Seed/SeedDarkRedIcon.png" id="1_36m1a"]
 
 [resource]
 script = ExtResource("1_2ljyb")
 _material = 9
 _name = "Dragonfell Berry"
 _description = ""
-_quantity = 0
+Quantity = 0
 _icon = ExtResource("1_36m1a")
 _rarity = 0

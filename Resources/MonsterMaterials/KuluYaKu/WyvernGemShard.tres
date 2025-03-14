@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="KuluYaKuMaterialData" load_steps=3 format=3 uid="uid://deaguq3oe8she"]
 
-[ext_resource type="Texture2D" uid="uid://b56x6e0lscyfv" path="res://Assets/Images/Gem/GemLightBlueIcon.png" id="1_glbal"]
+[ext_resource type="Texture2D" uid="uid://b56x6e0lscyfv" path="res://Assets/Images/Monster/Material/Gem/GemLightBlueIcon.png" id="1_glbal"]
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/KuluYaKuMaterialData.cs" id="1_gxa45"]
 
 [resource]

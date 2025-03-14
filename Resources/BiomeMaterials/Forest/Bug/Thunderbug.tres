@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ForestMaterialData" load_steps=3 format=3 uid="uid://r2yoiceuw5ib"]
 
-[ext_resource type="Texture2D" uid="uid://coic7badu7xie" path="res://Assets/Images/Bug/BugYellowIcon.png" id="1_gs5jw"]
+[ext_resource type="Texture2D" uid="uid://coic7badu7xie" path="res://Assets/Images/Biome/Material/Bug/BugYellowIcon.png" id="1_gs5jw"]
 [ext_resource type="Script" path="res://Scripts/Data/BiomeMaterial/ForestMaterialData.cs" id="1_y3t0s"]
 
 [resource]

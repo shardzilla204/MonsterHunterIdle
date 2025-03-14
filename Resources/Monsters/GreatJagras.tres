@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="MonsterData" load_steps=11 format=3 uid="uid://duritx5xh4dvj"]
 
-[ext_resource type="Texture2D" uid="uid://bskp815kamylq" path="res://Assets/Images/MonsterIcon/GreatJagrasIcon.png" id="1_46fp7"]
-[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/MonsterData.cs" id="1_t26ps"]
+[ext_resource type="Texture2D" uid="uid://bskp815kamylq" path="res://Assets/Images/Monster/Icon/GreatJagrasIcon.png" id="1_5x40d"]
 [ext_resource type="Resource" uid="uid://b2k77pwy6rxam" path="res://Resources/MonsterMaterials/GreatJagras/Scale.tres" id="2_ipeoi"]
 [ext_resource type="Resource" uid="uid://c8h07vlbi7n4v" path="res://Resources/MonsterMaterials/GreatJagras/Hide.tres" id="3_dq0bg"]
 [ext_resource type="Resource" uid="uid://dbh5687hq5ebo" path="res://Resources/MonsterMaterials/GreatJagras/Claw.tres" id="4_mj30f"]
@@ -9,17 +8,18 @@
 [ext_resource type="Resource" uid="uid://b18ho2eug8qdv" path="res://Resources/MonsterMaterials/GreatJagras/FangedWyvernGem.tres" id="6_brvus"]
 [ext_resource type="Resource" uid="uid://btscinc603n12" path="res://Resources/MonsterMaterials/GreatJagras/Primescale.tres" id="6_tu71f"]
 [ext_resource type="Resource" uid="uid://dx7nknlnl0v6j" path="res://Resources/MonsterMaterials/GreatJagras/WyvernGemShard.tres" id="7_2lp40"]
-[ext_resource type="Texture2D" uid="uid://chfydmglk5tmu" path="res://Assets/Images/MonsterRender/GreatJagrasRender.png" id="9_f3i58"]
+[ext_resource type="Texture2D" uid="uid://chfydmglk5tmu" path="res://Assets/Images/Monster/Render/GreatJagrasRender.png" id="9_7qqm0"]
+[ext_resource type="Script" path="res://Scripts/Data/MonsterData.cs" id="10_67pya"]
 
 [resource]
-script = ExtResource("1_t26ps")
+script = ExtResource("10_67pya")
 _name = "Great Jagras"
 _description = ""
 _species = 0
-_icon = ExtResource("1_46fp7")
-_render = ExtResource("9_f3i58")
-_health = 500
-_level = 2500
+_icon = ExtResource("1_5x40d")
+_render = ExtResource("9_7qqm0")
+Health = 500
+Level = 2500
 _locale = [0, 1, 2]
 _elements = []
 _abnormalStatuses = [0, 2, 4]

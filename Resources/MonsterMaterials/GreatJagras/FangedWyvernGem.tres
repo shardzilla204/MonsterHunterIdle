@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GreatJagrasMaterialData" load_steps=3 format=3 uid="uid://b18ho2eug8qdv"]
 
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/GreatJagrasMaterialData.cs" id="1_d4dto"]
-[ext_resource type="Texture2D" uid="uid://kvx0xmocacld" path="res://Assets/Images/Gem/GemYellowIcon.png" id="1_rot74"]
+[ext_resource type="Texture2D" uid="uid://kvx0xmocacld" path="res://Assets/Images/Monster/Material/Gem/GemYellowIcon.png" id="1_rot74"]
 
 [resource]
 script = ExtResource("1_d4dto")

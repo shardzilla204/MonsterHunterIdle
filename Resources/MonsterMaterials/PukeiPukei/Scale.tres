@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PukeiPukeiMaterialData" load_steps=3 format=3 uid="uid://g3ibif23dmj4"]
 
-[ext_resource type="Texture2D" uid="uid://bbufc1ata6812" path="res://Assets/Images/Scale/ScaleDeepGreenIcon.png" id="1_l38si"]
+[ext_resource type="Texture2D" uid="uid://bbufc1ata6812" path="res://Assets/Images/Monster/Material/Scale/ScaleDeepGreenIcon.png" id="1_l38si"]
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/PukeiPukeiMaterialData.cs" id="1_tyyr1"]
 
 [resource]

@@ -1,0 +1,128 @@
+{
+   "Carpenterbug":
+   {
+      "Biome": "Forest",
+      "Rarity": 3,
+      "Color": "Gray",
+      "Type": "Bug"
+   },
+   "Godbug":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "White",
+      "Type": "Bug"
+   },
+   "Thunderbug":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Yellow",
+      "Type": "Bug"
+   },
+   "Parashroom":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Yellow",
+      "Type": "Mushroom"
+   },
+   "Toadstool":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Purple",
+      "Type": "Mushroom"
+   },
+   "Fire Herb":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Red",
+      "Type": "Plant"
+   },
+   "Flowfern":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Purple",
+      "Type": "Plant"
+   },
+   "Sleep Herb":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Light Blue",
+      "Type": "Plant"
+   },
+   "Snow Herb":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "White",
+      "Type": "Plant"
+   },
+   "Dragonfell Berry":
+   {
+      "Biome": "Forest",
+      "Rarity": 1,
+      "Color": "Dark Red",
+      "Type": "Seed"
+   },
+   "Monster Bone S":
+   {
+      "Biome": "Desert",
+      "Rarity": 1,
+      "Color": "Yellow",
+      "Type": "Monster Bone"
+   },
+   "Monster Bone M":
+   {
+      "Biome": "Desert",
+      "Rarity": 2,
+      "Color": "Yellow",
+      "Type": "Monster Bone"
+   },
+   "Monster Bone L":
+   {
+      "Biome": "Desert",
+      "Rarity": 3,
+      "Color": "Yellow",
+      "Type": "Monster Bone"
+   },
+   "Monster Bone +":
+   {
+      "Biome": "Desert",
+      "Rarity": 3,
+      "Color": "Orange",
+      "Type": "Monster Bone"
+   },
+   "Iron Ore":
+   {
+      "Biome": "Swamp",
+      "Rarity": 1,
+      "Color": "Dark Red",
+      "Type": "Seed"
+   },
+   "Machalite Ore":
+   {
+      "Biome": "Swamp",
+      "Rarity": 2,
+      "Color": "Blue",
+      "Type": "Seed"
+   },
+   "Dragonite Ore":
+   {
+      "Biome": "Swamp",
+      "Rarity": 3,
+      "Color": "Green",
+      "Type": "Seed"
+   },
+   "Earth Crystal":
+   {
+      "Biome": "Swamp",
+      "Rarity": 3,
+      "Color": "White",
+      "Type": "Seed"
+   }
+}

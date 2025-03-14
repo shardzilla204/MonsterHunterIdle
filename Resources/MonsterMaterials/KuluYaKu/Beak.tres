@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="KuluYaKuMaterialData" load_steps=3 format=3 uid="uid://xu1nlqystopa"]
 
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/KuluYaKuMaterialData.cs" id="1_kvxra"]
-[ext_resource type="Texture2D" uid="uid://ru7b33jv3tpf" path="res://Assets/Images/Skull/SkullTanIcon.png" id="1_yhqm7"]
+[ext_resource type="Texture2D" uid="uid://ru7b33jv3tpf" path="res://Assets/Images/Monster/Material/Skull/SkullTanIcon.png" id="1_yhqm7"]
 
 [resource]
 script = ExtResource("1_kvxra")

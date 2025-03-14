@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_hv5c1"]
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://Resources/Default.tres" id="1_ydykw"]
 [ext_resource type="Script" path="res://Scripts/Display/PlayerDisplay.cs" id="2_kc52a"]
-[ext_resource type="Texture2D" uid="uid://c63hmsdahg6h1" path="res://Assets/Images/UserInterface/HunterRankPoint.png" id="3_sttdd"]
-[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/UserInterface/ZennyIcon.png" id="5_55p5x"]
+[ext_resource type="Texture2D" uid="uid://c63hmsdahg6h1" path="res://Assets/Images/Icon/HunterRankPointIcon.png" id="3_sttdd"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="5_55p5x"]
 [ext_resource type="PackedScene" uid="uid://dj8yua44jvdxr" path="res://Scenes/HunterProgressBar.tscn" id="5_wkamr"]
 
 [node name="PlayerDisplay" type="NinePatchRect" node_paths=PackedStringArray("_hunterRankLabel", "_hunterProgress", "_zennyLabel")]

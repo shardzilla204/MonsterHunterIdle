@@ -2,11 +2,8 @@ using Godot;
 
 namespace MonsterHunterIdle;
 
-public partial class GatherButton : Button
+public partial class GatherButton : CustomButton
 {
-	[Signal]
-	public delegate void FinishedEventHandler();
-
 	[Export]
 	private TextureProgressBar _gatherProgress;
 
@@ -14,13 +11,15 @@ public partial class GatherButton : Button
 	private TextureRect _gatherIcon;
 
 	private bool _isDown = false;
+	private const float _ProgressValue = 0.5f;
 
 	public override void _Ready()
 	{
+		base._Ready();
 		ButtonDown += () => _isDown = true;
 		ButtonUp += () => _isDown = false;
 		BiomeManager.Instance.Updated += SetIcon;
-		TreeExited += () => { BiomeManager.Instance.Updated -= SetIcon; }; // Removes the signal when being removed
+		TreeExited += () => BiomeManager.Instance.Updated -= SetIcon; // Removes the signal when being removed
 		
 		SetIcon();
 	}
@@ -32,15 +31,14 @@ public partial class GatherButton : Button
 
 	private void CheckProgress()
 	{
-		const float progressValue = 0.1f;
-		_gatherProgress.Value += _isDown ? progressValue : -progressValue;
+		_gatherProgress.Value += _isDown ? _ProgressValue : -_ProgressValue;
 
 		if (_gatherProgress.Value < _gatherProgress.MaxValue) return;
 
 		_gatherProgress.Value = 0;
 
-		EmitSignal(SignalName.Finished);
-		MonsterManager.Instance.CheckEncounter();
+		GD.PrintRich($"Picked Up {PrintRich.SetTextColor(BiomeManager.Instance.AddMaterial().Name, TextColor.Yellow)}");
+		MonsterManager.Instance.Encounter.Check();
 	}
 
 	private void SetIcon()

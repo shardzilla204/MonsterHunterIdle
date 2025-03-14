@@ -5,6 +5,7 @@ namespace MonsterHunterIdle;
 
 public enum BiomeType
 {
+	None = -1,
 	Forest,
 	Desert,
 	Swamp
@@ -12,63 +13,39 @@ public enum BiomeType
 
 public partial class BiomeManager : Node
 {
-	[Signal]
-	public delegate void UpdatedEventHandler();
+	public Biome Biome;
+	public List<Biome> Biomes = new List<Biome>();
 
-	private static BiomeManager _instance;
-	public static BiomeManager Instance
-	{
-		get => _instance;
-		private set 
-		{
-			if (_instance == null)
-			{
-				_instance = value;
-			}
-			else if (_instance != value)
-			{
-				GD.PrintRich($"{nameof(BiomeManager)} already exists");
-			}
-		}
-	}
-
-	[Export]
-	private ForestData _forestData;
-
-	[Export]
-	private DesertData _desertData;
-
-	[Export]
-	private SwampData _swampData;
-
-	public BiomeData Biome;
-
-	public Dictionary<BiomeType, BiomeData> Biomes = new Dictionary<BiomeType, BiomeData>();
 	public List<BiomeType> BiomesQueue = new List<BiomeType>()
 	{
 		BiomeType.Forest,
 		BiomeType.Desert,
 		BiomeType.Swamp
 	};
+
 	private (int listPosition, int position) clockwise;
 	private (int listPosition, int position) counterClockwise;
 
-    public override void _Ready()
-    {
-        Instance = this;
-
-		Biomes = new Dictionary<BiomeType, BiomeData>()
-		{
-			{ BiomeType.Forest, _forestData }, 
-			{ BiomeType.Desert, _desertData }, 
-			{ BiomeType.Swamp, _swampData }
-		};
-		
-		Biome = Biomes[BiomesQueue[0]];
+	public override void _Ready()
+	{	
+		Biome = Biomes.Find(biome => biome.Type == BiomesQueue[0]);
 
 		clockwise = (BiomesQueue.Count - 1, 0);
 		counterClockwise = (0, BiomesQueue.Count - 1);
-    }
+
+		SetBiomes();
+   }
+
+	public void SetBiomes()
+	{
+		int maxBiomeCount = 3;
+		for (int i = 0; i < maxBiomeCount; i++)
+		{
+			BiomeType biomeType = (BiomeType) i;
+			Biome biome = new Biome(biomeType);
+			Biomes.Add(biome);
+		}
+	}
 
 	public void CycleBiome(bool isClockwise)
 	{
@@ -79,64 +56,87 @@ public partial class BiomeManager : Node
 		BiomesQueue.Remove(biomeType);
 		BiomesQueue.Insert(position, biomeType);
 
-		Biome = Biomes[BiomesQueue[0]];
-		EmitSignal(SignalName.Updated);
+		Biome = Biomes.Find(biome => biome.Type == BiomesQueue[0]);
 	}
 
-	public dynamic GetBiomeMaterial()
+	public BiomeMaterial GetBiomeMaterial()
 	{
-		dynamic biomeData = GetBiomeData();
-		int lootValue = GetRandomLootValue(biomeData);
-		dynamic biomeMaterial = GetRandomMaterial(biomeData);
+		int materialRarity = GetRandomMaterialRarity();
+		BiomeMaterial biomeMaterial = GetRandomMaterial();
 
-		while (lootValue > 0)
+		while (materialRarity > 0)
 		{
-			lootValue -= biomeMaterial.Rarity;
-			biomeMaterial = GetRandomMaterial(biomeData);
+			materialRarity -= biomeMaterial.Rarity;
+			biomeMaterial = GetRandomMaterial();
 		}
 
 		return biomeMaterial;
 	}
 
-	private dynamic GetBiomeData()
-	{
-		BiomeData _biomeData = Biome;
-		if (_biomeData is ForestData forestData)
-		{
-			_biomeData = forestData;
-		}
-		else if (_biomeData is DesertData desertData)
-		{
-			_biomeData = desertData;
-		}
-		else if (_biomeData is SwampData swampData)
-		{
-			_biomeData = swampData;
-		}
-		return _biomeData;
-	}	
-
-	private dynamic GetRandomMaterial(dynamic biomeData)
+	private BiomeMaterial GetRandomMaterial()
 	{
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
-		int materialID = RNG.RandiRange(0, biomeData.Materials.Count - 1);
-		return biomeData.Materials[materialID];
+		List<BiomeMaterial> biomeMaterials = MonsterHunterIdle.MaterialManager.FindBiomeMaterials(Biome.Type);
+		int randomValue = RNG.RandiRange(0, biomeMaterials.Count - 1);
+
+		return biomeMaterials[randomValue];
 	}
 
-	private int GetRandomLootValue(dynamic biomeData)
+	private int GetRandomMaterialRarity()
 	{
+		int materialRarityTotal = GetMaterialRarityTotal();
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
-		int materialRarityTotal = GetBiomeMaterialRarityTotal(biomeData);
+
 		return RNG.RandiRange(0, materialRarityTotal);
 	}
 
-	private int GetBiomeMaterialRarityTotal(dynamic biomeData)
+	private int GetMaterialRarityTotal()
 	{
-		int total = 0;
-		for (int i = 0; i < biomeData.Materials.Count; i++)
+		int materialRarityTotal = 0;
+		List<BiomeMaterial> biomeMaterials = MonsterHunterIdle.MaterialManager.FindBiomeMaterials(Biome.Type);
+
+		for (int i = 0; i < biomeMaterials.Count; i++)
 		{
-			total += (int) biomeData.Materials[i].Rarity;
+			materialRarityTotal += biomeMaterials[i].Rarity;
 		}
-		return total;
+		return materialRarityTotal;
 	}
+
+	public Texture2D GetLocaleIcon(BiomeType biomeType)
+	{
+		string fileDirectory = "res://Assets/Images/Biome/LocaleIcon/";
+		string fileName = $"{biomeType}LocaleIcon";
+		string fileExtension = ".png";
+
+		string filePath = $"{fileDirectory}{fileName}{fileExtension}";
+		return ResourceLoader.Load<Texture2D>(filePath);
+	}
+
+	public Texture2D GetBackground(BiomeType biomeType)
+	{
+		string fileDirectory = "res://Assets/Images/Biome/";
+		string fileName = $"{biomeType}";
+		string fileExtension = ".png";
+
+		string filePath = $"{fileDirectory}{fileName}{fileExtension}";
+		return ResourceLoader.Load<Texture2D>(filePath);
+	}
+
+	public Texture2D GetGatherIcon(BiomeType biomeType)
+	{
+		string fileDirectory = "res://Assets/Images/Biome/GatherIcon/";
+		string fileName = $"{GetBiomeMaterialString(biomeType)}GatherIcon";
+		string fileExtension = ".png";
+
+		string filePath = $"{fileDirectory}{fileName}{fileExtension}";
+		return ResourceLoader.Load<Texture2D>(filePath);
+	}
+
+	private string GetBiomeMaterialString(BiomeType biomeType) => biomeType switch 
+	{
+		BiomeType.Forest => "Vegetation",
+		BiomeType.Desert => "Desert",
+		BiomeType.Swamp => "Ore",
+		_ => "Vegetation"
+	};
 }

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="KuluYaKuMaterialData" load_steps=3 format=3 uid="uid://cu88tvy30vta5"]
 
-[ext_resource type="Texture2D" uid="uid://d2x5bh7ybejx8" path="res://Assets/Images/Hide/HideTanIcon.png" id="1_ee1he"]
+[ext_resource type="Texture2D" uid="uid://d2x5bh7ybejx8" path="res://Assets/Images/Monster/Material/Hide/HideTanIcon.png" id="1_ee1he"]
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/KuluYaKuMaterialData.cs" id="1_s4gtq"]
 
 [resource]

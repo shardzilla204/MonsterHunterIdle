@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GreatJagrasMaterialData" load_steps=3 format=3 uid="uid://dx7nknlnl0v6j"]
 
-[ext_resource type="Texture2D" uid="uid://b56x6e0lscyfv" path="res://Assets/Images/Gem/GemLightBlueIcon.png" id="1_g60lv"]
+[ext_resource type="Texture2D" uid="uid://b56x6e0lscyfv" path="res://Assets/Images/Monster/Material/Gem/GemLightBlueIcon.png" id="1_g60lv"]
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/GreatJagrasMaterialData.cs" id="1_oqodv"]
 
 [resource]
@@ -9,6 +9,6 @@ _material = 6
 _monsterLevel = 150
 _name = "Wyvern Gem Shard"
 _description = ""
-_quantity = 0
+Quantity = 0
 _icon = ExtResource("1_g60lv")
 _rarity = 25

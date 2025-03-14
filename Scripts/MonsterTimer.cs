@@ -4,9 +4,6 @@ namespace MonsterHunterIdle;
 
 public partial class MonsterTimer : TextureRect
 {
-	[Signal]
-	public delegate void FinishedEventHandler();
-
 	[Export]
 	private TextureProgressBar _progressBar;
 
@@ -15,7 +12,7 @@ public partial class MonsterTimer : TextureRect
 
 	public override void _Ready()
 	{
-		_timer.Timeout += () => EmitSignal(SignalName.Finished);
+		_timer.Timeout += () => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterLeft);
 	}
 
 	public override void _Process(double delta)

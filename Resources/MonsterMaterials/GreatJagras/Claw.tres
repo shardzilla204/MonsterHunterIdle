@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GreatJagrasMaterialData" load_steps=3 format=3 uid="uid://dbh5687hq5ebo"]
 
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/GreatJagrasMaterialData.cs" id="1_o0i28"]
-[ext_resource type="Texture2D" uid="uid://ds4ute6gf10r0" path="res://Assets/Images/Claw/ClawYellowIcon.png" id="1_ycyd4"]
+[ext_resource type="Texture2D" uid="uid://ds4ute6gf10r0" path="res://Assets/Images/Monster/Material/Claw/ClawYellowIcon.png" id="1_ycyd4"]
 
 [resource]
 script = ExtResource("1_o0i28")
@@ -9,6 +9,6 @@ _material = 2
 _monsterLevel = 2000
 _name = "Great Jagras Claw"
 _description = ""
-_quantity = 0
+Quantity = 0
 _icon = ExtResource("1_ycyd4")
 _rarity = 500

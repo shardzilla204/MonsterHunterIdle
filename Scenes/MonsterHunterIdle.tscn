@@ -1,0 +1,54 @@
+[gd_scene load_steps=19 format=3 uid="uid://d2ns481hjn578"]
+
+[ext_resource type="Script" path="res://Scripts/MonsterHunterIdle.cs" id="1_c5mcf"]
+[ext_resource type="Script" path="res://Scripts/Manager/BiomeManager.cs" id="1_rlwmi"]
+[ext_resource type="Resource" uid="uid://dpjmf6vk5xrrq" path="res://Resources/Biomes/ForestBiome.tres" id="2_ewl8v"]
+[ext_resource type="Resource" uid="uid://g1wu334wxrok" path="res://Resources/Biomes/DesertBiome.tres" id="3_xnap7"]
+[ext_resource type="Resource" uid="uid://dr0olygbyw3et" path="res://Resources/Biomes/SwampBiome.tres" id="4_ej6tq"]
+[ext_resource type="Script" path="res://Scripts/Manager/MonsterManager.cs" id="5_fjcpx"]
+[ext_resource type="Script" path="res://Scripts/Manager/CollectionLogManager.cs" id="6_owojr"]
+[ext_resource type="PackedScene" uid="uid://bstf16dj3clka" path="res://Scenes/CollectionLog.tscn" id="7_441p0"]
+[ext_resource type="Script" path="res://Scripts/Manager/GameManager.cs" id="8_2fa7k"]
+[ext_resource type="PackedScene" uid="uid://b5qqn6nqcf0j7" path="res://Scenes/Display/CollectionLogDisplay.tscn" id="9_qjqql"]
+[ext_resource type="PackedScene" uid="uid://cdcn2eh3nvkj0" path="res://Scenes/Display/ItemBoxDisplay.tscn" id="10_wf4nx"]
+[ext_resource type="PackedScene" uid="uid://bnf8la1b7jt70" path="res://Scenes/Display/MonsterDisplay.tscn" id="12_n1iv6"]
+[ext_resource type="PackedScene" uid="uid://ksdf7gtoe15v" path="res://Scenes/Display/PlayerDisplay.tscn" id="13_88xed"]
+[ext_resource type="Script" path="res://Scripts/PalicoManager.cs" id="14_b1eg5"]
+[ext_resource type="PackedScene" uid="uid://bswmie3ykm27p" path="res://Scenes/Display/PalicoDisplay.tscn" id="14_hkyv0"]
+[ext_resource type="PackedScene" uid="uid://dm1l0hgl05xm8" path="res://Scenes/SmithyDisplay.tscn" id="14_qtrfb"]
+[ext_resource type="Script" path="res://MonsterEncounter.cs" id="15_ap2x0"]
+[ext_resource type="PackedScene" uid="uid://dpp1qd5jmum1d" path="res://Scenes/DataManager.tscn" id="17_xbcul"]
+
+[node name="MonsterHunterIdle" type="Node"]
+script = ExtResource("1_c5mcf")
+
+[node name="PalicoManager" type="Node" parent="."]
+script = ExtResource("14_b1eg5")
+
+[node name="BiomeManager" type="Node" parent="."]
+script = ExtResource("1_rlwmi")
+_forestData = ExtResource("2_ewl8v")
+_desertData = ExtResource("3_xnap7")
+_swampData = ExtResource("4_ej6tq")
+
+[node name="MonsterManager" type="Node" parent="." node_paths=PackedStringArray("Encounter")]
+script = ExtResource("5_fjcpx")
+Encounter = NodePath("MonsterEncounter")
+
+[node name="MonsterEncounter" type="Node" parent="MonsterManager"]
+script = ExtResource("15_ap2x0")
+
+[node name="CollectionLogManager" type="Node" parent="."]
+script = ExtResource("6_owojr")
+_collectionLogScene = ExtResource("7_441p0")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("8_2fa7k")
+_monsterDisplayScene = ExtResource("12_n1iv6")
+_collectionLogDisplayScene = ExtResource("9_qjqql")
+_itemBoxDisplayScene = ExtResource("10_wf4nx")
+_smithyDisplayScene = ExtResource("14_qtrfb")
+_playerDisplayScene = ExtResource("13_88xed")
+_palicoDisplayScene = ExtResource("14_hkyv0")
+
+[node name="DataManager" parent="." instance=ExtResource("17_xbcul")]

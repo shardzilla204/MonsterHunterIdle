@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://yxxq572d0rqo"]
+
+[ext_resource type="Script" path="res://PalicoEquipmentDetails.cs" id="1_yu3h8"]
+[ext_resource type="Texture2D" uid="uid://ccdgfn6e1pckk" path="res://Assets/Images/Icon/PalicoWeaponIconWhite.png" id="2_vql26"]
+[ext_resource type="Texture2D" uid="uid://glgookkln6p5" path="res://Assets/Images/Icon/PalicoHelmetIconWhite.png" id="3_j32k0"]
+[ext_resource type="Texture2D" uid="uid://cu4whymrkvthh" path="res://Assets/Images/Icon/PalicoArmorIconWhite.png" id="4_v723j"]
+[ext_resource type="PackedScene" uid="uid://b5r72qvckpxmu" path="res://Scenes/StatDetail.tscn" id="5_rhn0u"]
+[ext_resource type="Script" path="res://EquipButton.cs" id="6_bvhud"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="7_k0t6i"]
+
+[node name="PalicoEquipmentDetails" type="HBoxContainer" node_paths=PackedStringArray("_iconTexture", "_equipButton", "_statsContainer")]
+theme_override_constants/separation = 0
+script = ExtResource("1_yu3h8")
+_weaponTexture = ExtResource("2_vql26")
+_helmetTexture = ExtResource("3_j32k0")
+_armorTexture = ExtResource("4_v723j")
+_iconTexture = NodePath("Equipment/IconTexture")
+_equipButton = NodePath("Equipment/EquipButton")
+_statDetailScene = ExtResource("5_rhn0u")
+_statsContainer = NodePath("ScrollContainer/StatsContainer")
+
+[node name="Equipment" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="IconTexture" type="TextureRect" parent="Equipment"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EquipButton" type="Button" parent="Equipment"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "None
+"
+flat = true
+script = ExtResource("6_bvhud")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Equipment/EquipButton"]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_k0t6i")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="StatsContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5

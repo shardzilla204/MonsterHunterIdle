@@ -1,0 +1,39 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5r72qvckpxmu"]
+
+[ext_resource type="Script" path="res://StatDetail.cs" id="1_7dt0a"]
+[ext_resource type="Texture2D" uid="uid://jtvmyhpv5vwy" path="res://Assets/Images/Icon/AttackIcon.png" id="1_jyc2t"]
+[ext_resource type="Texture2D" uid="uid://cnico6uxrr3xj" path="res://Assets/Images/Icon/DefenseIcon.png" id="3_qm07b"]
+[ext_resource type="Texture2D" uid="uid://bakmmfwb0e2ty" path="res://Assets/Images/Icon/AffinityIcon.png" id="4_mlak5"]
+[ext_resource type="Texture2D" uid="uid://d1of5jdvmaoag" path="res://Assets/Images/Icon/WaterIcon.png" id="5_qyd4r"]
+[ext_resource type="Texture2D" uid="uid://hggcjwiy1bev" path="res://Assets/Images/Icon/FireIcon.png" id="6_7e2lq"]
+[ext_resource type="Texture2D" uid="uid://yxc000v1bsfj" path="res://Assets/Images/Icon/ThunderIcon.png" id="7_eqi5v"]
+[ext_resource type="Texture2D" uid="uid://datcki515ci25" path="res://Assets/Images/Icon/IceIcon.png" id="8_4oteq"]
+[ext_resource type="Texture2D" uid="uid://b355a2vsrps70" path="res://Assets/Images/Icon/DragonIcon.png" id="9_5v5e6"]
+[ext_resource type="Texture2D" uid="uid://drldrj4ebiss8" path="res://Assets/Images/Icon/HealthIcon.png" id="10_n05p5"]
+
+[node name="StatDetail" type="HBoxContainer" node_paths=PackedStringArray("_statIcon", "_statLabel")]
+custom_minimum_size = Vector2(45, 0)
+theme_override_constants/separation = 0
+script = ExtResource("1_7dt0a")
+_statIcon = NodePath("StatIcon")
+_statLabel = NodePath("StatLabel")
+_attackIcon = ExtResource("1_jyc2t")
+_defenseIcon = ExtResource("3_qm07b")
+_affinityIcon = ExtResource("4_mlak5")
+_waterIcon = ExtResource("5_qyd4r")
+_fireIcon = ExtResource("6_7e2lq")
+_thunderIcon = ExtResource("7_eqi5v")
+_iceIcon = ExtResource("8_4oteq")
+_dragonIcon = ExtResource("9_5v5e6")
+_healthIcon = ExtResource("10_n05p5")
+
+[node name="StatIcon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("1_jyc2t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatLabel" type="Label" parent="."]
+layout_mode = 2
+text = "+5"

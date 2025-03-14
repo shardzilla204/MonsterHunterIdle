@@ -2,7 +2,7 @@ using Godot;
 
 namespace MonsterHunterIdle;
 
-public partial class CycleButton : Button
+public partial class CycleButton : CustomButton
 {
 	[Export]
 	private bool _isClockwise = false;
@@ -14,6 +14,7 @@ public partial class CycleButton : Button
 
 	public override void _Ready()
 	{	
+		base._Ready();
 		_biomePosition = _isClockwise ? 2 : 1;
 
 		Pressed += () => BiomeManager.Instance.CycleBiome(_isClockwise);

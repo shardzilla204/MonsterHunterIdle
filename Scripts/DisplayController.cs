@@ -8,28 +8,13 @@ public enum Display
 	CollectionLog,
 	ItemBox,
 	Loadout,
-	Player
+	Player,
+	Palico,
+	Smithy
 }
 
-public partial class DisplayController : Container
+public partial class InterfaceController : Container
 {
-	private static DisplayController _instance;
-	public static DisplayController Instance
-	{
-		get => _instance;
-		private set 
-		{
-			if (_instance == null)
-			{
-				_instance = value;
-			}
-			else if (_instance != value)
-			{
-				GD.PrintRich($"{nameof(DisplayController)} already exists");
-			}
-		}
-	}
-
 	[Export]
 	private Button _settingsButton;
 	
@@ -43,21 +28,28 @@ public partial class DisplayController : Container
 	private Button _itemBoxButton;
 
 	[Export]
+	private Button _smithyButton;
+
+	[Export]
 	private Button _loadoutButton;
 
 	[Export]
 	private Button _playerButton;
 
+	[Export]
+	private Button _palicoButton;
+
 	public override void _Ready()
 	{
-		Instance = this;
 		// _settingsButton.Pressed += () => ChangeDisplay(Display.Settings);
 		_gatherButton.Pressed += () => ChangeDisplay(Display.CollectionLog);
 		_itemBoxButton.Pressed += () => ChangeDisplay(Display.ItemBox);
+		_smithyButton.Pressed += () => ChangeDisplay(Display.Smithy);
 		// _loadoutButton.Pressed += () => ChangeDisplay(Display.Loadout);
 		_playerButton.Pressed += () => ChangeDisplay(Display.Player);
+		_palicoButton.Pressed += () => ChangeDisplay(Display.Palico);
 
-		BiomeManager.Instance.Updated += () => _gatherIcon.Texture = BiomeManager.Instance.Biome.GatherIcon;
+		MonsterHunterIdle.Signals.Changed.Instance.Updated += () => _gatherIcon.Texture = BiomeManager.Instance.Biome.GatherIcon;
 	}
 
 	private void ChangeDisplay(Display display)

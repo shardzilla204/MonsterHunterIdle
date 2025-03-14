@@ -1,25 +1,25 @@
 [gd_resource type="Resource" script_class="MonsterData" load_steps=11 format=3 uid="uid://bb6pus4807bd7"]
 
-[ext_resource type="Texture2D" uid="uid://4n62l6grp7q4" path="res://Assets/Images/MonsterIcon/KuluYaKuIcon.png" id="1_ej4ht"]
-[ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/MonsterData.cs" id="1_w73tp"]
+[ext_resource type="Texture2D" uid="uid://4n62l6grp7q4" path="res://Assets/Images/Monster/Icon/KuluYaKuIcon.png" id="1_q2lpu"]
 [ext_resource type="Resource" uid="uid://5avsvwu48i1q" path="res://Resources/MonsterMaterials/KuluYaKu/Scale.tres" id="2_mw6d0"]
-[ext_resource type="Texture2D" uid="uid://cerqtxet68ww0" path="res://Assets/Images/MonsterRender/KuluYaKuRender.png" id="2_ssjmm"]
 [ext_resource type="Resource" uid="uid://42xgb3n7ww05" path="res://Resources/MonsterMaterials/KuluYaKu/Hide.tres" id="3_pkr2w"]
 [ext_resource type="Resource" uid="uid://xu1nlqystopa" path="res://Resources/MonsterMaterials/KuluYaKu/Beak.tres" id="4_vbd86"]
 [ext_resource type="Resource" uid="uid://cbukblydqv6nc" path="res://Resources/MonsterMaterials/KuluYaKu/Plume.tres" id="5_y3d8u"]
 [ext_resource type="Resource" uid="uid://bew5ot8pnh83c" path="res://Resources/MonsterMaterials/KuluYaKu/Primescale.tres" id="6_vj6v0"]
 [ext_resource type="Resource" uid="uid://cu88tvy30vta5" path="res://Resources/MonsterMaterials/KuluYaKu/Primehide.tres" id="7_tawva"]
 [ext_resource type="Resource" uid="uid://deaguq3oe8she" path="res://Resources/MonsterMaterials/KuluYaKu/WyvernGemShard.tres" id="8_5ug33"]
+[ext_resource type="Texture2D" uid="uid://cerqtxet68ww0" path="res://Assets/Images/Monster/Render/KuluYaKuRender.png" id="9_2sns4"]
+[ext_resource type="Script" path="res://Scripts/Data/MonsterData.cs" id="10_bg67o"]
 
 [resource]
-script = ExtResource("1_w73tp")
+script = ExtResource("10_bg67o")
 _name = "Kulu-Ya-Ku"
 _description = ""
 _species = 1
-_icon = ExtResource("1_ej4ht")
-_render = ExtResource("2_ssjmm")
-_health = 450
-_level = 2500
+_icon = ExtResource("1_q2lpu")
+_render = ExtResource("9_2sns4")
+Health = 450
+Level = 2500
 _locale = [0, 1, 2]
 _elements = []
 _abnormalStatuses = []

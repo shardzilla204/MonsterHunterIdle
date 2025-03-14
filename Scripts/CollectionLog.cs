@@ -13,14 +13,13 @@ public partial class CollectionLog : NinePatchRect
 	[Export] 
 	private Label _resourceAmount;
 
-    public void UpdateResource(dynamic resource, int amount)
+    public void SetResource(dynamic resource, int amount)
 	{
-		_resourceName.Text = $"{resource.Name}";
+		_resourceName.Text = resource.Name;
 		_resourceIcon.Texture = resource.Icon;
 		_resourceAmount.Text = $"+{amount}";
-		CreateTimer();
 
-		GD.PrintRich($"Picked Up [color=YELLOW]{resource.Name}[/color]");
+		CreateTimer();
 	}
 
 	private void CreateTimer()
@@ -30,7 +29,7 @@ public partial class CollectionLog : NinePatchRect
 			WaitTime = 7.5f,
 			Autostart = true
 		};
-		timer.Timeout += () => CollectionLogManager.Instance.RemoveLog(this);
+		timer.Timeout += () => CollectionLogManager.Instance.RemoveCollectionLog(this);
 		AddChild(timer);
 	}
 }

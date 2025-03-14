@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PukeiPukeiMaterialData" load_steps=3 format=3 uid="uid://bnxjxjf7r2qk4"]
 
-[ext_resource type="Texture2D" uid="uid://bck22ee21ri37" path="res://Assets/Images/Sac/SacDeepGreenIcon.png" id="1_1urmg"]
+[ext_resource type="Texture2D" uid="uid://bck22ee21ri37" path="res://Assets/Images/Monster/Material/Sac/SacDeepGreenIcon.png" id="1_1urmg"]
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/PukeiPukeiMaterialData.cs" id="1_k76il"]
 
 [resource]
@@ -9,6 +9,6 @@ Material = 3
 _monsterLevel = 1500
 _name = "Pukei-Pukei Sac"
 _description = ""
-_quantity = 0
+Quantity = 0
 _icon = ExtResource("1_1urmg")
 _rarity = 250

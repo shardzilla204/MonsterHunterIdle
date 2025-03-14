@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://c877crexigmrw"]
+
+[ext_resource type="Script" path="res://Scripts/RecruitPalicoButton.cs" id="1_550vx"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="2_gsdyf"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="3_y2xmg"]
+
+[node name="RecruitPalicoButton" type="Button" node_paths=PackedStringArray("_priceLabel")]
+custom_minimum_size = Vector2(0, 50)
+size_flags_horizontal = 3
+flat = true
+script = ExtResource("1_550vx")
+_priceLabel = NodePath("NinePatchRect/MarginContainer/HBoxContainer/Price/PriceLabel")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(0.1, 0.1, 0.1, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gsdyf")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Recruit Palico"
+vertical_alignment = 1
+
+[node name="Price" type="HBoxContainer" parent="NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/Price"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture = ExtResource("3_y2xmg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PriceLabel" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer/Price"]
+layout_mode = 2
+text = "100"

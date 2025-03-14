@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PukeiPukeiMaterialData" load_steps=3 format=3 uid="uid://cr5eb47763xjp"]
 
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/PukeiPukeiMaterialData.cs" id="1_2ddak"]
-[ext_resource type="Texture2D" uid="uid://c82j7tpxm1gov" path="res://Assets/Images/Shell/ShellDeepGreen.png" id="1_5fbr7"]
+[ext_resource type="Texture2D" uid="uid://c82j7tpxm1gov" path="res://Assets/Images/Monster/Material/Shell/ShellDeepGreen.png" id="1_5fbr7"]
 
 [resource]
 script = ExtResource("1_2ddak")

@@ -2,6 +2,7 @@ using Godot;
 
 namespace MonsterHunterIdle;
 
+[GlobalClass]
 public partial class MaterialData : Resource
 {
 	[Export]
@@ -11,7 +12,7 @@ public partial class MaterialData : Resource
 	private string _description;
 
 	[Export]
-	private int _quantity;
+	public int Quantity;
 
 	[Export] 
 	private Texture2D _icon;
@@ -21,14 +22,8 @@ public partial class MaterialData : Resource
 
 	public string Name => _name;
 	public string Description => _description;
-	public int Quantity;
 	public Texture2D Icon => _icon;
 	public RarityLevel Rarity => _rarity;
 
 	public const int MaxQuantity = 999;
-
-	public void SetValues()
-	{
-		Quantity = _quantity;
-	}
 }

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdcn2eh3nvkj0"]
+[gd_scene load_steps=5 format=3 uid="uid://cdcn2eh3nvkj0"]
 
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_nhaxt"]
 [ext_resource type="Script" path="res://Scripts/Display/ItemBoxDisplay.cs" id="2_vy0bq"]
-[ext_resource type="PackedScene" uid="uid://bdgbg84n18kya" path="res://Scenes/Display/MaterialDisplay.tscn" id="3_uc1ui"]
+[ext_resource type="PackedScene" uid="uid://bdgbg84n18kya" path="res://Scenes/Display/MaterialLog.tscn" id="3_uc1ui"]
+[ext_resource type="Script" path="res://Scripts/ItemBoxSearch.cs" id="4_67b84"]
 
-[node name="ItemBoxDisplay" type="NinePatchRect" node_paths=PackedStringArray("_materialContainer")]
+[node name="ItemBoxDisplay" type="NinePatchRect" node_paths=PackedStringArray("_materialContainer", "_searchBar")]
 custom_minimum_size = Vector2(350, 250)
 offset_right = 350.0
 offset_bottom = 40.0
@@ -17,6 +18,7 @@ patch_margin_bottom = 20
 script = ExtResource("2_vy0bq")
 _materialDisplayScene = ExtResource("3_uc1ui")
 _materialContainer = NodePath("MarginContainer/VBoxContainer/ScrollContainer/MaterialContainer")
+_searchBar = NodePath("MarginContainer/VBoxContainer/Searchbar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -34,10 +36,10 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+[node name="Searchbar" type="LineEdit" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "In Progress..."
 placeholder_text = "Search..."
+script = ExtResource("4_67b84")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

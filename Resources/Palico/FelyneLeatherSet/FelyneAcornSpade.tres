@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="PalicoWeaponData" load_steps=6 format=3 uid="uid://b8tkrfn5qx8rd"]
+
+[ext_resource type="Resource" uid="uid://b6kuli0qt8rrc" path="res://Resources/BiomeMaterials/Swamp/Ore/IronOre.tres" id="1_sjema"]
+[ext_resource type="Script" path="res://Scripts/Data/ResourceRequirementData.cs" id="2_hnqrf"]
+[ext_resource type="Texture2D" uid="uid://c0nol4bemi5nb" path="res://Assets/Images/Palico/Armor/LeatherSet/FelyneAcornSpade.png" id="3_jpnqy"]
+[ext_resource type="Script" path="res://Scripts/Data/Palico/PalicoWeaponData.cs" id="4_35miy"]
+
+[sub_resource type="Resource" id="Resource_0rm7r"]
+script = ExtResource("2_hnqrf")
+_material = ExtResource("1_sjema")
+_amount = 2
+
+[resource]
+script = ExtResource("4_35miy")
+_attack = 5
+_affinity = 0
+_defense = 0
+_name = "Felyne Acorn Spade"
+_description = ""
+_texture = ExtResource("3_jpnqy")
+_equipmentType = 0
+_resources = Array[Object]([SubResource("Resource_0rm7r")])

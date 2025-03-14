@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GreatJagrasMaterialData" load_steps=3 format=3 uid="uid://cwgfhftf7jy7p"]
 
 [ext_resource type="Script" path="res://Scripts/Data/MonsterMaterial/GreatJagrasMaterialData.cs" id="1_cw5x5"]
-[ext_resource type="Texture2D" uid="uid://tjnnl34s6fsa" path="res://Assets/Images/MonsterPart/MonsterPartYellowIcon.png" id="1_vm5xv"]
+[ext_resource type="Texture2D" uid="uid://tjnnl34s6fsa" path="res://Assets/Images/Monster/Material/MonsterPart/MonsterPartYellowIcon.png" id="1_vm5xv"]
 
 [resource]
 script = ExtResource("1_cw5x5")
@@ -9,6 +9,6 @@ _material = 3
 _monsterLevel = 1500
 _name = "Great Jagras Mane"
 _description = ""
-_quantity = 0
+Quantity = 0
 _icon = ExtResource("1_vm5xv")
 _rarity = 250

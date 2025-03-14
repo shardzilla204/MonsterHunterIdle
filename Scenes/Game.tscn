@@ -1,15 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://vpeocbhpex32"]
+[gd_scene load_steps=9 format=3 uid="uid://vpeocbhpex32"]
 
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_xxn33"]
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://Resources/Default.tres" id="2_bpjdc"]
 [ext_resource type="Script" path="res://Scripts/Display/BiomeDisplay.cs" id="3_6eo6j"]
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="4_bwl05"]
 [ext_resource type="FontFile" uid="uid://1q6rnlq3mobb" path="res://Assets/Fonts/MonsterHunter2.ttf" id="6_bm4ue"]
-[ext_resource type="PackedScene" uid="uid://ksdf7gtoe15v" path="res://Scenes/Display/PlayerDisplay.tscn" id="7_gwgaa"]
-[ext_resource type="PackedScene" uid="uid://b5qqn6nqcf0j7" path="res://Scenes/Display/CollectionLogDisplay.tscn" id="7_x5t1q"]
+[ext_resource type="PackedScene" uid="uid://dm1l0hgl05xm8" path="res://Scenes/SmithyDisplay.tscn" id="8_hpqb1"]
 [ext_resource type="PackedScene" uid="uid://b61iq26ngrfk2" path="res://Scenes/Display/DisplayController.tscn" id="9_dfbtb"]
 [ext_resource type="PackedScene" uid="uid://dcsiof323lxef" path="res://Scenes/CycleButton.tscn" id="10_srrxp"]
-[ext_resource type="PackedScene" uid="uid://bnf8la1b7jt70" path="res://Scenes/Display/MonsterDisplay.tscn" id="11_wdp74"]
 
 [node name="Game" type="Node" node_paths=PackedStringArray("MainContainer")]
 script = ExtResource("1_xxn33")
@@ -123,12 +121,5 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="PlayerDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("7_gwgaa")]
-layout_mode = 2
-
-[node name="CollectionLogDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("7_x5t1q")]
-visible = false
-layout_mode = 2
-
-[node name="MonsterDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("11_wdp74")]
+[node name="CraftingDisplay" parent="BiomeDisplay/BiomeBackground/MarginContainer/HBoxContainer/VBoxContainer2/MainContainer" instance=ExtResource("8_hpqb1")]
 layout_mode = 2
