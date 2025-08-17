@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0h668v6xergd"]
 
-[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://Resources/Default.tres" id="1_gev83"]
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_gev83"]
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_qwf1t"]
-[ext_resource type="Script" path="res://Scripts/PalicoLoadout.cs" id="3_d0oft"]
+[ext_resource type="Script" uid="uid://cicqctcxrp255" path="res://Scripts/Palico/PalicoLoadout.cs" id="3_d0oft"]
 [ext_resource type="PackedScene" uid="uid://yxxq572d0rqo" path="res://Scenes/PalicoEquipmentDetails.tscn" id="4_keebt"]
 
-[node name="PalicoLoadout" type="NinePatchRect" node_paths=PackedStringArray("_palicoName", "_weaponsDetails", "_helmetDetails", "_armorDetails")]
+[node name="PalicoLoadout" type="NinePatchRect" node_paths=PackedStringArray("_palicoName", "_weaponDetails", "_helmetDetails", "_armorDetails")]
 custom_minimum_size = Vector2(350, 215)
 theme = ExtResource("1_gev83")
 texture = ExtResource("2_qwf1t")
@@ -15,7 +15,7 @@ patch_margin_right = 20
 patch_margin_bottom = 20
 script = ExtResource("3_d0oft")
 _palicoName = NodePath("MarginContainer/VBoxContainer/PalicoName")
-_weaponsDetails = NodePath("MarginContainer/VBoxContainer/HBoxContainer4/WeaponDetails")
+_weaponDetails = NodePath("MarginContainer/VBoxContainer/HBoxContainer4/WeaponDetails")
 _helmetDetails = NodePath("MarginContainer/VBoxContainer/HBoxContainer4/HelmetDetails")
 _armorDetails = NodePath("MarginContainer/VBoxContainer/HBoxContainer4/ArmorDetails")
 

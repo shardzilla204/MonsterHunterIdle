@@ -1,0 +1,640 @@
+{
+    "ArmArmorCrafting":
+    {
+        "Leather":
+        [
+            {
+                "Name": "Leather Gloves I",
+                "Materials" :
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ]
+                ],
+                "Cost": [ 10, 20, 30, 40, 50 ]
+            },
+            {
+                "Name": "Leather Gloves II",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 5
+                        }
+                    ]
+                ],
+                "Cost": [ 300, 100, 150, 200, 250 ]
+            },
+            {
+                "Name": "Leather Gloves III",
+                "Materials":
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 10
+                        }
+                    ]
+                ],
+                "Cost": [ 600, 200, 300, 400, 500 ]
+            },
+            {
+                "Name": "Leather Gloves IV",
+                "Materials":
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 9
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 10
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 4
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 9
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 12
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 9
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 4
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 9
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 12
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 9
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 15
+                        }
+                    ]
+                ],
+                "Cost": [ 900, 300, 450, 600, 750 ]
+            },
+            {
+                "Name": "Leather Gloves V",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 15
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 12
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 10
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 24
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 20
+                        }
+                    ]
+                ],
+                "Cost": [ 1500, 500, 750, 1000, 1250 ]
+            },
+            {
+                "Name": "Leather Gloves VI",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 21
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 15
+                        },
+                        {
+                            "Name": "Armor Refining Parts",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 21
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 44
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 21
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 20
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 21
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 44
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 21
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 30
+                        }
+                    ]
+                ],
+                "Cost": [ 3000, 1000, 1500, 2000, 2500 ]
+            },
+            {
+                "Name": "Leather Gloves VII",
+                "Materials":
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 28
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 20
+                        },
+                        {
+                            "Name": "Armor Refining Parts",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 28
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 50
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 28
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 30
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 28
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 50
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 28
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 40
+                        }
+                    ]
+                ],
+                "Cost": [ 6000, 2000, 3000, 4000, 5000 ]
+            },
+            {
+                "Name": "Leather Gloves VIII",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Armor Refining Parts",
+                            "Amount": 5
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 60
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 60
+                        }
+                    ],
+                    [
+                            {
+                            "Name": "Iron Ore",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 2
+                        }
+                    ]
+                ],
+                "Cost": [ 12000, 4000, 6000, 8000, 10000 ]
+            },
+            {
+                "Name": "Leather Gloves IX",
+                "Materials":
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Armor Refining Parts",
+                            "Amount": 7
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 70
+                        }
+                    ],
+                    [ 
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 70
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 105
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 3
+                        }
+                    ]
+                ],
+                "Cost": [ 30000, 10000, 15000, 20000, 25000 ]
+            },
+            {
+                "Name": "Leather Gloves X",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 5
+                        },
+                        {
+                            "Name": "Armor Refining Parts",
+                            "Amount": 9
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 80
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 10
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 35
+                        },
+                        {
+                            "Name": "Wingdrake Hide",
+                            "Amount": 80
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 140
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 15
+                        }
+                    ]
+                ],
+                "Cost": [ 75000, 25000, 37500, 50000, 62500 ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,185 @@
+using Godot;
+using GC = Godot.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MonsterHunterIdle;
+
+public partial class ItemBoxInterface : NinePatchRect
+{
+	[Export]
+	private Container _parentContainer;
+
+	[Export]
+	private ItemBoxSearch _searchBar;
+
+	[Export]
+	private CustomButton _sellModeButton;
+
+	private SellMaterialLogContainer _sellMaterialLogContainer;
+
+	public override void _ExitTree()
+	{
+		MonsterHunterIdle.Signals.LocaleMaterialAdded -= OnLocaleMaterialAdded;
+		MonsterHunterIdle.Signals.MonsterMaterialAdded -= OnMonsterMaterialAdded;
+	}
+
+	public override void _EnterTree()
+	{
+		MonsterHunterIdle.Signals.LocaleMaterialAdded += OnLocaleMaterialAdded;
+		MonsterHunterIdle.Signals.MonsterMaterialAdded += OnMonsterMaterialAdded;
+	}
+
+	public override void _Ready()
+	{
+		_searchBar.FilterChanged += FilterMaterialLogs;
+		_sellModeButton.Toggled += SellMode;
+
+		SellMode(false);
+	}
+
+	private void SellMode(bool isToggled)
+	{
+		Color green = Color.FromHtml(PrintRich.GetColorHex(TextColor.Green));
+		Color red = Color.FromHtml(PrintRich.GetColorHex(TextColor.Red));
+		Color buttonColor = isToggled ? green : red;
+		_sellModeButton.SetColor(buttonColor);
+
+		UpdateMaterialLogs();
+		_searchBar.Text = "";
+	}
+
+	private void OnLocaleMaterialAdded(LocaleMaterial localeMaterial)
+	{
+		UpdateMaterialLogs();
+	}
+
+	private void OnMonsterMaterialAdded(MonsterMaterial monsterMaterial)
+	{
+		UpdateMaterialLogs();
+	}
+
+	private void UpdateMaterialLogs()
+	{
+		GC.Dictionary<string, int> materialsToSell = new GC.Dictionary<string, int>();
+		if (_sellModeButton.ButtonPressed && IsInstanceValid(_sellMaterialLogContainer))
+		{
+			materialsToSell = _sellMaterialLogContainer.MaterialsToSell;
+		}
+
+		ClearDisplay();
+
+		List<Material> distinctMaterials = MonsterHunterIdle.ItemBox.Materials.Distinct().ToList();
+
+		if (!_sellModeButton.ButtonPressed)
+		{
+			AddMaterialLogs(distinctMaterials);
+		}
+		else
+		{
+			AddSellMaterialContainer(distinctMaterials, materialsToSell);
+		}
+	}
+
+	private void AddMaterialLogs(List<Material> materials)
+	{
+		Container materialLogContainerNode = GetMaterialLogContainerNode();
+		FlowContainer flowContainer = materialLogContainerNode.GetChild<FlowContainer>(0);
+		foreach (Material material in materials)
+		{
+			MaterialLog materialLog = MonsterHunterIdle.PackedScenes.GetMaterialLog(material);
+			flowContainer.AddChild(materialLog);
+		}
+		_parentContainer.AddChild(materialLogContainerNode);
+	}
+
+	private void AddSellMaterialContainer(List<Material> materials)
+	{
+		GC.Array<Material> materialsArray = [.. materials];
+		_sellMaterialLogContainer = MonsterHunterIdle.PackedScenes.GetSellMaterialLogContainer();
+		_sellMaterialLogContainer.SellButtonPressed += SellMaterials;
+		_sellMaterialLogContainer.AddSellMaterialLogs(materialsArray);
+		_parentContainer.AddChild(_sellMaterialLogContainer);
+	}
+
+	// Keep the amount to sell when changing the filter
+	private void AddSellMaterialContainer(List<Material> materials, GC.Dictionary<string, int> materialsToSell)
+	{
+		AddSellMaterialContainer(materials);
+
+		foreach (string materialName in materialsToSell.Keys)
+		{
+			int amount = materialsToSell[materialName];
+			SellMaterialLog sellMaterialLog = _sellMaterialLogContainer.FindSellMaterialLog(materialName);
+			sellMaterialLog.SetAmount(amount);
+		}
+	}
+
+	private void FilterMaterialLogs(GC.Array<Material> filteredMaterials)
+	{
+		GC.Dictionary<string, int> materialsToSell = new GC.Dictionary<string, int>();
+		if (_sellModeButton.ButtonPressed)
+		{
+			materialsToSell = _sellMaterialLogContainer.MaterialsToSell;
+		}
+
+		ClearDisplay();
+
+		List<Material> distinctMaterials = filteredMaterials.Count == 0 ? MonsterHunterIdle.ItemBox.Materials.Distinct().ToList() : filteredMaterials.ToList();
+		if (!_sellModeButton.ButtonPressed)
+		{
+			AddMaterialLogs(distinctMaterials);
+		}
+		else
+		{
+			AddSellMaterialContainer(distinctMaterials, materialsToSell);
+		}
+	}
+
+	private void ClearDisplay()
+	{
+		Container childContainer = _parentContainer.GetChild<Container>(1);
+		childContainer.QueueFree();
+		
+		_sellMaterialLogContainer = null;
+	}
+
+	private ScrollContainer GetMaterialLogContainerNode()
+	{
+		ScrollContainer materialContainerNode = new ScrollContainer()
+		{
+			FollowFocus = true,
+			HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled,
+			VerticalScrollMode = ScrollContainer.ScrollMode.ShowNever,
+			SizeFlagsVertical = SizeFlags.ExpandFill 
+		};
+
+		int separationValue = 11;
+		FlowContainer flowContainer = new FlowContainer()
+		{
+			SizeFlagsHorizontal = SizeFlags.ExpandFill,
+			SizeFlagsVertical = SizeFlags.ExpandFill
+		};
+		flowContainer.AddThemeConstantOverride("h_separation", separationValue);
+		flowContainer.AddThemeConstantOverride("v_separation", separationValue);
+
+		materialContainerNode.AddChild(flowContainer);
+		return materialContainerNode;
+	}
+
+	private void SellMaterials(GC.Dictionary<string, int> materialsToSell)
+	{
+		foreach (string materialName in materialsToSell.Keys)
+		{
+			Material material = MonsterHunterIdle.FindMaterial(materialName);
+			int amount = materialsToSell[materialName];
+			MonsterHunterIdle.ItemBox.SubtractMaterial(material, amount);
+
+			int zenny = MonsterHunterIdle.ItemBox.GetSellValue(material) * amount;
+			MonsterHunterIdle.HunterManager.AddZenny(zenny);
+
+			string soldMessage = $"Sold {amount} {materialName} For {zenny} Zenny";
+			PrintRich.PrintLine(TextColor.Yellow, soldMessage);
+		}
+	}
+}

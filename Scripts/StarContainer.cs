@@ -10,17 +10,17 @@ public partial class StarContainer : Container
 	[Export]
 	private Texture2D _purpleStar;
 
-	public void FillContainer()
+	public void Fill(Monster monster)
 	{
-		EmptyContainer();
-		Monster monster = MonsterHunterIdle.MonsterManager.Encounter.Monster;
+		Empty();
 		for (int i = 0; i < monster.Level; i++)
 		{
-			AddChild(GetStarTexture());
+			TextureRect starTexture = GetStarTexture(monster);
+			AddChild(starTexture);
 		}
 	}
 
-	public void EmptyContainer()
+	public void Empty()
 	{
 		foreach(Node star in GetChildren())
 		{
@@ -29,10 +29,8 @@ public partial class StarContainer : Container
 		}
 	}
 
-	private TextureRect GetStarTexture()
+	private TextureRect GetStarTexture(Monster monster)
 	{
-		Monster monster = MonsterHunterIdle.MonsterManager.Encounter.Monster;
-
 		return monster.Level <= 5 ? GetStarTextureRect(_yellowStar) : GetStarTextureRect(_purpleStar);
 	}
 

@@ -1,110 +1,121 @@
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
+using GC = Godot.Collections;
+using System.Collections.Generic;
 
 namespace MonsterHunterIdle;
 
-public enum RarityLevel
-{
-	One = 1000,
-	Two = 500,
-	Three = 250,
-	Four = 125,
-	Five = 50,
-	Six = 25
-	// One = 5000,
-	// Two = 2500,
-	// Three = 1000,
-	// Four = 200,
-	// Five = 50,
-	// Six = 10
-}
-
 public partial class GameManager : Node
 {
-	private static GameManager _instance;
-	public static GameManager Instance
+	private string _gameFilePath = "user://savegame.sav";
+
+	public override void _EnterTree()
 	{
-		get => _instance;
-		private set 
+		MonsterHunterIdle.GameManager = this;
+
+		MonsterHunterIdle.Signals.GameSaved += SaveGame;
+		MonsterHunterIdle.Signals.GameLoaded += LoadGame;
+		MonsterHunterIdle.Signals.GameDeleted += DeleteGame;
+
+		GetWindow().CloseRequested += SaveGame;
+	}
+
+	public override void _Ready()
+	{
+		if (FileAccess.FileExists(_gameFilePath))
 		{
-			if (_instance == null)
-			{
-				_instance = value;
-			}
-			else if (_instance != value)
-			{
-				GD.PrintRich($"{nameof(GameManager)} already exists");
-			}
+			LoadGame();
+		}
+		else
+		{
+			DeleteGame(); // Set up save file
 		}
 	}
 
-	[Export]
-	public ItemBoxData ItemBox = new ItemBoxData();
-
-	[Export]
-	public PlayerData Player = new PlayerData(1, 250);
-
-    public override void _Ready()
-    {
-        Instance = this;
-    }
-
-	public void ChangeDisplay(Display displayType)
+	private GC.Dictionary<string, Variant> GetData()
 	{
-		ClearDisplays();
-
-		Game.Instance.MainContainer.AddChild(displayType switch
+		return new GC.Dictionary<string, Variant>()
 		{
-			Display.CollectionLog => MonsterHunterIdle.PackedScenes.GetCollectionLogDisplay(),
-			Display.ItemBox => MonsterHunterIdle.PackedScenes.GetItemBoxDisplay(),
-			Display.Smithy => MonsterHunterIdle.PackedScenes.GetSmithyDisplay(),
-			Display.Player => MonsterHunterIdle.PackedScenes.GetPlayerDisplay(),
-			Display.Palico => MonsterHunterIdle.PackedScenes.GetPalicoDisplay(),
-			_ => MonsterHunterIdle.PackedScenes.GetCollectionLogDisplay(),
-		});
-
-		if (displayType == Display.Settings) return;
-		
-		Game.Instance.MainContainer.AddChild(MonsterHunterIdle.PackedScenes.GetMonsterDisplay());
+			{ "Hunter", MonsterHunterIdle.HunterManager.GetData() },
+			{ "ItemBox", MonsterHunterIdle.ItemBox.GetData() }
+		};
 	}
 
-	public void ClearDisplays()
+	private void SetData(GC.Dictionary<string, Variant> gameData)
 	{
-		List<Node> currentDisplays = Game.Instance.MainContainer.GetChildren().ToList();
-		foreach (Node display in currentDisplays)
+		try
 		{
-			Game.Instance.MainContainer.RemoveChild(display);
-			display.QueueFree();
+			GC.Dictionary<string, Variant> hunterData = gameData["Hunter"].As<GC.Dictionary<string, Variant>>();
+			MonsterHunterIdle.HunterManager.SetData(hunterData);
+
+			GC.Dictionary<string, Variant> itemBoxData = gameData["ItemBox"].As<GC.Dictionary<string, Variant>>();
+			MonsterHunterIdle.ItemBox.SetData(itemBoxData);
+
+			// GC.Dictionary<string, Variant> autoPicklesData = gameData["Auto Pickles"].As<GC.Dictionary<string, Variant>>();
+			// PickleClicker.AutoPickleManager.SetData(autoPicklesData);
+
+			// GC.Dictionary<string, Variant> upgradePicklesData = gameData["Upgrade Pickles"].As<GC.Dictionary<string, Variant>>();
+			// PickleClicker.UpgradePickleManager.SetData(upgradePicklesData);
+
+			// GC.Dictionary<string, Variant> poglinEnemiesData = gameData["Poglin Enemies"].As<GC.Dictionary<string, Variant>>();
+			// PickleClicker.PoglinEnemyManager.SetData(poglinEnemiesData);
+		}
+		catch (KeyNotFoundException)
+		{
+			GD.PrintErr("Couldn't set data. Saving game");
+			SaveGame();
 		}
 	}
 
-	// TODO: Save original monster data and copy from it when there is a monster encounter and store its current data
-
-	public void GetRewards(int progressAmount, int zennyAmount)
+	public void SaveGame()
 	{
-		Player.Zenny += zennyAmount;
+		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Write);
+		string jsonString = Json.Stringify(GetData(), "\t");
 
-		Player.HunterProgress += progressAmount;
-		CheckPlayerProgress();
+		if (jsonString == "") return;
+
+		gameFile.StoreLine(jsonString);
+
+		string saveSuccessMessage = "Game File Successfully Saved";
+		if (PrintRich.AreFilePathsVisible)
+		{
+			saveSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
+		}
+		PrintRich.PrintLine(TextColor.Green, saveSuccessMessage);
 	}
 
-	private void AddPlayerProgress(int progress)
+	public void LoadGame()
 	{
-		Player.HunterProgress += progress;
+		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Read);
+		string jsonString = gameFile.GetAsText();
+
+		if (gameFile.GetLength() == 0)
+		{
+			GD.PrintErr("Game File Is Empty");
+			return;
+		}
+
+		Json json = new Json();
+
+		Error result = json.Parse(jsonString);
+
+		if (result != Error.Ok) return;
+
+		GC.Dictionary<string, Variant> gameData = new GC.Dictionary<string, Variant>((GC.Dictionary) json.Data);
+		SetData(gameData);
+
+		string loadSuccessMessage = "Game File Successfully Loaded";
+		if (PrintRich.AreFilePathsVisible)
+		{
+			loadSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
+		}
+		PrintRich.PrintLine(TextColor.Green, loadSuccessMessage);
 	}
 
-	private void CheckPlayerProgress()
+	private void DeleteGame()
 	{
-		if (Player.HunterProgress < Player.MaxHunterProgress) return;
+		MonsterHunterIdle.HunterManager.DeleteData();
+		MonsterHunterIdle.ItemBox.DeleteData();
 
-		Player.HunterRank++;
-		Player.HunterProgress -= Player.MaxHunterProgress;
-		GetMaxHunterProgress();
-	}
-
-	private void GetMaxHunterProgress()
-	{
-		if (Player.HunterRank < 100) Player.MaxHunterProgress += 100;
+		SaveGame();
 	}
 }

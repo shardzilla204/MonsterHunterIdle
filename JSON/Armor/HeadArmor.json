@@ -1,0 +1,247 @@
+{
+    "HeadArmor":
+    {
+        "Leather":
+        [
+            {
+                "Name": "Leather Headgear I",
+                "Defense": [ 20, 22, 25, 27, 29 ],
+                "Skills": []
+            },
+            {
+                "Name": "Leather Headgear II",
+                "Defense": [ 34, 36, 39, 41, 44 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear III",
+                "Defense": [ 49, 52, 54, 57, 60 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear IV",
+                "Defense": [ 65, 68, 71, 73, 76 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear V",
+                "Defense": [ 82, 85, 88, 91, 94 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear VI",
+                "Defense": [ 100, 103, 106, 109, 113 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear VII",
+                "Defense": [ 119, 122, 126, 129, 132 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear VIII",
+                "Defense": [ 139, 142, 146, 149, 153 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear IX",
+                "Defense": [ 160, 164, 167, 171, 175 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Headgear X",
+                "Defense": [ 182, 186, 190, 193, 197 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Ice Resistance",
+                        "Level": 1
+                    }
+                ]
+            }
+        ],
+        "Jagras":
+        [
+            {
+                "Name": "Jagras Helm I",
+                "Defense": [ 20, 22, 25, 27, 29 ],
+                "Skills": []
+            },
+            {
+                "Name": "Jagras Helm II",
+                "Defense": [ 34, 36, 39, 41, 44 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm III",
+                "Defense": [ 49, 52, 54, 57, 60 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm IV",
+                "Defense": [ 65, 68, 71, 73, 76 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm V",
+                "Defense": [ 82, 85, 88, 91, 94 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm VI",
+                "Defense": [ 100, 103, 106, 109, 113 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm VII",
+                "Defense": [ 119, 122, 126, 129, 132 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm VIII",
+                "Defense": [ 139, 142, 146, 149, 153 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm IX",
+                "Defense": [ 160, 164, 167, 171, 175 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Helm X",
+                "Defense": [ 182, 186, 190, 193, 197 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            }
+        ]
+    }
+}

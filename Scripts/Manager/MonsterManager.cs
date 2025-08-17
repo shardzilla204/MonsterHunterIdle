@@ -6,6 +6,16 @@ using System.Linq;
 
 namespace MonsterHunterIdle;
 
+public enum MonsterRarity
+{
+	One = 1000,
+	Two = 500,
+	Three = 250,
+	Four = 125,
+	Five = 50,
+	Six = 25
+}
+
 public partial class MonsterManager : Node
 {
 	[Export]
@@ -14,99 +24,106 @@ public partial class MonsterManager : Node
 	[Export]
 	private MonsterEncounter _encounter;
 
-	private MonstersFileLoader _monstersFileLoader;
-	private MonsterLocaleFileLoader _monsterLocaleFileLoader;
-
 	private List<int> _monsterLevels = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-	public MonsterEncounter Encounter => _encounter;
+
+	public int MaxRewardCount = 4;
+	public MonsterEncounter Encounter;
 
 	public List<Monster> Monsters = new List<Monster>();
+	public List<MonsterMaterial> Materials = new List<MonsterMaterial>();
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
-		MonsterHunterIdle.Signals.PalicoHunted += (palico) => 
+		MonsterHunterIdle.MonsterManager = this;
+
+		MaxRewardCount = _maxRewardCount;
+		Encounter = _encounter;
+
+		MonsterHunterIdle.Signals.PalicoHunted += (palico) =>
 		{
-			string palicoDamagedMessage = $"{palico.Name} has damaged the monster";
+			// Console message
+			string palicoDamagedMessage = $"{palico.Name} Has Damaged The Monster";
 			PrintRich.Print(TextColor.Yellow, palicoDamagedMessage);
-			
+
 			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, palico.Attack);
 		};
+
+		LoadMonsters();
+		LoadMaterials();
+
+		PrintRich.PrintMonsters(TextColor.Blue);
 	}
 
-	private void SetMonsters()
+	private void LoadMonsters()
 	{
-		GC.Dictionary<string, Variant> monsterDictionaries = _monstersFileLoader.GetDictionary();
-		List<string> monsterNames = monsterDictionaries.Keys.ToList();
-		foreach (string monsterName in monsterNames)
+		string fileName = "Monsters";
+		GC.Dictionary<string, Variant> monsterData = MonsterHunterIdle.LoadFile(fileName).As<GC.Dictionary<string, Variant>>();
+		if (monsterData == null) return;
+
+		List<GC.Dictionary<string, Variant>> monsterDictionaries = monsterData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
+		
+		// Set monsters
+		foreach (GC.Dictionary<string, Variant> dictionary in monsterDictionaries)
 		{
-			GC.Dictionary<string, Variant> monsterDictionary = monsterDictionaries[monsterName].As<GC.Dictionary<string, Variant>>();
-			Monster monster = new Monster(monsterName, monsterDictionary);
-			monster.Materials.AddRange(GetMonsterMaterials(monster));
-			monster.Locales.AddRange(GetMonsterLocales(monster));
+			Monster monster = new Monster(dictionary);
 			Monsters.Add(monster);
 		}
 	}
 
-	private List<BiomeType> GetMonsterLocales(Monster monster)
+	private void LoadMaterials()
 	{
-		List<BiomeType> locales = new List<BiomeType>();
+		string fileName = "MonsterMaterials";
+		GC.Dictionary<string, Variant> monsterMaterialData = MonsterHunterIdle.LoadFile(fileName).As<GC.Dictionary<string, Variant>>();
+		if (monsterMaterialData == null) return;
 
-		GC.Dictionary<string, Variant> monsterLocaleDictionaries = _monsterLocaleFileLoader.GetDictionary();
-		List<string> localeNames = monsterLocaleDictionaries.Keys.ToList();
-		foreach (string localeName in localeNames)
+		List<GC.Dictionary<string, Variant>> monsterMaterialDictionaries = monsterMaterialData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
+
+		// Set monster materials
+		foreach (GC.Dictionary<string, Variant> dictionary in monsterMaterialDictionaries)
 		{
-			List<string> monsterNames = GetMonsterNamesInLocale(localeName);
-
-			if (!IsMonsterInLocale(monster, monsterNames)) continue;
-
-			BiomeType locale = Enum.Parse<BiomeType>(localeName);
-			locales.Add(locale);
+			MonsterMaterial monsterMaterial = new MonsterMaterial(dictionary);
+			Materials.Add(monsterMaterial);
 		}
-		return locales;
 	}
-
-	private List<string> GetMonsterNamesInLocale(string localeName)
+	
+	public List<Monster> GetLocaleMonsters(LocaleType localeType)
 	{
-		return _monsterLocaleFileLoader.GetDictionary()[localeName].As<GC.Array<string>>().ToList();
-	}
-
-	public bool IsMonsterInLocale(Monster monster, List<string> monsterNames)
-	{
-		string monsterName = monsterNames?.Find(monsterName => monsterName == monster.Name);
-
-		return !string.IsNullOrEmpty(monsterName);
-	}
-
-	public Monster FindMonster(string monsterName)
-	{
-		return Monsters.Find(monster => monster.Name == monsterName);
-	}
-
-	public List<Monster> GetBiomeMonsters(BiomeType biomeType)
-	{
-		List<Monster> biomeMonsters = new List<Monster>();
+		List<Monster> localeMonsters = new List<Monster>();
 		foreach (Monster monster in Monsters)
 		{
-			BiomeType? locale = monster.Locales?.Find(locale => locale == biomeType);
+			LocaleType? locale = monster.Locales?.Find(locale => locale == localeType);
 
 			if (locale is null) continue;
 
-			biomeMonsters.Add(monster);
+			localeMonsters.Add(monster);
 		}
-		return biomeMonsters;
+		return localeMonsters;
 	}
 
 	public Monster GetRandomMonster()
 	{
-		Biome biome = MonsterHunterIdle.BiomeManager.Biome;
-		List<Monster> biomeMonsters = MonsterHunterIdle.MonsterManager.GetBiomeMonsters(biome.Type);
+		Locale locale = MonsterHunterIdle.LocaleManager.Locale;
+		List<Monster> localeMonsters = MonsterHunterIdle.MonsterManager.GetLocaleMonsters(locale.Type);
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
-		int monsterID = RNG.RandiRange(0, biomeMonsters.Count - 1);
 
-		Monster monster = biomeMonsters[monsterID];
-		monster.Level = GetMonsterLevel();
+		try 
+		{
+			int monsterID = RNG.RandiRange(0, localeMonsters.Count - 1);
+			Monster monster = localeMonsters[monsterID];
 
-		return monster;
+			Monster monsterClone = new Monster();
+			int monsterlevel = GetMonsterLevel();
+			monsterClone.Clone(monster, monsterlevel);
+
+			return monsterClone;
+		}
+		catch (Exception)
+		{
+			string errorMessage = $"Locale Monsters Count: {localeMonsters.Count}";
+			PrintRich.PrintLine(TextColor.Red, errorMessage);
+
+			return null;
+		}
 	}
 
 	private int GetMonsterLevel()
@@ -116,7 +133,7 @@ public partial class MonsterManager : Node
 		int monsterlevelRarityTotal = GetMonsterLevelRarityTotal(monsterLevels);
 		int randomMonsterLevelRarity = GetRandomMonsterLevelRarity(monsterlevelRarityTotal);
 		int randomMonsterlevel = GetRandomMonsterLevel(monsterLevels);
-		
+
 		while (randomMonsterLevelRarity > 0)
 		{
 			randomMonsterLevelRarity -= GetLevelRarity(randomMonsterlevel);
@@ -134,7 +151,7 @@ public partial class MonsterManager : Node
 	}
 
 	// Gets levels that based on the player's current rank
-	private List<int> GetMonsterLevels() => GameManager.Instance.Player.HunterRank switch
+	private List<int> GetMonsterLevels() => MonsterHunterIdle.HunterManager.Hunter.Rank switch
 	{
 		< 5 => FindLevels(2),
 		< 10 => FindLevels(3),
@@ -188,58 +205,14 @@ public partial class MonsterManager : Node
 		return monsterLevelRarityTotal;
 	}
 
-	public List<MonsterMaterial> GetMonsterMaterials(Monster monster)
-	{
-		List<MonsterMaterial> monsterMaterials = new List<MonsterMaterial>();
-		List<MonsterMaterial> levelMaterials = FindMonsterMaterialsByLevel(monster);
-
-		for (int i = 0; i < _maxRewardCount; i++)
-		{
-			MonsterMaterial monsterMaterial = GetMonsterMaterial(levelMaterials);
-
-			int lootValue = GetLootValue(levelMaterials);
-			while (lootValue > 0)
-			{
-				lootValue -= monsterMaterial.Rarity;
-				monsterMaterial = GetMonsterMaterial(levelMaterials);
-			}
-
-			monsterMaterials.Add(monsterMaterial);
-		}
-		return monsterMaterials;
-	}
-
 	public List<MonsterMaterial> FindMonsterMaterialsByLevel(Monster monster)
 	{
-		List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MaterialManager.FindMonsterMaterials(monster);
-
-		return monsterMaterials.FindAll(material => GetLevelRarity(material.Rarity) <= GetLevelRarity(monster.Level));
+		return Materials.FindAll(material => GetLevelRarity(material.Rarity) <= GetLevelRarity(monster.Level));
 	}
 
-	private MonsterMaterial GetMonsterMaterial(List<MonsterMaterial> monsterMaterials)
+	public float GetMonsterHealth(Monster monster)
 	{
-		RandomNumberGenerator RNG = new RandomNumberGenerator();
-		int materialID = RNG.RandiRange(0, monsterMaterials.Count - 1);
-
-		return monsterMaterials[materialID];
-	}
-
-	private int GetLootValue(List<MonsterMaterial> monsterMaterials)
-	{
-		RandomNumberGenerator RNG = new RandomNumberGenerator();
-		int materialRarityTotal = GetMaterialRarityTotal(monsterMaterials);
-		int lootValue = RNG.RandiRange(0, materialRarityTotal);
-
-		return lootValue;
-	}
-
-	private int GetMaterialRarityTotal(List<MonsterMaterial> monsterMaterials)
-	{
-		int materialRarityTotal = 0;
-		foreach (MonsterMaterial monsterMaterial in monsterMaterials)
-		{
-			materialRarityTotal += monsterMaterial.Rarity;
-		}
-		return materialRarityTotal;
+		float multiplier = 1.65f;
+		return monster.Level * monster.Health * multiplier;
 	}
 }

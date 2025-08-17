@@ -5,47 +5,57 @@ public partial class CustomButton : Button
 	[Export(PropertyHint.Range, "0,1,0.05")]
 	private float _alpha = 1f;
 
-	public bool IsTogglable = false;
+	private float _darkValue = 0.3f;
+
+	private NinePatchRect _buttonTexture;
+	private Color _originalColor;
+
+    public override void _EnterTree()
+	{
+		_buttonTexture = GetChildOrNull<NinePatchRect>(0);
+		_originalColor = _buttonTexture.SelfModulate;
+	}
 
 	public override void _Ready()
 	{
 		MouseEntered += OnMouseEntered;
 		MouseExited += OnMouseExited;
+		Toggled += OnToggled;
 
 		OnMouseExited();
 	}
 
-	private void SetColor(Color color)
+	public void SetColor(Color color)
 	{
-		Modulate = color;
+		_buttonTexture.SelfModulate = color;
 	}
 
 	private void OnMouseEntered()
 	{
-		if (IsTogglable) return;
+		if (ToggleMode) return;
 
-		Color color = Colors.White;
+		Color color = _originalColor;
 		color.A = _alpha;
-		color = color.Darkened(0.3f);
+		color = color.Darkened(_darkValue);
 		SetColor(color);
 	}
 
 	private void OnMouseExited()
 	{
-		if (IsTogglable) return;
+		if (ToggleMode) return;
 
-		Color color = Colors.White;
+		Color color = _originalColor;
 		color.A = _alpha;
 		SetColor(color);
 	}
 
-	public void OnButtonToggled(bool value)
+	public void OnToggled(bool isToggled)
 	{
-		Color color = Colors.White;
+		Color color = _originalColor;
 		color.A = _alpha;
-		if (value)
+		if (isToggled)
 		{
-			color = color.Darkened(0.25f);
+			color = color.Darkened(_darkValue);
 		}
 		SetColor(color);
 	}

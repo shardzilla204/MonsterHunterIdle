@@ -8,25 +8,30 @@ public partial class CycleButton : CustomButton
 	private bool _isClockwise = false;
 
 	[Export]
-	private TextureRect _biomeIcon;
-
-	private int _biomePosition;
+	private TextureRect _localeIcon;
 
 	public override void _Ready()
-	{	
+	{
 		base._Ready();
-		_biomePosition = _isClockwise ? 2 : 1;
 
-		Pressed += () => BiomeManager.Instance.CycleBiome(_isClockwise);
-		BiomeManager.Instance.Updated += SetIcon;
+		Pressed += CycleLocale;
+		MonsterHunterIdle.Signals.LocaleChanged += OnLocaleChanged;
 
-		SetIcon();
+		// Set the locale icon initially
+		OnLocaleChanged();
 	}
 
-	private void SetIcon()
+	private void OnLocaleChanged()
 	{
-		BiomeType biomeType = BiomeManager.Instance.BiomesQueue[_biomePosition];
-		BiomeData biomeData = BiomeManager.Instance.Biomes[biomeType];
-		_biomeIcon.Texture = biomeData.Icon;
+		Locale locale = _isClockwise ? MonsterHunterIdle.LocaleManager.GetNextLocale() : MonsterHunterIdle.LocaleManager.GetPreviousLocale();
+		_localeIcon.Texture = MonsterHunterIdle.LocaleManager.GetLocaleIcon(locale.Type);
+	}
+
+	private async void CycleLocale()
+	{
+		bool result = await MonsterHunterIdle.LocaleManager.CycleLocale(_isClockwise);
+		if (!result) return;
+
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.LocaleChanged);
 	}
 }

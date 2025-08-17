@@ -12,8 +12,8 @@ public partial class HunterProgress : NinePatchRect
 
 	public void Update()
 	{
-		_progressBar.Value = GameManager.Instance.Player.HunterProgress;
-		_progressBar.MaxValue = GameManager.Instance.Player.MaxHunterProgress;
+		_progressBar.MaxValue = MonsterHunterIdle.HunterManager.Hunter.PointsRequired;
+		_progressBar.Value = MonsterHunterIdle.HunterManager.Hunter.Points;
 		_progressLabel.Text = $"{_progressBar.Value} / {_progressBar.MaxValue}";
 	}
 }

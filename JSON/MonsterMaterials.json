@@ -1,135 +1,158 @@
 {
-	"Great Jagras Scale":
-	{
-		"Monster": "Great Jagras",
-		"Rarity": 1,
-		"Color": "Yellow",
-		"Type": "Scale"
-	},
-	"Great Jagras Hide":
-	{
-		"Monster": "Great Jagras",
-		"Rarity": 1,
-		"Color": "Yellow",
-		"Type": "Hide"
-	},
-	"Great Jagras Claw":
-	{
-		"Monster": "Great Jagras",
-		"Rarity": 2,
-		"Color": "Yellow",
-		"Type": "Claw"
-	},
-	"Great Jagras Mane":
-	{
-		"Monster": "Great Jagras",
-		"Rarity": 3,
-		"Color": "Yellow",
-		"Type": "Monster Part"
-	},
-	"Great Jagras Primescale":
-	{
-		"Monster": "Great Jagras",
-		"Rarity": 4,
-		"Color": "Yellow",
-		"Type": "Scale"
-	},
-	"Fanged Wyvern Gem":
-	{
-		"Monster": "Great Jagras",
-		"Rarity": 5,
-		"Color": "Yellow",
-		"Type": "Gem"
-	},
-	"Kulu-Ya-Ku Scale":
-	{
-		"Monster": "Kulu-Ya-Ku",
-		"Rarity": 1,
-		"Color": "Tan",
-		"Type": "Scale"
-	},
-	"Kulu-Ya-Ku Hide":
-	{
-		"Monster": "Kulu-Ya-Ku",
-		"Rarity": 1,
-		"Color": "Tan",
-		"Type": "Hide"
-	},
-	"Kulu-Ya-Ku Beak":
-	{
-		"Monster": "Kulu-Ya-Ku",
-		"Rarity": 2,
-		"Color": "Tan",
-		"Type": "Skull"
-	},
-	"Kulu-Ya-Ku Plume":
-	{
-		"Monster": "Kulu-Ya-Ku",
-		"Rarity": 3,
-		"Color": "Orange",
-		"Type": "Monster Part"
-	},
-	"Kulu-Ya-Ku Primescale":
-	{
-		"Monster": "Kulu-Ya-Ku",
-		"Rarity": 4,
-		"Color": "Tan",
-		"Type": "Scale"
-	},
-	"Kulu-Ya-Ku Primehide":
-	{
-		"Monster": "Kulu-Ya-Ku",
-		"Rarity": 5,
-		"Color": "Tan",
-		"Type": "Hide"
-	},
-	"Pukei-Pukei Scale":
-	{
-		"Monster": "Pukei-Pukei",
-		"Rarity": 1,
-		"Color": "Deep Green",
-		"Type": "Scale"
-	},
-	"Pukei-Pukei Shell":
-	{
-		"Monster": "Pukei-Pukei",
-		"Rarity": 1,
-		"Color": "Deep Green",
-		"Type": "Shell"
-	},
-	"Pukei-Pukei Tail":
-	{
-		"Monster": "Pukei-Pukei",
-		"Rarity": 2,
-		"Color": "Deep Green",
-		"Type": "Tail"
-	},
-	"Pukei-Pukei Sac":
-	{
-		"Monster": "Pukei-Pukei",
-		"Rarity": 3,
-		"Color": "Deep Green",
-		"Type": "Sac"
-	},
-	"Pukei-Pukei Quill":
-	{
-		"Monster": "Pukei-Pukei",
-		"Rarity": 4,
-		"Color": "Deep Green",
-		"Type": "Wing"
-	},
-	"Pukei-Pukei Primescale":
-	{
-		"Monster": "Pukei-Pukei",
-		"Rarity": 5,
-		"Color": "Deep Green",
-		"Type": "Scale"
-	},
-	"Wyvern Gem Shard":
-	{
-		"Monster": [ "Great Jagras", "Kulu-Ya-Ku", "Pukei-Pukei" ],
-		"Rarity": 6,
-		"Color": "Light Blue",
-		"Type": "Gem"
-	}
+	"MonsterMaterials":
+	[
+		{
+			"Name": "Great Jagras Scale",
+			"Monsters": [ "Great Jagras" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Yellow",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Great Jagras Hide",
+			"Monsters": [ "Great Jagras" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Yellow",
+			"Type": "Hide"
+      	},
+		{
+			"Name": "Great Jagras Claw",
+			"Monsters": [ "Great Jagras" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Yellow",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Great Jagras Mane",
+			"Monsters": [ "Great Jagras" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Yellow",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Great Jagras Primescale",
+			"Monsters": [ "Great Jagras" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Yellow",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Fanged Wyvern Gem",
+			"Monsters": [ "Great Jagras" ],
+			"Description": "",
+			"Rarity": 5,
+			"Color": "Yellow",
+			"Type": "Gem"
+      	},
+
+		{
+			"Name": "Kulu-Ya-Ku Scale",
+			"Monsters": [ "Kulu-Ya-Ku" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Tan",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Kulu-Ya-Ku Hide",
+			"Monsters": [ "Kulu-Ya-Ku" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Tan",
+			"Type": "Hide"
+      	},
+		{
+			"Name": "Kulu-Ya-Ku Beak",
+			"Monsters": [ "Kulu-Ya-Ku" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Tan",
+			"Type": "Skull"
+      	},
+		{
+			"Name": "Kulu-Ya-Ku Plume",
+			"Monsters": [ "Kulu-Ya-Ku" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Orange",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Kulu-Ya-Ku Primescale",
+			"Monsters": [ "Kulu-Ya-Ku" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Tan",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Kulu-Ya-Ku Plume",
+			"Monsters": [ "Kulu-Ya-Ku" ],
+			"Description": "",
+			"Rarity": 5,
+			"Color": "Tan",
+			"Type": "Hide"
+      	},
+		{
+			"Name": "Pukei-Pukei Scale",
+			"Monsters": [ "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "DeepGreen",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Pukei-Pukei Shell",
+			"Monsters": [ "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "DeepGreen",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Pukei-Pukei Tail",
+			"Monsters": [ "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "DeepGreen",
+			"Type": "Tail"
+      	},
+		{
+			"Name": "Pukei-Pukei Sac",
+			"Monsters": [ "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "DeepGreen",
+			"Type": "Sac"
+      	},
+		{
+			"Name": "Pukei-Pukei Quill",
+			"Monsters": [ "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "DeepGreen",
+			"Type": "Wing"
+      	},
+		{
+			"Name": "Pukei-Pukei Primescale",
+			"Monsters": [ "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 5,
+			"Color": "DeepGreen",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Wyvern Gem Shard",
+			"Monsters": [ "Great Jagras", "Kulu-Ya-Ku", "Pukei-Pukei" ],
+			"Description": "",
+			"Rarity": 6,
+			"Color": "LightBlue",
+			"Type": "Gem"
+      	}
+	]
 }

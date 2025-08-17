@@ -1,17 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfaeelnf6kj7i"]
+[gd_scene load_steps=8 format=3 uid="uid://cfaeelnf6kj7i"]
 
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="1_ubcun"]
-[ext_resource type="Script" path="res://Scripts/PalicoDetails.cs" id="2_4amqb"]
+[ext_resource type="Script" uid="uid://jfc76e23umnv" path="res://Scripts/Palico/PalicoDetails.cs" id="2_4amqb"]
 [ext_resource type="Texture2D" uid="uid://fcvktt0gtafq" path="res://Assets/Images/Icon/LoadoutIcon.png" id="2_fwdl3"]
-[ext_resource type="Script" path="res://Scripts/PalicoModeButton.cs" id="2_tgnd3"]
-[ext_resource type="PackedScene" uid="uid://b5r72qvckpxmu" path="res://Scenes/StatDetail.tscn" id="3_pt5wn"]
-[ext_resource type="Texture2D" uid="uid://xmaq7msxy40w" path="res://Assets/Images/Icon/HuntIcon.png" id="3_u4uef"]
-[ext_resource type="Texture2D" uid="uid://jtvmyhpv5vwy" path="res://Assets/Images/Icon/AttackIcon.png" id="3_yxttb"]
-[ext_resource type="Texture2D" uid="uid://bakmmfwb0e2ty" path="res://Assets/Images/Icon/AffinityIcon.png" id="4_ay86m"]
-[ext_resource type="Texture2D" uid="uid://cnico6uxrr3xj" path="res://Assets/Images/Icon/DefenseIcon.png" id="5_aij73"]
-[ext_resource type="Script" path="res://Scripts/Button/CustomButton.cs" id="6_27ftl"]
+[ext_resource type="Texture2D" uid="uid://jtvmyhpv5vwy" path="res://Assets/Images/Stat/AttackIcon.png" id="3_yxttb"]
+[ext_resource type="Texture2D" uid="uid://bakmmfwb0e2ty" path="res://Assets/Images/Stat/AffinityIcon.png" id="4_ay86m"]
+[ext_resource type="Texture2D" uid="uid://cnico6uxrr3xj" path="res://Assets/Images/Stat/DefenseIcon.png" id="5_aij73"]
+[ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="6_27ftl"]
 
-[node name="PalicoDetails" type="NinePatchRect" node_paths=PackedStringArray("_palicoNameEdit", "_palicoModeButton", "_palicoLoadoutButton", "_statsContainer")]
+[node name="PalicoDetails" type="NinePatchRect" node_paths=PackedStringArray("_palicoNameEdit", "_palicoLoadoutButton", "_statsContainer")]
 self_modulate = Color(0.1, 0.1, 0.1, 1)
 custom_minimum_size = Vector2(0, 75)
 texture = ExtResource("1_ubcun")
@@ -20,9 +17,7 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 script = ExtResource("2_4amqb")
-_statDetailScene = ExtResource("3_pt5wn")
 _palicoNameEdit = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PalicoNameEdit")
-_palicoModeButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PalicoModeButton")
 _palicoLoadoutButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PalicoLoadoutButton")
 _statsContainer = NodePath("MarginContainer/VBoxContainer/StatsContainer")
 
@@ -51,46 +46,6 @@ size_flags_horizontal = 3
 text = "Palico"
 placeholder_text = "Palico Name"
 flat = true
-
-[node name="PalicoModeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_modeIcon")]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-flat = true
-script = ExtResource("2_tgnd3")
-_huntIcon = ExtResource("3_u4uef")
-_modeIcon = NodePath("NinePatchRect/MarginContainer/ModeIcon")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PalicoModeButton"]
-self_modulate = Color(0.15, 0.15, 0.15, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_ubcun")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PalicoModeButton/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="ModeIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PalicoModeButton/NinePatchRect/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("3_u4uef")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="PalicoLoadoutButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)

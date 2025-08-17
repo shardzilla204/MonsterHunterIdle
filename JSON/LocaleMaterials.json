@@ -1,0 +1,165 @@
+{
+   "LocaleMaterials":
+   [
+      {
+			"Name": "Sharp Claw",
+			"Locales": [ "Forest", "Desert", "Swamp" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "White",
+			"Type": "Claw"
+		},
+		{
+			"Name": "Wingdrake Hide",
+			"Locales": [ "Forest", "Desert", "Swamp" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Grey",
+			"Type": "Hide"
+		},
+      {
+         "Name": "Carpenterbug",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 3,
+         "Color": "Grey",
+         "Type": "Bug"
+      },
+      {
+         "Name": "Godbug",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "White",
+         "Type": "Bug"
+      },
+      {
+         "Name": "Thunderbug",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Yellow",
+         "Type": "Bug"
+      },
+      {
+         "Name": "Parashroom",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Yellow",
+         "Type": "Mushroom"
+      },
+      {
+         "Name": "Toadstool",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Purple",
+         "Type": "Mushroom"
+      },
+      {
+         "Name": "Fire Herb",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Red",
+         "Type": "Plant"
+      },
+      {
+         "Name": "Flowfern",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Blue",
+         "Type": "Plant"
+      },
+      {
+         "Name": "Sleep Herb",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "LightBlue",
+         "Type": "Plant"
+      },
+      {
+         "Name": "Snow Herb",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "White",
+         "Type": "Plant"
+      },
+      {
+         "Name": "Dragonfell Berry",
+         "Locales": [ "Forest" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "DarkRed",
+         "Type": "Seed"
+      },
+      {
+         "Name": "Monster Bone S",
+         "Locales": [ "Desert" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Yellow",
+         "Type": "MonsterBone"
+      },
+      {
+         "Name": "Monster Bone M",
+         "Locales": [ "Desert" ],
+         "Description": "",
+         "Rarity": 2,
+         "Color": "Yellow",
+         "Type": "MonsterBone"
+      },
+      {
+         "Name": "Monster Bone L",
+         "Locales": [ "Desert" ],
+         "Description": "",
+         "Rarity": 3,
+         "Color": "Yellow",
+         "Type": "MonsterBone"
+      },
+      {
+         "Name": "Monster Bone +",
+         "Locales": [ "Desert" ],
+         "Description": "",
+         "Rarity": 3,
+         "Color": "Orange",
+         "Type": "MonsterBone"
+      },
+      {
+         "Name": "Iron Ore",
+         "Locales": [ "Swamp" ],
+         "Description": "",
+         "Rarity": 1,
+         "Color": "Grey",
+         "Type": "Ore"
+      },
+      {
+         "Name": "Machalite Ore",
+         "Locales": [ "Swamp" ],
+         "Description": "",
+         "Rarity": 2,
+         "Color": "Blue",
+         "Type": "Ore"
+      },
+      {
+         "Name": "Dragonite Ore",
+         "Locales": [ "Swamp" ],
+         "Description": "",
+         "Rarity": 3,
+         "Color": "Green",
+         "Type": "Ore"
+      },
+      {
+         "Name": "Earth Crystal",
+         "Locales": [ "Swamp" ],
+         "Description": "",
+         "Rarity": 3,
+         "Color": "White",
+         "Type": "Ore"
+      }
+   ]
+}

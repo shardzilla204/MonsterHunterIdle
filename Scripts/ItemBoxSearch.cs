@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
 public partial class ItemBoxSearch : LineEdit
 {
-	public ItemBoxDisplay ItemBoxDisplay;
-
+	[Signal]
+	public delegate void FilterChangedEventHandler(Array<Material> materialsFound);
+	
 	public override void _Ready()
 	{
 		TextChanged += SearchMaterial;
@@ -16,25 +18,17 @@ public partial class ItemBoxSearch : LineEdit
 	private void SearchMaterial(string text)
 	{
 		string materialToFind = text.Trim();
-		if (materialToFind == "")
-		{
-			ItemBoxDisplay.FilterMaterialLogs(null);
-			return;
-		}
-
-		List<dynamic> materialsFound = FindMaterials(materialToFind.ToUpper());
-		
-		ItemBoxDisplay.FilterMaterialLogs(materialsFound);
+		Array<Material> materialsFound = FindMaterials(materialToFind.ToUpper());
+		EmitSignal(SignalName.FilterChanged, materialsFound);
 	}
 
-	private List<string> GetKeywords()
+	private Array<string> GetKeywords()
 	{
-		IEnumerable<dynamic> uniqueMaterials = GameManager.Instance.ItemBox.Materials.Distinct();
-		List<string> keywords = new List<string>();
-		foreach (dynamic material in uniqueMaterials)
+		IEnumerable<Material> distinctMaterials = MonsterHunterIdle.ItemBox.Materials.Distinct();
+		Array<string> keywords = new Array<string>();
+		foreach (Material uniqueMaterial in distinctMaterials)
 		{
-			string materialName = material.Name.ToString();
-			List<string> splitString = materialName.Split(' ').ToList();
+			List<string> splitString = uniqueMaterial.Name.Split(' ').ToList();
 			List<string> uppercaseKeywords = UppercaseKeywords(splitString);
 
 			keywords.AddRange(uppercaseKeywords);
@@ -42,10 +36,13 @@ public partial class ItemBoxSearch : LineEdit
 		return keywords;
 	}
 
-	private List<dynamic> FindMaterials(string keyword)
+	private Array<Material> FindMaterials(string keyword)
 	{
-		List<dynamic> uniqueMaterials = GameManager.Instance.ItemBox.Materials.Distinct().ToList();
-		return uniqueMaterials.FindAll(uniqueMaterial => uniqueMaterial.Name.ToUpper().Contains(keyword));
+		List<Material> distinctMaterials = MonsterHunterIdle.ItemBox.Materials.Distinct().ToList();
+		List<Material> materials = distinctMaterials.FindAll(uniqueMaterial => uniqueMaterial.Name.ToUpper().Contains(keyword));
+
+		Array<Material> materialsFound = [.. materials]; // Convert From System.Collections.Generic.List To Godot.Collections.Array
+		return materialsFound;
 	}
 
 	private List<string> UppercaseKeywords(List<string> keywords)

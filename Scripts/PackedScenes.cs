@@ -7,6 +7,46 @@ public partial class PackedScenes : Node
    [Export]
 	private PackedScene _statDetail;
 
+   // [Export]
+   // private PackedScene _palicoLoadout;
+
+   [Export] 
+	private PackedScene _collectionLog;
+
+   [Export]
+	private PackedScene _equipmentButton;
+
+   [Export]
+	private PackedScene _palicoDetails;
+
+   [Export]
+   private PackedScene _materialLog;
+
+   [Export]
+   private PackedScene _craftingMaterialLog;
+
+   [Export]
+   private PackedScene _monsterHealthBar;
+
+   [Export]
+   private PackedScene _equipmentOptionButton;
+
+   [Export]
+   private PackedScene _equipmentInfo;
+
+   [Export]
+   private PackedScene _sellMaterialLogContainer;
+
+   [Export]
+   private PackedScene _sellMaterialLog;
+
+   [ExportCategory("Interfaces")]
+   [Export]
+   private PackedScene _equipmentSelectionInterface;
+
+   [Export]
+   private PackedScene _equipmentOptionInfoInterface;
+
    [Export]
 	private PackedScene _monsterInterface;
 
@@ -15,6 +55,12 @@ public partial class PackedScenes : Node
 
 	[Export]
 	private PackedScene _itemBoxInterface;
+
+   [Export]
+   private PackedScene _recipeInterface;
+
+   [Export]
+   private PackedScene _loadoutInterface;
 
 	[Export]
 	private PackedScene _smithyInterface;
@@ -26,10 +72,15 @@ public partial class PackedScenes : Node
 	private PackedScene _palicoInterface;
 
    [Export]
-   private PackedScene _palicoLoadout;
+   private PackedScene _changeEquipmentInterface;
 
-   [Export] 
-	private PackedScene _collectionLog;
+   [Export]
+   private PackedScene _settingsInterface;
+
+   public override void _EnterTree()
+   {
+      MonsterHunterIdle.PackedScenes = this;
+   }
 
    public StatDetail GetStatDetail()
    {
@@ -41,9 +92,21 @@ public partial class PackedScenes : Node
       return _monsterInterface.Instantiate<MonsterInterface>();
    }
 
+   public SellMaterialLog GetSellMaterialLog(Material material)
+   {
+      SellMaterialLog sellMaterialLog = _sellMaterialLog.Instantiate<SellMaterialLog>();
+      sellMaterialLog.SetMaterial(material);
+      return sellMaterialLog;
+   }
+
    public CollectionLogInterface GetCollectionLogInterface()
    {
       return _collectionLogInterface.Instantiate<CollectionLogInterface>();
+   }
+
+   public SellMaterialLogContainer GetSellMaterialLogContainer()
+   {
+      return _sellMaterialLogContainer.Instantiate<SellMaterialLogContainer>();
    }
 
    public ItemBoxInterface GetItemBoxInterface()
@@ -51,14 +114,31 @@ public partial class PackedScenes : Node
       return _itemBoxInterface.Instantiate<ItemBoxInterface>();
    }
 
+   public EquipmentOptionInfoInterface GetEquipmentOptionInfoInterface(Equipment equipment)
+   {
+      EquipmentOptionInfoInterface equipmentOptionInfoInterface = _equipmentOptionInfoInterface.Instantiate<EquipmentOptionInfoInterface>();
+      equipmentOptionInfoInterface.SetEquipment(equipment);
+      return equipmentOptionInfoInterface;
+   }
+
+   public SettingsInterface GetSettingsInterface()
+   {
+      return _settingsInterface.Instantiate<SettingsInterface>();
+   }
+
    public SmithyInterface GetSmithyInterface()
    {
       return _smithyInterface.Instantiate<SmithyInterface>();
    }
 
-   public PlayerInterface GetPlayerInterface()
+   public HunterInterface GetHunterInterface()
    {
-      return _playerInterface.Instantiate<PlayerInterface>();
+      return _playerInterface.Instantiate<HunterInterface>();
+   }
+
+   public VBoxContainer GetLoadoutInterface()
+   {
+      return _loadoutInterface.Instantiate<VBoxContainer>();
    }
 
    public PalicoInterface GetPalicoInterface()
@@ -66,13 +146,82 @@ public partial class PackedScenes : Node
       return _palicoInterface.Instantiate<PalicoInterface>();
    }
 
+   public EquipmentInfo GetEquipmentInfo(Equipment equipment)
+   {
+      EquipmentInfo equipmentInfo = _equipmentInfo.Instantiate<EquipmentInfo>();
+      equipmentInfo.SetEquipment(equipment);
+      return equipmentInfo;
+   }
+
+   public EquipmentSelectionInterface GetEquipmentSelectionInterface(Equipment equipment)
+   {
+      EquipmentSelectionInterface equipmentSelectionInterface = _equipmentSelectionInterface.Instantiate<EquipmentSelectionInterface>();
+      equipmentSelectionInterface.SetEquipment(equipment);
+      return equipmentSelectionInterface;
+   }
+
+   public EquipmentOptionButton GetEquipmentOptionButton(Equipment equipment)
+   {
+      EquipmentOptionButton equipmentOptionButton = _equipmentOptionButton.Instantiate<EquipmentOptionButton>();
+      equipmentOptionButton.SetEquipment(equipment);
+      return equipmentOptionButton;
+   }
+
+   public ChangeEquipmentInterface GetChangeEquipmentInterface(Equipment equipment)
+   {
+      ChangeEquipmentInterface changeEquipmentInterface = _changeEquipmentInterface.Instantiate<ChangeEquipmentInterface>();
+      changeEquipmentInterface.SetEquipment(equipment);
+      return changeEquipmentInterface;
+   }
+
+   public CraftingMaterialLog GetCraftingMaterialLog(Material material, int amount)
+   {
+      CraftingMaterialLog craftingMaterialLog = _craftingMaterialLog.Instantiate<CraftingMaterialLog>();
+      craftingMaterialLog.SetMaterial(material, amount);
+      return craftingMaterialLog;
+   }
+
+   public RecipeInterface GetRecipeInterface(Equipment equipment)
+   {
+      RecipeInterface recipeInterface = _recipeInterface.Instantiate<RecipeInterface>();
+      recipeInterface.SetMaterials(equipment);
+      return recipeInterface;
+   }
+
    public CollectionLog GetCollectionLog()
    {
       return _collectionLog.Instantiate<CollectionLog>();
    }
 
-   public PalicoLoadout GetPalicoLoadout()
+   // public PalicoLoadout GetPalicoLoadout()
+   // {
+   //    return _palicoLoadout.Instantiate<PalicoLoadout>();
+   // }
+
+   public MonsterHealthBar GetMonsterHealthBar(Monster monster)
    {
-      return _palicoLoadout.Instantiate<PalicoLoadout>();
+      MonsterHealthBar monsterHealthBar = _monsterHealthBar.Instantiate<MonsterHealthBar>();
+      monsterHealthBar.SetMonster(monster);
+      
+      return monsterHealthBar;
+   }
+
+   public PalicoDetails GetPalicoDetails()
+   {
+      return _palicoDetails.Instantiate<PalicoDetails>();
+   }
+
+   public CraftButton GetCraftButton(Equipment equipment)
+   {
+      CraftButton craftButton = _equipmentButton.Instantiate<CraftButton>();
+      craftButton.SetEquipment(equipment);
+      return craftButton;
+   }
+
+   public MaterialLog GetMaterialLog(Material material)
+   {
+      MaterialLog materialLog = _materialLog.Instantiate<MaterialLog>();
+      materialLog.SetMaterial(material);
+      return materialLog;
    }
 }

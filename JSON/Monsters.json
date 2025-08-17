@@ -1,29 +1,35 @@
 {
-   "Great Jagras":
-   {
-      "Description": "",
-      "Base Health": 500,
-      "Elements": [],
-      "Abnormal Statuses": [],
-      "Elemental Weaknesses": [ "Fire" ],
-      "Abnormal Status Weaknesses": [ "Poison", "Sleep", "Blast Blight" ]
-   },
-   "Kulu-Ya-Ku":
-   {
-      "Description": "",
-      "Base Health": 450,
-      "Elements": [],
-      "Abnormal Statuses": [],
-      "Elemental Weaknesses": [ "Water" ],
-      "Abnormal Status Weaknesses": []
-   },
-   "Pukei-Pukei":
-   {
-      "Description": "",
-      "Base Health": 450,
-      "Elements": [],
-      "Abnormal Statuses": [ "Poison" ],
-      "Elemental Weaknesses": [ "Thunder" ],
-      "Abnormal Status Weaknesses": [ "Sleep" ]
-   }
+   "Monsters":
+   [
+      {
+         "Name": "Great Jagras",
+         "Description": "",
+         "Health": 500,
+         "Elements": null,
+         "AbnormalStats": null,
+         "ElementalWeaknesses": [ "Fire" ],
+         "AbnormalStatWeaknesses": [ "Poison", "Sleep", "BlastBlight" ],
+         "Locales": [ "Forest", "Desert", "Swamp" ]
+      },
+      {
+         "Name": "Kulu-Ya-Ku",
+         "Description": "",
+         "Health": 450,
+         "Elements": null,
+         "AbnormalStats": null,
+         "ElementalWeaknesses": [ "Water" ],
+         "AbnormalStatWeaknesses": null,
+         "Locales": [ "Forest", "Desert", "Swamp" ]
+      },
+      {
+         "Name": "Pukei-Pukei",
+         "Description": "",
+         "Health": 450,
+         "Elements": null,
+         "AbnormalStats": [ "Poison" ],
+         "ElementalWeaknesses": [ "Thunder" ],
+         "AbnormalStatWeaknesses": [ "Sleep" ],
+         "Locales": [ "Forest", "Desert", "Swamp" ]
+      }
+   ]
 }

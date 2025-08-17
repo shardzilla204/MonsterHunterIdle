@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://ksdf7gtoe15v"]
+
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_4x1ic"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_7ffap"]
+[ext_resource type="Texture2D" uid="uid://c63hmsdahg6h1" path="res://Assets/Images/Icon/HunterRankPointIcon.png" id="3_0ga8u"]
+[ext_resource type="Script" uid="uid://dpd11slshpgyh" path="res://Scripts/Interface/HunterInterface.cs" id="3_7ffap"]
+[ext_resource type="PackedScene" uid="uid://dj8yua44jvdxr" path="res://Scenes/HunterProgressBar.tscn" id="4_iosnr"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="5_qumx7"]
+
+[node name="HunterInterface" type="NinePatchRect" node_paths=PackedStringArray("_hunterRankLabel", "_hunterProgress", "_zennyLabel")]
+custom_minimum_size = Vector2(350, 250)
+size_flags_vertical = 3
+theme = ExtResource("1_4x1ic")
+texture = ExtResource("2_7ffap")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource("3_7ffap")
+_hunterRankLabel = NodePath("MarginContainer/VBoxContainer/HunterRankLabel")
+_hunterProgress = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HunterProgressBar")
+_zennyLabel = NodePath("MarginContainer/VBoxContainer/Zenny/ZennyLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HunterRankLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Hunter Rank: 1"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("3_0ga8u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HunterProgressBar" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_iosnr")]
+layout_mode = 2
+
+[node name="Zenny" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Zenny"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("5_qumx7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ZennyLabel" type="Label" parent="MarginContainer/VBoxContainer/Zenny"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "10000"

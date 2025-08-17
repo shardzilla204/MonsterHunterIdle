@@ -1,0 +1,150 @@
+{
+    "WaistArmor":
+    {
+        "Leather":
+        [
+            {
+                "Name": "Leather Belt I",
+                "Category": "Waist",
+                "Defense": [ 20, 22, 25, 27, 29 ],
+                "Skills": []
+            },
+            {
+                "Name": "Leather Belt II",
+                "Category": "Waist",
+                "Defense": [ 34, 36, 39, 41, 44 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt III",
+                "Category": "Waist",
+                "Defense": [ 49, 52, 54, 57, 60 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt IV",
+                "Category": "Waist",
+                "Defense": [ 65, 68, 71, 73, 76 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt V",
+                "Category": "Waist",
+                "Defense": [ 82, 85, 88, 91, 94 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt VI",
+                "Category": "Waist",
+                "Defense": [ 100, 103, 106, 109, 113 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt VII",
+                "Category": "Waist",
+                "Defense": [ 119, 122, 126, 129, 132 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt VIII",
+                "Category": "Waist",
+                "Defense": [ 139, 142, 146, 149, 153 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt IX",
+                "Category": "Waist",
+                "Defense": [ 160, 164, 167, 171, 175 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Leather Belt X",
+                "Category": "Waist",
+                "Defense": [ 182, 186, 190, 193, 197 ],
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Water Resistance",
+                        "Level": 1
+                    }
+                ]
+            }
+        ]
+    }
+}

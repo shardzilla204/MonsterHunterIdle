@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dj8yua44jvdxr"]
 
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="1_qo2y0"]
-[ext_resource type="Script" path="res://Scripts/HunterProgress.cs" id="2_6nckn"]
+[ext_resource type="Script" uid="uid://dhshn2l1acqlj" path="res://Scripts/HunterProgress.cs" id="2_6nckn"]
 
 [node name="HunterProgressBar" type="NinePatchRect" node_paths=PackedStringArray("_progressBar", "_progressLabel")]
 self_modulate = Color(0.15, 0.2725, 0.5, 1)

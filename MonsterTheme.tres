@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ctqst0r8a6va2"]
+
+[ext_resource type="FontFile" uid="uid://1q6rnlq3mobb" path="res://Assets/Fonts/MonsterHunter2.ttf" id="1_shql0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shql0"]
+
+[resource]
+default_font = ExtResource("1_shql0")
+Button/styles/focus = SubResource("StyleBoxEmpty_shql0")

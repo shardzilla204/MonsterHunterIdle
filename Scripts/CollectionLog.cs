@@ -5,19 +5,15 @@ namespace MonsterHunterIdle;
 public partial class CollectionLog : NinePatchRect
 {
 	[Export] 
-	private Label _resourceName;
+	private Label _materialName;
 
 	[Export] 
-	private TextureRect _resourceIcon;
+	private TextureRect _materialIcon;
 
-	[Export] 
-	private Label _resourceAmount;
-
-    public void SetResource(dynamic resource, int amount)
+    public void SetMaterial(Material material)
 	{
-		_resourceName.Text = resource.Name;
-		_resourceIcon.Texture = resource.Icon;
-		_resourceAmount.Text = $"+{amount}";
+		_materialName.Text = material.Name;
+		_materialIcon.Texture = MonsterHunterIdle.GetMaterialIcon(material);
 
 		CreateTimer();
 	}
@@ -29,7 +25,7 @@ public partial class CollectionLog : NinePatchRect
 			WaitTime = 7.5f,
 			Autostart = true
 		};
-		timer.Timeout += () => CollectionLogManager.Instance.RemoveCollectionLog(this);
+		timer.Timeout += () => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.CollectionLogTimedOut, this);
 		AddChild(timer);
 	}
 }

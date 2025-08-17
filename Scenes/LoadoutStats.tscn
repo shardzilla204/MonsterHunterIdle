@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://botoy0vqd8b0t"]
+
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_w2m8b"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_sh7ai"]
+[ext_resource type="Script" uid="uid://8j81n8m1p7h8" path="res://Scripts/LoadoutStats.cs" id="3_2tdsb"]
+[ext_resource type="Texture2D" uid="uid://jtvmyhpv5vwy" path="res://Assets/Images/Stat/AttackIcon.png" id="4_yjndi"]
+[ext_resource type="Texture2D" uid="uid://cnico6uxrr3xj" path="res://Assets/Images/Stat/DefenseIcon.png" id="5_ajrcy"]
+[ext_resource type="Texture2D" uid="uid://bakmmfwb0e2ty" path="res://Assets/Images/Stat/AffinityIcon.png" id="6_ayr8g"]
+
+[node name="LoadoutStats" type="NinePatchRect" node_paths=PackedStringArray("_attackStatLabel", "_defenseStatLabel", "_affinityStatLabel")]
+custom_minimum_size = Vector2(350, 65)
+theme = ExtResource("1_w2m8b")
+texture = ExtResource("2_sh7ai")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource("3_2tdsb")
+_attackStatLabel = NodePath("MarginContainer/StatContainer/AttackStat/AttackStatLabel")
+_defenseStatLabel = NodePath("MarginContainer/StatContainer/DefenseStat/DefenseStatLabel")
+_affinityStatLabel = NodePath("MarginContainer/StatContainer/AffinityStat/AffinityStatLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="StatContainer" type="FlowContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="AttackStat" type="HBoxContainer" parent="MarginContainer/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/StatContainer/AttackStat"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_yjndi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AttackStatLabel" type="Label" parent="MarginContainer/StatContainer/AttackStat"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "100"
+
+[node name="DefenseStat" type="HBoxContainer" parent="MarginContainer/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/StatContainer/DefenseStat"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_ajrcy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DefenseStatLabel" type="Label" parent="MarginContainer/StatContainer/DefenseStat"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "100"
+
+[node name="AffinityStat" type="HBoxContainer" parent="MarginContainer/StatContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/StatContainer/AffinityStat"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_ayr8g")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AffinityStatLabel" type="Label" parent="MarginContainer/StatContainer/AffinityStat"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "100%"

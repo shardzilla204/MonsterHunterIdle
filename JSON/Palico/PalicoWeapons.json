@@ -1,0 +1,18 @@
+{
+    "PalicoWeapons":
+    [
+        {
+            "Name": "Feylne Acorn Spade",
+            "Category": "Palico",
+            "Attack": 5,
+            "Affinity": 0,
+            "CraftingMaterials":
+            [
+                {
+                    "Name": "Iron Ore",
+                    "Amount": 1
+                }
+            ]
+        }
+    ]
+}

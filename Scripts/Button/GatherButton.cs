@@ -11,17 +11,23 @@ public partial class GatherButton : CustomButton
 	private TextureRect _gatherIcon;
 
 	private bool _isDown = false;
-	private const float _ProgressValue = 0.5f;
+	private const float _ProgressValue = 0.25f;
+
+	public override void _ExitTree()
+	{
+		MonsterHunterIdle.Signals.LocaleChanged -= OnLocaleChanged;
+	}
 
 	public override void _Ready()
 	{
 		base._Ready();
+		MonsterHunterIdle.Signals.LocaleChanged += OnLocaleChanged;
+
 		ButtonDown += () => _isDown = true;
 		ButtonUp += () => _isDown = false;
-		BiomeManager.Instance.Updated += SetIcon;
-		TreeExited += () => BiomeManager.Instance.Updated -= SetIcon; // Removes the signal when being removed
-		
-		SetIcon();
+
+		// Set the locale icon initially
+		OnLocaleChanged();
 	}
 
 	public override void _Process(double delta)
@@ -37,12 +43,15 @@ public partial class GatherButton : CustomButton
 
 		_gatherProgress.Value = 0;
 
-		GD.PrintRich($"Picked Up {PrintRich.SetTextColor(BiomeManager.Instance.AddMaterial().Name, TextColor.Yellow)}");
-		MonsterManager.Instance.Encounter.Check();
+		LocaleMaterial localeMaterial = MonsterHunterIdle.LocaleManager.GetLocaleMaterial();
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.LocaleMaterialAdded, localeMaterial);
+
+		MonsterHunterIdle.HunterManager.AddHunterPoints(1);
 	}
 
-	private void SetIcon()
+	private void OnLocaleChanged()
 	{
-		_gatherIcon.Texture = BiomeManager.Instance.Biome.GatherIcon;
+		LocaleType localeType = MonsterHunterIdle.LocaleManager.Locale.Type;
+		_gatherIcon.Texture = MonsterHunterIdle.LocaleManager.GetGatherIcon(localeType);
 	}
 }

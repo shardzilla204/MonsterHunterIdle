@@ -1,0 +1,1335 @@
+{
+    "SwordAndShieldCrafting":
+    {
+        "Ore":
+        [
+            {
+                "Name": "Hunter's Knife I",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        }
+                    ]
+                ],
+                "Cost": [ 10, 20, 30, 40, 50 ]
+            },
+            {
+                "Name": "Hunter's Knife II",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 5
+                        }
+                    ]
+                ],
+                "Cost": [ 300, 100, 150, 200, 250 ]
+            },
+            {
+                "Name": "Hunter's Knife III",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 10
+                        }
+                    ]
+                ],
+                "Cost": [ 600, 200, 300, 400, 500 ]
+            },
+            {
+                "Name": "Hunter's Knife IV",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 10
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 24
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 8
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 24
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 20
+                        }
+                    ]
+                ],
+                "Cost": [ 900, 300, 450, 600, 750 ]
+            },
+            {
+                "Name": "Hunter's Knife V",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 20
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 15
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 32
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 15
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 32
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 25
+                        }
+                    ]
+                ],
+                "Cost": [ 1500, 500, 750, 1000, 1250 ]
+            },
+            {
+                "Name": "Steel Knife I",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 20
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 44
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 20
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 44
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 30
+                        }
+                    ]
+                ],
+                "Cost": [ 3000, 1000, 1500, 2000, 2500 ]
+            },
+            {
+                "Name": "Steel Knife II",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 50
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 30
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 50
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 40
+                        }
+                    ]
+                ],
+                "Cost": [ 6000, 2000, 3000, 4000, 5000 ]
+            },
+            {
+                "Name": "Steel Knife III",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 5
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 60
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 4
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 60
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 100
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 4
+                        }
+                    ]
+                ],
+                "Cost": [ 12000, 4000, 6000, 8000, 10000 ]
+            },
+            {
+                "Name": "Steel Knife IV",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 7
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 70
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 70
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 150
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 6
+                        }
+                    ]
+                ],
+                "Cost": [ 30000, 10000, 15000, 20000, 25000 ]
+            },
+            {
+                "Name": "Steel Knife V",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 10
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 9
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 80
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 20
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 80
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 200
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 30
+                        }
+                    ]
+                ],
+                "Cost": [ 75000, 25000, 37500, 50000, 62500 ]
+            }
+        ],
+        "Great Jagras":
+        [
+            {
+                "Name": "Jagras Edge I",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Great Jagras Claw",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 2
+                        }
+                    ]
+                ],
+                "Cost": [ 10, 20, 30, 40, 50 ]
+            },
+            {
+                "Name": "Jagras Edge II",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Great Jagras Mane",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Flowfern",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 3
+                        },
+                        {
+                            "Name": "Great Jagras Claw",
+                            "Amount": 2
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 1
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 2
+                        },
+                        {
+                            "Name": "Great Jagras Scale",
+                            "Amount": 2
+                        }
+                    ]
+                ],
+                "Cost": [ 300, 100, 150, 200, 250 ]
+            },
+            {
+                "Name": "Jagras Edge III",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 8
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 10
+                        }
+                    ]
+                ],
+                "Cost": [ 600, 200, 300, 400, 500 ]
+            },
+            {
+                "Name": "Jagras Edge IV",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 12
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 10
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 24
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 8
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 24
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 18
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 20
+                        }
+                    ]
+                ],
+                "Cost": [ 900, 300, 450, 600, 750 ]
+            },
+            {
+                "Name": "Jagras Edge V",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 20
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 15
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 32
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 15
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 32
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 24
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 25
+                        }
+                    ]
+                ],
+                "Cost": [ 1500, 500, 750, 1000, 1250 ]
+            },
+            {
+                "Name": "Jagras Garotte I",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 20
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 1
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 44
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 20
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 44
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 30
+                        }
+                    ]
+                ],
+                "Cost": [ 3000, 1000, 1500, 2000, 2500 ]
+            },
+            {
+                "Name": "Jagras Garotte II",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 30
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 3
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 50
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 30
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 50
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 40
+                        }
+                    ]
+                ],
+                "Cost": [ 6000, 2000, 3000, 4000, 5000 ]
+            },
+            {
+                "Name": "Jagras Garotte III",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 4
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 5
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 60
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 40
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 4
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 60
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 100
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 4
+                        }
+                    ]
+                ],
+                "Cost": [ 12000, 4000, 6000, 8000, 10000 ]
+            },
+            {
+                "Name": "Jagras Garotte IV",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 6
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 7
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 70
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 6
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 70
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 150
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 6
+                        }
+                    ]
+                ],
+                "Cost": [ 30000, 10000, 15000, 20000, 25000 ]
+            },
+            {
+                "Name": "Jagras Garotte V",
+                "Materials": 
+                [
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Dragonite Ore",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 10
+                        },
+                        {
+                            "Name": "Weapon Refining Parts",
+                            "Amount": 9
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 80
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Machalite Ore",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Godbug",
+                            "Amount": 60
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 20
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 50
+                        },
+                        {
+                            "Name": "Sharp Claw",
+                            "Amount": 80
+                        }
+                    ],
+                    [
+                        {
+                            "Name": "Iron Ore",
+                            "Amount": 200
+                        },
+                        {
+                            "Name": "Earth Crystal",
+                            "Amount": 70
+                        },
+                        {
+                            "Name": "Wyvern Gem Shard",
+                            "Amount": 30
+                        }
+                    ]
+                ],
+                "Cost": [ 75000, 25000, 37500, 50000, 62500 ]
+            }
+        ]
+    }
+}

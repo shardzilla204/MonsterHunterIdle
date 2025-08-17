@@ -1,0 +1,31 @@
+{
+    "PalicoArmor":
+    [
+        {
+            "Name": "Feylne Leather Cap",
+            "Category": "PalicoHead",
+            "Defense": 2,
+            "Materials":
+            [
+                {
+                    "Name": "Iron Ore",
+                    "Amount": 1
+                }
+            ],
+            "Cost": 0
+        },
+        {
+            "Name": "Feylne Leather Cap",
+            "Category": "PalicoChest",
+            "Defense": 2,
+            "Materials":
+            [
+                {
+                    "Name": "Iron Ore",
+                    "Amount": 1
+                }
+            ],
+            "Cost": 0
+        }
+    ]
+}

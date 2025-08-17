@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjsci3hnvis7i"]
+
+[ext_resource type="PackedScene" uid="uid://botoy0vqd8b0t" path="res://Scenes/LoadoutStats.tscn" id="1_dwn7h"]
+[ext_resource type="PackedScene" uid="uid://btgy07d3c0r00" path="res://Scenes/LoadoutInfo.tscn" id="3_bdxxq"]
+
+[node name="LoadoutInterface" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+offset_right = 350.0
+offset_bottom = 449.0
+mouse_filter = 2
+
+[node name="LoadoutStats" parent="." instance=ExtResource("1_dwn7h")]
+layout_mode = 2
+
+[node name="LoadoutInfo" parent="." instance=ExtResource("3_bdxxq")]
+layout_mode = 2
