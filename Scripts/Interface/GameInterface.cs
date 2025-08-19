@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
@@ -34,6 +35,10 @@ public partial class GameInterface : Control
 
         MonsterInterface monsterInterface = MonsterHunterIdle.PackedScenes.GetMonsterInterface();
         _interfaceContainer.AddChild(monsterInterface);
+
+        Dictionary<string, int> timeDifference = MonsterHunterIdle.OfflineProgress.TimeDifference;
+        OfflineInterface offlineInterface = MonsterHunterIdle.PackedScenes.GetOfflineInterface(timeDifference);
+        CallDeferred("add_sibling", offlineInterface);
     }
 
     private void OnInterfaceChanged(InterfaceType interfaceType)

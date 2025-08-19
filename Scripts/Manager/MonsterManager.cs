@@ -100,9 +100,8 @@ public partial class MonsterManager : Node
 		return localeMonsters;
 	}
 
-	public Monster GetRandomMonster()
+	public Monster GetRandomMonster(Locale locale)
 	{
-		Locale locale = MonsterHunterIdle.LocaleManager.Locale;
 		List<Monster> localeMonsters = MonsterHunterIdle.MonsterManager.GetLocaleMonsters(locale.Type);
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
 
@@ -148,6 +147,18 @@ public partial class MonsterManager : Node
 		int randomMonsterlevel = RNG.RandiRange(0, monsterLevels.Count - 1);
 
 		return randomMonsterlevel + 1;
+	}
+
+	// Filter the materials based on the monsters level
+	public List<MonsterMaterial> GetMonsterMaterials(Monster targetMonster)
+	{
+		List<MonsterMaterial> monsterMaterials = new List<MonsterMaterial>();
+		foreach (MonsterMaterial material in MonsterHunterIdle.MonsterManager.Materials)
+		{
+			bool hasMonster = material.Monsters.Contains(targetMonster.Name);
+			if (hasMonster) monsterMaterials.Add(material);
+		}
+		return monsterMaterials.FindAll(material => material.Rarity <= targetMonster.Level); ;
 	}
 
 	// Gets levels that based on the player's current rank

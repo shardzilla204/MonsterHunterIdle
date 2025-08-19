@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using GC = Godot.Collections;
 
 namespace MonsterHunterIdle;
 
@@ -205,4 +206,15 @@ public partial class PrintRich : Node
 		TextColor.Brown => "C4A484",
 		_ => "FFFFFF",
 	};
+
+	public static void PrintTimeDifference(GC.Dictionary<string, int> timeDifference)
+	{
+		string timeDifferenceMessage = $"Time Difference: {GetTimeString(timeDifference)}";
+		PrintLine(TextColor.Purple, timeDifferenceMessage);
+	}
+
+	public static string GetTimeString(GC.Dictionary<string, int> time)
+	{
+		return $"\n\tHours: {time["hour"]}\n\tMinutes: {time["minute"]}\n\tSeconds: {time["second"]}";
+	}
 }

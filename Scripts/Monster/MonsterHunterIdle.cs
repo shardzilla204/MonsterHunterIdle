@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using GC = Godot.Collections;
@@ -40,7 +41,7 @@ public enum StatType
 
 /*
 	TODO: Add Palico equipment data
-	TODO: Add "offline" play
+	// TODO: Add "offline" play
 	// TODO: Add filter when crafting equipment
 	// TODO: Add Ability To Create & Use Equipment
 	// TODO: Show interface to ask if the user wants to change to the equipment that's just been crafted
@@ -56,6 +57,9 @@ public partial class MonsterHunterIdle : Node
 	[Export]
 	private InterfaceType _startingInterface;
 
+	[Export(PropertyHint.Range, "1, 6, 0.1")]
+	private float _offlineThresholdMult = 2f;
+
 	public static HunterManager HunterManager;
 	public static PalicoManager PalicoManager;
 	public static LocaleManager LocaleManager;
@@ -63,15 +67,18 @@ public partial class MonsterHunterIdle : Node
 	public static EquipmentManager EquipmentManager;
 	public static GameManager GameManager;
 	public static ItemBox ItemBox;
+	public static OfflineProgress OfflineProgress;
 
 	public static Signals Signals = new Signals();
 	public static PackedScenes PackedScenes;
 
 	public static InterfaceType StartingInterface;
+	public static float OfflineThresholdMult;
 
 	public override void _EnterTree()
 	{
 		StartingInterface = _startingInterface;
+		OfflineThresholdMult = _offlineThresholdMult;
 	}
 
 	public static Texture2D GetStatIcon(StatType statType)
@@ -211,6 +218,25 @@ public partial class MonsterHunterIdle : Node
 		if (material == null) GD.PrintErr("Couldn't Find Material. Returning Null");
 
 		return material;
+	}
+
+	public static Material GetRandomMaterial()
+	{
+		RandomNumberGenerator RNG = new RandomNumberGenerator();
+
+		// Add all materials from every locale
+		List<Material> materials = [.. LocaleManager.Materials];
+
+		// Get a random monster from any locale, get their materials and add them to the list
+		int localeCount = LocaleManager.LocaleQueue.Count - 1;
+		int randomLocaleIndex = RNG.RandiRange(0, localeCount);
+		Locale locale = LocaleManager.LocaleQueue[randomLocaleIndex];
+		Monster monster = MonsterManager.GetRandomMonster(locale);
+		List<MonsterMaterial> monsterMaterials = MonsterManager.GetMonsterMaterials(monster);
+		materials.AddRange(monsterMaterials);
+
+		int index = RNG.RandiRange(0, materials.Count - 1);
+		return materials[index];
 	}
 
 	// Add spaces in between capital letters

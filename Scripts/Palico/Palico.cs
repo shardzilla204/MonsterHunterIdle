@@ -17,6 +17,6 @@ public partial class Palico : Node
    public int Defense = 10;
 
    public Weapon Weapon;
-   public Armor Helmet;
+   public Armor Head;
    public Armor Chest;
 }

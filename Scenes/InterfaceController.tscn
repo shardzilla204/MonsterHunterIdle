@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b61iq26ngrfk2"]
+[gd_scene load_steps=12 format=3 uid="uid://b61iq26ngrfk2"]
 
 [ext_resource type="Script" uid="uid://dqwk0ciihh1ip" path="res://Scripts/Interface/InterfaceController.cs" id="1_dfpoj"]
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_7spy6"]
-[ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="3_dg1dw"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_nteln"]
 [ext_resource type="Script" uid="uid://b2kn45mdf8gtj" path="res://Scripts/Button/InterfaceButton.cs" id="5_755x8"]
 [ext_resource type="Texture2D" uid="uid://mroj4o6ifgh5" path="res://Assets/Images/Locale/Gather/VegetationGatherIcon.png" id="5_nu61o"]
@@ -44,7 +43,8 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 flat = true
-script = ExtResource("3_dg1dw")
+script = ExtResource("5_755x8")
+_interfaceType = -1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/SettingsButton"]
 self_modulate = Color(0.1, 0.1, 0.1, 1)
@@ -68,13 +68,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 17
+theme_override_constants/margin_bottom = 17
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/SettingsButton/NinePatchRect/MarginContainer"]
 layout_mode = 2
+texture = ExtResource("12_agc3n")
 expand_mode = 1
 stretch_mode = 5
 
@@ -359,47 +360,5 @@ theme_override_constants/margin_bottom = 15
 [node name="TextureRect" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/PalicoButton/NinePatchRect/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("11_bq62d")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SettingsButton" type="Button" parent="OtherButtons/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-flat = true
-script = ExtResource("5_755x8")
-_interfaceType = -1
-
-[node name="NinePatchRect" type="NinePatchRect" parent="OtherButtons/MarginContainer/VBoxContainer/SettingsButton"]
-self_modulate = Color(0.1, 0.1, 0.1, 1)
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_nteln")
-patch_margin_left = 15
-patch_margin_top = 15
-patch_margin_right = 15
-patch_margin_bottom = 15
-
-[node name="MarginContainer" type="MarginContainer" parent="OtherButtons/MarginContainer/VBoxContainer/SettingsButton/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 17
-theme_override_constants/margin_top = 17
-theme_override_constants/margin_right = 17
-theme_override_constants/margin_bottom = 17
-
-[node name="TextureRect" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/SettingsButton/NinePatchRect/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("12_agc3n")
 expand_mode = 1
 stretch_mode = 5

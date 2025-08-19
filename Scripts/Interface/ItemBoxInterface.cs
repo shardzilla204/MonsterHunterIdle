@@ -138,8 +138,11 @@ public partial class ItemBoxInterface : NinePatchRect
 
 	private void ClearDisplay()
 	{
-		Container childContainer = _parentContainer.GetChild<Container>(1);
-		childContainer.QueueFree();
+		for (int i = 1; i < _parentContainer.GetChildCount(); i++)
+		{
+			Container childContainer = _parentContainer.GetChild<Container>(i);
+			childContainer.QueueFree();
+		}
 		
 		_sellMaterialLogContainer = null;
 	}

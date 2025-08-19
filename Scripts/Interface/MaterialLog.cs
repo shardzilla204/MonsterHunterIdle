@@ -16,14 +16,21 @@ public partial class MaterialLog : Control
 
 	public new Material Material;
 
-	public void SetMaterial(Material targetMaterial)
+	public void SetMaterial(Material targetMaterial, int amount = 0)
 	{
 		Material = targetMaterial;
 
 		_materialName.Text = targetMaterial.Name;
 		_materialIcon.Texture = MonsterHunterIdle.GetMaterialIcon(targetMaterial);
 
-		SetMaterialAmount(targetMaterial);
+		if (amount == 0)
+		{
+			SetMaterialAmount(targetMaterial);
+		}
+		else
+		{
+			_materialAmount.Text = $"{amount}";
+		}
 	}
 
 	public virtual void SetMaterialAmount(Material targetMaterial)

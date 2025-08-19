@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d2ns481hjn578"]
+[gd_scene load_steps=40 format=3 uid="uid://d2ns481hjn578"]
 
 [ext_resource type="Script" uid="uid://cb1mv80mxtdxp" path="res://Scripts/Monster/MonsterHunterIdle.cs" id="1_c5mcf"]
 [ext_resource type="Script" uid="uid://dov5pjrkrpw64" path="res://Scripts/PackedScenes.cs" id="2_oe44a"]
@@ -36,10 +36,13 @@
 [ext_resource type="Script" uid="uid://b2oqykypa8r2a" path="res://Scripts/Manager/EquipmentManager.cs" id="23_sm2tf"]
 [ext_resource type="Script" uid="uid://ct4vsvdq50wpn" path="res://Scripts/Manager/MonsterManager.cs" id="23_uavyu"]
 [ext_resource type="PackedScene" uid="uid://do32mb2sltcv8" path="res://Scenes/SettingsInterface.tscn" id="25_38td4"]
+[ext_resource type="PackedScene" uid="uid://bc8hcksw0ma2k" path="res://Scenes/OfflineInterface.tscn" id="29_7fdre"]
 [ext_resource type="Script" uid="uid://tkq645l7q6x8" path="res://Scripts/Manager/GameManager.cs" id="34_20l7k"]
+[ext_resource type="Script" uid="uid://v1k2qik661op" path="res://Scripts/Manager/PalicoEquipmentManager.cs" id="37_7fdre"]
 
 [node name="MonsterHunterIdle" type="Node"]
 script = ExtResource("1_c5mcf")
+_offlineThresholdMult = 6.0
 
 [node name="PackedScenes" type="Node" parent="."]
 script = ExtResource("2_oe44a")
@@ -68,6 +71,7 @@ _playerInterface = ExtResource("8_sm2tf")
 _palicoInterface = ExtResource("9_gfvhb")
 _changeEquipmentInterface = ExtResource("18_obnql")
 _settingsInterface = ExtResource("25_38td4")
+_offlineInterface = ExtResource("29_7fdre")
 
 [node name="Signals" type="Node" parent="."]
 script = ExtResource("15_8g285")
@@ -86,7 +90,6 @@ _encounter = NodePath("MonsterEncounter")
 
 [node name="MonsterEncounter" type="Node" parent="Managers/MonsterManager"]
 script = ExtResource("22_u0u51")
-_encounterIncrease = 25.0
 
 [node name="EquipmentManager" type="Node" parent="Managers"]
 script = ExtResource("23_sm2tf")
@@ -96,10 +99,14 @@ script = ExtResource("19_i6lr1")
 
 [node name="PalicoManager" type="Node" parent="Managers"]
 script = ExtResource("3_lbts6")
+_actionIntervalSeconds = 10.0
+
+[node name="PalicoEquipmentManager" type="Node" parent="Managers/PalicoManager"]
+script = ExtResource("37_7fdre")
 
 [node name="HunterManager" type="Node" parent="Managers"]
 script = ExtResource("19_gfvhb")
-_startingZenny = 10000
+_startingZenny = 0
 
 [node name="GameManager" type="Node" parent="Managers"]
 script = ExtResource("34_20l7k")

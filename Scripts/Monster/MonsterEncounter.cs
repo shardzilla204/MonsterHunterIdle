@@ -58,7 +58,8 @@ public partial class MonsterEncounter : Node
 	{
 		_encounterChance = 0;
 
-		Monster monster = MonsterHunterIdle.MonsterManager.GetRandomMonster();
+		Locale locale = MonsterHunterIdle.LocaleManager.Locale;
+		Monster monster = MonsterHunterIdle.MonsterManager.GetRandomMonster(locale);
 		if (monster == null) return;
 
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncountered, monster);
@@ -83,7 +84,7 @@ public partial class MonsterEncounter : Node
 
 	private List<MonsterMaterial> GetMaterialRewards(Monster targetMonster)
 	{
-		List<MonsterMaterial> monsterMaterials = GetMonsterMaterials(targetMonster);
+		List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MonsterManager.GetMonsterMaterials(targetMonster);
 
 		List<MonsterMaterial> materialRewards = new List<MonsterMaterial>();
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
@@ -93,17 +94,6 @@ public partial class MonsterEncounter : Node
 			materialRewards.Add(monsterMaterials[randomIndex]);
 		}
 		return materialRewards;
-	}
-
-	private List<MonsterMaterial> GetMonsterMaterials(Monster targetMonster)
-	{
-		List<MonsterMaterial> monsterMaterials = new List<MonsterMaterial>();
-		foreach (MonsterMaterial material in MonsterHunterIdle.MonsterManager.Materials)
-		{
-			bool hasMonster = material.Monsters.Contains(targetMonster.Name);
-			if (hasMonster) monsterMaterials.Add(material);
-		}
-		return monsterMaterials.FindAll(material => material.Rarity <= targetMonster.Level);;
 	}
 
 	private int GetHunterPointsReward(Monster monster) => monster.Level switch

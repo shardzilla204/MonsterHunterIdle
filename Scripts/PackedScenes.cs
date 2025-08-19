@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
@@ -80,6 +81,9 @@ public partial class PackedScenes : Node
    [Export]
    private PackedScene _settingsInterface;
 
+   [Export]
+   private PackedScene _offlineInterface;
+
    public override void _EnterTree()
    {
       MonsterHunterIdle.PackedScenes = this;
@@ -155,10 +159,10 @@ public partial class PackedScenes : Node
       return craftButton;
    }
 
-   public MaterialLog GetMaterialLog(Material material)
+   public MaterialLog GetMaterialLog(Material material, int amount = 0)
    {
       MaterialLog materialLog = _materialLog.Instantiate<MaterialLog>();
-      materialLog.SetMaterial(material);
+      materialLog.SetMaterial(material, amount);
       return materialLog;
    }
 
@@ -234,5 +238,12 @@ public partial class PackedScenes : Node
    public CraftingFilterInterface GetCraftingFilterInterface()
    {
       return _craftingFilterInterface.Instantiate<CraftingFilterInterface>();
+   }
+
+   public OfflineInterface GetOfflineInterface(Dictionary<string, int> timeDifference)
+   {
+      OfflineInterface offlineInterface = _offlineInterface.Instantiate<OfflineInterface>();
+      offlineInterface.SetTime(timeDifference);
+      return offlineInterface;
    }
 }

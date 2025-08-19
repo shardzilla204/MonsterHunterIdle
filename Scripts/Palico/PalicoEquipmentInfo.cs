@@ -54,7 +54,7 @@ public partial class PalicoEquipmentInfo : HBoxContainer
 
 	private void SetHelmetStats(Palico palico)
 	{
-		_equipButton.Text = palico.Helmet is null ? "None" : palico.Helmet.Name;
+		_equipButton.Text = palico.Head is null ? "None" : palico.Head.Name;
 	}
 
 	private void SetChestStats(Palico palico)

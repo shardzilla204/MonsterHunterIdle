@@ -3,7 +3,7 @@ using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-public partial class PalicoArmor : Equipment
+public partial class PalicoArmor : Armor
 {
     public PalicoArmor(){}
 
@@ -18,9 +18,7 @@ public partial class PalicoArmor : Equipment
         Set = set;
     }
 
-    public int Defense = 0;
-    public PalicoEquipmentCategory Category = PalicoEquipmentCategory.None;
-    public new ArmorSet Set = ArmorSet.None;
+    public new PalicoEquipmentCategory Category = PalicoEquipmentCategory.None;
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {

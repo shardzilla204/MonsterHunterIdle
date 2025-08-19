@@ -117,7 +117,6 @@ public partial class EquipmentManager : Node
         if (tree == WeaponTree.None) return new Weapon();
 
         string fileName = category.ToString();
-        GD.Print(fileName);
         GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, _weaponFolderPath);
         if (weaponTreeDictionaries == null) return null;
 
@@ -430,12 +429,12 @@ public partial class EquipmentManager : Node
     public GC.Dictionary<string, Variant> GetWeaponData(Weapon weapon)
     {
         GC.Dictionary<string, Variant> weaponData = new GC.Dictionary<string, Variant>()
-      {
-         { "Category", (int) weapon.Category },
-         { "Tree", (int) weapon.Tree },
-         { "Grade", weapon.Grade },
-         { "SubGrade", weapon.SubGrade }
-      };
+        {
+            { "Category", (int) weapon.Category },
+            { "Tree", (int) weapon.Tree },
+            { "Grade", weapon.Grade },
+            { "SubGrade", weapon.SubGrade }
+        };
         return weaponData;
     }
 
@@ -453,12 +452,12 @@ public partial class EquipmentManager : Node
     public GC.Dictionary<string, Variant> GetArmorPieceData(Armor armor)
     {
         GC.Dictionary<string, Variant> armorPieceData = new GC.Dictionary<string, Variant>()
-      {
-         { "Category", (int) armor.Category },
-         { "Set", (int) armor.Set },
-         { "Grade", armor.Grade },
-         { "SubGrade", armor.SubGrade }
-      };
+        {
+            { "Category", (int) armor.Category },
+            { "Set", (int) armor.Set },
+            { "Grade", armor.Grade },
+            { "SubGrade", armor.SubGrade }
+        };
         return armorPieceData;
     }
 
@@ -491,6 +490,17 @@ public partial class EquipmentManager : Node
         Weapon weapon = GetWeapon(category, tree, grade, subGrade);
         return weapon;
     }
+
+    // public PalicoWeapon GetPalicoWeaponFromData(GC.Dictionary<string, Variant> weaponData)
+    // {
+    //      WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
+    //     WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
+    //     int grade = weaponData["Grade"].As<int>();
+    //     int subGrade = weaponData["SubGrade"].As<int>();
+
+    //     PalicoWeapon weapon = GetWeapon(category, tree, grade, subGrade);
+    //     return weapon;
+    // }
 
     private List<Armor> GetArmorFromData(GC.Dictionary<string, Variant> equipmentData)
     {

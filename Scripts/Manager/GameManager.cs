@@ -37,7 +37,8 @@ public partial class GameManager : Node
 		{
 			{ "Hunter", MonsterHunterIdle.HunterManager.GetData() },
 			{ "ItemBox", MonsterHunterIdle.ItemBox.GetData() },
-			{ "Equipment", MonsterHunterIdle.EquipmentManager.GetData() }
+			{ "Equipment", MonsterHunterIdle.EquipmentManager.GetData() },
+			{ "Palicos", MonsterHunterIdle.PalicoManager.GetData() }
 		};
 	}
 
@@ -54,8 +55,8 @@ public partial class GameManager : Node
 			GC.Dictionary<string, Variant> equipmentData = gameData["Equipment"].As<GC.Dictionary<string, Variant>>();
 			MonsterHunterIdle.EquipmentManager.SetData(equipmentData);
 
-			// GC.Dictionary<string, Variant> upgradePicklesData = gameData["Upgrade Pickles"].As<GC.Dictionary<string, Variant>>();
-			// PickleClicker.UpgradePickleManager.SetData(upgradePicklesData);
+			GC.Array<GC.Dictionary<string, Variant>> palicosData = gameData["Palicos"].As<GC.Array<GC.Dictionary<string, Variant>>>();
+			MonsterHunterIdle.PalicoManager.SetData(palicosData);
 
 			// GC.Dictionary<string, Variant> poglinEnemiesData = gameData["Poglin Enemies"].As<GC.Dictionary<string, Variant>>();
 			// PickleClicker.PoglinEnemyManager.SetData(poglinEnemiesData);
@@ -119,6 +120,7 @@ public partial class GameManager : Node
 		MonsterHunterIdle.EquipmentManager.DeleteData();
 		MonsterHunterIdle.ItemBox.DeleteData();
 		MonsterHunterIdle.HunterManager.DeleteData();
+		MonsterHunterIdle.PalicoManager.DeleteData();
 
 		SaveGame();
 	}

@@ -36,10 +36,11 @@ public partial class RecruitPalicoButton : CustomButton
 
 	private void CalculatePrice()
 	{
+		float priceMult = 1.65f;
 		_currentPrice = MonsterHunterIdle.PalicoManager.Palicos.Count switch 
 		{
 			0 => _basePrice,
-			_ => Mathf.RoundToInt(MonsterHunterIdle.PalicoManager.Palicos.Count * _basePrice * 1.35f)
+			_ => Mathf.RoundToInt(MonsterHunterIdle.PalicoManager.Palicos.Count * _basePrice * priceMult)
 		};
 		_priceLabel.Text = $"{_currentPrice}";
 	}
