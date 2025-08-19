@@ -3,23 +3,23 @@ using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-public partial class Armor : Equipment
+public partial class PalicoArmor : Equipment
 {
-    public Armor() {}
+    public PalicoArmor(){}
 
-    public Armor(ArmorCategory category)
+    public PalicoArmor(PalicoEquipmentCategory category)
     {
         Category = category;
     }
 
-    public Armor(ArmorCategory category, ArmorSet set)
+    public PalicoArmor(PalicoEquipmentCategory category, ArmorSet set)
     {
         Category = category;
         Set = set;
     }
 
     public int Defense = 0;
-    public ArmorCategory Category = ArmorCategory.None;
+    public PalicoEquipmentCategory Category = PalicoEquipmentCategory.None;
     public new ArmorSet Set = ArmorSet.None;
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)

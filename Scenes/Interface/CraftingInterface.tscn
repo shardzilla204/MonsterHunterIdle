@@ -1,21 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://03jc5rlgbljl"]
+[gd_scene load_steps=7 format=3 uid="uid://03jc5rlgbljl"]
 
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_wf48e"]
 [ext_resource type="Script" uid="uid://bv4t3d6bqfe4p" path="res://Scripts/Interface/CraftingInterface.cs" id="2_nl2qf"]
 [ext_resource type="PackedScene" uid="uid://c1yvj6p7roi8i" path="res://Scenes/Button/CraftButton.tscn" id="3_v2tme"]
+[ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="4_7m3vw"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_pjkd8"]
+[ext_resource type="Texture2D" uid="uid://oo5awpxlbdsu" path="res://Assets/Images/Icon/Filter.png" id="6_r7xwb"]
 
-[node name="CraftingInterface" type="NinePatchRect" node_paths=PackedStringArray("_craftButtonContainer")]
+[node name="CraftingInterface" type="HBoxContainer" node_paths=PackedStringArray("_craftButtonContainer", "_filterButton")]
+offset_right = 350.0
+offset_bottom = 250.0
+size_flags_vertical = 3
+script = ExtResource("2_nl2qf")
+_craftButtonContainer = NodePath("NinePatchRect/MarginContainer/ScrollContainer/CraftButtonContainer")
+_filterButton = NodePath("NinePatchRect/MarginContainer/FilterButton")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(350, 250)
+layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_wf48e")
 patch_margin_left = 20
 patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
-script = ExtResource("2_nl2qf")
-_craftButtonContainer = NodePath("MarginContainer/ScrollContainer/CraftButtonContainer")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,16 +38,54 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="CraftButtonContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+[node name="CraftButtonContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="CraftButton" parent="MarginContainer/ScrollContainer/CraftButtonContainer" instance=ExtResource("3_v2tme")]
+[node name="CraftButton" parent="NinePatchRect/MarginContainer/ScrollContainer/CraftButtonContainer" instance=ExtResource("3_v2tme")]
 layout_mode = 2
+
+[node name="FilterButton" type="Button" parent="NinePatchRect/MarginContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+toggle_mode = true
+flat = true
+script = ExtResource("4_7m3vw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/FilterButton"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_pjkd8")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/MarginContainer/FilterButton/NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/FilterButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_r7xwb")
+expand_mode = 1
+stretch_mode = 5

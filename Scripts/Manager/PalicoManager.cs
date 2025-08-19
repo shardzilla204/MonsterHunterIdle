@@ -11,7 +11,7 @@ public partial class PalicoManager : Node
 	public List<Palico> Palicos = new List<Palico>();
 	public int MaxPalicoCount = 10;
 
-	public Texture2D PalicoHuntIcon;
+	public PalicoEquipmentManager Equipment;
 
 	public override void _EnterTree()
 	{

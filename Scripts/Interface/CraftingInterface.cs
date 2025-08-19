@@ -1,18 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
-using Godot.Collections;
+using GC = Godot.Collections;
 
 namespace MonsterHunterIdle;
 
 // TODO: Add filter buttons
-public partial class CraftingInterface : NinePatchRect
+public partial class CraftingInterface : Container
 {
 	[Export]
 	private Container _craftButtonContainer;
 
-	private EntityType _entityType = EntityType.Player;
-	private EquipmentType _equipmentType = EquipmentType.Weapon;
+	[Export]
+	private CustomButton _filterButton;
 
 	private CraftButton _craftButton;
+	
+	private CraftingFilterInterface _craftingFilterInterface;
 
 	public override void _ExitTree()
 	{
@@ -20,7 +25,7 @@ public partial class CraftingInterface : NinePatchRect
 		MonsterHunterIdle.Signals.EquipmentChanged -= OnEquipmentChanged;
 		MonsterHunterIdle.Signals.WeaponAdded -= OnEquipmentAdded;
 		MonsterHunterIdle.Signals.ArmorAdded -= OnEquipmentAdded;
-    }
+	}
 
 	public override void _EnterTree()
 	{
@@ -32,14 +37,41 @@ public partial class CraftingInterface : NinePatchRect
 
 	public override void _Ready()
 	{
+		_filterButton.Toggled += OnFilterButtonToggled;
+
 		// Refresh the equipment
 		OnEquipmentChanged();
+	}
+
+	private void OnFilterButtonToggled(bool isToggled)
+	{
+		if (isToggled)
+		{
+			_craftingFilterInterface = MonsterHunterIdle.PackedScenes.GetCraftingFilterInterface();
+			_craftingFilterInterface.FiltersChanged += OnFiltersChanged;
+			AddChild(_craftingFilterInterface);
+		}
+		else
+		{
+			_craftingFilterInterface.QueueFree();
+		}
+	}
+
+	private void OnFiltersChanged(GC.Dictionary<string, bool> filters)
+	{
+		ClearEquipment();
+		ShowFilteredEquipment(filters);
 	}
 
 	private void OnEquipmentChanged(Equipment equipment = null)
 	{
 		ClearEquipment();
-		ShowEquipment();
+
+		List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+		ShowEquipment(weapons);
+
+		List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
+		ShowEquipment(armor);
 
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.CraftButtonPressed, equipment);
 	}
@@ -50,26 +82,81 @@ public partial class CraftingInterface : NinePatchRect
 		AddSibling(changeEquipmentInterface);
 	}
 
-	private void ShowEquipment()
+	private void ShowFilteredEquipment(GC.Dictionary<string, bool> filters)
 	{
-		foreach (Weapon weapon in MonsterHunterIdle.EquipmentManager.Weapons)
+		// Check if any filter is true, if all are false then just show all the equipment
+		bool hasFilter = HasFilter(filters);
+		if (hasFilter)
 		{
-			CraftButton weaponCraftButton = MonsterHunterIdle.PackedScenes.GetCraftButton(weapon);
-			weaponCraftButton.Pressed += () => SetEquipmentButton(weaponCraftButton);
-			_craftButtonContainer.AddChild(weaponCraftButton);
-		}
+			List<Equipment> filteredEquipment = new List<Equipment>();
+			foreach (string filterName in filters.Keys)
+			{
+				bool isFiltered = filters[filterName];
+				if (!isFiltered) continue;
 
-		foreach (Armor armor in MonsterHunterIdle.EquipmentManager.Armor)
+				bool isSuccessful = Enum.TryParse(filterName, out WeaponCategory weaponCategory);
+				if (isSuccessful)
+				{
+					List<Weapon> filteredWeapons = MonsterHunterIdle.EquipmentManager.Weapons.FindAll(weapon => weapon.Category == weaponCategory);
+					filteredEquipment.AddRange(filteredWeapons);
+					continue;
+				}
+
+				isSuccessful = Enum.TryParse(filterName, out ArmorCategory armorCategory);
+				if (isSuccessful)
+				{
+					List<Armor> filteredArmor = MonsterHunterIdle.EquipmentManager.Armor.FindAll(armor => armor.Category == armorCategory);
+					filteredEquipment.AddRange(filteredArmor);
+					continue;
+				}
+
+				if (filterName.Contains("Palico"))
+				{
+					
+				}
+				else if (filterName.Contains("HasNotCrafted"))
+				{
+					List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+					List<Equipment> filteredWeapons = weapons.FindAll(weapon => !MonsterHunterIdle.EquipmentManager.HasCrafted(weapon));
+					filteredEquipment.AddRange(filteredWeapons);
+
+					List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
+					List<Equipment> filteredArmor = armor.FindAll(armor => !MonsterHunterIdle.EquipmentManager.HasCrafted(armor));
+					filteredEquipment.AddRange(filteredArmor);
+				}
+				// TODO: Do miscellaneous filters
+			}
+			ShowEquipment(filteredEquipment);
+		}
+		else
 		{
-			CraftButton armorCraftButton = MonsterHunterIdle.PackedScenes.GetCraftButton(armor);
-			armorCraftButton.Pressed += () => SetEquipmentButton(armorCraftButton);
-			_craftButtonContainer.AddChild(armorCraftButton);
+			List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+			ShowEquipment(weapons);
+
+			List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
+			ShowEquipment(armor);
+		}
+	}
+
+	private bool HasFilter(GC.Dictionary<string, bool> filters)
+	{
+		bool hasFilter = filters.Values.ToList().Contains(true);
+		return hasFilter;
+	}
+
+	private void ShowEquipment(List<Equipment> equipment)
+	{
+		foreach (Equipment equipmentPiece in equipment)
+		{
+			CraftButton craftButton = MonsterHunterIdle.PackedScenes.GetCraftButton(equipmentPiece);
+			craftButton.Pressed += () => SetEquipmentButton(craftButton);
+			_craftButtonContainer.AddChild(craftButton);
 		}
 	}
 
 	private void ClearEquipment()
 	{
-		Array<Node> children = _craftButtonContainer.GetChildren();
+		GC.Array<Node> children = _craftButtonContainer.GetChildren();
 		foreach (Node child in children)
 		{
 			_craftButtonContainer.RemoveChild(child);

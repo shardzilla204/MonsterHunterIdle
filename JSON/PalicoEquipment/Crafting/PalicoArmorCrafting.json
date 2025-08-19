@@ -3,7 +3,7 @@
     [
         {
             "Name": "Feylne Leather Cap",
-            "Category": "PalicoHead",
+            "Category": "Head",
             "Defense": 2,
             "Materials":
             [
@@ -16,7 +16,7 @@
         },
         {
             "Name": "Feylne Leather Cap",
-            "Category": "PalicoChest",
+            "Category": "Chest",
             "Defense": 2,
             "Materials":
             [

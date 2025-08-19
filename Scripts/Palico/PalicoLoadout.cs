@@ -1,28 +1,30 @@
-// using Godot;
+using Godot;
 
-// namespace MonsterHunterIdle;
+namespace MonsterHunterIdle;
 
-// public partial class PalicoLoadout : NinePatchRect
-// {
-// 	[Export]
-// 	private Label _palicoName;
+public partial class PalicoLoadout : NinePatchRect
+{
+    [Export]
+    private Label _palicoName;
 
-// 	[Export]
-// 	private PalicoEquipmentDetails _weaponDetails;
+    [Export]
+    private PalicoEquipmentInfo _weaponInfo;
 
-// 	[Export]
-// 	private PalicoEquipmentDetails _helmetDetails;
+    [Export]
+    private PalicoEquipmentInfo _helmetInfo;
 
-// 	[Export]
-// 	private PalicoEquipmentDetails _armorDetails;
+    [Export]
+    private PalicoEquipmentInfo _armorInfo;
 
-// 	public Palico Palico;
+    public Palico Palico;
 
-// 	public override void _Ready()
-// 	{
-// 		_palicoName.Text = $"{Palico.Name}'s Loadout";
-// 		_weaponDetails.SetStats(Palico);
-// 		_helmetDetails.SetStats(Palico);
-// 		_armorDetails.SetStats(Palico);
-// 	}
-// }
+    public void SetPalico(Palico palico)
+    {
+        Palico = palico;
+
+        _palicoName.Text = $"{palico.Name}'s Loadout";
+        _weaponInfo.SetStats(palico);
+        _helmetInfo.SetStats(palico);
+        _armorInfo.SetStats(palico);
+    }
+}

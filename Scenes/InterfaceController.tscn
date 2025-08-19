@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cibulxqc4716i" path="res://Assets/Images/Icon/SmithyIcon.png" id="7_355xt"]
 [ext_resource type="Texture2D" uid="uid://fcvktt0gtafq" path="res://Assets/Images/Icon/LoadoutIcon.png" id="8_uujph"]
 [ext_resource type="Texture2D" uid="uid://s57gpa547kdl" path="res://Assets/Images/Icon/PlayerIcon.png" id="9_ruttl"]
-[ext_resource type="Texture2D" uid="uid://okapr61f3pe4" path="res://Assets/Images/Icon/PalicoIcon.png" id="10_j448s"]
+[ext_resource type="Texture2D" uid="uid://xmaq7msxy40w" path="res://Assets/Images/Icon/HuntIcon.png" id="11_bq62d"]
 [ext_resource type="Texture2D" uid="uid://2csve5droka3" path="res://Assets/Images/Icon/SettingsIcon.png" id="12_agc3n"]
 
 [node name="InterfaceController" type="VBoxContainer" node_paths=PackedStringArray("_gatherIcon", "_hunterProgressBar")]
@@ -351,14 +351,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="TextureRect" type="TextureRect" parent="OtherButtons/MarginContainer/VBoxContainer/PalicoButton/NinePatchRect/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("10_j448s")
+texture = ExtResource("11_bq62d")
 expand_mode = 1
 stretch_mode = 5
 

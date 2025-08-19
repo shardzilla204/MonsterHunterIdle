@@ -36,7 +36,8 @@ public partial class GameManager : Node
 		return new GC.Dictionary<string, Variant>()
 		{
 			{ "Hunter", MonsterHunterIdle.HunterManager.GetData() },
-			{ "ItemBox", MonsterHunterIdle.ItemBox.GetData() }
+			{ "ItemBox", MonsterHunterIdle.ItemBox.GetData() },
+			{ "Equipment", MonsterHunterIdle.EquipmentManager.GetData() }
 		};
 	}
 
@@ -50,8 +51,8 @@ public partial class GameManager : Node
 			GC.Dictionary<string, Variant> itemBoxData = gameData["ItemBox"].As<GC.Dictionary<string, Variant>>();
 			MonsterHunterIdle.ItemBox.SetData(itemBoxData);
 
-			// GC.Dictionary<string, Variant> autoPicklesData = gameData["Auto Pickles"].As<GC.Dictionary<string, Variant>>();
-			// PickleClicker.AutoPickleManager.SetData(autoPicklesData);
+			GC.Dictionary<string, Variant> equipmentData = gameData["Equipment"].As<GC.Dictionary<string, Variant>>();
+			MonsterHunterIdle.EquipmentManager.SetData(equipmentData);
 
 			// GC.Dictionary<string, Variant> upgradePicklesData = gameData["Upgrade Pickles"].As<GC.Dictionary<string, Variant>>();
 			// PickleClicker.UpgradePickleManager.SetData(upgradePicklesData);
@@ -111,10 +112,13 @@ public partial class GameManager : Node
 		PrintRich.PrintLine(TextColor.Green, loadSuccessMessage);
 	}
 
+	// ! Important !
+	/// Erase equipment first as added starting equipment from deleting hunter data will also be erased 
 	private void DeleteGame()
 	{
-		MonsterHunterIdle.HunterManager.DeleteData();
+		MonsterHunterIdle.EquipmentManager.DeleteData();
 		MonsterHunterIdle.ItemBox.DeleteData();
+		MonsterHunterIdle.HunterManager.DeleteData();
 
 		SaveGame();
 	}

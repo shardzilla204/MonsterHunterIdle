@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://d2ns481hjn578"]
+[gd_scene load_steps=38 format=3 uid="uid://d2ns481hjn578"]
 
 [ext_resource type="Script" uid="uid://cb1mv80mxtdxp" path="res://Scripts/Monster/MonsterHunterIdle.cs" id="1_c5mcf"]
 [ext_resource type="Script" uid="uid://dov5pjrkrpw64" path="res://Scripts/PackedScenes.cs" id="2_oe44a"]
 [ext_resource type="Script" uid="uid://cmcwnlaf2jtmp" path="res://Scripts/Manager/PalicoManager.cs" id="3_lbts6"]
 [ext_resource type="PackedScene" uid="uid://b5r72qvckpxmu" path="res://Scenes/StatDetail.tscn" id="3_sylwc"]
+[ext_resource type="PackedScene" uid="uid://d0h668v6xergd" path="res://Scenes/PalicoLoadout.tscn" id="4_fapt1"]
 [ext_resource type="PackedScene" uid="uid://bnf8la1b7jt70" path="res://Scenes/Interface/MonsterInterface.tscn" id="4_i6lr1"]
 [ext_resource type="PackedScene" uid="uid://b5qqn6nqcf0j7" path="res://Scenes/Interface/CollectionLogInterface.tscn" id="5_cdtog"]
 [ext_resource type="Script" uid="uid://cr4gno3d1mm45" path="res://Scripts/Manager/LocaleManager.cs" id="5_uls08"]
@@ -30,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://blqsy01kwcben" path="res://Scenes/Interface/ChangeEquipmentInterface.tscn" id="18_obnql"]
 [ext_resource type="Script" uid="uid://dyba1ua3vc4ya" path="res://Scripts/Manager/HunterManager.cs" id="19_gfvhb"]
 [ext_resource type="Script" uid="uid://dgiw4enl7acbv" path="res://Scripts/Manager/ItemBox.cs" id="19_i6lr1"]
+[ext_resource type="PackedScene" uid="uid://ckt57vg7yeo5v" path="res://Scenes/CraftingFilterInterface.tscn" id="20_xgnmo"]
 [ext_resource type="Script" uid="uid://ja500obaby4r" path="res://Scripts/Monster/MonsterEncounter.cs" id="22_u0u51"]
 [ext_resource type="Script" uid="uid://b2oqykypa8r2a" path="res://Scripts/Manager/EquipmentManager.cs" id="23_sm2tf"]
 [ext_resource type="Script" uid="uid://ct4vsvdq50wpn" path="res://Scripts/Manager/MonsterManager.cs" id="23_uavyu"]
@@ -42,6 +44,7 @@ script = ExtResource("1_c5mcf")
 [node name="PackedScenes" type="Node" parent="."]
 script = ExtResource("2_oe44a")
 _statDetail = ExtResource("3_sylwc")
+_palicoLoadout = ExtResource("4_fapt1")
 _collectionLog = ExtResource("11_lpem0")
 _equipmentButton = ExtResource("12_obnql")
 _palicoDetails = ExtResource("13_vskh8")
@@ -57,6 +60,7 @@ _equipmentOptionInfoInterface = ExtResource("13_xli7x")
 _monsterInterface = ExtResource("4_i6lr1")
 _collectionLogInterface = ExtResource("5_cdtog")
 _itemBoxInterface = ExtResource("6_jlcpi")
+_craftingFilterInterface = ExtResource("20_xgnmo")
 _recipeInterface = ExtResource("12_lpem0")
 _loadoutInterface = ExtResource("13_lpem0")
 _smithyInterface = ExtResource("7_u0u51")

@@ -13,19 +13,19 @@ public partial class PalicoInterface : Container
 	[Export]
 	private Container _palicoContainer;
 
-	// private PalicoLoadout _palicoLoadout;
+	private PalicoLoadout _palicoLoadout;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		foreach (Palico palico in MonsterHunterIdle.PalicoManager.Palicos)
 		{
 			AddPalicoDetails(palico);
 		}
 
-      	_recruitPalicoButton.PalicoRecruited += OnPalicoRecruited;
+		_recruitPalicoButton.PalicoRecruited += OnPalicoRecruited;
 
 		UpdateText();
-    }
+	}
 
 	private void OnPalicoRecruited()
 	{
@@ -38,7 +38,7 @@ public partial class PalicoInterface : Container
 		AddPalicoDetails(palico);
 		OnLoadoutOpened(palico); // Show loadout
 		CheckAmount();
-		
+
 		UpdateText();
 	}
 
@@ -52,15 +52,13 @@ public partial class PalicoInterface : Container
 
 	private void OnLoadoutOpened(Palico palico)
 	{
-		// if (_palicoLoadout is not null) 
-		// {
-		// 	RemoveChild(_palicoLoadout);
-		// 	_palicoLoadout.QueueFree();
-		// } 
-		
-		// _palicoLoadout = MonsterHunterIdle.PackedScenes.GetPalicoLoadout();
-		// _palicoLoadout.Palico = palico;
-		// AddChild(_palicoLoadout);
+		if (IsInstanceValid(_palicoLoadout)) 
+		{
+			_palicoLoadout.QueueFree();
+		} 
+
+		_palicoLoadout = MonsterHunterIdle.PackedScenes.GetPalicoLoadout(palico);
+		AddChild(_palicoLoadout); // For display orientation/placement as PalicoInterface is a container
 	}
 
 	private void UpdateText()

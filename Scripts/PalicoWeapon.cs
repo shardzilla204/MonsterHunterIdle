@@ -3,19 +3,18 @@ using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-public partial class Weapon : Equipment
+public partial class PalicoWeapon : Equipment
 {
-    public Weapon(){}
+    public PalicoWeapon(){}
 
-    public Weapon(WeaponCategory category, WeaponTree tree)
+    public PalicoWeapon(WeaponTree tree)
     {
-        Category = category;
         Tree = tree;
     }
 
     public int Attack = 0;
     public float Affinity = 0;
-    public WeaponCategory Category = WeaponCategory.None;
+    public PalicoEquipmentCategory Category = PalicoEquipmentCategory.Weapon;
     public WeaponTree Tree = WeaponTree.None;
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)

@@ -18,10 +18,8 @@ public partial class Hunter : Node
 
 	public int Zenny = 0;
 
-	public List<Weapon> Weapons = new List<Weapon>();
 	public Weapon Weapon = new Weapon();
 
-	public List<Armor> Armor = new List<Armor>();
 	public Armor Head = new Armor(ArmorCategory.Head);
 	public Armor Chest = new Armor(ArmorCategory.Chest);
 	public Armor Arm = new Armor(ArmorCategory.Arm);

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using GC = Godot.Collections;
@@ -40,13 +39,16 @@ public enum StatType
 }
 
 /*
-	// TODO: Add Ability To Create & Use Equipment
 	TODO: Add Palico equipment data
+	TODO: Add "offline" play
+	// TODO: Add filter when crafting equipment
+	// TODO: Add Ability To Create & Use Equipment
 	// TODO: Show interface to ask if the user wants to change to the equipment that's just been crafted
-	TODO: Add ability to swap crafted equipment
+	// TODO: Add ability to swap crafted equipment
 	// TODO: Rework Palico mechanic so that it will attack if there's a monster. If not then just gather materials
 */
 
+// ! Important Note !
 /// Create a new object for equipment to act as "null" | <see cref="Hunter"/> | e.g. Hunter.Head = new Armor(ArmorCategory.Head);
 
 public partial class MonsterHunterIdle : Node

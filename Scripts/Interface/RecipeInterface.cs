@@ -88,12 +88,12 @@ public partial class RecipeInterface : NinePatchRect
 			// Craft equipment
 			if (_equipment is Weapon weapon)
 			{
-				MonsterHunterIdle.HunterManager.Hunter.Weapons.Add(weapon);
+				MonsterHunterIdle.EquipmentManager.CraftedWeapons.Add(weapon);
 				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.WeaponAdded, weapon);
 			}
 			else if (_equipment is Armor armor)
 			{
-				MonsterHunterIdle.HunterManager.Hunter.Armor.Add(armor);
+				MonsterHunterIdle.EquipmentManager.CraftedArmor.Add(armor);
 				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ArmorAdded, armor);
 			}
 			QueueFree();

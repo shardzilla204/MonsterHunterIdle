@@ -6,24 +6,17 @@ using GC = Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-public enum EquipmentType
-{
-    None = -1,
-    Weapon,
-    Armor
-}
-
-public enum EntityType
-{
-    Player,
-    Palico
-}
-
 public partial class EquipmentManager : Node
 {
-    public List<Armor> Armor = new List<Armor>();
     public List<Weapon> Weapons = new List<Weapon>();
+    public List<Armor> Armor = new List<Armor>();
     public GC.Dictionary<string, Variant> Recipes = new GC.Dictionary<string, Variant>();
+
+    public List<Weapon> CraftedWeapons = new List<Weapon>();
+    public List<Armor> CraftedArmor = new List<Armor>();
+
+    private string _weaponFolderPath = "Equipment/Weapons";
+    private string _armorFolderPath = "Equipment/Armor";
 
     public override void _EnterTree()
     {
@@ -36,14 +29,20 @@ public partial class EquipmentManager : Node
     // Go through provided file paths and load weapons and armor
     private void LoadEquipment()
     {
-        string weaponFilePath = "res://JSON/Weapons/";
-        LoadEquipment(weaponFilePath, AddWeapons);
+        string weaponFilePath = $"res://JSON/{_weaponFolderPath}/";
+        LoadEquipment(weaponFilePath, _weaponFolderPath, AddWeapons);
 
-        string armorFilePath = "res://JSON/Armor/";
-        LoadEquipment(armorFilePath, AddArmor);
+        string armorFilePath = $"res://JSON/{_armorFolderPath}/";
+        LoadEquipment(armorFilePath, _armorFolderPath, AddArmor);
     }
 
-    private void LoadEquipment(string filePath, Func<string, bool> addEquipment)
+    /// Take in a file path, folder path, and method defending on the equipment | Weapons = <see cref="AddWeapons"/> | Armor = <see cref="AddArmor"/>
+    /// Iterate through the provided file path e.g "res://JSON/Equipment/Weapons/".
+    /// Take the file name without the extension (<see cref="string.GetBaseName()"/>) 
+    /// Use fileName and folderPath (<see cref="LoadEquipment.folderPath"/>) as parameters in the provided method
+    /// If successful, iterate to the next file
+    /// <see cref="LoadRecipe"/> uses this method as well
+    private void LoadEquipment(string filePath, string folderPath, Func<string, string, bool> addEquipment)
     {
         using DirAccess directory = DirAccess.Open(filePath);
         if (directory != null)
@@ -52,8 +51,19 @@ public partial class EquipmentManager : Node
             string fileName = directory.GetNext();
             while (fileName != "")
             {
-                bool hasPassed = addEquipment(fileName.GetBaseName());
-                if (!hasPassed) return;
+                if (directory.CurrentIsDir())
+                {
+                    fileName = directory.GetNext();
+                    continue;
+                }
+
+                bool hasPassed = addEquipment(fileName.GetBaseName(), folderPath);
+                if (!hasPassed)
+                {
+                    string errorMessage = $"Couldn't Add Equipment Using The Path: {filePath}";
+                    GD.PrintErr(errorMessage);
+                    return;
+                }
 
                 fileName = directory.GetNext();
             }
@@ -65,9 +75,9 @@ public partial class EquipmentManager : Node
         }
     }
 
-    private bool AddWeapons(string fileName)
+    private bool AddWeapons(string fileName, string folderPath)
     {
-        GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, "Weapons");
+        GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, folderPath);
         if (weaponTreeDictionaries == null) return false;
 
         WeaponCategory category = Enum.Parse<WeaponCategory>(fileName);
@@ -75,9 +85,9 @@ public partial class EquipmentManager : Node
         {
             string treeNameString = treeName.Replace(" ", "");
             treeNameString = treeNameString.Replace("-", "");
-            
+
             WeaponTree tree = Enum.Parse<WeaponTree>(treeNameString);
-            
+
             try
             {
                 GC.Array<GC.Dictionary<string, Variant>> weaponGradeDictionaries = weaponTreeDictionaries[treeName].As<GC.Array<GC.Dictionary<string, Variant>>>();
@@ -107,7 +117,8 @@ public partial class EquipmentManager : Node
         if (tree == WeaponTree.None) return new Weapon();
 
         string fileName = category.ToString();
-        GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, "Weapons");
+        GD.Print(fileName);
+        GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, _weaponFolderPath);
         if (weaponTreeDictionaries == null) return null;
 
         string treeString = MonsterHunterIdle.AddSpacing(tree.ToString());
@@ -122,9 +133,9 @@ public partial class EquipmentManager : Node
         return weapon;
     }
 
-    private bool AddArmor(string fileName)
+    private bool AddArmor(string fileName, string folderPath)
     {
-        GC.Dictionary<string, Variant> armorSetDictionaries = GetEquipmentDictionaries(fileName, "Armor");
+        GC.Dictionary<string, Variant> armorSetDictionaries = GetEquipmentDictionaries(fileName, folderPath);
         if (armorSetDictionaries == null) return false;
 
         string categoryName = fileName.Replace("Armor", "");
@@ -165,7 +176,7 @@ public partial class EquipmentManager : Node
         if (set == ArmorSet.None) return new Armor(category, set);
 
         string fileName = $"{category}Armor";
-        GC.Dictionary<string, Variant> armorSetDictionaries = GetEquipmentDictionaries(fileName, "Armor");
+        GC.Dictionary<string, Variant> armorSetDictionaries = GetEquipmentDictionaries(fileName, _armorFolderPath);
         if (armorSetDictionaries == null) return null;
 
         string setString = MonsterHunterIdle.AddSpacing(set.ToString());
@@ -180,9 +191,9 @@ public partial class EquipmentManager : Node
         return armor;
     }
 
-    private GC.Dictionary<string, Variant> GetEquipmentDictionaries(string fileName, string folderName)
+    private GC.Dictionary<string, Variant> GetEquipmentDictionaries(string fileName, string folderPath)
     {
-        GC.Dictionary<string, Variant> equipmentData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        GC.Dictionary<string, Variant> equipmentData = MonsterHunterIdle.LoadFile(fileName, folderPath).As<GC.Dictionary<string, Variant>>();
         if (equipmentData == null) return null;
 
         try
@@ -201,19 +212,19 @@ public partial class EquipmentManager : Node
         }
     }
 
-    // Go through provided file paths and load weapons and armor
+    // Go through provided file paths and load recipes for weapons and armor
     private void LoadRecipes()
     {
-        string weaponFolderName = "WeaponCrafting";
-        string weaponFilePath = $"res://JSON/{weaponFolderName}/";
-        LoadRecipe(weaponFilePath, weaponFolderName, AddRecipes);
+        string weaponCraftingFolderPath = $"{_weaponFolderPath}/Crafting";
+        string weaponCraftingFilePath = $"res://JSON/{weaponCraftingFolderPath}/";
+        LoadRecipe(weaponCraftingFilePath, weaponCraftingFolderPath, AddRecipes);
 
-        string armorFolderName = "ArmorCrafting";
-        string armorFilePath = $"res://JSON/{armorFolderName}/";
-        LoadRecipe(armorFilePath, armorFolderName, AddRecipes);
+        string armorCraftingFolderPath = $"{_armorFolderPath}/Crafting";
+        string armorCraftingFilePath = $"res://JSON/{armorCraftingFolderPath}/";
+        LoadRecipe(armorCraftingFilePath, armorCraftingFolderPath, AddRecipes);
     }
 
-    private void LoadRecipe(string filePath, string folderName, Func<string, string, bool> addRecipe)
+    private void LoadRecipe(string filePath, string folderPath, Func<string, string, bool> addRecipe)
     {
         using DirAccess directory = DirAccess.Open(filePath);
         if (directory != null)
@@ -222,7 +233,13 @@ public partial class EquipmentManager : Node
             string fileName = directory.GetNext();
             while (fileName != "")
             {
-                bool hasPassed = addRecipe(fileName.GetBaseName(), folderName);
+                if (directory.CurrentIsDir())
+                {
+                    fileName = directory.GetNext();
+                    continue;
+                }
+
+                bool hasPassed = addRecipe(fileName.GetBaseName(), folderPath);
                 if (!hasPassed) return;
 
                 fileName = directory.GetNext();
@@ -235,12 +252,12 @@ public partial class EquipmentManager : Node
         }
     }
 
-    private bool AddRecipes(string fileName, string folderName)
+    private bool AddRecipes(string fileName, string folderPath)
     {
         try
         {
             // Group = Tree/Set
-            GC.Dictionary<string, Variant> groupRecipeDictionaries = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+            GC.Dictionary<string, Variant> groupRecipeDictionaries = MonsterHunterIdle.LoadFile(fileName, folderPath).As<GC.Dictionary<string, Variant>>();
             if (groupRecipeDictionaries == null) return false;
 
             foreach (string groupName in groupRecipeDictionaries.Keys)
@@ -265,12 +282,12 @@ public partial class EquipmentManager : Node
         bool hasCrafted = false;
         if (equipment is Weapon targetWeapon)
         {
-            Weapon weapon = MonsterHunterIdle.HunterManager.Hunter.Weapons.Find(weapon => weapon.Category == targetWeapon.Category && weapon.Tree == targetWeapon.Tree);
+            Weapon weapon = CraftedWeapons.Find(weapon => weapon.Category == targetWeapon.Category && weapon.Tree == targetWeapon.Tree);
             hasCrafted = weapon != null;
         }
         else if (equipment is Armor targetArmor)
         {
-            Armor armor = MonsterHunterIdle.HunterManager.Hunter.Armor.Find(armor => armor.Category == targetArmor.Category && armor.Set == targetArmor.Set);
+            Armor armor = CraftedArmor.Find(armor => armor.Category == targetArmor.Category && armor.Set == targetArmor.Set);
             hasCrafted = armor != null;
         }
         return hasCrafted;
@@ -280,13 +297,13 @@ public partial class EquipmentManager : Node
     {
         if (equipment is Weapon targetWeapon)
         {
-            Weapon weapon = MonsterHunterIdle.HunterManager.Hunter.Weapons.Find(weapon => weapon.Category == targetWeapon.Category && weapon.Tree == targetWeapon.Tree);
+            Weapon weapon = CraftedWeapons.Find(weapon => weapon.Category == targetWeapon.Category && weapon.Tree == targetWeapon.Tree);
             PrintRich.PrintEquipmentInfo(TextColor.Orange, weapon);
             return weapon;
         }
         else if (equipment is Armor targetArmor)
         {
-            Armor armor = MonsterHunterIdle.HunterManager.Hunter.Armor.Find(armor => armor.Category == targetArmor.Category && armor.Set == targetArmor.Set);
+            Armor armor = CraftedArmor.Find(armor => armor.Category == targetArmor.Category && armor.Set == targetArmor.Set);
             PrintRich.PrintEquipmentInfo(TextColor.Orange, armor);
             return armor;
         }
@@ -314,19 +331,19 @@ public partial class EquipmentManager : Node
         // Get the group & category of the equipment
         List<string> categoryNames = Recipes.Keys.ToList();
         if (equipment is Weapon weapon)
-            {
-                string weaponTreeString = weapon.Tree.ToString();
-                groupName = MonsterHunterIdle.AddSpacing(weaponTreeString);
+        {
+            string weaponTreeString = weapon.Tree.ToString();
+            groupName = MonsterHunterIdle.AddSpacing(weaponTreeString);
 
-                categoryName = categoryNames.Find(name => name.Contains(weapon.Category.ToString()));
-            }
-            else if (equipment is Armor armor)
-            {
-                string armorSetString = armor.Set.ToString();
-                groupName = MonsterHunterIdle.AddSpacing(armorSetString);
+            categoryName = categoryNames.Find(name => name.Contains(weapon.Category.ToString()));
+        }
+        else if (equipment is Armor armor)
+        {
+            string armorSetString = armor.Set.ToString();
+            groupName = MonsterHunterIdle.AddSpacing(armorSetString);
 
-                categoryName = categoryNames.Find(name => name.Contains(armor.Category.ToString()));
-            }
+            categoryName = categoryNames.Find(name => name.Contains(armor.Category.ToString()));
+        }
 
         // Create a dictionary for the recipe 
         try
@@ -353,11 +370,6 @@ public partial class EquipmentManager : Node
 
             return null;
         }
-    }
-
-    private void GetWeaponAttack(Weapon weapon)
-    {
-
     }
 
     public void UpgradeEquipment(Equipment equipment)
@@ -390,5 +402,123 @@ public partial class EquipmentManager : Node
             string errorMessage = $"Couldn't Upgrade {equipment.Name}";
             GD.PrintErr(errorMessage);
         }
+    }
+
+    // Data methods
+    /// <see cref="GameManager.SaveGame"/>
+    public GC.Dictionary<string, Variant> GetData()
+    {
+        GC.Dictionary<string, Variant> equipmentData = new GC.Dictionary<string, Variant>()
+        {
+            { "Weapons", GetWeaponsData() },
+            { "Armor", GetArmorData() }
+        };
+        return equipmentData;
+    }
+
+    private GC.Array<GC.Dictionary<string, Variant>> GetWeaponsData()
+    {
+        GC.Array<GC.Dictionary<string, Variant>> weaponsData = new GC.Array<GC.Dictionary<string, Variant>>();
+        foreach (Weapon weapon in CraftedWeapons)
+        {
+            GC.Dictionary<string, Variant> weaponData = GetWeaponData(weapon);
+            weaponsData.Add(weaponData);
+        }
+        return weaponsData;
+    }
+
+    public GC.Dictionary<string, Variant> GetWeaponData(Weapon weapon)
+    {
+        GC.Dictionary<string, Variant> weaponData = new GC.Dictionary<string, Variant>()
+      {
+         { "Category", (int) weapon.Category },
+         { "Tree", (int) weapon.Tree },
+         { "Grade", weapon.Grade },
+         { "SubGrade", weapon.SubGrade }
+      };
+        return weaponData;
+    }
+
+    private GC.Array<GC.Dictionary<string, Variant>> GetArmorData()
+    {
+        GC.Array<GC.Dictionary<string, Variant>> armorData = new GC.Array<GC.Dictionary<string, Variant>>();
+        foreach (Armor armor in CraftedArmor)
+        {
+            GC.Dictionary<string, Variant> armorPieceData = GetArmorPieceData(armor);
+            armorData.Add(armorPieceData);
+        }
+        return armorData;
+    }
+
+    public GC.Dictionary<string, Variant> GetArmorPieceData(Armor armor)
+    {
+        GC.Dictionary<string, Variant> armorPieceData = new GC.Dictionary<string, Variant>()
+      {
+         { "Category", (int) armor.Category },
+         { "Set", (int) armor.Set },
+         { "Grade", armor.Grade },
+         { "SubGrade", armor.SubGrade }
+      };
+        return armorPieceData;
+    }
+
+    /// <see cref="GameManager.LoadGame"/>
+    public void SetData(GC.Dictionary<string, Variant> equipmentData)
+    {
+        CraftedWeapons.AddRange(GetWeaponsFromData(equipmentData));
+        CraftedArmor.AddRange(GetArmorFromData(equipmentData));
+    }
+
+    private List<Weapon> GetWeaponsFromData(GC.Dictionary<string, Variant> equipmentData)
+    {
+        List<Weapon> weapons = new List<Weapon>();
+        GC.Array<GC.Dictionary<string, Variant>> weaponsData = equipmentData["Weapons"].As<GC.Array<GC.Dictionary<string, Variant>>>();
+        foreach (GC.Dictionary<string, Variant> weaponData in weaponsData)
+        {
+            Weapon weapon = GetWeaponFromData(weaponData);
+            weapons.Add(weapon);
+        }
+        return weapons;
+    }
+
+    public Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
+    {
+        WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
+        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
+        int grade = weaponData["Grade"].As<int>();
+        int subGrade = weaponData["SubGrade"].As<int>();
+
+        Weapon weapon = GetWeapon(category, tree, grade, subGrade);
+        return weapon;
+    }
+
+    private List<Armor> GetArmorFromData(GC.Dictionary<string, Variant> equipmentData)
+    {
+        List<Armor> armor = new List<Armor>();
+        GC.Array<GC.Dictionary<string, Variant>> armorData = equipmentData["Armor"].As<GC.Array<GC.Dictionary<string, Variant>>>();
+        foreach (GC.Dictionary<string, Variant> armorPieceData in armorData)
+        {
+            Armor armorPiece = GetArmorPieceFromData(armorPieceData);
+            armor.Add(armorPiece);
+        }
+        return armor;
+    }
+
+    public Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
+    {
+        ArmorCategory category = (ArmorCategory) armorData["Category"].As<int>();
+        ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
+        int grade = armorData["Grade"].As<int>();
+        int subGrade = armorData["SubGrade"].As<int>();
+
+        Armor armorPiece = GetArmor(category, set, grade, subGrade);
+        return armorPiece;
+    }
+    
+    /// <see cref="GameManager.DeleteGame"/>
+    public void DeleteData()
+    {
+        CraftedWeapons.Clear();
+        CraftedArmor.Clear();
     }
 }

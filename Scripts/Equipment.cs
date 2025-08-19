@@ -3,8 +3,16 @@ using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
+public enum EquipmentType
+{
+    None = -1,
+    Weapon,
+    Armor,
+}
+
 public enum WeaponCategory
 {
+    None = -1,
     SwordAndShield
 }
 
@@ -17,6 +25,7 @@ public enum WeaponTree
 
 public enum ArmorCategory
 {
+    None = -1,
     Head,
     Chest,
     Arm,
@@ -31,7 +40,7 @@ public enum ArmorSet
     Jagras
 }
 
-public enum PalicoCategory
+public enum PalicoEquipmentCategory
 {
     None = -1,
     Weapon,

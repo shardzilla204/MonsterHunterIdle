@@ -82,7 +82,7 @@ public partial class HunterManager : Node
          if (equipmentType == EquipmentType.Weapon)
          {
             WeaponCategory category = (WeaponCategory) equipmentDictionary["Category"].As<int>();
-            WeaponTree tree = (WeaponTree)equipmentDictionary["Tree"].As<int>();
+            WeaponTree tree = (WeaponTree) equipmentDictionary["Tree"].As<int>();
             AddStartingWeapon(category, tree, grade, subGrade);
          }
          else
@@ -105,7 +105,7 @@ public partial class HunterManager : Node
       string addedWeaponMessage = $"Added Weapon {weapon.Name} | {weapon.Grade + 1}.{weapon.SubGrade + 1}";
       PrintRich.PrintLine(TextColor.Yellow, addedWeaponMessage);
 
-      Hunter.Weapons.Add(weapon);
+      MonsterHunterIdle.EquipmentManager.CraftedWeapons.Add(weapon);
    }
 
    private void AddStartingArmor(ArmorCategory category, ArmorSet set, int grade, int subGrade)
@@ -136,7 +136,7 @@ public partial class HunterManager : Node
       string addedArmorMessage = $"Added Armor {armor.Name} | {armor.Grade + 1}.{armor.SubGrade + 1}";
       PrintRich.PrintLine(TextColor.Yellow, addedArmorMessage);
 
-      Hunter.Armor.Add(armor);
+      MonsterHunterIdle.EquipmentManager.CraftedArmor.Add(armor);
    }
 
    public void AddHunterPoints(int progressAmount)
@@ -173,7 +173,7 @@ public partial class HunterManager : Node
 
    private Armor FindArmor(ArmorCategory armorCategory)
    {
-      return Hunter.Armor.Find(armor => armor.Category == armorCategory);
+      return MonsterHunterIdle.EquipmentManager.CraftedArmor.Find(armor => armor.Category == armorCategory);
    }
 
    public int GetHunterAttack()
@@ -189,7 +189,7 @@ public partial class HunterManager : Node
 
    public Equipment FindWeapon(Weapon targetWeapon)
    {
-      Equipment desiredWeapon = Hunter.Weapons.Find(weapon => weapon.Category == targetWeapon.Category && weapon.Tree == targetWeapon.Tree);
+      Equipment desiredWeapon = MonsterHunterIdle.EquipmentManager.CraftedWeapons.Find(weapon => weapon.Category == targetWeapon.Category && weapon.Tree == targetWeapon.Tree);
 
       if (desiredWeapon == null)
       {
@@ -202,7 +202,7 @@ public partial class HunterManager : Node
 
    public Armor FindArmor(Armor targetArmor)
    {
-      Armor desiredArmor = Hunter.Armor.Find(armor => armor.Category == targetArmor.Category && armor.Set == targetArmor.Set);
+      Armor desiredArmor = MonsterHunterIdle.EquipmentManager.CraftedArmor.Find(armor => armor.Category == targetArmor.Category && armor.Set == targetArmor.Set);
 
       if (desiredArmor == null)
       {
@@ -265,62 +265,14 @@ public partial class HunterManager : Node
          { "Points", Hunter.Points },
          { "PointsRequired", Hunter.PointsRequired },
          { "Zenny", Hunter.Zenny },
-         { "Weapons", GetWeaponsData() },
-         { "Weapon", GetWeaponData(Hunter.Weapon) },
-         { "Armor", GetArmorData() },
-         { "Head", GetArmorPieceData(Hunter.Head) },
-         { "Chest", GetArmorPieceData(Hunter.Chest) },
-         { "Arm", GetArmorPieceData(Hunter.Arm) },
-         { "Waist", GetArmorPieceData(Hunter.Waist) },
-         { "Leg", GetArmorPieceData(Hunter.Leg) }
+         { "Weapon", MonsterHunterIdle.EquipmentManager.GetWeaponData(Hunter.Weapon) },
+         { "Head", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Head) },
+         { "Chest", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Chest) },
+         { "Arm", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Arm) },
+         { "Waist", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Waist) },
+         { "Leg", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Leg) }
       };
       return hunterData;
-   }
-
-   private GC.Array<GC.Dictionary<string, Variant>> GetWeaponsData()
-   {
-      GC.Array<GC.Dictionary<string, Variant>> weaponsData = new GC.Array<GC.Dictionary<string, Variant>>();
-      foreach (Weapon weapon in Hunter.Weapons)
-      {
-         GC.Dictionary<string, Variant> weaponData = GetWeaponData(weapon);
-         weaponsData.Add(weaponData);
-      }
-      return weaponsData;
-   }
-
-   private GC.Dictionary<string, Variant> GetWeaponData(Weapon weapon)
-   {
-      GC.Dictionary<string, Variant> weaponData = new GC.Dictionary<string, Variant>()
-      {
-         { "Category", (int) weapon.Category },
-         { "Tree", (int) weapon.Tree },
-         { "Grade", weapon.Grade },
-         { "SubGrade", weapon.SubGrade }
-      };
-      return weaponData;
-   }
-
-   private GC.Array<GC.Dictionary<string, Variant>> GetArmorData()
-   {
-      GC.Array<GC.Dictionary<string, Variant>> armorData = new GC.Array<GC.Dictionary<string, Variant>>();
-      foreach (Armor armor in Hunter.Armor)
-      {
-         GC.Dictionary<string, Variant> armorPieceData = GetArmorPieceData(armor);
-         armorData.Add(armorPieceData);
-      }
-      return armorData;
-   }
-
-   private GC.Dictionary<string, Variant> GetArmorPieceData(Armor armor)
-   {
-      GC.Dictionary<string, Variant> armorPieceData = new GC.Dictionary<string, Variant>()
-      {
-         { "Category", (int) armor.Category },
-         { "Set", (int) armor.Set },
-         { "Grade", armor.Grade },
-         { "SubGrade", armor.SubGrade }
-      };
-      return armorPieceData;
    }
 
    /// <see cref="GameManager.LoadGame"/>
@@ -331,73 +283,23 @@ public partial class HunterManager : Node
       Hunter.PointsRequired = hunterData["PointsRequired"].As<int>();
       Hunter.Zenny = hunterData["Zenny"].As<int>();
 
-      Hunter.Weapons = GetWeaponsFromData(hunterData);
-
       GC.Dictionary<string, Variant> weaponData = hunterData["Weapon"].As<GC.Dictionary<string, Variant>>();
-      Hunter.Weapon = GetWeaponFromData(weaponData);
-
-      Hunter.Armor = GetArmorFromData(hunterData);
+      Hunter.Weapon = MonsterHunterIdle.EquipmentManager.GetWeaponFromData(weaponData);
 
       GC.Dictionary<string, Variant> headData = hunterData["Head"].As<GC.Dictionary<string, Variant>>();
-      Hunter.Head = GetArmorPieceFromData(headData);
+      Hunter.Head = MonsterHunterIdle.EquipmentManager.GetArmorPieceFromData(headData);
 
       GC.Dictionary<string, Variant> chestData = hunterData["Chest"].As<GC.Dictionary<string, Variant>>();
-      Hunter.Chest = GetArmorPieceFromData(chestData);
+      Hunter.Chest = MonsterHunterIdle.EquipmentManager.GetArmorPieceFromData(chestData);
 
       GC.Dictionary<string, Variant> armData = hunterData["Arm"].As<GC.Dictionary<string, Variant>>();
-      Hunter.Arm = GetArmorPieceFromData(armData);
+      Hunter.Arm = MonsterHunterIdle.EquipmentManager.GetArmorPieceFromData(armData);
 
       GC.Dictionary<string, Variant> waistData = hunterData["Waist"].As<GC.Dictionary<string, Variant>>();
-      Hunter.Waist = GetArmorPieceFromData(waistData);
+      Hunter.Waist = MonsterHunterIdle.EquipmentManager.GetArmorPieceFromData(waistData);
 
       GC.Dictionary<string, Variant> legData = hunterData["Leg"].As<GC.Dictionary<string, Variant>>();
-      Hunter.Leg = GetArmorPieceFromData(legData);
-   }
-
-   private List<Weapon> GetWeaponsFromData(GC.Dictionary<string, Variant> hunterData)
-   {
-      List<Weapon> weapons = new List<Weapon>();
-      GC.Array<GC.Dictionary<string, Variant>> weaponsData = hunterData["Weapons"].As<GC.Array<GC.Dictionary<string, Variant>>>();
-      foreach (GC.Dictionary<string, Variant> weaponData in weaponsData)
-      {
-         Weapon weapon = GetWeaponFromData(weaponData);
-         weapons.Add(weapon);
-      }
-      return weapons;
-   }
-
-   private Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
-   {
-      WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
-      WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
-      int grade = weaponData["Grade"].As<int>();
-      int subGrade = weaponData["SubGrade"].As<int>();
-
-      Weapon weapon = MonsterHunterIdle.EquipmentManager.GetWeapon(category, tree, grade, subGrade);
-      return weapon;
-   }
-
-   private List<Armor> GetArmorFromData(GC.Dictionary<string, Variant> hunterData)
-   {
-      List<Armor> armor = new List<Armor>();
-      GC.Array<GC.Dictionary<string, Variant>> armorData = hunterData["Armor"].As<GC.Array<GC.Dictionary<string, Variant>>>();
-      foreach (GC.Dictionary<string, Variant> armorPieceData in armorData)
-      {
-         Armor armorPiece = GetArmorPieceFromData(armorPieceData);
-         armor.Add(armorPiece);
-      }
-      return armor;
-   }
-
-   private Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
-   {
-      ArmorCategory category = (ArmorCategory) armorData["Category"].As<int>();
-      ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
-      int grade = armorData["Grade"].As<int>();
-      int subGrade = armorData["SubGrade"].As<int>();
-
-      Armor armorPiece = MonsterHunterIdle.EquipmentManager.GetArmor(category, set, grade, subGrade);
-      return armorPiece;
+      Hunter.Leg = MonsterHunterIdle.EquipmentManager.GetArmorPieceFromData(legData);
    }
 
    /// <see cref="GameManager.DeleteGame"/>
