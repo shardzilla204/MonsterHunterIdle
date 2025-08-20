@@ -316,47 +316,32 @@ public partial class EquipmentManager : Node
     public List<GC.Dictionary<string, Variant>> FindRecipe(Equipment equipment, bool getNextRecipe = false)
     {
         int maxSubGrade = 4;
-        string categoryName = "";
-        string groupName = "";
+        string categoryName = GetCategoryName(equipment);
+        string groupName = GetGroupName(equipment);
         int grade = equipment.Grade;
         int subGrade = getNextRecipe ? equipment.SubGrade + 1 : equipment.SubGrade;
 
-        if (subGrade > maxSubGrade)
+        // Move onto the next grade
+        if (subGrade > maxSubGrade && grade < maxSubGrade)
         {
             grade++;
             subGrade = 0;
         }
 
-        // Get the group & category of the equipment
-        List<string> categoryNames = Recipes.Keys.ToList();
-        if (equipment is Weapon weapon)
-        {
-            string weaponTreeString = weapon.Tree.ToString();
-            groupName = MonsterHunterIdle.AddSpacing(weaponTreeString);
-
-            categoryName = categoryNames.Find(name => name.Contains(weapon.Category.ToString()));
-        }
-        else if (equipment is Armor armor)
-        {
-            string armorSetString = armor.Set.ToString();
-            groupName = MonsterHunterIdle.AddSpacing(armorSetString);
-
-            categoryName = categoryNames.Find(name => name.Contains(armor.Category.ToString()));
-        }
-
         // Create a dictionary for the recipe 
         try
         {
-            // -> e.g SwordAndShieldCrafting
-            GC.Dictionary<string, Variant> categoryRecipeDictionary = Recipes[categoryName].As<GC.Dictionary<string, Variant>>();
+            // SwordAndShieldCrafting -> Great Jagras
+            GC.Dictionary<string, Variant> groupDictionaries = Recipes[categoryName].As<GC.Dictionary<string, Variant>>();
 
-            // -> e.g Ore
-            List<GC.Dictionary<string, Variant>> groupRecipeDictionaries = categoryRecipeDictionary[groupName].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
-            GC.Dictionary<string, Variant> groupRecipeDictionary = groupRecipeDictionaries[grade];
+            // Great Jagras -> Grade 2
+            List<Variant> gradeDictionaries = groupDictionaries[groupName].As<GC.Array<Variant>>().ToList();
 
-            // -> e.g Materials
-            List<GC.Array<GC.Dictionary<string, Variant>>> materialDictionaries = groupRecipeDictionary["Materials"].As<GC.Array<GC.Array<GC.Dictionary<string, Variant>>>>().ToList();
-            List<GC.Dictionary<string, Variant>> recipe = materialDictionaries[subGrade].ToList();
+            // Grade 2 -> SubGrade 1
+            List<Variant> subGradeDictionaries = gradeDictionaries[grade].As<GC.Array<Variant>>().ToList();
+
+            // SubGrade 1 -> Recipe | Great Jagras SwordAndShield (3.2)
+            List<GC.Dictionary<string, Variant>> recipe = subGradeDictionaries[subGrade].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
 
             return recipe;
         }
@@ -369,6 +354,51 @@ public partial class EquipmentManager : Node
 
             return null;
         }
+    }
+
+    private string GetCategoryName(Equipment equipment)
+    {
+        string categoryName = "";
+        List<string> categoryNames = Recipes.Keys.ToList();
+        if (equipment is Weapon weapon)
+        {
+            categoryName = categoryNames.Find(name => name.Contains(weapon.Category.ToString()));
+        }
+        else if (equipment is Armor armor)
+        {
+            categoryName = categoryNames.Find(name => name.Contains(armor.Category.ToString()));
+        }
+        return categoryName;
+    }
+
+    private string GetGroupName(Equipment equipment)
+    {
+        string groupName = "";
+        if (equipment is Weapon weapon)
+        {
+            string weaponTreeString = weapon.Tree.ToString();
+            groupName = MonsterHunterIdle.AddSpacing(weaponTreeString);
+        }
+        else if (equipment is Armor armor)
+        {
+            string armorSetString = armor.Set.ToString();
+            groupName = MonsterHunterIdle.AddSpacing(armorSetString);
+        }
+        return groupName;
+    }
+
+    public int GetCraftingCost(int grade = 0, int subGrade = 0)
+    {
+        string fileName = "CraftingCost";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> craftingCostData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        if (craftingCostData == null) return 0;
+
+        GC.Array<GC.Array<int>> gradeCosts = craftingCostData[fileName].As<GC.Array<GC.Array<int>>>();
+        GC.Array<int> subGradeCosts = gradeCosts[grade];
+        int craftingCost = subGradeCosts[subGrade];
+
+        return craftingCost;
     }
 
     public void UpgradeEquipment(Equipment equipment)

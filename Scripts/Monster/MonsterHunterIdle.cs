@@ -41,6 +41,19 @@ public enum StatType
 
 /*
 	TODO: Add Palico equipment data
+	TODO: Add equipment status element
+	TODO: Add monster weakness damage
+	TODO: Add monsters
+		Barroth
+		Great Girros
+		Paolumu
+		Diablos
+		Rathian
+		Legiana
+		Rathlos
+
+	TODO: Create weapon & armor specified materials
+
 	// TODO: Add "offline" play
 	// TODO: Add filter when crafting equipment
 	// TODO: Add Ability To Create & Use Equipment
@@ -48,9 +61,6 @@ public enum StatType
 	// TODO: Add ability to swap crafted equipment
 	// TODO: Rework Palico mechanic so that it will attack if there's a monster. If not then just gather materials
 */
-
-// ! Important Task !
-// TODO: Armor defense values are all the same, create function to apply that 
 
 // ! Important Note !
 /// Create a new object for equipment to act as "null" | <see cref="Hunter"/> | e.g. Hunter.Head = new Armor(ArmorCategory.Head);

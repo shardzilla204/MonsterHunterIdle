@@ -63,7 +63,7 @@ public partial class Monster : Node
       Name = monster.Name;
       Description = monster.Description;
       Health = monster.Health;
-      
+
       Elements.AddRange(monster.Elements);
       AbnormalStats.AddRange(monster.AbnormalStats);
       ElementalWeaknesses.AddRange(monster.ElementalWeaknesses);

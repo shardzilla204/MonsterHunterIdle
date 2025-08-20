@@ -17,6 +17,13 @@ public partial class CraftingFilterInterface : NinePatchRect
     [Export]
     private ArmorFilters _armorFilters;
 
+    // ! Important Note !
+    // Due to the filters adding on to what's going to be filtered instead of subtracting, because of the potential of having multiple categories
+    // The key, "HasNotCrafted" must be last no matter what
+
+    // ! Important Note !
+    // Any filter that is subtracting must come after the equipment filters. e.g. Filter that shows a specific rarity
+
     private Dictionary<string, bool> _filters = new Dictionary<string, bool>()
     {
         { "SwordAndShield", false },
@@ -25,7 +32,7 @@ public partial class CraftingFilterInterface : NinePatchRect
         { "Arm", false },
         { "Waist", false },
         { "Leg", false },
-        { "HasNotCrafted", false } // ? Have this absolutely last
+        { "HasNotCrafted", false } // ! Make this last !
     };
 
     public override void _Ready()

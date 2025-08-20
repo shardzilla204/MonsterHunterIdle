@@ -19,6 +19,27 @@ _weaponInfo = NodePath("MarginContainer/VBoxContainer/HBoxContainer/WeaponInfo")
 _helmetInfo = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HeadInfo")
 _armorInfo = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ChestInfo")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.5)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Coming Soon!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -49,12 +70,15 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
 [node name="WeaponInfo" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_keebt")]
+visible = false
 layout_mode = 2
 
 [node name="HeadInfo" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_keebt")]
+visible = false
 layout_mode = 2
 _equipmentType = 1
 
 [node name="ChestInfo" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_keebt")]
+visible = false
 layout_mode = 2
 _equipmentType = 2

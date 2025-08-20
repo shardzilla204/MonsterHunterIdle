@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dclyt5t42hfca"]
+[gd_scene load_steps=6 format=3 uid="uid://dclyt5t42hfca"]
 
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_7iafy"]
 [ext_resource type="Script" uid="uid://iiqtreal1wg7" path="res://Scripts/Interface/RecipeInterface.cs" id="2_u6d3j"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_dxvlr"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="5_j1fq3"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="5_pxox7"]
 
-[node name="CraftingInterface" type="NinePatchRect" node_paths=PackedStringArray("_acceptButton", "_cancelButton", "_craftingMaterialLogContainer")]
+[node name="CraftingInterface" type="NinePatchRect" node_paths=PackedStringArray("_acceptButton", "_cancelButton", "_craftingLabel", "_craftingCostLabel", "_craftingMaterialLogContainer")]
 custom_minimum_size = Vector2(350, 250)
 size_flags_vertical = 3
 texture = ExtResource("1_7iafy")
@@ -16,6 +17,8 @@ patch_margin_bottom = 20
 script = ExtResource("2_u6d3j")
 _acceptButton = NodePath("MarginContainer/VBoxContainer/VBoxContainer/AcceptButton")
 _cancelButton = NodePath("MarginContainer/VBoxContainer/VBoxContainer/CancelButton")
+_craftingLabel = NodePath("MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer/HBoxContainer/CraftingLabel")
+_craftingCostLabel = NodePath("MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer/HBoxContainer/HBoxContainer/CraftingCostLabel")
 _craftingMaterialLogContainer = NodePath("MarginContainer/VBoxContainer/ScrollContainer/CraftingMaterialLogContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -53,7 +56,6 @@ alignment = 1
 [node name="AcceptButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Forge"
 flat = true
 script = ExtResource("5_j1fq3")
 
@@ -72,10 +74,47 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="CraftingLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancel"
+text = "Forge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture = ExtResource("5_pxox7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CraftingCostLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/AcceptButton/NinePatchRect/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1000z"
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
 flat = true
 script = ExtResource("5_j1fq3")
 
@@ -93,3 +132,14 @@ patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/CancelButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1

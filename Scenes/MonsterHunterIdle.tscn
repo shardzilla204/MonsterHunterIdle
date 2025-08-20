@@ -99,7 +99,7 @@ script = ExtResource("19_i6lr1")
 
 [node name="PalicoManager" type="Node" parent="Managers"]
 script = ExtResource("3_lbts6")
-_actionIntervalSeconds = 10.0
+_actionIntervalSeconds = 7.5
 
 [node name="PalicoEquipmentManager" type="Node" parent="Managers/PalicoManager"]
 script = ExtResource("37_7fdre")

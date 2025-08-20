@@ -13,9 +13,16 @@ public partial class RecipeInterface : NinePatchRect
 	private CustomButton _cancelButton;
 
 	[Export]
+	private Label _craftingLabel;
+
+	[Export]
+	private Label _craftingCostLabel;
+
+	[Export]
 	private Container _craftingMaterialLogContainer;
 
 	private Equipment _equipment;
+	private int _craftingCost = 0;
 
 	public override void _ExitTree()
 	{
@@ -31,6 +38,12 @@ public partial class RecipeInterface : NinePatchRect
 	{
 		_acceptButton.Pressed += OnAcceptButtonPressed;
 		_cancelButton.Pressed += QueueFree;
+
+		int grade = _equipment.Grade + 1;
+		int subGrade = _equipment.SubGrade + 1;
+		_craftingCost = MonsterHunterIdle.EquipmentManager.GetCraftingCost(grade, subGrade);
+
+		_craftingCostLabel.Text = $"{_craftingCost}z";
 	}
 
 	public void SetMaterials(Equipment equipment)
@@ -56,7 +69,7 @@ public partial class RecipeInterface : NinePatchRect
 			_craftingMaterialLogContainer.AddChild(craftingMaterialLog);
 		}
 
-		_acceptButton.Text = hasCrafted ? "Upgrade" : "Forge";
+		_craftingLabel.Text = hasCrafted ? "Upgrade" : "Forge";
 	}
 
 	private void OnCraftButtonPressed(Equipment equipment)
@@ -66,8 +79,12 @@ public partial class RecipeInterface : NinePatchRect
 
 	private void OnAcceptButtonPressed()
 	{
+		if (MonsterHunterIdle.HunterManager.Hunter.Zenny < _craftingCost) return;
+
 		bool hasMaterials = HasMaterials();
 		if (!hasMaterials) return;
+
+		MonsterHunterIdle.HunterManager.Hunter.Zenny -= _craftingCost;
 
 		// Subtract materials from item box
 		foreach (CraftingMaterialLog craftingMaterialLog in _craftingMaterialLogContainer.GetChildren())
