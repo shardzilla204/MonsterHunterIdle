@@ -5,14 +5,10 @@
         [
             {
                 "Name": "Leather Belt I",
-                "Category": "Waist",
-                "Defense": [ 20, 22, 25, 27, 29 ],
                 "Skills": []
             },
             {
                 "Name": "Leather Belt II",
-                "Category": "Waist",
-                "Defense": [ 34, 36, 39, 41, 44 ],
                 "Skills": 
                 [
                     {
@@ -23,8 +19,6 @@
             },
             {
                 "Name": "Leather Belt III",
-                "Category": "Waist",
-                "Defense": [ 49, 52, 54, 57, 60 ],
                 "Skills": 
                 [
                     {
@@ -35,8 +29,6 @@
             },
             {
                 "Name": "Leather Belt IV",
-                "Category": "Waist",
-                "Defense": [ 65, 68, 71, 73, 76 ],
                 "Skills": 
                 [
                     {
@@ -51,8 +43,6 @@
             },
             {
                 "Name": "Leather Belt V",
-                "Category": "Waist",
-                "Defense": [ 82, 85, 88, 91, 94 ],
                 "Skills": 
                 [
                     {
@@ -67,8 +57,6 @@
             },
             {
                 "Name": "Leather Belt VI",
-                "Category": "Waist",
-                "Defense": [ 100, 103, 106, 109, 113 ],
                 "Skills": 
                 [
                     {
@@ -83,8 +71,6 @@
             },
             {
                 "Name": "Leather Belt VII",
-                "Category": "Waist",
-                "Defense": [ 119, 122, 126, 129, 132 ],
                 "Skills": 
                 [
                     {
@@ -99,8 +85,6 @@
             },
             {
                 "Name": "Leather Belt VIII",
-                "Category": "Waist",
-                "Defense": [ 139, 142, 146, 149, 153 ],
                 "Skills": 
                 [
                     {
@@ -115,8 +99,6 @@
             },
             {
                 "Name": "Leather Belt IX",
-                "Category": "Waist",
-                "Defense": [ 160, 164, 167, 171, 175 ],
                 "Skills": 
                 [
                     {
@@ -131,8 +113,6 @@
             },
             {
                 "Name": "Leather Belt X",
-                "Category": "Waist",
-                "Defense": [ 182, 186, 190, 193, 197 ],
                 "Skills": 
                 [
                     {
@@ -142,6 +122,325 @@
                     {
                         "Name": "Water Resistance",
                         "Level": 1
+                    }
+                ]
+            }
+        ],
+        "Jagras":
+        [
+            {
+                "Name": "Jagras Coil I",
+                "Skills": []
+            },
+            {
+                "Name": "Jagras Coil II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Coil X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            }
+        ],
+        "Kulu":
+        [
+            {
+                "Name": "Kulu Coil I",
+                "Skills": []
+            },
+            {
+                "Name": "Kulu Coil II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Coil X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Last Stand",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Evade Extender",
+                        "Level": 1
+                    }
+                ]
+            }
+        ],
+        "Pukei":
+        [
+            {
+                "Name": "Pukei Coil I",
+                "Skills": []
+            },
+            {
+                "Name": "Pukei Coil II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Coil X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Poison Attack",
+                        "Level": 2
                     }
                 ]
             }

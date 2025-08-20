@@ -1,20 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckt57vg7yeo5v"]
+[gd_scene load_steps=13 format=3 uid="uid://ckt57vg7yeo5v"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_t4426"]
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_8c1ux"]
 [ext_resource type="Script" uid="uid://dctjgb3u6pvsh" path="res://Scripts/CraftingFilterInterface.cs" id="3_kbj5w"]
-[ext_resource type="Texture2D" uid="uid://xmaq7msxy40w" path="res://Assets/Images/Icon/HuntIcon.png" id="4_ffvnf"]
 [ext_resource type="Texture2D" uid="uid://d0h6pdwymb6qd" path="res://Assets/Images/UserInterface/Circle.png" id="5_o7g54"]
 [ext_resource type="Script" uid="uid://s6dnhvycoqtt" path="res://Scripts/WeaponFilters.cs" id="6_g77hf"]
-[ext_resource type="Texture2D" uid="uid://bn3btby054og6" path="res://Assets/Images/Icon/EquipmentIcon.png" id="7_kmx2t"]
+[ext_resource type="Texture2D" uid="uid://loajqgogs0n4" path="res://Assets/Images/Icon/Weapons/SwordAndShieldIconWhite.svg" id="7_t4426"]
 [ext_resource type="Script" uid="uid://xeww2vfknrlv" path="res://Scripts/ArmorFilters.cs" id="8_ufamj"]
-[ext_resource type="Texture2D" uid="uid://clredejjr88di" path="res://Assets/Images/Icon/HeadEquipmentIcon.png" id="9_fmu6c"]
-[ext_resource type="Texture2D" uid="uid://cjynberwwywrs" path="res://Assets/Images/Icon/ChestEquipmentIcon.png" id="10_a1uqc"]
-[ext_resource type="Texture2D" uid="uid://gsewunjlqgtl" path="res://Assets/Images/Icon/ArmEquipmentIcon.png" id="11_cpggn"]
-[ext_resource type="Texture2D" uid="uid://dge3cb1pn1rbc" path="res://Assets/Images/Icon/WaistEquipmentIcon.png" id="12_xybyl"]
-[ext_resource type="Texture2D" uid="uid://cbjmkgv8q3dnw" path="res://Assets/Images/Icon/LegEquipmentIcon.png" id="13_71xrt"]
+[ext_resource type="Texture2D" uid="uid://c32lf4j4rm5ke" path="res://Assets/Images/Icon/Armor/HeadIconWhite.svg" id="9_8c1ux"]
+[ext_resource type="Texture2D" uid="uid://un6pfhmn72kh" path="res://Assets/Images/Icon/Armor/ChestIconWhite.svg" id="10_kbj5w"]
+[ext_resource type="Texture2D" uid="uid://bd6x8lpnxwdlc" path="res://Assets/Images/Icon/Armor/ArmIconWhite.svg" id="11_ffvnf"]
+[ext_resource type="Texture2D" uid="uid://63ic38bdto3" path="res://Assets/Images/Icon/Armor/WaistIconWhite.svg" id="12_o7g54"]
+[ext_resource type="Texture2D" uid="uid://b7obeephxrwly" path="res://Assets/Images/Icon/Armor/LegIconWhite.svg" id="13_g77hf"]
 
-[node name="CraftingFilterInterface" type="NinePatchRect" node_paths=PackedStringArray("_palicoCheckBox", "_hasNotCraftedCheckBox", "_weaponFilters", "_armorFilters")]
+[node name="CraftingFilterInterface" type="NinePatchRect" node_paths=PackedStringArray("_hasNotCraftedCheckBox", "_weaponFilters", "_armorFilters")]
 custom_minimum_size = Vector2(125, 160)
 offset_right = 125.0
 offset_bottom = 160.0
@@ -26,8 +25,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 script = ExtResource("3_kbj5w")
-_palicoCheckBox = NodePath("MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/PalicoFilter/PalicoCheckBox")
-_hasNotCraftedCheckBox = NodePath("MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/HasCraftedFilter/HasNotCraftedCheckBox")
+_hasNotCraftedCheckBox = NodePath("MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter/HasNotCraftedCheckBox")
 _weaponFilters = NodePath("MarginContainer/ScrollContainer/VBoxContainer/WeaponFilters")
 _armorFilters = NodePath("MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters")
 
@@ -54,44 +52,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="MiscellaneousFilters" type="FlowContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-
-[node name="PalicoFilter" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters"]
+[node name="HasCraftedFilter" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/PalicoFilter"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/PalicoFilter/MarginContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_ffvnf")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="PalicoCheckBox" type="CheckBox" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/PalicoFilter"]
-layout_mode = 2
-
-[node name="HasCraftedFilter" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/HasCraftedFilter"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/HasCraftedFilter/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter/MarginContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -99,7 +70,7 @@ texture = ExtResource("5_o7g54")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HasNotCraftedCheckBox" type="CheckBox" parent="MarginContainer/ScrollContainer/VBoxContainer/MiscellaneousFilters/HasCraftedFilter"]
+[node name="HasNotCraftedCheckBox" type="CheckBox" parent="MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter"]
 layout_mode = 2
 
 [node name="WeaponFilters" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("_swordAndShieldCheckBox")]
@@ -128,7 +99,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/WeaponFilters/FlowContainer/SwordAndShieldFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("7_kmx2t")
+texture = ExtResource("7_t4426")
 expand_mode = 1
 stretch_mode = 5
 
@@ -165,7 +136,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters/FlowContainer/HeadFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("9_fmu6c")
+texture = ExtResource("9_8c1ux")
 expand_mode = 1
 stretch_mode = 5
 
@@ -181,7 +152,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters/FlowContainer/ChestFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("10_a1uqc")
+texture = ExtResource("10_kbj5w")
 expand_mode = 1
 stretch_mode = 5
 
@@ -197,7 +168,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters/FlowContainer/ArmFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("11_cpggn")
+texture = ExtResource("11_ffvnf")
 expand_mode = 1
 stretch_mode = 5
 
@@ -213,7 +184,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters/FlowContainer/WaistFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("12_xybyl")
+texture = ExtResource("12_o7g54")
 expand_mode = 1
 stretch_mode = 5
 
@@ -229,7 +200,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters/FlowContainer/LegFilter"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("13_71xrt")
+texture = ExtResource("13_g77hf")
 expand_mode = 1
 stretch_mode = 5
 

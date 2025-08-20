@@ -5,14 +5,10 @@
         [
             {
                 "Name": "Leather Trousers I",
-                "Category": "Leg",
-                "Defense": [ 20, 22, 25, 27, 29 ],
                 "Skills": []
             },
             {
                 "Name": "Leather Trousers II",
-                "Category": "Leg",
-                "Defense": [ 34, 36, 39, 41, 44 ],
                 "Skills": 
                 [
                     {
@@ -23,8 +19,6 @@
             },
             {
                 "Name": "Leather Trousers III",
-                "Category": "Leg",
-                "Defense": [ 49, 52, 54, 57, 60 ],
                 "Skills": 
                 [
                     {
@@ -35,8 +29,6 @@
             },
             {
                 "Name": "Leather Trousers IV",
-                "Category": "Leg",
-                "Defense": [ 65, 68, 71, 73, 76 ],
                 "Skills": 
                 [
                     {
@@ -51,8 +43,6 @@
             },
             {
                 "Name": "Leather Trousers V",
-                "Category": "Leg",
-                "Defense": [ 82, 85, 88, 91, 94 ],
                 "Skills": 
                 [
                     {
@@ -67,8 +57,6 @@
             },
             {
                 "Name": "Leather Gloves VI",
-                "Category": "Leg",
-                "Defense": [ 100, 103, 106, 109, 113 ],
                 "Skills": 
                 [
                     {
@@ -83,8 +71,6 @@
             },
             {
                 "Name": "Leather Gloves VII",
-                "Category": "Leg",
-                "Defense": [ 119, 122, 126, 129, 132 ],
                 "Skills": 
                 [
                     {
@@ -99,8 +85,6 @@
             },
             {
                 "Name": "Leather Gloves VIII",
-                "Category": "Leg",
-                "Defense": [ 139, 142, 146, 149, 153 ],
                 "Skills": 
                 [
                     {
@@ -115,8 +99,6 @@
             },
             {
                 "Name": "Leather Gloves IX",
-                "Category": "Leg",
-                "Defense": [ 160, 164, 167, 171, 175 ],
                 "Skills": 
                 [
                     {
@@ -131,8 +113,6 @@
             },
             {
                 "Name": "Leather Gloves X",
-                "Category": "Leg",
-                "Defense": [ 182, 186, 190, 193, 197 ],
                 "Skills": 
                 [
                     {
@@ -141,6 +121,325 @@
                     },
                     {
                         "Name": "Paralysis Resistance",
+                        "Level": 1
+                    }
+                ]
+            }
+        ],
+        "Jagras":
+        [
+            {
+                "Name": "Jagras Greaves I",
+                "Skills": []
+            },
+            {
+                "Name": "Jagras Greaves II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Jagras Greaves X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            }
+        ],
+        "Kulu":
+        [
+            {
+                "Name": "Kulu Greaves I",
+                "Skills": []
+            },
+            {
+                "Name": "Kulu Greaves II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Greaves X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 2
+                    }
+                ]
+            }
+        ],
+        "Pukei":
+        [
+            {
+                "Name": "Pukei Greaves I",
+                "Skills": []
+            },
+            {
+                "Name": "Pukei Greaves II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Greaves X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Poison Resistance",
                         "Level": 1
                     }
                 ]

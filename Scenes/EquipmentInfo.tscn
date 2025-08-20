@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://chdi0djbtcipo"]
+[gd_scene load_steps=4 format=3 uid="uid://chdi0djbtcipo"]
 
 [ext_resource type="Script" uid="uid://ce2opufs0jrv1" path="res://Scripts/EquipmentInfo.cs" id="1_7f766"]
-[ext_resource type="Texture2D" uid="uid://bn3btby054og6" path="res://Assets/Images/Icon/EquipmentIcon.png" id="2_u2j4k"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="3_ycf5j"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_jlpmm"]
 
@@ -15,7 +14,6 @@ _changeEquipmentButton = NodePath("ChangeEquipmentButton")
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_u2j4k")
 expand_mode = 1
 stretch_mode = 5
 

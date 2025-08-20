@@ -49,6 +49,9 @@ public enum StatType
 	// TODO: Rework Palico mechanic so that it will attack if there's a monster. If not then just gather materials
 */
 
+// ! Important Task !
+// TODO: Armor defense values are all the same, create function to apply that 
+
 // ! Important Note !
 /// Create a new object for equipment to act as "null" | <see cref="Hunter"/> | e.g. Hunter.Head = new Armor(ArmorCategory.Head);
 
@@ -106,16 +109,27 @@ public partial class MonsterHunterIdle : Node
 	public static Texture2D GetEquipmentIcon(Equipment equipment)
 	{
 		string filePath = "";
-		if (equipment is Weapon)
+		string gradeColorString = GetGradeColorString(equipment);
+		if (equipment is Weapon weapon)
 		{
-			filePath = "res://Assets/Images/Icon/EquipmentIcon.png";
+			filePath = $"res://Assets/Images/Icon/Weapons/{weapon.Category}Icon{gradeColorString}.svg";
 		}
 		else if (equipment is Armor armor)
 		{
-			filePath = $"res://Assets/Images/Icon/{armor.Category}EquipmentIcon.png";
+			filePath = $"res://Assets/Images/Icon/Armor/{armor.Category}Icon{gradeColorString}.svg";
 		}
 		return GetTexture(filePath);
 	}
+
+	public static string GetGradeColorString(Equipment equipment) => equipment.Grade switch
+	{
+		0 => "White",
+		1 => "Green",
+		2 => "Blue",
+		3 => "Purple",
+		4 => "Yellow",
+		_ => "Red",
+	};
 
 	public static Texture2D GetTexture(string filePath)
 	{

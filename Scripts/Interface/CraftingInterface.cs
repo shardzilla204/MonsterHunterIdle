@@ -6,7 +6,6 @@ using GC = Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-// TODO: Add filter buttons
 public partial class CraftingInterface : Container
 {
 	[Export]
@@ -89,6 +88,7 @@ public partial class CraftingInterface : Container
 		if (hasFilter)
 		{
 			List<Equipment> filteredEquipment = new List<Equipment>();
+
 			foreach (string filterName in filters.Keys)
 			{
 				bool isFiltered = filters[filterName];
@@ -97,35 +97,29 @@ public partial class CraftingInterface : Container
 				bool isSuccessful = Enum.TryParse(filterName, out WeaponCategory weaponCategory);
 				if (isSuccessful)
 				{
-					List<Weapon> filteredWeapons = MonsterHunterIdle.EquipmentManager.Weapons.FindAll(weapon => weapon.Category == weaponCategory);
-					filteredEquipment.AddRange(filteredWeapons);
+					List<Weapon> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+					List<Weapon> categoryWeapons = weapons.FindAll(weapon => weapon.Category == weaponCategory);
+
+					filteredEquipment.AddRange(categoryWeapons);
 					continue;
 				}
 
 				isSuccessful = Enum.TryParse(filterName, out ArmorCategory armorCategory);
 				if (isSuccessful)
 				{
-					List<Armor> filteredArmor = MonsterHunterIdle.EquipmentManager.Armor.FindAll(armor => armor.Category == armorCategory);
-					filteredEquipment.AddRange(filteredArmor);
+					List<Armor> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
+					List<Armor> categoryArmor = armor.FindAll(armor => armor.Category == armorCategory);
+
+					filteredEquipment.AddRange(categoryArmor);
 					continue;
 				}
 
-				if (filterName.Contains("Palico"))
+				if (filterName.Contains("HasNotCrafted"))
 				{
-					
+					filteredEquipment = [.. filteredEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
 				}
-				else if (filterName.Contains("HasNotCrafted"))
-				{
-					List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
-					List<Equipment> filteredWeapons = weapons.FindAll(weapon => !MonsterHunterIdle.EquipmentManager.HasCrafted(weapon));
-					filteredEquipment.AddRange(filteredWeapons);
-
-					List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
-					List<Equipment> filteredArmor = armor.FindAll(armor => !MonsterHunterIdle.EquipmentManager.HasCrafted(armor));
-					filteredEquipment.AddRange(filteredArmor);
-				}
-				// TODO: Do miscellaneous filters
 			}
+
 			ShowEquipment(filteredEquipment);
 		}
 		else

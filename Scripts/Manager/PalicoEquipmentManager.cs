@@ -171,9 +171,12 @@ public partial class PalicoEquipmentManager : Node
     // Go through provided file paths and load weapons and armor
     private void LoadRecipes()
     {
+        string weaponCraftingFileName = $"{_weaponFileName}Crafting";
+        string armorCraftingFileName = $"{_armorFileName}Crafting";
+
         string craftingFolderPath = $"{_equipmentFolderName}/Crafting";
-        AddRecipes(_weaponFileName, craftingFolderPath);
-        AddRecipes(_armorFileName, craftingFolderPath);
+        AddRecipes(weaponCraftingFileName, craftingFolderPath);
+        AddRecipes(armorCraftingFileName, craftingFolderPath);
     }
 
     private bool AddRecipes(string fileName, string folderPath)

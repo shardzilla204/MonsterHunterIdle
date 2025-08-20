@@ -32,18 +32,8 @@ public partial class CraftButton : CustomButton
 		string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
 		_equipmentName.Text = $"{equipment.Name}{subGrade}";
 
-		// TODO: Get icons for different weapons
-		if (equipment is Weapon weapon)
-		{
-			// _equipmentIcon.Texture = 
-		}
-		else if (equipment is Armor armor)
-		{
-			string fileName = armor.Category.ToString();
-			string filePath = $"res://Assets/Images/Icon/{fileName}EquipmentIcon.png";
-			Texture2D texture = MonsterHunterIdle.GetTexture(filePath);
-			_equipmentIcon.Texture = texture;
-		}
+		Texture2D equipmentIcon = MonsterHunterIdle.GetEquipmentIcon(equipment);
+		_equipmentIcon.Texture = equipmentIcon;
 
 		Equipment = equipment;
 	}

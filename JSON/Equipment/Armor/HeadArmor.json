@@ -5,12 +5,10 @@
         [
             {
                 "Name": "Leather Headgear I",
-                "Defense": [ 20, 22, 25, 27, 29 ],
                 "Skills": []
             },
             {
                 "Name": "Leather Headgear II",
-                "Defense": [ 34, 36, 39, 41, 44 ],
                 "Skills": 
                 [
                     {
@@ -21,7 +19,6 @@
             },
             {
                 "Name": "Leather Headgear III",
-                "Defense": [ 49, 52, 54, 57, 60 ],
                 "Skills": 
                 [
                     {
@@ -32,7 +29,6 @@
             },
             {
                 "Name": "Leather Headgear IV",
-                "Defense": [ 65, 68, 71, 73, 76 ],
                 "Skills": 
                 [
                     {
@@ -47,7 +43,6 @@
             },
             {
                 "Name": "Leather Headgear V",
-                "Defense": [ 82, 85, 88, 91, 94 ],
                 "Skills": 
                 [
                     {
@@ -62,7 +57,6 @@
             },
             {
                 "Name": "Leather Headgear VI",
-                "Defense": [ 100, 103, 106, 109, 113 ],
                 "Skills": 
                 [
                     {
@@ -77,7 +71,6 @@
             },
             {
                 "Name": "Leather Headgear VII",
-                "Defense": [ 119, 122, 126, 129, 132 ],
                 "Skills": 
                 [
                     {
@@ -92,7 +85,6 @@
             },
             {
                 "Name": "Leather Headgear VIII",
-                "Defense": [ 139, 142, 146, 149, 153 ],
                 "Skills": 
                 [
                     {
@@ -107,7 +99,6 @@
             },
             {
                 "Name": "Leather Headgear IX",
-                "Defense": [ 160, 164, 167, 171, 175 ],
                 "Skills": 
                 [
                     {
@@ -122,7 +113,6 @@
             },
             {
                 "Name": "Leather Headgear X",
-                "Defense": [ 182, 186, 190, 193, 197 ],
                 "Skills": 
                 [
                     {
@@ -140,12 +130,10 @@
         [
             {
                 "Name": "Jagras Helm I",
-                "Defense": [ 20, 22, 25, 27, 29 ],
                 "Skills": []
             },
             {
                 "Name": "Jagras Helm II",
-                "Defense": [ 34, 36, 39, 41, 44 ],
                 "Skills": 
                 [
                     {
@@ -156,7 +144,6 @@
             },
             {
                 "Name": "Jagras Helm III",
-                "Defense": [ 49, 52, 54, 57, 60 ],
                 "Skills": 
                 [
                     {
@@ -167,7 +154,6 @@
             },
             {
                 "Name": "Jagras Helm IV",
-                "Defense": [ 65, 68, 71, 73, 76 ],
                 "Skills": 
                 [
                     {
@@ -178,7 +164,6 @@
             },
             {
                 "Name": "Jagras Helm V",
-                "Defense": [ 82, 85, 88, 91, 94 ],
                 "Skills": 
                 [
                     {
@@ -189,7 +174,6 @@
             },
             {
                 "Name": "Jagras Helm VI",
-                "Defense": [ 100, 103, 106, 109, 113 ],
                 "Skills": 
                 [
                     {
@@ -200,7 +184,6 @@
             },
             {
                 "Name": "Jagras Helm VII",
-                "Defense": [ 119, 122, 126, 129, 132 ],
                 "Skills": 
                 [
                     {
@@ -211,7 +194,6 @@
             },
             {
                 "Name": "Jagras Helm VIII",
-                "Defense": [ 139, 142, 146, 149, 153 ],
                 "Skills": 
                 [
                     {
@@ -222,7 +204,6 @@
             },
             {
                 "Name": "Jagras Helm IX",
-                "Defense": [ 160, 164, 167, 171, 175 ],
                 "Skills": 
                 [
                     {
@@ -233,11 +214,260 @@
             },
             {
                 "Name": "Jagras Helm X",
-                "Defense": [ 182, 186, 190, 193, 197 ],
                 "Skills": 
                 [
                     {
                         "Name": "Firm Foothold",
+                        "Level": 2
+                    }
+                ]
+            }
+        ],
+        "Kulu":
+        [
+            {
+                "Name": "Kulu Headpiece I",
+                "Skills": []
+            },
+            {
+                "Name": "Kulu Headpiece II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Kulu Headpiece X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Lock On",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Critical Eye",
+                        "Level": 1
+                    }
+                ]
+            }
+        ],
+        "Pukei":
+        [
+            {
+                "Name": "Pukei Hood I",
+                "Skills": []
+            },
+            {
+                "Name": "Pukei Hood II",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood III",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood IV",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood V",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
+                        "Level": 1
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood VI",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood VII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood VIII",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood IX",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
+                        "Level": 2
+                    }
+                ]
+            },
+            {
+                "Name": "Pukei Hood X",
+                "Skills": 
+                [
+                    {
+                        "Name": "Focus",
+                        "Level": 1
+                    },
+                    {
+                        "Name": "Health Boost",
                         "Level": 2
                     }
                 ]

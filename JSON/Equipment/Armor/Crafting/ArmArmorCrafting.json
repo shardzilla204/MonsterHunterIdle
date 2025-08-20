@@ -4,7 +4,6 @@
         "Leather":
         [
             {
-                "Name": "Leather Gloves I",
                 "Materials" :
                 [
                     [
@@ -41,7 +40,6 @@
                 "Cost": [ 10, 20, 30, 40, 50 ]
             },
             {
-                "Name": "Leather Gloves II",
                 "Materials": 
                 [
                     [
@@ -102,7 +100,6 @@
                 "Cost": [ 300, 100, 150, 200, 250 ]
             },
             {
-                "Name": "Leather Gloves III",
                 "Materials":
                 [
                     [
@@ -153,7 +150,6 @@
                 "Cost": [ 600, 200, 300, 400, 500 ]
             },
             {
-                "Name": "Leather Gloves IV",
                 "Materials":
                 [
                     [
@@ -214,7 +210,6 @@
                 "Cost": [ 900, 300, 450, 600, 750 ]
             },
             {
-                "Name": "Leather Gloves V",
                 "Materials": 
                 [
                     [
@@ -275,7 +270,6 @@
                 "Cost": [ 1500, 500, 750, 1000, 1250 ]
             },
             {
-                "Name": "Leather Gloves VI",
                 "Materials": 
                 [
                     [
@@ -340,7 +334,6 @@
                 "Cost": [ 3000, 1000, 1500, 2000, 2500 ]
             },
             {
-                "Name": "Leather Gloves VII",
                 "Materials":
                 [
                     [
@@ -405,7 +398,6 @@
                 "Cost": [ 6000, 2000, 3000, 4000, 5000 ]
             },
             {
-                "Name": "Leather Gloves VIII",
                 "Materials": 
                 [
                     [
@@ -482,7 +474,6 @@
                 "Cost": [ 12000, 4000, 6000, 8000, 10000 ]
             },
             {
-                "Name": "Leather Gloves IX",
                 "Materials":
                 [
                     [
@@ -559,7 +550,6 @@
                 "Cost": [ 30000, 10000, 15000, 20000, 25000 ]
             },
             {
-                "Name": "Leather Gloves X",
                 "Materials": 
                 [
                     [

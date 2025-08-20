@@ -112,7 +112,7 @@ public partial class EquipmentManager : Node
         return true;
     }
 
-    public Weapon GetWeapon(WeaponCategory category, WeaponTree tree, int grade, int subGrade)
+    public Weapon GetWeapon(WeaponCategory category, WeaponTree tree, int grade = 0, int subGrade = 0)
     {
         if (tree == WeaponTree.None) return new Weapon();
 
@@ -401,6 +401,19 @@ public partial class EquipmentManager : Node
             string errorMessage = $"Couldn't Upgrade {equipment.Name}";
             GD.PrintErr(errorMessage);
         }
+    }
+
+    public int GetDefenseValue(int grade, int subGrade = 0)
+    {
+        string fileName = "ArmorDefense";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> defenseData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        GC.Array<GC.Array<int>> grades = defenseData[fileName].As<GC.Array<GC.Array<int>>>();
+
+        GC.Array<int> defenseValues = grades[grade];
+        int defenseValue = defenseValues[subGrade];
+
+        return defenseValue;
     }
 
     // Data methods

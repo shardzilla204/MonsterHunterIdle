@@ -5,7 +5,7 @@ namespace MonsterHunterIdle;
 
 public partial class Armor : Equipment
 {
-    public Armor() {}
+    public Armor() { }
 
     public Armor(ArmorCategory category)
     {
@@ -25,8 +25,6 @@ public partial class Armor : Equipment
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
         Name = dictionary["Name"].As<string>();
-
-        Array<int> defenseValues = dictionary["Defense"].As<Array<int>>();
-        Defense = defenseValues[SubGrade];
+        Defense = MonsterHunterIdle.EquipmentManager.GetDefenseValue(Grade, SubGrade);
     }
 }

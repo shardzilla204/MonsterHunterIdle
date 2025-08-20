@@ -20,7 +20,8 @@ public enum WeaponTree
 {
     None = -1,
     Ore,
-    GreatJagras
+    GreatJagras,
+    PukeiPukei
 }
 
 public enum ArmorCategory
@@ -37,7 +38,9 @@ public enum ArmorSet
 {
     None = -1,
     Leather,
-    Jagras
+    Jagras,
+    Kulu,
+    Pukei
 }
 
 public enum PalicoEquipmentCategory

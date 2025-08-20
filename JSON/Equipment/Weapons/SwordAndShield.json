@@ -5,61 +5,51 @@
         [
             {
                 "Name": "Hunter's Knife I",
-                "Category": "SwordAndShield",
                 "Attack": [ 100, 107, 115, 122, 129 ],
                 "Affinity": []
             },
             {
                 "Name": "Hunter's Knife II",
-                "Category": "SwordAndShield",
                 "Attack": [ 144, 154, 165, 175, 186 ],
                 "Affinity": []
             },
             {
                 "Name": "Hunter's Knife III",
-                "Category": "SwordAndShield",
                 "Attack": [ 207, 222, 237, 253, 268 ],
                 "Affinity": []
             },
             {
                 "Name": "Hunter's Knife IV",
-                "Category": "SwordAndShield",
                 "Attack": [ 299, 321, 342, 364, 385 ],
                 "Affinity": []
             },
             {
                 "Name": "Hunter's Knife V",
-                "Category": "SwordAndShield",
                 "Attack": [ 430, 451, 473, 494, 515 ],
                 "Affinity": []
             },
             {
                 "Name": "Steel Knife I",
-                "Category": "SwordAndShield",
                 "Attack": [ 559, 587, 614, 642, 670 ],
                 "Affinity": []
             },
             {
                 "Name": "Steel Knife II",
-                "Category": "SwordAndShield",
                 "Attack": [ 727, 763, 799, 835, 871 ],
                 "Affinity": []
             },
             {
                 "Name": "Steel Knife III",
-                "Category": "SwordAndShield",
                 "Attack": [ 945, 992, 1038, 1085, 1132 ],
                 "Affinity": []
             },
             {
                 "Name": "Steel Knife IV",
-                "Category": "SwordAndShield",
                 "Attack": [ 1228, 1289, 1349, 1410, 1471 ],
                 "Affinity": []
             },
             {
                 "Name": "Steel Knife V",
-                "Category": "SwordAndShield",
                 "Attack": [ 1596, 1675, 1754, 1833, 1912 ],
                 "Affinity": []
             }
@@ -68,61 +58,104 @@
         [
             {
                 "Name": "Jagras Edge I",
-                "Category": "SwordAndShield",
                 "Attack": [ 100, 107, 115, 122, 129 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Edge II",
-                "Category": "SwordAndShield",
                 "Attack": [ 144, 154, 165, 175, 186 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Edge III",
-                "Category": "SwordAndShield",
                 "Attack": [ 207, 222, 237, 253, 268 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Edge IV",
-                "Category": "SwordAndShield",
                 "Attack": [ 299, 321, 342, 364, 385 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Edge V",
-                "Category": "SwordAndShield",
                 "Attack": [ 430, 451, 473, 494, 515 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Garotte I",
-                "Category": "SwordAndShield",
                 "Attack": [ 559, 587, 614, 642, 670 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Garotte II",
-                "Category": "SwordAndShield",
                 "Attack": [ 727, 763, 799, 835, 871 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Garotte III",
-                "Category": "SwordAndShield",
                 "Attack": [ 945, 992, 1038, 1085, 1132 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Garotte IV",
-                "Category": "SwordAndShield",
                 "Attack": [ 1228, 1289, 1349, 1410, 1471 ],
                 "Affinity": []
             },
             {
                 "Name": "Jagras Garotte V",
-                "Category": "SwordAndShield",
+                "Attack": [ 1596, 1675, 1754, 1833, 1912 ],
+                "Affinity": []
+            }
+        ],
+        "Pukei-Pukei":
+        [
+            {
+                "Name": "Blooming Knife I",
+                "Attack": [ 100, 107, 115, 122, 129 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Blooming Knife II",
+                "Attack": [ 144, 154, 165, 175, 186 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Blooming Knife III",
+                "Attack": [ 207, 222, 237, 253, 268 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Blooming Knife IV",
+                "Attack": [ 299, 321, 342, 364, 385 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Blooming Knife V",
+                "Attack": [ 430, 451, 473, 494, 515 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Datura Blossom I",
+                "Attack": [ 559, 587, 614, 642, 670 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Datura Blossom II",
+                "Attack": [ 727, 763, 799, 835, 871 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Datura Blossom III",
+                "Attack": [ 945, 992, 1038, 1085, 1132 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Datura Blossom IV",
+                "Attack": [ 1228, 1289, 1349, 1410, 1471 ],
+                "Affinity": []
+            },
+            {
+                "Name": "Datura Blossom V",
                 "Attack": [ 1596, 1675, 1754, 1833, 1912 ],
                 "Affinity": []
             }

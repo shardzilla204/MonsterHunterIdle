@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu6wsj8xy6u58"]
+[gd_scene load_steps=3 format=3 uid="uid://cu6wsj8xy6u58"]
 
 [ext_resource type="Script" uid="uid://dlrep0mn0n8ys" path="res://Scripts/Button/EquipmentOptionButton.cs" id="1_7jikd"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="2_veior"]
-[ext_resource type="Texture2D" uid="uid://bn3btby054og6" path="res://Assets/Images/Icon/EquipmentIcon.png" id="3_vrxvv"]
 
 [node name="EquipmentOptionButton" type="Button" node_paths=PackedStringArray("_iconTextureRect")]
 custom_minimum_size = Vector2(50, 50)
@@ -41,6 +40,5 @@ theme_override_constants/margin_bottom = 5
 [node name="IconTextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("3_vrxvv")
 expand_mode = 1
 stretch_mode = 5

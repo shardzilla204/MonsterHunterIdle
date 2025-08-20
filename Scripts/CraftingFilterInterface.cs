@@ -9,9 +9,6 @@ public partial class CraftingFilterInterface : NinePatchRect
     public delegate void FiltersChangedEventHandler(Dictionary<string, bool> filters);
 
     [Export]
-    private CheckBox _palicoCheckBox;
-
-    [Export]
     private CheckBox _hasNotCraftedCheckBox;
 
     [Export]
@@ -22,19 +19,17 @@ public partial class CraftingFilterInterface : NinePatchRect
 
     private Dictionary<string, bool> _filters = new Dictionary<string, bool>()
     {
-        { "Palico", false },
-        { "HasNotCrafted", false },
         { "SwordAndShield", false },
         { "Head", false },
         { "Chest", false },
         { "Arm", false },
         { "Waist", false },
-        { "Leg", false }
+        { "Leg", false },
+        { "HasNotCrafted", false } // ? Have this absolutely last
     };
 
     public override void _Ready()
     {
-        _palicoCheckBox.Toggled += (isToggled) => OnCheckBoxToggled(isToggled, "Palico");
         _hasNotCraftedCheckBox.Toggled += (isToggled) => OnCheckBoxToggled(isToggled, "HasNotCrafted");
         _weaponFilters.FilterChecked += OnEquipmentFilterChecked;
         _armorFilters.FilterChecked += OnEquipmentFilterChecked;

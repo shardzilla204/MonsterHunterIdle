@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bswmie3ykm27p"]
+[gd_scene load_steps=5 format=3 uid="uid://bswmie3ykm27p"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_wobee"]
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_5rugl"]
 [ext_resource type="Script" uid="uid://bbvpk72h2ocld" path="res://Scripts/Interface/PalicoInterface.cs" id="3_278o4"]
 [ext_resource type="PackedScene" uid="uid://c877crexigmrw" path="res://Scenes/Button/RecruitPalicoButton.tscn" id="4_82w8p"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="6_0q2r2"]
-[ext_resource type="Texture2D" uid="uid://bn3btby054og6" path="res://Assets/Images/Icon/EquipmentIcon.png" id="7_8rhm1"]
 
 [node name="PalicoInterface" type="VBoxContainer" node_paths=PackedStringArray("_recruitPalicoButton", "_palicoAmount", "_palicoContainer")]
 offset_right = 350.0
@@ -47,45 +45,7 @@ theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PalicoRecruitment/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="ShowEquipmentButton" type="Button" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-flat = true
-
-[node name="NinePatchRect" type="NinePatchRect" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/ShowEquipmentButton"]
-self_modulate = Color(0.1, 0.1, 0.1, 1)
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_0q2r2")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="MarginContainer" type="MarginContainer" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/ShowEquipmentButton/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="TextureRect" type="TextureRect" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/ShowEquipmentButton/NinePatchRect/MarginContainer"]
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 2
-texture = ExtResource("7_8rhm1")
-expand_mode = 1
-stretch_mode = 5
+theme_override_constants/separation = 10
 
 [node name="RecruitPalicoButton" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_82w8p")]
 layout_mode = 2
