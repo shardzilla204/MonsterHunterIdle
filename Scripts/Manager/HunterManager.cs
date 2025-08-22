@@ -157,7 +157,7 @@ public partial class HunterManager : Node
       if (Hunter.Points < Hunter.PointsRequired || Hunter.Rank >= Hunter.MaxRank) return;
 
       Hunter.Rank++; // Increase Rank
-      Hunter.Points -= Hunter.PointsRequired; // Reset Points
+      Hunter.Points = 0; // Reset Points
       IncreaseHunterProgress();
 
       MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.HunterLeveledUp);
@@ -165,9 +165,9 @@ public partial class HunterManager : Node
 
    private void IncreaseHunterProgress()
    {
-      int pointsThreshold = 100;
+      int pointsIncrease = 100;
 
-      if (Hunter.Rank < pointsThreshold) Hunter.PointsRequired += pointsThreshold;
+      Hunter.PointsRequired += pointsIncrease;
    }
 
    private Armor FindArmor(ArmorCategory armorCategory)
@@ -180,8 +180,8 @@ public partial class HunterManager : Node
       int attack = Hunter.Weapon.Attack;
 
       RandomNumberGenerator RNG = new RandomNumberGenerator();
-      float minPercent = 0.25f;
-      float maxPercent = 1;
+      float minPercent = 0.05f;
+      float maxPercent = 0.25f;
       float randomPercentage = RNG.RandfRange(minPercent, maxPercent);
       return Mathf.RoundToInt(attack * randomPercentage);
    }

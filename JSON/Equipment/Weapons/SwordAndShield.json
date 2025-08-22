@@ -5,159 +5,129 @@
         [
             {
                 "Name": "Hunter's Knife I",
-                "Attack": [ 100, 107, 115, 122, 129 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Hunter's Knife II",
-                "Attack": [ 144, 154, 165, 175, 186 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Hunter's Knife III",
-                "Attack": [ 207, 222, 237, 253, 268 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Hunter's Knife IV",
-                "Attack": [ 299, 321, 342, 364, 385 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Hunter's Knife V",
-                "Attack": [ 430, 451, 473, 494, 515 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Steel Knife I",
-                "Attack": [ 559, 587, 614, 642, 670 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Steel Knife II",
-                "Attack": [ 727, 763, 799, 835, 871 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Steel Knife III",
-                "Attack": [ 945, 992, 1038, 1085, 1132 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Steel Knife IV",
-                "Attack": [ 1228, 1289, 1349, 1410, 1471 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Steel Knife V",
-                "Attack": [ 1596, 1675, 1754, 1833, 1912 ],
-                "Affinity": []
+                "Special": ""
             }
         ],
         "Great Jagras":
         [
             {
                 "Name": "Jagras Edge I",
-                "Attack": [ 100, 107, 115, 122, 129 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Edge II",
-                "Attack": [ 144, 154, 165, 175, 186 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Edge III",
-                "Attack": [ 207, 222, 237, 253, 268 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Edge IV",
-                "Attack": [ 299, 321, 342, 364, 385 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Edge V",
-                "Attack": [ 430, 451, 473, 494, 515 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Garotte I",
-                "Attack": [ 559, 587, 614, 642, 670 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Garotte II",
-                "Attack": [ 727, 763, 799, 835, 871 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Garotte III",
-                "Attack": [ 945, 992, 1038, 1085, 1132 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Garotte IV",
-                "Attack": [ 1228, 1289, 1349, 1410, 1471 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Jagras Garotte V",
-                "Attack": [ 1596, 1675, 1754, 1833, 1912 ],
-                "Affinity": []
+                "Special": ""
             }
         ],
         "Pukei-Pukei":
         [
             {
                 "Name": "Blooming Knife I",
-                "Attack": [ 100, 107, 115, 122, 129 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Blooming Knife II",
-                "Attack": [ 144, 154, 165, 175, 186 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Blooming Knife III",
-                "Attack": [ 207, 222, 237, 253, 268 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Blooming Knife IV",
-                "Attack": [ 299, 321, 342, 364, 385 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Blooming Knife V",
-                "Attack": [ 430, 451, 473, 494, 515 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Datura Blossom I",
-                "Attack": [ 559, 587, 614, 642, 670 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Datura Blossom II",
-                "Attack": [ 727, 763, 799, 835, 871 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Datura Blossom III",
-                "Attack": [ 945, 992, 1038, 1085, 1132 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Datura Blossom IV",
-                "Attack": [ 1228, 1289, 1349, 1410, 1471 ],
-                "Affinity": []
+                "Special": ""
             },
             {
                 "Name": "Datura Blossom V",
-                "Attack": [ 1596, 1675, 1754, 1833, 1912 ],
-                "Affinity": []
+                "Special": ""
             }
         ]
     }

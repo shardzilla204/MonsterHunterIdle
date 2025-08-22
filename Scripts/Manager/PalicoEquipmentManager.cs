@@ -23,8 +23,8 @@ public partial class PalicoEquipmentManager : Node
     {
         MonsterHunterIdle.PalicoManager.Equipment = this;
 
-        LoadEquipment();
-        LoadRecipes();
+        // LoadEquipment();
+        // LoadRecipes();
     }
 
     // Go through provided file paths and load weapons and armor

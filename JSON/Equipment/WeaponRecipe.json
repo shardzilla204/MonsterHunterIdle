@@ -1,0 +1,1610 @@
+{
+    "WeaponRecipe":
+    {
+        "None":
+        [
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 2
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 3
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 1
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 5
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 10
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 12
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 24
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 8
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 24
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 20
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 15
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 32
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 15
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 32
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 25
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "Armor Refining Parts",
+                        "Amount": 1
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 44
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 20
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 44
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 30
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "Armor Refining Parts",
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 50
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 30
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 50
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 40
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Armor Refining Parts",
+                        "Amount": 5
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 60
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 60
+                    }
+                ],
+                [
+                        {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 100
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 4
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "Armor Refining Parts",
+                        "Amount": 7
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 70
+                    }
+                ],
+                [ 
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 60
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 70
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 150
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 60
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 6
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2, 
+                        "Amount": 60
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "Armor Refining Parts",
+                        "Amount": 9
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 80
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1, 
+                        "Amount": 70
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 60
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 20
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 80
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0, 
+                        "Amount": 200
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 4, 
+                        "Amount": 70
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 30
+                    }
+                ]
+            ]
+        ],
+        "Monster":
+        [
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 1
+                    }
+                ],
+                [
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 1
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 3
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 1
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 2
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 3
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 4
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 2
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 16
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 5
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 16
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 3
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 6
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 8
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 16
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 22
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 10
+                    }
+                ],
+                [
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 8
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 16
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 22
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 10
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 12
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 10
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 4,
+                        "Amount": 2
+                    },
+                    {
+                        "Key": "Weapon Refining Parts",
+                        "Rarity": 2,
+                        "Amount": 1
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 32
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 44
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 1,
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 15
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 32
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 44
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 18
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 2,
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 7
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 18
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 12
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 4,
+                        "Amount": 3
+                    },
+                    {
+                        "Key": "Weapon Refining Parts",
+                        "Rarity": 2,
+                        "Amount": 3
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 42
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 51
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 1,
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 31
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 20
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 42
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 51
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 24
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 2,
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 11
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 31
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 24
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "Monster",
+                        "Rarity": 4,
+                        "Amount": 5
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 4
+                    },
+                    {
+                        "Key": "Weapon Refining Parts",
+                        "Rarity": 2,
+                        "Amount": 5
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 53
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 64
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 3,
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 41
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 53
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 64
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 4,
+                        "Amount": 4
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 17
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 41
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 100
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 4
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "Monster",
+                        "Rarity": 4,
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 6
+                    },
+                    {
+                        "Key": "Weapon Refining Parts",
+                        "Rarity": 2,
+                        "Amount": 7
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 61
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 73
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 3,
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 49
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 52
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 61
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 73
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 30
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 4,
+                        "Amount": 6
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 21
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 52
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 200
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 6
+                    }
+                ]
+            ],
+            [
+                [
+                    {
+                        "Key": "Monster",
+                        "Rarity": 4,
+                        "Amount": 20
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 10
+                    },
+                    {
+                        "Key": "Weapon Refining Parts",
+                        "Amount": 9
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 73
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 85
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 1,
+                        "Amount": 60
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 3,
+                        "Amount": 8
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 1,
+                        "Amount": 59
+                    },
+                    {
+                        "Key": "SubLocaleMaterial",
+                        "Amount": 63
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 2,
+                        "Amount": 50
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 20
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 0,
+                        "Amount": 73
+                    },
+                    {
+                        "Key": "EquipmentMaterial",
+                        "Amount": 85
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 3,
+                        "Amount": 40
+                    },
+                    {
+                        "Key": "SubMonster",
+                        "Rarity": 4,
+                        "Amount": 8
+                    }
+                ],
+                [
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 2,
+                        "Amount": 31
+                    },
+                    {
+                        "Key": "LocaleMaterial",
+                        "Rarity": 3,
+                        "Amount": 63
+                    },
+                    {
+                        "Key": "Monster",
+                        "Rarity": 0,
+                        "Amount": 300
+                    },
+                    {
+                        "Key": "Wyvern Gem Shard",
+                        "Amount": 30
+                    }
+                ]
+            ]
+        ]
+    }
+}

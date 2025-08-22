@@ -42,7 +42,7 @@
 
 [node name="MonsterHunterIdle" type="Node"]
 script = ExtResource("1_c5mcf")
-_offlineThresholdMult = 6.0
+_offlineThresholdMult = 4.5
 
 [node name="PackedScenes" type="Node" parent="."]
 script = ExtResource("2_oe44a")
@@ -106,7 +106,7 @@ script = ExtResource("37_7fdre")
 
 [node name="HunterManager" type="Node" parent="Managers"]
 script = ExtResource("19_gfvhb")
-_startingZenny = 0
+_startingZenny = 10000000
 
 [node name="GameManager" type="Node" parent="Managers"]
 script = ExtResource("34_20l7k")

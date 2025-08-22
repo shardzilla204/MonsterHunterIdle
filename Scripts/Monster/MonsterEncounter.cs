@@ -84,7 +84,7 @@ public partial class MonsterEncounter : Node
 
 	private List<MonsterMaterial> GetMaterialRewards(Monster targetMonster)
 	{
-		List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MonsterManager.GetMonsterMaterials(targetMonster);
+		List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MonsterManager.GetMonsterMaterials(targetMonster, targetMonster.Level);
 
 		List<MonsterMaterial> materialRewards = new List<MonsterMaterial>();
 		RandomNumberGenerator RNG = new RandomNumberGenerator();

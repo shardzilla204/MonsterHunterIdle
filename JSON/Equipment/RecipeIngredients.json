@@ -1,0 +1,42 @@
+{
+    "RecipeIngredients":
+    [
+        {
+            "Monster": "None",
+            "Tree": "Ore",
+            "Set": "Leather",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Godbug"
+        },
+        {
+            "Monster": "Great Jagras",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Hide",
+            "Tree": "GreatJagras",
+            "Set": "Jagras",
+            "SubMonster": "Jyuratodus",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Flowfern"
+        },
+        {
+            "Monster": "Kulu-Ya-Ku",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Hide",
+            "Tree": "KuluYaKu",
+            "Set": "Kulu",
+            "SubMonster": "Great Jagras",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Godbug"
+        },
+        {
+            "Monster": "Pukei-Pukei",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Shell",
+            "Tree": "PukeiPukei",
+            "Set": "Pukei",
+            "SubMonster": "Rathian",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Toadstool"
+        }
+    ]
+}

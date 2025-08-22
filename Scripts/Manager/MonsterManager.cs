@@ -61,7 +61,7 @@ public partial class MonsterManager : Node
 		if (monsterData == null) return;
 
 		List<GC.Dictionary<string, Variant>> monsterDictionaries = monsterData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
-		
+
 		// Set monsters
 		foreach (GC.Dictionary<string, Variant> dictionary in monsterDictionaries)
 		{
@@ -85,7 +85,7 @@ public partial class MonsterManager : Node
 			Materials.Add(monsterMaterial);
 		}
 	}
-	
+
 	public List<Monster> GetLocaleMonsters(LocaleType localeType)
 	{
 		List<Monster> localeMonsters = new List<Monster>();
@@ -105,7 +105,7 @@ public partial class MonsterManager : Node
 		List<Monster> localeMonsters = MonsterHunterIdle.MonsterManager.GetLocaleMonsters(locale.Type);
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
 
-		try 
+		try
 		{
 			int monsterID = RNG.RandiRange(0, localeMonsters.Count - 1);
 			Monster monster = localeMonsters[monsterID];
@@ -150,7 +150,7 @@ public partial class MonsterManager : Node
 	}
 
 	// Filter the materials based on the monsters level
-	public List<MonsterMaterial> GetMonsterMaterials(Monster targetMonster)
+	public List<MonsterMaterial> GetMonsterMaterials(Monster targetMonster, int targetLevel = 10)
 	{
 		List<MonsterMaterial> monsterMaterials = new List<MonsterMaterial>();
 		foreach (MonsterMaterial material in MonsterHunterIdle.MonsterManager.Materials)
@@ -158,7 +158,7 @@ public partial class MonsterManager : Node
 			bool hasMonster = material.Monsters.Contains(targetMonster.Name);
 			if (hasMonster) monsterMaterials.Add(material);
 		}
-		return monsterMaterials.FindAll(material => material.Rarity <= targetMonster.Level); ;
+		return monsterMaterials.FindAll(material => material.Rarity <= targetLevel); ;
 	}
 
 	// Gets levels that based on the player's current rank
@@ -225,5 +225,10 @@ public partial class MonsterManager : Node
 	{
 		float multiplier = 1.65f;
 		return monster.Level * monster.Health * multiplier;
+	}
+
+	public Monster FindMonster(string monsterName)
+	{
+		return Monsters.Find(monster => monster.Name == monsterName);
 	}
 }

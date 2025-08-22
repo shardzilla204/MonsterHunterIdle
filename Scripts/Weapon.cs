@@ -14,6 +14,7 @@ public partial class Weapon : Equipment
     }
 
     public int Attack = 0;
+    public int Special = 0;
     public float Affinity = 0;
     public WeaponCategory Category = WeaponCategory.None;
     public WeaponTree Tree = WeaponTree.None;
@@ -22,10 +23,7 @@ public partial class Weapon : Equipment
     {
         Name = dictionary["Name"].As<string>();
 
-        Array<int> attackValues = dictionary["Attack"].As<Array<int>>();
-        Attack = attackValues[SubGrade];
-
-        Array<int> affinityValues = dictionary["Affinity"].As<Array<int>>();
-        Affinity = affinityValues.Count != 0 ? affinityValues[SubGrade] : 0;
+        Attack = MonsterHunterIdle.EquipmentManager.GetAttackValue(this);
+        Special = MonsterHunterIdle.EquipmentManager.GetSpecialValue(this);
     }
 }

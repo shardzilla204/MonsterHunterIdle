@@ -10,12 +10,13 @@ public partial class InterfaceController : Container
 	[Export]
 	private TextureProgressBar _hunterProgressBar;
 
-    public override void _EnterTree()
-    {
+	public override void _EnterTree()
+	{
 		MonsterHunterIdle.Signals.LocaleChanged += () => _gatherIcon.Texture = MonsterHunterIdle.LocaleManager.Locale.GatherIcon;
 		MonsterHunterIdle.Signals.HunterPointsChanged += OnHunterPointsChanged;
-    }
+		MonsterHunterIdle.Signals.GameDeleted += OnHunterPointsChanged;
 
+	}
 
 	public override void _Ready()
 	{

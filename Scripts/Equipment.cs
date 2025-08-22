@@ -21,6 +21,7 @@ public enum WeaponTree
     None = -1,
     Ore,
     GreatJagras,
+    KuluYaKu,
     PukeiPukei
 }
 

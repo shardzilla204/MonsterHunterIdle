@@ -23,7 +23,6 @@ public partial class EquipmentManager : Node
         MonsterHunterIdle.EquipmentManager = this;
 
         LoadEquipment();
-        LoadRecipes();
     }
 
     // Go through provided file paths and load weapons and armor
@@ -41,7 +40,6 @@ public partial class EquipmentManager : Node
     /// Take the file name without the extension (<see cref="string.GetBaseName()"/>) 
     /// Use fileName and folderPath (<see cref="LoadEquipment.folderPath"/>) as parameters in the provided method
     /// If successful, iterate to the next file
-    /// <see cref="LoadRecipe"/> uses this method as well
     private void LoadEquipment(string filePath, string folderPath, Func<string, string, bool> addEquipment)
     {
         using DirAccess directory = DirAccess.Open(filePath);
@@ -211,71 +209,6 @@ public partial class EquipmentManager : Node
         }
     }
 
-    // Go through provided file paths and load recipes for weapons and armor
-    private void LoadRecipes()
-    {
-        string weaponCraftingFolderPath = $"{_weaponFolderPath}/Crafting";
-        string weaponCraftingFilePath = $"res://JSON/{weaponCraftingFolderPath}/";
-        LoadRecipe(weaponCraftingFilePath, weaponCraftingFolderPath, AddRecipes);
-
-        string armorCraftingFolderPath = $"{_armorFolderPath}/Crafting";
-        string armorCraftingFilePath = $"res://JSON/{armorCraftingFolderPath}/";
-        LoadRecipe(armorCraftingFilePath, armorCraftingFolderPath, AddRecipes);
-    }
-
-    private void LoadRecipe(string filePath, string folderPath, Func<string, string, bool> addRecipe)
-    {
-        using DirAccess directory = DirAccess.Open(filePath);
-        if (directory != null)
-        {
-            directory.ListDirBegin();
-            string fileName = directory.GetNext();
-            while (fileName != "")
-            {
-                if (directory.CurrentIsDir())
-                {
-                    fileName = directory.GetNext();
-                    continue;
-                }
-
-                bool hasPassed = addRecipe(fileName.GetBaseName(), folderPath);
-                if (!hasPassed) return;
-
-                fileName = directory.GetNext();
-            }
-        }
-        else
-        {
-            string errorMessage = $"Couldn't Access Using The Path: {filePath}";
-            GD.PrintErr(errorMessage);
-        }
-    }
-
-    private bool AddRecipes(string fileName, string folderPath)
-    {
-        try
-        {
-            // Group = Tree/Set
-            GC.Dictionary<string, Variant> groupRecipeDictionaries = MonsterHunterIdle.LoadFile(fileName, folderPath).As<GC.Dictionary<string, Variant>>();
-            if (groupRecipeDictionaries == null) return false;
-
-            foreach (string groupName in groupRecipeDictionaries.Keys)
-            {
-                Recipes.Add(groupName, groupRecipeDictionaries[groupName]);
-            }
-        }
-        catch (Exception exception)
-        {
-            string errorMessage = exception.ToString();
-            if (exception.Message.Trim() != "") errorMessage = exception.Message;
-
-            GD.PrintErr(errorMessage);
-
-            return false;
-        }
-        return true;
-    }
-
     public bool HasCrafted(Equipment equipment)
     {
         bool hasCrafted = false;
@@ -313,90 +246,29 @@ public partial class EquipmentManager : Node
         return null;
     }
 
-    public List<GC.Dictionary<string, Variant>> FindRecipe(Equipment equipment, bool getNextRecipe = false)
+    public int GetCraftingCost(int grade, int subGrade)
     {
-        int maxSubGrade = 4;
-        string categoryName = GetCategoryName(equipment);
-        string groupName = GetGroupName(equipment);
-        int grade = equipment.Grade;
-        int subGrade = getNextRecipe ? equipment.SubGrade + 1 : equipment.SubGrade;
+        int[,] craftingCosts =
+        {
+            { 10, 20, 30, 40, 50 },
+            { 300, 100, 150, 200, 250 },
+            { 600, 200, 300, 400, 500 },
+            { 900, 300, 450, 600, 750 },
+            { 1500, 500, 750, 1000, 1250 },
+            { 3000, 1000, 1500, 2000, 2500 },
+            { 6000, 2000, 3000, 4000, 5000 },
+            { 12000, 4000, 6000, 8000, 10000 },
+            { 30000, 10000, 15000, 20000, 25000 },
+            { 75000, 25000, 37500, 50000, 62500 }
+        };
 
-        // Move onto the next grade
+        int maxSubGrade = 4;
         if (subGrade > maxSubGrade && grade < maxSubGrade)
         {
             grade++;
             subGrade = 0;
         }
-
-        // Create a dictionary for the recipe 
-        try
-        {
-            // SwordAndShieldCrafting -> Great Jagras
-            GC.Dictionary<string, Variant> groupDictionaries = Recipes[categoryName].As<GC.Dictionary<string, Variant>>();
-
-            // Great Jagras -> Grade 2
-            List<Variant> gradeDictionaries = groupDictionaries[groupName].As<GC.Array<Variant>>().ToList();
-
-            // Grade 2 -> SubGrade 1
-            List<Variant> subGradeDictionaries = gradeDictionaries[grade].As<GC.Array<Variant>>().ToList();
-
-            // SubGrade 1 -> Recipe | Great Jagras SwordAndShield (3.2)
-            List<GC.Dictionary<string, Variant>> recipe = subGradeDictionaries[subGrade].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
-
-            return recipe;
-        }
-        catch (Exception exception)
-        {
-            string errorMessage = "Couldn't Find Recipe. Returning Null";
-            if (exception.Message.Trim() != "") errorMessage = exception.Message;
-
-            GD.PrintErr(errorMessage);
-
-            return null;
-        }
-    }
-
-    private string GetCategoryName(Equipment equipment)
-    {
-        string categoryName = "";
-        List<string> categoryNames = Recipes.Keys.ToList();
-        if (equipment is Weapon weapon)
-        {
-            categoryName = categoryNames.Find(name => name.Contains(weapon.Category.ToString()));
-        }
-        else if (equipment is Armor armor)
-        {
-            categoryName = categoryNames.Find(name => name.Contains(armor.Category.ToString()));
-        }
-        return categoryName;
-    }
-
-    private string GetGroupName(Equipment equipment)
-    {
-        string groupName = "";
-        if (equipment is Weapon weapon)
-        {
-            string weaponTreeString = weapon.Tree.ToString();
-            groupName = MonsterHunterIdle.AddSpacing(weaponTreeString);
-        }
-        else if (equipment is Armor armor)
-        {
-            string armorSetString = armor.Set.ToString();
-            groupName = MonsterHunterIdle.AddSpacing(armorSetString);
-        }
-        return groupName;
-    }
-
-    public int GetCraftingCost(int grade = 0, int subGrade = 0)
-    {
-        string fileName = "CraftingCost";
-        string folderName = "Equipment";
-        GC.Dictionary<string, Variant> craftingCostData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
-        if (craftingCostData == null) return 0;
-
-        GC.Array<GC.Array<int>> gradeCosts = craftingCostData[fileName].As<GC.Array<GC.Array<int>>>();
-        GC.Array<int> subGradeCosts = gradeCosts[grade];
-        int craftingCost = subGradeCosts[subGrade];
+        int craftingCost = craftingCosts[grade, subGrade];
 
         return craftingCost;
     }
@@ -406,7 +278,7 @@ public partial class EquipmentManager : Node
         equipment.SubGrade++;
 
         int maxSubGrade = 4;
-        if (equipment.SubGrade > maxSubGrade)
+        if (equipment.SubGrade > maxSubGrade && equipment.Grade < maxSubGrade)
         {
             equipment.Grade++;
             equipment.SubGrade = 0;
@@ -416,21 +288,79 @@ public partial class EquipmentManager : Node
         if (equipment is Weapon weapon)
         {
             Weapon upgradedWeapon = GetWeapon(weapon.Category, weapon.Tree, weapon.Grade, weapon.SubGrade);
+            weapon.Name = upgradedWeapon.Name;
             weapon.Attack = upgradedWeapon.Attack;
             weapon.Affinity = upgradedWeapon.Affinity;
-            weapon.Name = upgradedWeapon.Name;
         }
         else if (equipment is Armor armor)
         {
             Armor upgradedArmor = GetArmor(armor.Category, armor.Set, armor.Grade, armor.SubGrade);
-            armor.Defense = upgradedArmor.Defense;
             armor.Name = upgradedArmor.Name;
+            armor.Defense = upgradedArmor.Defense;
         }
         else
         {
             string errorMessage = $"Couldn't Upgrade {equipment.Name}";
             GD.PrintErr(errorMessage);
         }
+    }
+
+    public int GetAttackValue(Weapon weapon)
+    {
+        string fileName = "WeaponAttack";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> attackData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        GC.Array<GC.Dictionary<string, Variant>> attackDictionaries = attackData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>();
+
+        int attack = GetWeaponValue(attackDictionaries, weapon);
+        return attack;
+    }
+
+    public int GetSpecialValue(Weapon weapon)
+    {
+        string fileName = "WeaponSpecial";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> specialData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        GC.Array<GC.Dictionary<string, Variant>> specialDictionaries = specialData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>();
+
+        int special = GetWeaponValue(specialDictionaries, weapon);
+        return special;
+    }
+
+    private int GetWeaponValue(GC.Array<GC.Dictionary<string, Variant>> dictionaries, Weapon weapon)
+    {
+        float value = 0;
+        string treeName = weapon.Tree.ToString();
+
+        foreach (GC.Dictionary<string, Variant> dictionary in dictionaries)
+        {
+            GC.Array<string> treeNames = dictionary["Trees"].As<GC.Array<string>>();
+            if (!treeNames.Contains(treeName)) continue;
+
+            value = dictionary["Value"].As<float>();
+            float gradeIncrease = dictionary["GradeIncrease"].As<float>();
+            float subGradeIncrease = dictionary["SubGradeIncrease"].As<float>();
+
+            // Go through the grades first (Coarse tuning)
+            int maxSubGrade = 5;
+            for (int grade = 0; grade < weapon.Grade; grade++)
+            {
+                for (int subGrade = 0; subGrade < maxSubGrade; subGrade++)
+                {
+                    value += subGradeIncrease;
+                }
+                value += gradeIncrease;
+            }
+
+            // Go through sub grades afterwards (Fine tuning)
+            for (int subGrade = 0; subGrade < weapon.SubGrade; subGrade++)
+            {
+                value += subGradeIncrease;
+            }
+
+            break;
+        }
+        return Mathf.RoundToInt(value);
     }
 
     public int GetDefenseValue(int grade, int subGrade = 0)
@@ -444,6 +374,184 @@ public partial class EquipmentManager : Node
         int defenseValue = defenseValues[subGrade];
 
         return defenseValue;
+    }
+
+    public List<GC.Dictionary<string, Variant>> GetRecipe(Equipment equipment, bool getNextRecipe = false)
+    {
+        // Get the specified ingredient names
+        string fileName = "RecipeIngredients";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> craftingData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        List<GC.Dictionary<string, Variant>> craftingDictionaries = craftingData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
+
+        if (equipment is Weapon weapon)
+        {
+            GC.Dictionary<string, Variant> craftingDictionary = craftingDictionaries.Find(dictionary => dictionary["Tree"].As<string>() == weapon.Tree.ToString());
+            return GetWeaponRecipe(equipment, getNextRecipe, craftingDictionary);
+        }
+        else if (equipment is Armor armor)
+        {
+            GC.Dictionary<string, Variant> craftingDictionary = craftingDictionaries.Find(dictionary => dictionary["Set"].As<string>() == armor.Set.ToString());
+            return GetArmorRecipe(equipment, getNextRecipe, craftingDictionary);
+        }
+
+        return null;
+    }
+
+    private List<GC.Dictionary<string, Variant>> GetArmorRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary)
+    {
+        // Get the dictionaries
+        string fileName = "ArmorRecipe";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> armorRecipeData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        GC.Dictionary<string, Variant> armorRecipeDictionaries = armorRecipeData[fileName].As<GC.Dictionary<string, Variant>>();
+
+        List<GC.Dictionary<string, Variant>> armorRecipe = GetRecipe(equipment, getNextRecipe, craftingDictionary, armorRecipeDictionaries);
+        return armorRecipe;
+    }
+
+    private List<GC.Dictionary<string, Variant>> GetWeaponRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary)
+    {
+        // Get the dictionaries
+        string fileName = "WeaponRecipe";
+        string folderName = "Equipment";
+        GC.Dictionary<string, Variant> weaponRecipeData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
+        GC.Dictionary<string, Variant> weaponRecipeDictionaries = weaponRecipeData[fileName].As<GC.Dictionary<string, Variant>>();
+
+        List<GC.Dictionary<string, Variant>> weaponRecipe = GetRecipe(equipment, getNextRecipe, craftingDictionary, weaponRecipeDictionaries);
+        return weaponRecipe;
+    }
+
+    private List<Variant> GetGradeDictionaries(GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
+    {
+        // Get the specified grade dictionaries
+        string monsterString = craftingDictionary["Monster"].As<string>();
+        monsterString = monsterString != "None" ? "Monster" : "None";
+        List<Variant> gradeDictionaries = equipmentRecipeDictionaries[monsterString].As<GC.Array<Variant>>().ToList();
+
+        return gradeDictionaries;
+    }
+
+    private List<GC.Dictionary<string, Variant>> GetIngredientDictionaries(Equipment equipment, bool getNextRecipe, List<Variant> gradeDictionaries)
+    {
+        int maxSubGrade = 4;
+        int grade = equipment.Grade;
+        int subGrade = getNextRecipe ? equipment.SubGrade + 1 : equipment.SubGrade;
+
+        // Move onto the next grade
+        if (subGrade > maxSubGrade && grade < maxSubGrade)
+        {
+            grade++;
+            subGrade = 0;
+        }
+
+        List<Variant> subGradeDictionaries = gradeDictionaries[grade].As<GC.Array<Variant>>().ToList();
+        List<GC.Dictionary<string, Variant>> ingredientDictionaries = subGradeDictionaries[subGrade].As<GC.Array<GC.Dictionary<string, Variant>>>().ToList();
+
+        return ingredientDictionaries;
+    }
+
+    private List<GC.Dictionary<string, Variant>> GetRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
+    {
+        List<Variant> gradeDictionaries = GetGradeDictionaries(craftingDictionary, equipmentRecipeDictionaries);
+        List<GC.Dictionary<string, Variant>> ingredientDictionaries = GetIngredientDictionaries(equipment, getNextRecipe, gradeDictionaries);
+
+        // Create the recipe 
+        List<GC.Dictionary<string, Variant>> recipe = new List<GC.Dictionary<string, Variant>>();
+
+        EquipmentType equipmentType = EquipmentType.None;
+        if (equipment is Weapon)
+        {
+            equipmentType = EquipmentType.Weapon;
+        }
+        else if (equipment is Armor)
+        {
+            equipmentType = EquipmentType.Armor;
+        }
+
+        foreach (GC.Dictionary<string, Variant> ingredientDictionary in ingredientDictionaries)
+        {
+            int amount = ingredientDictionary["Amount"].As<int>();
+            GC.Dictionary<string, Variant> dictionary = new GC.Dictionary<string, Variant>()
+            {
+                { "Name", GetIngredientName(ingredientDictionary, craftingDictionary, equipmentType) },
+                { "Amount", amount }
+            };
+            recipe.Add(dictionary);
+        }
+        return recipe;
+    }
+
+    private string GetIngredientName(GC.Dictionary<string, Variant> ingredientDictionary, GC.Dictionary<string, Variant> craftingDictionary, EquipmentType equipmentType)
+    {
+        string key = ingredientDictionary["Key"].As<string>();
+        if (key == "EquipmentMaterial")
+        {
+            string materialName = equipmentType switch
+            {
+                EquipmentType.Weapon => "Sharp Claw",
+                EquipmentType.Armor => "Wingdrake Hide",
+                _ => ""
+            };
+            LocaleMaterial equipmentMaterial = MonsterHunterIdle.LocaleManager.FindMaterial(materialName);
+            return equipmentMaterial.Name;
+        }
+
+        string craftingKey = craftingDictionary[key].As<string>();
+        string equipmentTypeString = $"{equipmentType}Material";
+
+        bool hasEquipmentTypeString = craftingDictionary.Keys.Contains(equipmentTypeString);
+        string materialTypeName = hasEquipmentTypeString ? craftingDictionary[equipmentTypeString].As<string>() : "";
+
+        string ingredientName = key switch
+        {
+            "LocaleMaterial" => GetLocaleMaterialName(ingredientDictionary, craftingKey),
+            "SubLocaleMaterial" => GetSubLocaleMaterialName(craftingKey),
+            "Monster" => GetMonsterMaterialName(ingredientDictionary, materialTypeName, craftingKey),
+            _ => GetMaterialName(craftingKey),
+        };
+
+        return ingredientName;
+    }
+
+    // Convert the key + rarity into the desired ingredient | e.g. (Locale Material = Swamp) + (Rarity = 2) = Machalite Ore 
+    private string GetLocaleMaterialName(GC.Dictionary<string, Variant> ingredientDictionary, string localeName)
+    {
+        LocaleType localeType = Enum.Parse<LocaleType>(localeName);
+        int rarity = ingredientDictionary["Rarity"].As<int>();
+        LocaleMaterial localeMaterial = MonsterHunterIdle.LocaleManager.GetLocaleMaterial(localeType, rarity);
+        return localeMaterial.Name;
+    }
+
+    private string GetSubLocaleMaterialName(string materialName)
+    {
+        LocaleMaterial subLocaleMaterial = MonsterHunterIdle.LocaleManager.FindMaterial(materialName);
+        return subLocaleMaterial.Name;
+    }
+
+    private string GetMonsterMaterialName(GC.Dictionary<string, Variant> ingredientDictionary, string materialTypeName, string monsterName)
+    {
+        Monster monster = MonsterHunterIdle.MonsterManager.FindMonster(monsterName);
+        int rarity = ingredientDictionary["Rarity"].As<int>();
+
+        List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MonsterManager.GetMonsterMaterials(monster);
+        if (rarity == 0)
+        {
+            List<MonsterMaterial> rarityOneMonsterMaterials = monsterMaterials.FindAll(material => material.Rarity == 0);
+            MonsterMaterial monsterMaterial = rarityOneMonsterMaterials.Find(material => material.Name.Contains(materialTypeName));
+            return monsterMaterial.Name;
+        }
+        else
+        {
+            MonsterMaterial monsterMaterial = monsterMaterials.Find(material => material.Rarity == rarity);
+            return monsterMaterial.Name;
+        }
+    }
+
+    private string GetMaterialName(string materialName)
+    {
+        MonsterMaterial monsterMaterial = MonsterHunterIdle.MonsterManager.Materials.Find(material => material.Name == materialName);
+        return monsterMaterial.Name;
     }
 
     // Data methods

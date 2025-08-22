@@ -10,7 +10,7 @@ public partial class PalicoManager : Node
 	private float _actionIntervalSeconds = 5f;
 
 	public List<Palico> Palicos = new List<Palico>();
-	public int MaxPalicoCount = 4;
+	public int MaxPalicoCount = 8;
 
 	public PalicoEquipmentManager Equipment;
 

@@ -1,0 +1,17 @@
+{
+    "WeaponAttack":
+    [
+        {
+            "Trees": [ "Ore", "Kulu", "PukeiPukei" ],
+            "Value": 100,
+            "GradeIncrease": 14.5,
+            "SubGradeIncrease": 7
+        },
+        {
+            "Trees": [ "GreatJagras" ],
+            "Value": 95,
+            "GradeIncrease": 5.5,
+            "SubGradeIncrease": 7
+        }
+    ]
+}

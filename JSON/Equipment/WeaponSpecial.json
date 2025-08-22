@@ -1,0 +1,17 @@
+{
+    "WeaponSpecial":
+    [
+        {
+            "Trees": [ "GreatJagras" ],
+            "Value": 25,
+            "GradeIncrease": 2.5,
+            "SubGradeIncrease": 2.5
+        },
+        {
+            "Trees": [ "PukeiPukei" ],
+            "Value": 50,
+            "GradeIncrease": 10,
+            "SubGradeIncrease": 10
+        }
+    ]
+}

@@ -39,8 +39,9 @@ public partial class RecipeInterface : NinePatchRect
 		_acceptButton.Pressed += OnAcceptButtonPressed;
 		_cancelButton.Pressed += QueueFree;
 
-		int grade = _equipment.Grade + 1;
-		int subGrade = _equipment.SubGrade + 1;
+		bool hasCrafted = MonsterHunterIdle.EquipmentManager.HasCrafted(_equipment);
+		int grade = _equipment.Grade;
+		int subGrade = hasCrafted ? _equipment.SubGrade + 1 : _equipment.SubGrade;
 		_craftingCost = MonsterHunterIdle.EquipmentManager.GetCraftingCost(grade, subGrade);
 
 		_craftingCostLabel.Text = $"{_craftingCost}z";
@@ -57,7 +58,7 @@ public partial class RecipeInterface : NinePatchRect
 		PrintRich.PrintLine(TextColor.Yellow, recipeMessage);
 
 		bool hasCrafted = MonsterHunterIdle.EquipmentManager.HasCrafted(equipment);
-		List<GC.Dictionary<string, Variant>> recipe = MonsterHunterIdle.EquipmentManager.FindRecipe(equipment, hasCrafted);
+		List<GC.Dictionary<string, Variant>> recipe = MonsterHunterIdle.EquipmentManager.GetRecipe(equipment, hasCrafted);
 
 		foreach (GC.Dictionary<string, Variant> materialDictionary in recipe)
 		{

@@ -6,6 +6,23 @@ using GC = Godot.Collections;
 
 namespace MonsterHunterIdle;
 
+public enum SpecialType
+{
+	None,
+	Fire,
+	Water,
+	Thunder,
+	Ice,
+	Dragon,
+	Poison,
+	Paralysis,
+	Sleep,
+	Stun,
+	BlastBlight,
+	BubbleBlight,
+	HellfireBlight,
+}
+
 public enum ElementType
 {
 	Fire,
@@ -52,7 +69,7 @@ public enum StatType
 		Legiana
 		Rathlos
 
-	TODO: Create weapon & armor specified materials
+	TODO: ? Create weapon & armor specified materials ? 
 
 	// TODO: Add "offline" play
 	// TODO: Add filter when crafting equipment
@@ -122,10 +139,14 @@ public partial class MonsterHunterIdle : Node
 		string gradeColorString = GetGradeColorString(equipment);
 		if (equipment is Weapon weapon)
 		{
+			if (weapon.Category == WeaponCategory.None) return null;
+
 			filePath = $"res://Assets/Images/Icon/Weapons/{weapon.Category}Icon{gradeColorString}.svg";
 		}
 		else if (equipment is Armor armor)
 		{
+			if (armor.Category == ArmorCategory.None) return null;
+			
 			filePath = $"res://Assets/Images/Icon/Armor/{armor.Category}Icon{gradeColorString}.svg";
 		}
 		return GetTexture(filePath);
@@ -256,7 +277,7 @@ public partial class MonsterHunterIdle : Node
 		int randomLocaleIndex = RNG.RandiRange(0, localeCount);
 		Locale locale = LocaleManager.LocaleQueue[randomLocaleIndex];
 		Monster monster = MonsterManager.GetRandomMonster(locale);
-		List<MonsterMaterial> monsterMaterials = MonsterManager.GetMonsterMaterials(monster);
+		List<MonsterMaterial> monsterMaterials = MonsterManager.GetMonsterMaterials(monster, monster.Level);
 		materials.AddRange(monsterMaterials);
 
 		int index = RNG.RandiRange(0, materials.Count - 1);

@@ -33,6 +33,6 @@ public partial class HunterInterface : NinePatchRect
 	{
 		_hunterRankLabel.Text = $"Hunter Rank: {MonsterHunterIdle.HunterManager.Hunter.Rank}";
 		_hunterProgress.Update();
-		_zennyLabel.Text = $"{MonsterHunterIdle.HunterManager.Hunter.Zenny}";
+		_zennyLabel.Text = $"{MonsterHunterIdle.HunterManager.Hunter.Zenny}z";
 	}
 }

@@ -18,12 +18,12 @@ public partial class ItemBox : Node
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Machalite Ore" },
-         { "Amount", 50 }
+         { "Amount", 100 }
       },
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Dragonite Ore" },
-         { "Amount", 25 }
+         { "Amount", 100 }
       },
       new GC.Dictionary<string, Variant>()
       {
@@ -33,7 +33,27 @@ public partial class ItemBox : Node
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Great Jagras Scale" },
-         { "Amount", 25 }
+         { "Amount", 100 }
+      },
+      new GC.Dictionary<string, Variant>()
+      {
+         { "Name", "Great Jagras Hide" },
+         { "Amount", 100 }
+      },
+      new GC.Dictionary<string, Variant>()
+      {
+         { "Name", "Great Jagras Claw" },
+         { "Amount", 100 }
+      },
+      new GC.Dictionary<string, Variant>()
+      {
+         { "Name", "Great Jagras Mane" },
+         { "Amount", 100 }
+      },
+      new GC.Dictionary<string, Variant>()
+      {
+         { "Name", "Great Jagras Primescale" },
+         { "Amount", 100 }
       },
    };
 

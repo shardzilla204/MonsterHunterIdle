@@ -1,0 +1,34 @@
+    "CraftingRequirements":
+    [
+        {
+            "Set": "Leather",
+            "Monster: "None",
+            "LocaleMaterial": "Ore",
+            "SubLocaleMaterial": "Godbug"
+        },
+        {
+            "Set": "Jagras",
+            "Monster": "Great Jagras",
+            "SubMonster": "Jyuratodus",
+            "LocaleMaterial": "Ore",
+            "SubLocaleMaterial": "Flowfern"
+        },
+        {
+            "Set": "Kulu",
+            "Monster": "Kulu-Ya-Ku",
+            "SubMonster": "Great Jagras",
+            "LocaleMaterial": "Bone",
+            "SubLocaleMaterial": "Godbug"
+        },
+        {
+            "Set": "Pukei",
+            "Monster": "Pukei-Pukei",
+            "SubMonster": "Rathian",
+            "LocaleMaterial": "Ore",
+            "SubLocaleMaterial": "Toadstool"
+        }
+    ]
+
+    Depending on equipment type it will use it's desired refining part
+    Will always use Wyvern Gem Shard
+    Since there are 2 rarity 3 materials in each locale, just bump up the more unique material to 4
