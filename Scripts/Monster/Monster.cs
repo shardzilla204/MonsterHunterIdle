@@ -15,29 +15,18 @@ public partial class Monster : Node
       Name = monsterDictionary["Name"].As<string>();
       Description = monsterDictionary["Description"].As<string>();
       Health = monsterDictionary["Health"].As<int>();
+      Level = monsterDictionary["Level"].As<int>();
 
-      List<string> elements = monsterDictionary["Elements"].As<GC.Array<string>>().ToList();
-      foreach (string element in elements)
+      List<string> specials = monsterDictionary["Specials"].As<GC.Array<string>>().ToList();
+      foreach (string special in specials)
       {
-         Elements.Add(Enum.Parse<ElementType>(element));
+         Specials.Add(Enum.Parse<SpecialType>(special));
       }
 
-      List<string> abnormalStatuses = monsterDictionary["AbnormalStats"].As<GC.Array<string>>().ToList();
-      foreach (string abnormalStatus in abnormalStatuses)
+      List<string> specialWeaknesses = monsterDictionary["SpecialWeaknesses"].As<GC.Array<string>>().ToList();
+      foreach (string specialWeakness in specialWeaknesses)
       {
-         AbnormalStats.Add(Enum.Parse<AbnormalStatType>(abnormalStatus));
-      }
-
-      List<string> elementWeaknesses = monsterDictionary["ElementalWeaknesses"].As<GC.Array<string>>().ToList();
-      foreach (string elementWeakness in elementWeaknesses)
-      {
-         ElementalWeaknesses.Add(Enum.Parse<ElementType>(elementWeakness));
-      }
-
-      List<string> abnormalStatusWeaknesses = monsterDictionary["AbnormalStatWeaknesses"].As<GC.Array<string>>().ToList();
-      foreach (string abnormalStatusWeakness in abnormalStatusWeaknesses)
-      {
-         AbnormalStatWeaknesses.Add(Enum.Parse<AbnormalStatType>(abnormalStatusWeakness));
+         SpecialWeaknesses.Add(Enum.Parse<SpecialType>(specialWeakness));
       }
 
       List<string> locales = monsterDictionary["Locales"].As<GC.Array<string>>().ToList();
@@ -50,10 +39,8 @@ public partial class Monster : Node
    public new string Name;
    public string Description;
    public int Health;
-   public List<ElementType> Elements = new List<ElementType>();
-   public List<AbnormalStatType> AbnormalStats = new List<AbnormalStatType>();
-   public List<ElementType> ElementalWeaknesses = new List<ElementType>();
-   public List<AbnormalStatType> AbnormalStatWeaknesses = new List<AbnormalStatType>();
+   public List<SpecialType> Specials = new List<SpecialType>();
+   public List<SpecialType> SpecialWeaknesses = new List<SpecialType>();
 
    public int Level = 1;
    public List<LocaleType> Locales = new List<LocaleType>();
@@ -64,10 +51,8 @@ public partial class Monster : Node
       Description = monster.Description;
       Health = monster.Health;
 
-      Elements.AddRange(monster.Elements);
-      AbnormalStats.AddRange(monster.AbnormalStats);
-      ElementalWeaknesses.AddRange(monster.ElementalWeaknesses);
-      AbnormalStatWeaknesses.AddRange(monster.AbnormalStatWeaknesses);
+      Specials.AddRange(monster.Specials);
+      SpecialWeaknesses.AddRange(monster.SpecialWeaknesses);
 
       Level = level;
       Locales.AddRange(monster.Locales);

@@ -141,29 +141,13 @@ public partial class LocaleManager : Node
 	public LocaleMaterial GetLocaleMaterial(LocaleType localeType, int rarity)
 	{
 		List<LocaleMaterial> localeMaterials = FindMaterials(localeType);
-		if (rarity < 3)
-		{
-			return localeMaterials.Find(material => material.Rarity == rarity && material.Locales.Count == 1 && material.Locales.Contains(localeType));
-		}
-		else
-		{
-			string uniqueMaterialName = GetUniqueLocaleMaterialName(localeType);
-			return localeMaterials.Find(material => material.Name == uniqueMaterialName);
-		}
+		return localeMaterials.Find(material => material.Rarity == rarity && material.Locales.Count == 1 && material.Locales.Contains(localeType));
 	}
 
 	public LocaleMaterial FindMaterial(string materialName)
 	{
 		return Materials.Find(material => material.Name == materialName);
 	}
-
-	// ? Carpenterbug is the only rarity 3 material in Forest
-	private string GetUniqueLocaleMaterialName(LocaleType localeType) => localeType switch
-	{
-		LocaleType.Desert => "Monster Bone +",
-		LocaleType.Swamp => "Earth Crystal",
-		_ => ""
-	};
 
 	private List<LocaleMaterial> FindMaterials(LocaleType localeType)
 	{

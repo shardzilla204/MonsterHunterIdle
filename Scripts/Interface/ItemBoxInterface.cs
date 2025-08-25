@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace MonsterHunterIdle;
 
-public partial class ItemBoxInterface : NinePatchRect
+public partial class ItemBoxInterface : Container
 {
 	[Export]
 	private Container _parentContainer;
 
 	[Export]
-	private ItemBoxSearch _searchBar;
+	private ItemBoxSearch _itemBoxSearch;
 
 	[Export]
 	private CustomButton _sellModeButton;
@@ -32,7 +32,7 @@ public partial class ItemBoxInterface : NinePatchRect
 
 	public override void _Ready()
 	{
-		_searchBar.FilterChanged += FilterMaterialLogs;
+		_itemBoxSearch.FilterChanged += FilterMaterialLogs;
 		_sellModeButton.Toggled += SellMode;
 
 		SellMode(false);
@@ -46,7 +46,7 @@ public partial class ItemBoxInterface : NinePatchRect
 		_sellModeButton.SetColor(buttonColor);
 
 		UpdateMaterialLogs();
-		_searchBar.Text = "";
+		_itemBoxSearch.Text = "";
 	}
 
 	private void OnLocaleMaterialAdded(LocaleMaterial localeMaterial)

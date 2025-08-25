@@ -1,0 +1,57 @@
+{
+    "LegArmor":
+    {
+        "Leather":
+        [
+            {
+                "Grades": [ 1, 9 ],
+                "Name": "Poison Resistance",
+                "Level": 1
+            },
+            {
+                "Grades": [ 3, 9 ],
+                "Name": "Paralysis Resistance",
+                "Level": 1
+            }
+        ],
+        "Jagras":
+        [
+            {
+                "Grades": [ 1, 4 ],
+                "Name": "Water Attack",
+                "Level": 1
+            },
+            {
+                "Grades": [ 5, 9 ],
+                "Name": "Water Attack",
+                "Level": 2
+            }
+        ],
+        "Kulu":
+        [
+            {
+                "Grades": [ 1, 4 ],
+                "Name": "Critical Eye",
+                "Level": 1
+            },
+            {
+                "Grades": [ 5, 9 ],
+                "Name": "Critical Eye",
+                "Level": 2
+            }
+        ],
+        "Pukei":
+        [
+            {
+                "Grades": [ 1, 9 ],
+                "Name": "Health Boost",
+                "Level": 1
+            },
+            {
+                "Grades": [ 3, 9 ],
+                "Name": "Poison Resistance",
+                "Level": 1
+            }
+        ]
+    }
+}

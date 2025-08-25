@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdv8ki6wneh2t"]
+
+[ext_resource type="Script" uid="uid://dj47hlmcx3fg5" path="res://Scripts/WeaponFilters.cs" id="1_myvbm"]
+
+[node name="WeaponFilters" type="VBoxContainer" node_paths=PackedStringArray("_filterContainer")]
+theme_override_constants/separation = 5
+script = ExtResource("1_myvbm")
+_filterContainer = NodePath("FilterContainer")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Weapons"
+horizontal_alignment = 1
+
+[node name="FilterContainer" type="FlowContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5

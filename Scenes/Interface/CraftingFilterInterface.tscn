@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckt57vg7yeo5v"]
+
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_t4426"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_8c1ux"]
+[ext_resource type="Script" uid="uid://dctjgb3u6pvsh" path="res://Scripts/Interface/CraftingFilterInterface.cs" id="3_kbj5w"]
+[ext_resource type="PackedScene" uid="uid://cdv8ki6wneh2t" path="res://Scenes/WeaponFilters.tscn" id="5_5wgiu"]
+[ext_resource type="Texture2D" uid="uid://d0h6pdwymb6qd" path="res://Assets/Images/UserInterface/Circle.png" id="5_o7g54"]
+[ext_resource type="PackedScene" uid="uid://csu81qyfh2bo2" path="res://Scenes/ArmorFilters.tscn" id="6_7o3jd"]
+[ext_resource type="PackedScene" uid="uid://bqicmkaih1461" path="res://Scenes/GroupFilters.tscn" id="7_cvxxh"]
+
+[node name="CraftingFilterInterface" type="NinePatchRect" node_paths=PackedStringArray("_hasNotCraftedCheckBox", "_weaponFilters", "_armorFilters", "_groupFilters")]
+custom_minimum_size = Vector2(125, 160)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_t4426")
+texture = ExtResource("2_8c1ux")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource("3_kbj5w")
+_hasNotCraftedCheckBox = NodePath("MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter/HasNotCraftedCheckBox")
+_weaponFilters = NodePath("MarginContainer/ScrollContainer/VBoxContainer/WeaponFilters")
+_armorFilters = NodePath("MarginContainer/ScrollContainer/VBoxContainer/ArmorFilters")
+_groupFilters = NodePath("MarginContainer/ScrollContainer/VBoxContainer/GroupFilters")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="HasCraftedFilter" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter/MarginContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_o7g54")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HasNotCraftedCheckBox" type="CheckBox" parent="MarginContainer/ScrollContainer/VBoxContainer/HasCraftedFilter"]
+layout_mode = 2
+
+[node name="WeaponFilters" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_5wgiu")]
+layout_mode = 2
+
+[node name="ArmorFilters" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("6_7o3jd")]
+layout_mode = 2
+
+[node name="GroupFilters" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("7_cvxxh")]
+layout_mode = 2

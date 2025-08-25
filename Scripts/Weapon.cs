@@ -1,11 +1,37 @@
+using System;
 using Godot;
 using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
+public enum WeaponCategory
+{
+    None = -1,
+    SwordAndShield
+}
+
+public enum WeaponTree
+{
+    None = -1,
+    Ore,
+    GreatJagras,
+    KuluYaKu,
+    PukeiPukei,
+    Barroth,
+    GreatGirros,
+    TobiKadachi,
+    Paolumu,
+    Jyuratodus,
+    Anjanath,
+    Rathian,
+    Legiana,
+    Diablos,
+    Rathalos
+}
+
 public partial class Weapon : Equipment
 {
-    public Weapon(){}
+    public Weapon() { }
 
     public Weapon(WeaponCategory category, WeaponTree tree)
     {
@@ -14,16 +40,21 @@ public partial class Weapon : Equipment
     }
 
     public int Attack = 0;
-    public int Special = 0;
+    public int SpecialAttack = 0;
+    public SpecialType Special;
     public float Affinity = 0;
     public WeaponCategory Category = WeaponCategory.None;
     public WeaponTree Tree = WeaponTree.None;
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
-        Name = dictionary["Name"].As<string>();
+        Array<string> names = dictionary["Names"].As<Array<string>>();
+        MonsterHunterIdle.EquipmentManager.SetWeaponName(this, names);
+
+        string specialTypeString = dictionary["Special"].As<string>();
+        Special = Enum.Parse<SpecialType>(specialTypeString);
 
         Attack = MonsterHunterIdle.EquipmentManager.GetAttackValue(this);
-        Special = MonsterHunterIdle.EquipmentManager.GetSpecialValue(this);
+        SpecialAttack = MonsterHunterIdle.EquipmentManager.GetSpecialValue(this);
     }
 }

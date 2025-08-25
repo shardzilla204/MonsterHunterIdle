@@ -101,17 +101,11 @@ public partial class PrintRich : Node
 		Print(textColor, $"Description: {monster.Description}");
 		Print(textColor, $"Health: {monster.Health}");
 
-		Print(textColor, "Elements:");
-		PrintList(textColor, monster.Elements);
+		Print(textColor, "Specials:");
+		PrintList(textColor, monster.Specials);
 
-		Print(textColor, "Abnormal Stats:");
-		PrintList(textColor, monster.AbnormalStats);
-
-		Print(textColor, "Elemental Weaknesses:");
-		PrintList(textColor, monster.ElementalWeaknesses);
-
-		Print(textColor, "Abnormal Stat Weaknesses:");
-		PrintList(textColor, monster.AbnormalStatWeaknesses);
+		Print(textColor, "Special Weaknesses:");
+		PrintList(textColor, monster.SpecialWeaknesses);
 
 		Print(textColor, "Locales:");
 		PrintList(textColor, monster.Locales);

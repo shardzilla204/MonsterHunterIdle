@@ -8,7 +8,7 @@ namespace MonsterHunterIdle;
 
 public enum SpecialType
 {
-	None,
+	None = -1,
 	Fire,
 	Water,
 	Thunder,
@@ -20,27 +20,7 @@ public enum SpecialType
 	Stun,
 	BlastBlight,
 	BubbleBlight,
-	HellfireBlight,
-}
-
-public enum ElementType
-{
-	Fire,
-	Water,
-	Thunder,
-	Ice,
-	Dragon
-}
-
-public enum AbnormalStatType
-{
-	Poison,
-	Paralysis,
-	Sleep,
-	Stun,
-	BlastBlight,
-	BubbleBlight,
-	HellfireBlight,
+	HellfireBlight
 }
 
 public enum StatType
@@ -58,18 +38,28 @@ public enum StatType
 
 /*
 	TODO: Add Palico equipment data
-	TODO: Add equipment status element
 	TODO: Add monster weakness damage
-	TODO: Add monsters
-		Barroth
-		Great Girros
-		Paolumu
-		Diablos
-		Rathian
-		Legiana
-		Rathlos
+	TODO: Add attacking charge bar
+	TODO: Add weapons:
+		Great Sword
+		Long Sword
 
-	TODO: ? Create weapon & armor specified materials ? 
+	TODO: Have filter support multiple groups
+		
+	// TODO: Add equipment status element
+	// TODO: Just have two names and add on the Roman numeral
+	// TODO: Add monsters
+		// Barroth
+		// Great Girros
+		// Tobi-Kadachi
+		// Paolumu
+		// Jyuratodus
+		// Rathian
+		// Legiana
+		// Diablos
+		// Rathalos
+
+	// TODO: Create weapon & armor specified materials
 
 	// TODO: Add "offline" play
 	// TODO: Add filter when crafting equipment
@@ -141,13 +131,13 @@ public partial class MonsterHunterIdle : Node
 		{
 			if (weapon.Category == WeaponCategory.None) return null;
 
-			filePath = $"res://Assets/Images/Icon/Weapons/{weapon.Category}Icon{gradeColorString}.svg";
+			filePath = $"res://Assets/Images/Icon/Weapons/{weapon.Category}Icon{gradeColorString}.png";
 		}
 		else if (equipment is Armor armor)
 		{
 			if (armor.Category == ArmorCategory.None) return null;
 			
-			filePath = $"res://Assets/Images/Icon/Armor/{armor.Category}Icon{gradeColorString}.svg";
+			filePath = $"res://Assets/Images/Icon/Armor/{armor.Category}Icon{gradeColorString}.png";
 		}
 		return GetTexture(filePath);
 	}
@@ -169,16 +159,16 @@ public partial class MonsterHunterIdle : Node
 
 	public static int GetMaterialWeight(int rarity) => rarity switch
 	{
-		1 => 7500,
-		2 => 3000,
-		3 => 1650,
-		4 => 650,
-		5 => 400,
-		6 => 200,
-		7 => 100,
-		8 => 75,
-		9 => 30,
-		10 => 10,
+		0 => 7500,
+		1 => 3000,
+		2 => 1650,
+		3 => 650,
+		4 => 400,
+		5 => 200,
+		6 => 100,
+		7 => 75,
+		8 => 30,
+		9 => 10,
 		_ => throw new ArgumentOutOfRangeException("Rarity", $"Not expected rarity value: {rarity}")
 	};
 

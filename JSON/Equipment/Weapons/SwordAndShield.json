@@ -2,133 +2,64 @@
     "SwordAndShield":
     {
         "Ore":
-        [
-            {
-                "Name": "Hunter's Knife I",
-                "Special": ""
-            },
-            {
-                "Name": "Hunter's Knife II",
-                "Special": ""
-            },
-            {
-                "Name": "Hunter's Knife III",
-                "Special": ""
-            },
-            {
-                "Name": "Hunter's Knife IV",
-                "Special": ""
-            },
-            {
-                "Name": "Hunter's Knife V",
-                "Special": ""
-            },
-            {
-                "Name": "Steel Knife I",
-                "Special": ""
-            },
-            {
-                "Name": "Steel Knife II",
-                "Special": ""
-            },
-            {
-                "Name": "Steel Knife III",
-                "Special": ""
-            },
-            {
-                "Name": "Steel Knife IV",
-                "Special": ""
-            },
-            {
-                "Name": "Steel Knife V",
-                "Special": ""
-            }
-        ],
+        {
+            "Names": [ "Hunter's Knife", "Steel Knife" ],
+            "Special": "None"
+        },
         "Great Jagras":
-        [
-            {
-                "Name": "Jagras Edge I",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Edge II",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Edge III",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Edge IV",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Edge V",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Garotte I",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Garotte II",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Garotte III",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Garotte IV",
-                "Special": ""
-            },
-            {
-                "Name": "Jagras Garotte V",
-                "Special": ""
-            }
-        ],
+        {
+            "Names": [ "Jagras Edge", "Jagras Garotte" ],
+            "Special": "Water"
+        },
         "Pukei-Pukei":
-        [
-            {
-                "Name": "Blooming Knife I",
-                "Special": ""
-            },
-            {
-                "Name": "Blooming Knife II",
-                "Special": ""
-            },
-            {
-                "Name": "Blooming Knife III",
-                "Special": ""
-            },
-            {
-                "Name": "Blooming Knife IV",
-                "Special": ""
-            },
-            {
-                "Name": "Blooming Knife V",
-                "Special": ""
-            },
-            {
-                "Name": "Datura Blossom I",
-                "Special": ""
-            },
-            {
-                "Name": "Datura Blossom II",
-                "Special": ""
-            },
-            {
-                "Name": "Datura Blossom III",
-                "Special": ""
-            },
-            {
-                "Name": "Datura Blossom IV",
-                "Special": ""
-            },
-            {
-                "Name": "Datura Blossom V",
-                "Special": ""
-            }
-        ]
+        {
+            "Names": [ "Blooming Knife", "Datura Blossom" ],
+            "Special": "Poison"
+        },
+        "Barroth":
+        {
+            "Names": [ "Carapace Edge", "Barroth Club" ],
+            "Special": "None"
+        },
+        "Great Girros":
+        {
+            "Names": [ "Girros Knife", "Malady's Tabar" ],
+            "Special": "Paralysis"
+        },
+        "Tobi-Kadachi":
+        {
+            "Names": [ "Thunder Edge", "Lightning Nemesis" ],
+            "Special": "Thunder"
+        },
+        "Paolumu":
+        {
+            "Names": [ "Lumu Knife", "Lumu Tabar" ],
+            "Special": "None"
+        },
+        "Jyuratodus":
+        {
+            "Names": [ "Aqua Messer", "Rouge Wave" ],
+            "Special": "Water"
+        },
+        "Anjanath":
+        {
+            "Names": [ "Blazing Edge", "Flammensucher" ],
+            "Special": "Fire"
+        },
+        "Rathian":
+        {
+            "Names": [ "Queen Rose", "Royal Rose" ],
+            "Special": "Poison"
+        },
+        "Legiana":
+        {
+            "Names": [ "Glacial Grace", "Rimespire" ],
+            "Special": "Ice"
+        },
+        "Rathalos":
+        {
+            "Names": [ "Flame Knife", "Heat Edge" ],
+            "Special": "Fire"
+        }
     }
 }

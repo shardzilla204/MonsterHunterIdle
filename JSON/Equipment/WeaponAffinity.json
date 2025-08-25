@@ -1,0 +1,17 @@
+{
+    "WeaponAffinity":
+    [
+        {
+            "Trees": [ "Ore", "GreatJagras", "PukeiPukei" ],
+            "Value": 0,
+            "MaxValue": 0,
+            "GradeIncrease": 0
+        },
+        {
+            "Trees": [ "Kulu" ],
+            "Value": 5,
+            "MaxValue": 30,
+            "GradeIncrease": 5
+        }
+    ]
+}

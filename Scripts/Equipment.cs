@@ -10,40 +10,6 @@ public enum EquipmentType
     Armor,
 }
 
-public enum WeaponCategory
-{
-    None = -1,
-    SwordAndShield
-}
-
-public enum WeaponTree
-{
-    None = -1,
-    Ore,
-    GreatJagras,
-    KuluYaKu,
-    PukeiPukei
-}
-
-public enum ArmorCategory
-{
-    None = -1,
-    Head,
-    Chest,
-    Arm,
-    Waist,
-    Leg
-}
-
-public enum ArmorSet
-{
-    None = -1,
-    Leather,
-    Jagras,
-    Kulu,
-    Pukei
-}
-
 public enum PalicoEquipmentCategory
 {
     None = -1,

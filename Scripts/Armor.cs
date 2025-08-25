@@ -3,6 +3,35 @@ using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
+public enum ArmorCategory
+{
+    None = -1,
+    Head,
+    Chest,
+    Arm,
+    Waist,
+    Leg
+}
+
+public enum ArmorSet
+{
+    None = -1,
+    Leather,
+    Jagras,
+    Kulu,
+    Pukei,
+    Barroth,
+    Girros,
+    Kadachi,
+    Paolumu,
+    Jyuratodus,
+    Anjanath,
+    Rathian,
+    Legiana,
+    Diablos,
+    Rathalos
+}
+
 public partial class Armor : Equipment
 {
     public Armor() { }
@@ -24,7 +53,10 @@ public partial class Armor : Equipment
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
-        Name = dictionary["Name"].As<string>();
+        string setName = Set.ToString();
+        Array<string> names = dictionary[setName].As<Array<string>>();
+        MonsterHunterIdle.EquipmentManager.SetArmorName(this, names);
+
         Defense = MonsterHunterIdle.EquipmentManager.GetDefenseValue(Grade, SubGrade);
     }
 }
