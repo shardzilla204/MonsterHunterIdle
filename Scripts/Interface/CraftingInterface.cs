@@ -83,53 +83,127 @@ public partial class CraftingInterface : Container
 
 	private void ShowFilteredEquipment(GC.Dictionary<string, bool> filters)
 	{
-		// Check if any filter is true, if all are false then just show all the equipment
+		// Show all the equipment if there are no filters
 		bool hasFilter = HasFilter(filters);
-		if (hasFilter)
-		{
-			List<Equipment> filteredEquipment = new List<Equipment>();
-
-			foreach (string filterName in filters.Keys)
-			{
-				bool isFiltered = filters[filterName];
-				if (!isFiltered) continue;
-
-				bool isSuccessful = Enum.TryParse(filterName, out WeaponCategory weaponCategory);
-				if (isSuccessful)
-				{
-					List<Weapon> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
-					List<Weapon> categoryWeapons = weapons.FindAll(weapon => weapon.Category == weaponCategory);
-
-					filteredEquipment.AddRange(categoryWeapons);
-					continue;
-				}
-
-				isSuccessful = Enum.TryParse(filterName, out ArmorCategory armorCategory);
-				if (isSuccessful)
-				{
-					List<Armor> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
-					List<Armor> categoryArmor = armor.FindAll(armor => armor.Category == armorCategory);
-
-					filteredEquipment.AddRange(categoryArmor);
-					continue;
-				}
-
-				if (filterName.Contains("HasNotCrafted"))
-				{
-					filteredEquipment = [.. filteredEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
-				}
-			}
-
-			ShowEquipment(filteredEquipment);
-		}
-		else
+		if (!hasFilter)
 		{
 			List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
 			ShowEquipment(weapons);
 
 			List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
 			ShowEquipment(armor);
+			return;
 		}
+
+		List<Equipment> filteredEquipment = new List<Equipment>();
+		foreach (string filterKey in filters.Keys)
+		{
+			List<Equipment> equipment = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+			equipment.AddRange([.. MonsterHunterIdle.EquipmentManager.Armor]);
+
+			bool isFiltered = filters[filterKey];
+			if (!isFiltered) continue;
+
+			// Add weapon
+			bool isWeaponFilter = Enum.TryParse(filterKey, out WeaponCategory weaponCategory);
+			if (isWeaponFilter)
+			{
+				List<Equipment> availableWeapons = equipment.FindAll(piece => piece is Weapon);
+				List<Weapon> weapons = new List<Weapon>();
+				foreach (Equipment availableWeapon in availableWeapons)
+				{
+					Weapon weapon = availableWeapon as Weapon;
+					weapons.Add(weapon);
+				}
+				List<Weapon> categoryWeapons = weapons.FindAll(weapon => weapon.Category == weaponCategory);
+
+				filteredEquipment.AddRange(categoryWeapons);
+				continue;
+			}
+
+			// Add armor
+			bool isArmorFilter = Enum.TryParse(filterKey, out ArmorCategory armorCategory);
+			if (isArmorFilter)
+			{
+				List<Equipment> availableArmor = equipment.FindAll(piece => piece is Armor);
+				List<Armor> armor = new List<Armor>();
+				foreach (Equipment availableArmorPiece in availableArmor)
+				{
+					Armor armorPiece = availableArmorPiece as Armor;
+					armor.Add(armorPiece);
+				}
+				List<Armor> categoryArmor = armor.FindAll(armor => armor.Category == armorCategory);
+
+				filteredEquipment.AddRange(categoryArmor);
+				continue;
+			}
+
+			// Subtract to group equipment
+			// Find all the equipment that matches the specified group
+			bool isGroupFilter = Enum.TryParse(filterKey, out GroupCategory groupCategory);
+			if (isGroupFilter)
+			{
+				// Filter through the current equipment if there is nothing filter through all the equipment
+				List<Equipment> groupEquipment = new List<Equipment>();
+				string targetCategoryString = groupCategory.ToString();
+				if (filteredEquipment.Count > 0)
+				{
+					// * Current filtered equipment
+					filteredEquipment = [.. GetGroupEquipment(filteredEquipment, groupCategory)];
+					continue;
+				}
+				else
+				{
+					// * All equipment
+					filteredEquipment = [.. GetGroupEquipment(equipment, groupCategory)];
+					continue;
+				}
+			}
+
+			// Subtract miscellaneous filters
+			if (filterKey.Contains("HasNotCrafted"))
+			{
+				if (filteredEquipment.Count > 0)
+				{
+					filteredEquipment = [.. filteredEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
+				}
+				else
+				{
+					filteredEquipment = [.. equipment.FindAll(equipPiece => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipPiece))];
+				}
+			}
+		}
+		ShowEquipment(filteredEquipment);
+	}
+
+	private List<Equipment> GetGroupEquipment(List<Equipment> equipment, GroupCategory groupCategory)
+	{
+		string categoryString = groupCategory.ToString();
+		List<Equipment> groupEquipment = new List<Equipment>();
+		foreach (Equipment equipmentPiece in equipment)
+		{
+			if (equipmentPiece is Weapon weapon)
+			{
+				WeaponTree targetTree;
+				bool isSuccessful = Enum.TryParse(categoryString, out targetTree);
+				if (!isSuccessful || weapon.Tree != targetTree) continue;
+
+				groupEquipment.Add(weapon);
+			}
+			else if (equipmentPiece is Armor armor)
+			{
+				string[] categorySubStrings = MonsterHunterIdle.AddSpacing(categoryString).Split(" ");
+				foreach (string categorySubString in categorySubStrings)
+				{
+					ArmorSet targetSet;
+					bool isSuccessful = Enum.TryParse(categorySubString, out targetSet);
+					if (!isSuccessful || armor.Set != targetSet) continue;
+
+					groupEquipment.Add(armor);
+				}
+			}
+		}
+		return groupEquipment;
 	}
 
 	private bool HasFilter(GC.Dictionary<string, bool> filters)

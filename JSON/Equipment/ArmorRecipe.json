@@ -99,8 +99,7 @@
                         "Amount": 3
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 5
                     }
                 ]
@@ -163,8 +162,7 @@
                         "Amount": 6
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 10
                     }
                 ]
@@ -227,8 +225,7 @@
                         "Amount": 9
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 15
                     }
                 ]
@@ -291,8 +288,7 @@
                         "Amount": 12
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 20
                     }
                 ]
@@ -359,8 +355,7 @@
                         "Amount": 21
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 30
                     }
                 ]
@@ -427,8 +422,7 @@
                         "Amount": 28
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 40
                     }
                 ]
@@ -503,8 +497,7 @@
                         "Amount": 70
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 50
                     },
                     {
@@ -583,8 +576,7 @@
                         "Amount": 105
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 60
                     },
                     {
@@ -663,8 +655,7 @@
                         "Amount": 140
                     },
                     {
-                        "Key": "LocaleMaterial",
-                        "Rarity": 4, 
+                        "Key": "SubRarityThreeMaterial", 
                         "Amount": 70
                     },
                     {

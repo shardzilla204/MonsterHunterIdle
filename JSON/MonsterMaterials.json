@@ -146,9 +146,504 @@
 			"Type": "Scale"
       	},
 		{
-			"Name": "Wyvern Gem Shard",
-			"Monsters": [ "Great Jagras", "Kulu-Ya-Ku", "Pukei-Pukei" ],
+			"Name": "Barroth Shell",
+			"Monsters": [ "Barroth" ],
 			"Description": "",
+			"Rarity": 0,
+			"Color": "Orange",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Barroth Claw",
+			"Monsters": [ "Barroth" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Orange",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Barroth Tail",
+			"Monsters": [ "Barroth" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Orange",
+			"Type": "Tail"
+      	},
+		{
+			"Name": "Barroth Scalp",
+			"Monsters": [ "Barroth" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Orange",
+			"Type": "Skull"
+      	},
+		{
+			"Name": "Barroth Ridge",
+			"Monsters": [ "Barroth" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Orange",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Barroth Primeshell",
+			"Monsters": [ "Barroth" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Orange",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Great Girros Scale",
+			"Monsters": [ "Great Girros" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Grey",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Great Girros Fang",
+			"Monsters": [ "Great Girros" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Grey",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Great Girros Tail",
+			"Monsters": [ "Great Girros" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Grey",
+			"Type": "Tail"
+      	},
+		{
+			"Name": "Great Girros Hood",
+			"Monsters": [ "Great Girros" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Grey",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Great Girros Primescale",
+			"Monsters": [ "Great Girros" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Grey",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Great Girros Primefang",
+			"Monsters": [ "Great Girros" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Grey",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Tobi-Kadachi Scale",
+			"Monsters": [ "Tobi-Kadachi" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Teal",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Tobi-Kadachi Claw",
+			"Monsters": [ "Tobi-Kadachi" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Teal",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Tobi-Kadachi Pelt",
+			"Monsters": [ "Tobi-Kadachi" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Teal",
+			"Type": "Hide"
+      	},
+		{
+			"Name": "Tobi-Kadachi Membrane",
+			"Monsters": [ "Tobi-Kadachi" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Teal",
+			"Type": "Wing"
+      	},
+		{
+			"Name": "Tobi-Kadachi Primescale",
+			"Monsters": [ "Tobi-Kadachi" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Teal",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Tobi-Kadachi Electrode",
+			"Monsters": [ "Tobi-Kadachi" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Teal",
+			"Type": "MonsterPart"
+      	},
+				{
+			"Name": "Paolumu Scale",
+			"Monsters": [ "Paolumu" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "White",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Paolumu Pelt",
+			"Monsters": [ "Paolumu" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "White",
+			"Type": "Hide"
+      	},
+		{
+			"Name": "Paolumu Webbing",
+			"Monsters": [ "Paolumu" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "White",
+			"Type": "Wing"
+      	},
+		{
+			"Name": "Paolumu Shell",
+			"Monsters": [ "Paolumu" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Pink",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Paolumu Primescale",
+			"Monsters": [ "Paolumu" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "White",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Paolumu Primeshell",
+			"Monsters": [ "Paolumu" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Pink",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Jyuratodus Shell",
+			"Monsters": [ "Jyuratodus" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Tan",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Jyuratodus Scale",
+			"Monsters": [ "Jyuratodus" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Tan",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Jyuratodus Fang",
+			"Monsters": [ "Jyuratodus" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Tan",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Jyuratodus Fin",
+			"Monsters": [ "Jyuratodus" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Tan",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Jyuratodus Primescale",
+			"Monsters": [ "Jyuratodus" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Tan",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Jyuratodus Primeshell",
+			"Monsters": [ "Jyuratodus" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Tan",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Anjanath Scale",
+			"Monsters": [ "Anjanath" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Pink",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Anjanath Fang",
+			"Monsters": [ "Anjanath" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Pink",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Anjanath Tail",
+			"Monsters": [ "Anjanath" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Pink",
+			"Type": "Tail"
+      	},
+		{
+			"Name": "Anjanath Nosebone",
+			"Monsters": [ "Anjanath" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Pink",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Anjanath Primescale",
+			"Monsters": [ "Anjanath" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Pink",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Anjanath Plate",
+			"Monsters": [ "Anjanath" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Pink",
+			"Type": "Plate"
+      	},
+		{
+			"Name": "Rathian Scale",
+			"Monsters": [ "Rathian" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Green",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Rathian Shell",
+			"Monsters": [ "Rathian" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Green",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Rathian Webbing",
+			"Monsters": [ "Rathian" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Green",
+			"Type": "Wing"
+      	},
+		{
+			"Name": "Rathian Spike",
+			"Monsters": [ "Rathian" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Green",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Rathian Primescale",
+			"Monsters": [ "Rathian" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Green",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Rathian Plate",
+			"Monsters": [ "Rathian" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Green",
+			"Type": "Plate"
+      	},
+		{
+			"Name": "Legiana Scale",
+			"Monsters": [ "Legiana" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Blue",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Legiana Hide",
+			"Monsters": [ "Legiana" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Blue",
+			"Type": "Hide"
+      	},
+		{
+			"Name": "Legiana Claw",
+			"Monsters": [ "Legiana" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Blue",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Legiana Webbing",
+			"Monsters": [ "Legiana" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Blue",
+			"Type": "Wing"
+      	},
+		{
+			"Name": "Legiana Primescale",
+			"Monsters": [ "Legiana" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Blue",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Legiana Plate",
+			"Monsters": [ "Legiana" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Blue",
+			"Type": "Plate"
+      	},
+		{
+			"Name": "Diablos Shell",
+			"Monsters": [ "Diablos" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Brown",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Diablos Fang",
+			"Monsters": [ "Diablos" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Brown",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Diablos Tailcase",
+			"Monsters": [ "Diablos" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Brown",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Diablos Ridge",
+			"Monsters": [ "Diablos" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Brown",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Diablos Primeshell",
+			"Monsters": [ "Diablos" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Brown",
+			"Type": "Shell"
+      	},
+		{
+			"Name": "Diablos Marrow",
+			"Monsters": [ "Diablos" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Brown",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Rathalos Scale",
+			"Monsters": [ "Rathalos" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Red",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Rathalos Wingtalon",
+			"Monsters": [ "Rathalos" ],
+			"Description": "",
+			"Rarity": 0,
+			"Color": "Red",
+			"Type": "Claw"
+      	},
+		{
+			"Name": "Rathalos Tail",
+			"Monsters": [ "Rathalos" ],
+			"Description": "",
+			"Rarity": 1,
+			"Color": "Red",
+			"Type": "Tail"
+      	},
+		{
+			"Name": "Rathalos Marrow",
+			"Monsters": [ "Rathalos" ],
+			"Description": "",
+			"Rarity": 2,
+			"Color": "Red",
+			"Type": "MonsterPart"
+      	},
+		{
+			"Name": "Rathalos Primescale",
+			"Monsters": [ "Rathalos" ],
+			"Description": "",
+			"Rarity": 3,
+			"Color": "Red",
+			"Type": "Scale"
+      	},
+		{
+			"Name": "Rathalos Plate",
+			"Monsters": [ "Rathalos" ],
+			"Description": "",
+			"Rarity": 4,
+			"Color": "Red",
+			"Type": "Plate"
+      	},
+		{
+			"Name": "Wyvern Gem Shard",
+			"Monsters": 
+			[ 
+				"Great Jagras", 
+				"Kulu-Ya-Ku", 
+				"Pukei-Pukei", 
+				"Barroth", 
+				"Great Girros", 
+				"Tobi-Kadachi", 
+				"Paolumu", 
+				"Jyuratodus", 
+				"Anjanath", 
+				"Rathian", 
+				"Legiana", 
+				"Diablos", 
+				"Rathalos" 
+			],
+			"Description": "Valuable gem shard obtained from a monster. Emits a dull glow. Used for forging equipment, among other things.",
 			"Rarity": 5,
 			"Color": "LightBlue",
 			"Type": "Gem"

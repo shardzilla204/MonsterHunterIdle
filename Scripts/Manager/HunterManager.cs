@@ -87,7 +87,7 @@ public partial class HunterManager : Node
          else
          {
             ArmorCategory category = (ArmorCategory) equipmentDictionary["Category"].As<int>();
-            ArmorSet set = (ArmorSet)equipmentDictionary["Set"].As<int>();
+            ArmorSet set = (ArmorSet) equipmentDictionary["Set"].As<int>();
             AddStartingArmor(category, set, grade, subGrade);
          }
       }

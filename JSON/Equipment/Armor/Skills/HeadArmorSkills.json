@@ -1,0 +1,62 @@
+{
+    "HeadArmor":
+    {
+        "Leather":
+        [
+            {
+                "Grades": [ 1, 9 ],
+                "Name": "Critical Eye",
+                "Level": 1
+            },
+            {
+                "Grades": [ 3, 9 ],
+                "Name": "Ice Resistance",
+                "Level": 1
+            }
+        ],
+        "Jagras":
+        [
+            {
+                "Grades": [ 1, 4 ],
+                "Name": "Firm Foothold",
+                "Level": 1
+            },
+            {
+                "Grades": [ 5, 9 ],
+                "Name": "Firm Foothold",
+                "Level": 2
+            }
+        ],
+        "Kulu":
+        [
+            {
+                "Grades": [ 1, 9 ],
+                "Name": "Lock On",
+                "Level": 1
+            },
+            {
+                "Grades": [ 3, 9 ],
+                "Name": "Critical Eye",
+                "Level": 1
+            }
+        ],
+        "Pukei":
+        [
+            {
+                "Grades": [ 1, 9 ],
+                "Name": "Focus",
+                "Level": 1
+            },
+            {
+                "Grades": [ 3, 4 ],
+                "Name": "Health Boost",
+                "Level": 1
+            },
+            {
+                "Grades": [ 5, 9 ],
+                "Name": "Health Boost",
+                "Level": 2
+            }
+        ]
+    }
+}

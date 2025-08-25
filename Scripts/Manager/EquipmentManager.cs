@@ -16,7 +16,6 @@ public partial class EquipmentManager : Node
     public List<Armor> CraftedArmor = new List<Armor>();
 
     private string _weaponFolderPath = "Equipment/Weapons";
-    private string _armorFolderPath = "Equipment/Armor";
 
     public override void _EnterTree()
     {
@@ -29,18 +28,16 @@ public partial class EquipmentManager : Node
     private void LoadEquipment()
     {
         string weaponFilePath = $"res://JSON/{_weaponFolderPath}/";
-        LoadEquipment(weaponFilePath, _weaponFolderPath, AddWeapons);
+        LoadWeapons(weaponFilePath);
 
-        string armorFilePath = $"res://JSON/{_armorFolderPath}/";
-        LoadEquipment(armorFilePath, _armorFolderPath, AddArmor);
+        LoadArmor();
     }
 
-    /// Take in a file path, folder path, and method defending on the equipment | Weapons = <see cref="AddWeapons"/> | Armor = <see cref="AddArmor"/>
     /// Iterate through the provided file path e.g "res://JSON/Equipment/Weapons/".
     /// Take the file name without the extension (<see cref="string.GetBaseName()"/>) 
-    /// Use fileName and folderPath (<see cref="LoadEquipment.folderPath"/>) as parameters in the provided method
+    /// Use fileName and folderPath (<see cref="LoadWeapons.folderPath"/>) as parameters in the provided method
     /// If successful, iterate to the next file
-    private void LoadEquipment(string filePath, string folderPath, Func<string, string, bool> addEquipment)
+    private void LoadWeapons(string filePath)
     {
         using DirAccess directory = DirAccess.Open(filePath);
         if (directory != null)
@@ -55,10 +52,10 @@ public partial class EquipmentManager : Node
                     continue;
                 }
 
-                bool hasPassed = addEquipment(fileName.GetBaseName(), folderPath);
+                bool hasPassed = AddWeapons(fileName.GetBaseName());
                 if (!hasPassed)
                 {
-                    string errorMessage = $"Couldn't Add Equipment Using The Path: {filePath}";
+                    string errorMessage = $"Couldn't Add Weapon Using The Path: {filePath}";
                     GD.PrintErr(errorMessage);
                     return;
                 }
@@ -73,10 +70,12 @@ public partial class EquipmentManager : Node
         }
     }
 
-    private bool AddWeapons(string fileName, string folderPath)
+    private bool AddWeapons(string fileName)
     {
-        GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, folderPath);
-        if (weaponTreeDictionaries == null) return false;
+        GC.Dictionary<string, Variant> weaponTreeData = MonsterHunterIdle.LoadFile(fileName, _weaponFolderPath).As<GC.Dictionary<string, Variant>>();
+        if (weaponTreeData == null) return false;
+
+        GC.Dictionary<string, Variant> weaponTreeDictionaries = weaponTreeData[fileName].As<GC.Dictionary<string, Variant>>();
 
         WeaponCategory category = Enum.Parse<WeaponCategory>(fileName);
         foreach (string treeName in weaponTreeDictionaries.Keys)
@@ -88,12 +87,10 @@ public partial class EquipmentManager : Node
 
             try
             {
-                GC.Array<GC.Dictionary<string, Variant>> weaponGradeDictionaries = weaponTreeDictionaries[treeName].As<GC.Array<GC.Dictionary<string, Variant>>>();
+                GC.Dictionary<string, Variant> weaponTreeDictionary = weaponTreeDictionaries[treeName].As<GC.Dictionary<string, Variant>>();
 
-                // Only get the first dictionary for crafting
-                GC.Dictionary<string, Variant> weaponGradeDictionary = weaponGradeDictionaries[0];
                 Weapon weapon = new Weapon(category, tree);
-                weapon.SetEquipment(weaponGradeDictionary);
+                weapon.SetEquipment(weaponTreeDictionary);
 
                 Weapons.Add(weapon);
             }
@@ -115,12 +112,14 @@ public partial class EquipmentManager : Node
         if (tree == WeaponTree.None) return new Weapon();
 
         string fileName = category.ToString();
-        GC.Dictionary<string, Variant> weaponTreeDictionaries = GetEquipmentDictionaries(fileName, _weaponFolderPath);
-        if (weaponTreeDictionaries == null) return null;
+        GC.Dictionary<string, Variant> weaponTreeData = MonsterHunterIdle.LoadFile(fileName, _weaponFolderPath).As<GC.Dictionary<string, Variant>>();
+        if (weaponTreeData == null) return null;
+
+        GC.Dictionary<string, Variant> weaponTreeDictionaries = weaponTreeData[fileName].As<GC.Dictionary<string, Variant>>();
 
         string treeString = MonsterHunterIdle.AddSpacing(tree.ToString());
-        GC.Array<GC.Dictionary<string, Variant>> weaponGradeDictionaries = weaponTreeDictionaries[treeString].As<GC.Array<GC.Dictionary<string, Variant>>>();
-        GC.Dictionary<string, Variant> weaponGradeDictionary = weaponGradeDictionaries[grade];
+
+        GC.Dictionary<string, Variant> weaponGradeDictionary = weaponTreeDictionaries[treeString].As<GC.Dictionary<string, Variant>>();
 
         Weapon weapon = new Weapon(category, tree);
         weapon.Grade = grade;
@@ -130,84 +129,86 @@ public partial class EquipmentManager : Node
         return weapon;
     }
 
-    private bool AddArmor(string fileName, string folderPath)
+    private void LoadArmor()
     {
-        GC.Dictionary<string, Variant> armorSetDictionaries = GetEquipmentDictionaries(fileName, folderPath);
-        if (armorSetDictionaries == null) return false;
+        string fileName = "Armor";
+        string folderPath = "Equipment/Armor";
+        GC.Dictionary<string, Variant> armorData = MonsterHunterIdle.LoadFile(fileName, folderPath).As<GC.Dictionary<string, Variant>>();
+        if (armorData == null) return;
 
-        string categoryName = fileName.Replace("Armor", "");
-        ArmorCategory category = Enum.Parse<ArmorCategory>(categoryName);
-
-        foreach (string setName in armorSetDictionaries.Keys)
+        GC.Dictionary<string, Variant> setDictionaries = armorData[fileName].As<GC.Dictionary<string, Variant>>();
+        foreach (string setName in setDictionaries.Keys)
         {
-            string setNameString = setName.Replace(" ", "");
-            setNameString = setNameString.Replace("-", "");
-            ArmorSet set = Enum.Parse<ArmorSet>(setNameString);
-
-            try
+            ArmorSet set = Enum.Parse<ArmorSet>(setName);
+            GC.Array<string> setDictionary = setDictionaries[setName].As<GC.Array<string>>();
+            for (int categoryIndex = 0; categoryIndex < setDictionary.Count; categoryIndex++)
             {
-                GC.Array<GC.Dictionary<string, Variant>> armorGradeDictionaries = armorSetDictionaries[setName].As<GC.Array<GC.Dictionary<string, Variant>>>();
-
-                // Only get the first dictionary for crafting
-                GC.Dictionary<string, Variant> armorGradeDictionary = armorGradeDictionaries[0];
+                ArmorCategory category = (ArmorCategory) categoryIndex;
                 Armor armor = new Armor(category, set);
-                armor.SetEquipment(armorGradeDictionary);
-
+                armor.SetEquipment(setDictionaries);
+                
                 Armor.Add(armor);
             }
-            catch (Exception exception)
-            {
-                string errorMessage = exception.ToString();
-                if (exception.Message.Trim() != "") errorMessage = exception.Message;
-
-                GD.PrintErr(errorMessage);
-
-                return false;
-            }
         }
-        return true;
     }
 
     public Armor GetArmor(ArmorCategory category, ArmorSet set, int grade, int subGrade)
     {
         if (set == ArmorSet.None) return new Armor(category, set);
 
-        string fileName = $"{category}Armor";
-        GC.Dictionary<string, Variant> armorSetDictionaries = GetEquipmentDictionaries(fileName, _armorFolderPath);
-        if (armorSetDictionaries == null) return null;
+        string fileName = $"Armor";
+        string folderPath = "Equipment/Armor";
+        GC.Dictionary<string, Variant> armorData = MonsterHunterIdle.LoadFile(fileName, folderPath).As<GC.Dictionary<string, Variant>>();
+        if (armorData == null) return null;
 
-        string setString = MonsterHunterIdle.AddSpacing(set.ToString());
-        GC.Array<GC.Dictionary<string, Variant>> armorGradeDictionaries = armorSetDictionaries[setString].As<GC.Array<GC.Dictionary<string, Variant>>>();
-        GC.Dictionary<string, Variant> armorGradeDictionary = armorGradeDictionaries[grade];
+        GC.Dictionary<string, Variant> setDictionaries = armorData[fileName].As<GC.Dictionary<string, Variant>>();
 
         Armor armor = new Armor(category, set);
         armor.Grade = grade;
         armor.SubGrade = subGrade;
-        armor.SetEquipment(armorGradeDictionary);
+        armor.SetEquipment(setDictionaries);
 
         return armor;
     }
 
-    private GC.Dictionary<string, Variant> GetEquipmentDictionaries(string fileName, string folderPath)
+    public void SetWeaponName(Weapon weapon, GC.Array<string> names)
     {
-        GC.Dictionary<string, Variant> equipmentData = MonsterHunterIdle.LoadFile(fileName, folderPath).As<GC.Dictionary<string, Variant>>();
-        if (equipmentData == null) return null;
-
-        try
+        int maxSubGrade = 4;
+        int grade = weapon.Grade;
+        string romanNumeral = GetRomanNumeral(grade);
+        if (weapon.Grade < maxSubGrade)
         {
-            GC.Dictionary<string, Variant> equipmentDictionaries = equipmentData[fileName].As<GC.Dictionary<string, Variant>>();
-            return equipmentDictionaries;
+            weapon.Name = $"{names[0]} {romanNumeral}";
         }
-        catch (Exception exception)
+        else
         {
-            string errorMessage = exception.ToString();
-            if (exception.Message.Trim() != "") errorMessage = exception.Message;
-
-            GD.PrintErr(errorMessage);
-
-            return null;
+            grade -= maxSubGrade;
+            romanNumeral = GetRomanNumeral(grade);
+            weapon.Name = $"{names[1]} {romanNumeral}";
         }
     }
+
+    public void SetArmorName(Armor armor, GC.Array<string> names)
+    {
+        int armorCategoryIndex = (int) armor.Category;
+        string romanNumeral = GetRomanNumeral(armor.Grade);
+        armor.Name = $"{armor.Set} {names[armorCategoryIndex]} {romanNumeral}";
+    }
+
+    private string GetRomanNumeral(int grade) => grade switch
+    {
+        0 => "I",
+        1 => "II",
+        2 => "III",
+        3 => "IV",
+        4 => "V",
+        5 => "VI",
+        6 => "VII",
+        7 => "VII",
+        8 => "IX",
+        9 => "X",
+        _ => ""
+    };
 
     public bool HasCrafted(Equipment equipment)
     {
@@ -424,12 +425,23 @@ public partial class EquipmentManager : Node
 
     private List<Variant> GetGradeDictionaries(GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
     {
-        // Get the specified grade dictionaries
-        string monsterString = craftingDictionary["Monster"].As<string>();
-        monsterString = monsterString != "None" ? "Monster" : "None";
-        List<Variant> gradeDictionaries = equipmentRecipeDictionaries[monsterString].As<GC.Array<Variant>>().ToList();
+        try
+        {
+            // Get the specified grade dictionaries
+            string monsterString = craftingDictionary["Monster"].As<string>();
+            monsterString = monsterString != "None" ? "Monster" : "None";
+            List<Variant> gradeDictionaries = equipmentRecipeDictionaries[monsterString].As<GC.Array<Variant>>().ToList();
 
-        return gradeDictionaries;
+            return gradeDictionaries;
+        }
+        catch
+        {
+            string errorMessage = $"Ingredients For Recipe Don't Exist";
+
+            GD.PrintErr(errorMessage);
+
+            return null;
+        }
     }
 
     private List<GC.Dictionary<string, Variant>> GetIngredientDictionaries(Equipment equipment, bool getNextRecipe, List<Variant> gradeDictionaries)
@@ -550,8 +562,8 @@ public partial class EquipmentManager : Node
 
     private string GetMaterialName(string materialName)
     {
-        MonsterMaterial monsterMaterial = MonsterHunterIdle.MonsterManager.Materials.Find(material => material.Name == materialName);
-        return monsterMaterial.Name;
+        Material material = MonsterHunterIdle.FindMaterial(materialName);
+        return material.Name;
     }
 
     // Data methods
@@ -633,8 +645,8 @@ public partial class EquipmentManager : Node
 
     public Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
-        WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
-        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
+        WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
+        WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
         int grade = weaponData["Grade"].As<int>();
         int subGrade = weaponData["SubGrade"].As<int>();
 
@@ -667,15 +679,15 @@ public partial class EquipmentManager : Node
 
     public Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
     {
-        ArmorCategory category = (ArmorCategory) armorData["Category"].As<int>();
-        ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
+        ArmorCategory category = (ArmorCategory)armorData["Category"].As<int>();
+        ArmorSet set = (ArmorSet)armorData["Set"].As<int>();
         int grade = armorData["Grade"].As<int>();
         int subGrade = armorData["SubGrade"].As<int>();
 
         Armor armorPiece = GetArmor(category, set, grade, subGrade);
         return armorPiece;
     }
-    
+
     /// <see cref="GameManager.DeleteGame"/>
     public void DeleteData()
     {

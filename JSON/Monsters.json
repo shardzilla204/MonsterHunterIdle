@@ -5,31 +5,118 @@
          "Name": "Great Jagras",
          "Description": "",
          "Health": 500,
-         "Elements": null,
-         "AbnormalStats": null,
-         "ElementalWeaknesses": [ "Fire" ],
-         "AbnormalStatWeaknesses": [ "Poison", "Sleep", "BlastBlight" ],
+         "Level": 1,
+         "Specials": null,
+         "SpecialWeaknesses": [ "Fire", "Poison", "Sleep", "BlastBlight" ],
          "Locales": [ "Forest", "Desert", "Swamp" ]
       },
       {
          "Name": "Kulu-Ya-Ku",
          "Description": "",
          "Health": 450,
-         "Elements": null,
-         "AbnormalStats": null,
-         "ElementalWeaknesses": [ "Water" ],
-         "AbnormalStatWeaknesses": null,
+         "Level": 1,
+         "Specials": null,
+         "SpecialWeaknesses": [ "Water" ],
          "Locales": [ "Forest", "Desert", "Swamp" ]
       },
       {
          "Name": "Pukei-Pukei",
          "Description": "",
          "Health": 450,
-         "Elements": null,
-         "AbnormalStats": [ "Poison" ],
-         "ElementalWeaknesses": [ "Thunder" ],
-         "AbnormalStatWeaknesses": [ "Sleep" ],
+         "Level": 1,
+         "Specials": [ "Poison" ],
+         "SpecialWeaknesses": [ "Thunder", "Sleep" ],
          "Locales": [ "Forest", "Desert", "Swamp" ]
+      },
+      {
+         "Name": "Barroth",
+         "Description": "",
+         "Health": 450,
+         "Level": 1,
+         "Specials": [ "Water" ],
+         "SpecialWeaknesses": [ "Fire", "Poison", "BlastBlight" ],
+         "Locales": [ "Desert", "Swamp" ]
+      },
+      {
+         "Name": "Great Girros",
+         "Description": "",
+         "Health": 450,
+         "Level": 2,
+         "Specials": [ "Paralysis" ],
+         "SpecialWeaknesses": [ "Water", "Sleep" ],
+         "Locales": [ "Forest", "Swamp" ]
+      },
+      {
+         "Name": "Tobi-Kadachi",
+         "Description": "",
+         "Health": 450,
+         "Level": 2,
+         "Specials": [ "Thunder" ],
+         "SpecialWeaknesses": [ "Water", "Poison" ],
+         "Locales": [ "Forest", "Swamp" ]
+      },
+      {
+         "Name": "Paolumu",
+         "Description": "",
+         "Health": 450,
+         "Level": 3,
+         "Specials": null,
+         "SpecialWeaknesses": [ "Fire", "BlastBlight" ],
+         "Locales": [ "Desert", "Swamp" ]
+      },
+      {
+         "Name": "Jyuratodus",
+         "Description": "",
+         "Health": 450,
+         "Level": 3,
+         "Specials": [ "Water" ],
+         "SpecialWeaknesses": [ "Thunder" ],
+         "Locales": [ "Swamp" ]
+      },
+      {
+         "Name": "Anjanath",
+         "Description": "",
+         "Health": 450,
+         "Level": 4,
+         "Specials": [ "Fire" ],
+         "SpecialWeaknesses": [ "Water" ],
+         "Locales": [ "Forest", "Desert" ]
+      },
+      {
+         "Name": "Rathian",
+         "Description": "",
+         "Health": 450,
+         "Level": 4,
+         "Specials": [ "Fire", "Poison" ],
+         "SpecialWeaknesses": [ "Thunder", "Dragon" ],
+         "Locales": [ "Forest", "Desert" ]
+      },
+      {
+         "Name": "Legiana",
+         "Description": "",
+         "Health": 450,
+         "Level": 5,
+         "Specials": [ "Ice" ],
+         "SpecialWeaknesses": [ "Fire", "Poison" ],
+         "Locales": [ "Swamp" ]
+      },
+      {
+         "Name": "Diablos",
+         "Description": "",
+         "Health": 450,
+         "Level": 5,
+         "Specials": null,
+         "SpecialWeaknesses": [ "Ice", "Dragon", "Paralysis" ],
+         "Locales": [ "Desert" ]
+      },
+      {
+         "Name": "Rathalos",
+         "Description": "",
+         "Health": 450,
+         "Level": 5,
+         "Specials": [ "Fire", "Poison" ],
+         "SpecialWeaknesses": [ "Thunder", "Dragon" ],
+         "Locales": [ "Forest" ]
       }
    ]
 }

@@ -18,7 +18,10 @@ public enum MaterialColor
    DeepOrange,
    Orange,
    Purple,
-   Tan
+   Tan,
+   Teal,
+   Pink,
+   Brown
 }
 
 public enum MaterialType
@@ -27,7 +30,7 @@ public enum MaterialType
    Tail,
    Shell,
    Hide,
-   Bug, 
+   Bug,
    Plant,
    Claw,
    Skull,
@@ -38,7 +41,8 @@ public enum MaterialType
    Gem,
    MonsterBone,
    Sac,
-   Ore
+   Ore,
+   Plate
 }
 
 public partial class Material : Node

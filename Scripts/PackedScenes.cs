@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -40,6 +41,9 @@ public partial class PackedScenes : Node
 
    [Export]
    private PackedScene _sellMaterialLog;
+
+   [Export]
+   private PackedScene _craftingFilter;
 
    [ExportGroup("Interfaces")]
    [Export]
@@ -164,6 +168,16 @@ public partial class PackedScenes : Node
       MaterialLog materialLog = _materialLog.Instantiate<MaterialLog>();
       materialLog.SetMaterial(material, amount);
       return materialLog;
+   }
+
+   public CraftingFilter GetCraftingFilter(Enum category)
+   {
+      string fileName = category.ToString();
+
+      CraftingFilter craftingFilter = _craftingFilter.Instantiate<CraftingFilter>();
+      craftingFilter.SetTexture(fileName);
+      craftingFilter.Category = category;
+      return craftingFilter;
    }
 
    // * Interface scenes

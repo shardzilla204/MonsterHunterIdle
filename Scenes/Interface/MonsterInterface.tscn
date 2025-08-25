@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnf8la1b7jt70"]
+[gd_scene load_steps=13 format=3 uid="uid://bnf8la1b7jt70"]
 
 [ext_resource type="Theme" uid="uid://ctqst0r8a6va2" path="res://MonsterTheme.tres" id="1_2843m"]
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_hj0r3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dukvewcoakr7f" path="res://Assets/Images/Icon/YellowStarIcon.png" id="7_uebbl"]
 [ext_resource type="Texture2D" uid="uid://kriyx6w1cdk1" path="res://Assets/Images/Icon/PurpleStarIcon.png" id="8_bdjqy"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="10_ia0wr"]
+[ext_resource type="Texture2D" uid="uid://bvs3ib8rt8umn" path="res://Assets/Images/Icon/Leave.png" id="11_2843m"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="11_i4so3"]
 [ext_resource type="Texture2D" uid="uid://b77ct3d6g38x" path="res://Assets/Images/Monster/Render/PukeiPukeiRender.png" id="12_s37av"]
 
@@ -185,17 +186,23 @@ patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 15
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Spacing/ExitButton/NinePatchRect"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Spacing/ExitButton/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "X"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Spacing/ExitButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("11_2843m")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

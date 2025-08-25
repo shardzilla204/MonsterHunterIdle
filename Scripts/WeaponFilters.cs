@@ -1,31 +1,21 @@
-using Godot;
-using Godot.Collections;
+using System;
 
 namespace MonsterHunterIdle;
 
-public partial class WeaponFilters : VBoxContainer
+public partial class WeaponFilters : CraftingFilters
 {
-    [Signal]
-    public delegate void FilterCheckedEventHandler(Dictionary<string, bool> filters);
-
-    [Export]
-    private CheckBox _swordAndShieldCheckBox;
-
-    private Dictionary<string, bool> _filters = new Dictionary<string, bool>()
+    public override void AddFilters()
     {
-        { "SwordAndShield", false}
-    };
+        int maxEnumCount = Enum.GetNames<WeaponCategory>().Length - 1;
+        for (int enumIndex = 0; enumIndex < maxEnumCount; enumIndex++)
+        {
+            // Add filter check box
+            WeaponCategory category = (WeaponCategory) enumIndex;
+            CraftingFilter craftingFilter = MonsterHunterIdle.PackedScenes.GetCraftingFilter(category);
+            craftingFilter.FilterToggled += (isToggled) => OnFilterToggled(isToggled, category);
+            FilterContainer.AddChild(craftingFilter);
 
-    public override void _Ready()
-    {
-        _swordAndShieldCheckBox.Toggled += (isToggled) => OnCheckBoxToggled(isToggled, WeaponCategory.SwordAndShield);
-    }
-
-    private void OnCheckBoxToggled(bool isToggled, WeaponCategory category)
-    {
-        string categoryString = category.ToString();
-        _filters[categoryString] = isToggled;
-        
-        EmitSignal(SignalName.FilterChecked, _filters);
+            AddCraftingKey(category);
+        }
     }
 }

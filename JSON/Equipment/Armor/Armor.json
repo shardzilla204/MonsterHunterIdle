@@ -1,0 +1,19 @@
+{
+    "Armor":
+    {
+        "Leather": [ "Headgear", "Mail", "Gloves", "Belt", "Trousers" ],
+        "Jagras": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Kulu": [ "Headpiece", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Pukei": [ "Hood", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Barroth": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Girros": [ "Mask", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Kadachi": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Paolumu": [ "Hat", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Jyuratodus": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Anjanath": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Rathian": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Legiana": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Diablos": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ],
+        "Rathalos": [ "Helm", "Mail", "Vambraces", "Coil", "Greaves" ]
+    }
+}
