@@ -17,6 +17,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="Godot/app_userdata/MonsterHunterIdle"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://Assets/Images/UserInterface/MonsterHunterLogo.png"
+<<<<<<<HEADconfig/version="0.0.9"
 
 [autoload]
 
