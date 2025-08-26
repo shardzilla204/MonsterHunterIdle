@@ -11,7 +11,15 @@ config_version=5
 [application]
 
 config/name="Monster Hunter Idle"
+<<<<<<< HEAD
 config/version="0.0.9"
+=======
+<<<<<<< HEAD
+config/version="0.0.9"
+=======
+config/version="0.0.8"
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
+>>>>>>> 31299f0271d66429e1b5dc3de54d76d6fabf23ea
 run/main_scene="res://Scenes/Interface/GameInterface.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Godot/app_userdata/MonsterHunterIdle"
