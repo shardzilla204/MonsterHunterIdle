@@ -1,3 +1,4 @@
+using System.Reflection;
 using Godot;
 using Godot.Collections;
 
@@ -53,7 +54,10 @@ public partial class OfflineProgress : Node
 
         if (gameFile.GetLength() == 0)
         {
-            GD.PrintErr("Offline File Is Empty");
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Offline File Is Empty";
+            PrintRich.PrintError(className, message);
+
             return;
         }
 

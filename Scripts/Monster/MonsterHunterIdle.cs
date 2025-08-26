@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using GC = Godot.Collections;
 
@@ -45,6 +46,7 @@ public enum StatType
 		Long Sword
 
 	TODO: Have filter support multiple groups
+	TODO: Fix monster level not being filtered with hunter rank
 		
 	// TODO: Add equipment status element
 	// TODO: Just have two names and add on the Roman numeral
@@ -77,8 +79,8 @@ public partial class MonsterHunterIdle : Node
 	[Export]
 	private InterfaceType _startingInterface;
 
-	[Export(PropertyHint.Range, "1, 6, 0.1")]
-	private float _offlineThresholdMult = 2f;
+	[Export(PropertyHint.Range, "1, 50, 0.1")]
+	private float _offlineThresholdMult = 25f;
 
 	public static HunterManager HunterManager;
 	public static PalicoManager PalicoManager;
@@ -224,16 +226,13 @@ public partial class MonsterHunterIdle : Node
 			GC.Dictionary<string, Variant> dictionaries = (GC.Dictionary<string, Variant>)json.Data;
 			return dictionaries;
 		}
-		catch (Exception exception)
+		catch
 		{
-			if (exception.Message.Trim() != "")
-			{
-				GD.PrintErr(exception.Message);
-			}
-			else
-			{
-				GD.PrintErr(exception);
-			}
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+			string message = $"Couldn't Parse File - {fileName}";
+			string result = "Returning Default/Null";
+			PrintRich.PrintError(className, message, result);
+
 			return default;
 		}
 	}
@@ -250,7 +249,15 @@ public partial class MonsterHunterIdle : Node
 			material = MonsterManager.Materials.Find(material => material.Name == materialName);
 		}
 
-		if (material == null) GD.PrintErr("Couldn't Find Material. Returning Null");
+		if (material == null)
+		{
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+			string message = $"Couldn't Find Material - {materialName}";
+			string result = "Returning Null";
+			PrintRich.PrintError(className, message, result);
+			
+			return null;
+		}
 
 		return material;
 	}

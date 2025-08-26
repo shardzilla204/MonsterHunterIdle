@@ -13,22 +13,32 @@ public partial class ItemBox : Node
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Iron Ore" },
-         { "Amount", 100 }
+         { "Amount", 500 }
       },
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Machalite Ore" },
-         { "Amount", 100 }
+         { "Amount", 500 }
       },
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Dragonite Ore" },
-         { "Amount", 100 }
+         { "Amount", 500 }
+      },
+      new GC.Dictionary<string, Variant>()
+      {
+         { "Name", "Earth Crystal" },
+         { "Amount", 500 }
+      },
+      new GC.Dictionary<string, Variant>()
+      {
+         { "Name", "Godbug" },
+         { "Amount", 500 }
       },
       new GC.Dictionary<string, Variant>()
       {
          { "Name", "Sharp Claw" },
-         { "Amount", 100 }
+         { "Amount", 500 }
       },
       new GC.Dictionary<string, Variant>()
       {
@@ -148,6 +158,6 @@ public partial class ItemBox : Node
       Materials.Clear();
 
       // ? Comment in for testing
-      // AddStartingMaterials();
+      AddStartingMaterials();
    }
 }

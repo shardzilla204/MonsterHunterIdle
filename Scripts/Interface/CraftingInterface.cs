@@ -3,6 +3,7 @@ using GC = Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace MonsterHunterIdle;
 
@@ -145,11 +146,9 @@ public partial class CraftingInterface : Container
 			if (isGroupFilter)
 			{
 				// Filter through the current equipment if there is nothing filter through all the equipment
-				string targetCategoryString = groupCategory.ToString();
 				if (filteredEquipment.Count > 0)
 				{
 					// * Current filtered equipment
-
 					List<Equipment> groupEquipment = GetGroupEquipment(filteredEquipment, groupCategory);
 					filteredGroupEquipment.AddRange(groupEquipment);
 					continue;
@@ -186,7 +185,6 @@ public partial class CraftingInterface : Container
 		if (filteredGroupEquipment.Count > 0)
 		{
 			ShowEquipment(filteredGroupEquipment);
-
 		}
 		else
 		{
@@ -196,25 +194,25 @@ public partial class CraftingInterface : Container
 
 	private List<Equipment> GetGroupEquipment(List<Equipment> equipment, GroupCategory groupCategory)
 	{
-		string categoryString = groupCategory.ToString();
+		string groupString = groupCategory.ToString();
 		List<Equipment> groupEquipment = new List<Equipment>();
 		foreach (Equipment equipmentPiece in equipment)
 		{
 			if (equipmentPiece is Weapon weapon)
 			{
 				WeaponTree targetTree;
-				bool isSuccessful = Enum.TryParse(categoryString, out targetTree);
+				bool isSuccessful = Enum.TryParse(groupString, out targetTree);
 				if (!isSuccessful || weapon.Tree != targetTree) continue;
 
 				groupEquipment.Add(weapon);
 			}
 			else if (equipmentPiece is Armor armor)
 			{
-				string[] categorySubStrings = MonsterHunterIdle.AddSpacing(categoryString).Split(" ");
-				foreach (string categorySubString in categorySubStrings)
+				string[] groupSubStrings = MonsterHunterIdle.AddSpacing(groupString).Split(" ");
+				foreach (string groupSubString in groupSubStrings)
 				{
 					ArmorSet targetSet;
-					bool isSuccessful = Enum.TryParse(categorySubString, out targetSet);
+					bool isSuccessful = Enum.TryParse(groupSubString, out targetSet);
 					if (!isSuccessful || armor.Set != targetSet) continue;
 
 					groupEquipment.Add(armor);
@@ -270,8 +268,9 @@ public partial class CraftingInterface : Container
 		}
 		else
 		{
-			string errorMessage = $"Couldn't Find {targetEquipment.Name}";
-			GD.PrintErr(errorMessage);
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+			string message = $"Couldn't Find {targetEquipment.Name}";
+            PrintRich.PrintError(className, message);
 
 			return;
 		}

@@ -3,6 +3,7 @@ using GC = Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace MonsterHunterIdle;
 
@@ -86,14 +87,13 @@ public partial class MonsterManager : Node
 		}
 	}
 
-	public List<Monster> GetLocaleMonsters(LocaleType localeType)
+	public List<Monster> GetLocaleMonsters(LocaleType targetLocale)
 	{
 		List<Monster> localeMonsters = new List<Monster>();
 		foreach (Monster monster in Monsters)
 		{
-			LocaleType? locale = monster.Locales?.Find(locale => locale == localeType);
-
-			if (locale is null) continue;
+			bool isInLocale = monster.Locales.Contains(targetLocale);
+			if (!isInLocale) continue;
 
 			localeMonsters.Add(monster);
 		}
@@ -109,6 +109,11 @@ public partial class MonsterManager : Node
 		{
 			int monsterID = RNG.RandiRange(0, localeMonsters.Count - 1);
 			Monster monster = localeMonsters[monsterID];
+			while (monster.Level > GetMonsterLevelFromHunterRank())
+			{
+				monsterID = RNG.RandiRange(0, localeMonsters.Count - 1);
+				monster = localeMonsters[monsterID];
+			}
 
 			Monster monsterClone = new Monster();
 			int monsterlevel = GetMonsterLevel();
@@ -116,10 +121,12 @@ public partial class MonsterManager : Node
 
 			return monsterClone;
 		}
-		catch (Exception)
+		catch
 		{
-			string errorMessage = $"Locale Monsters Count: {localeMonsters.Count}";
-			PrintRich.PrintLine(TextColor.Red, errorMessage);
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Index Out Of Range - Locale Monsters Count: {localeMonsters.Count}";
+            string result = $"Returning Null";
+            PrintRich.PrintError(className, message, result);
 
 			return null;
 		}
@@ -174,6 +181,20 @@ public partial class MonsterManager : Node
 		< 75 => FindLevels(9),
 		< 100 => FindLevels(10),
 		_ => FindLevels(2)
+	};
+
+	private int GetMonsterLevelFromHunterRank() => MonsterHunterIdle.HunterManager.Hunter.Rank switch
+	{
+		< 5 => 2,
+		< 10 => 3,
+		< 15 => 4,
+		< 20 => 5,
+		< 25 => 6,
+		< 35 => 7,
+		< 50 => 8,
+		< 75 => 9,
+		< 100 => 10,
+		_ => 2
 	};
 
 	// Finds and returns a list that has the current level and levels below 

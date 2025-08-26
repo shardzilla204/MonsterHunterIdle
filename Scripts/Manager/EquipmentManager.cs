@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Godot;
 using GC = Godot.Collections;
 
@@ -43,30 +45,33 @@ public partial class EquipmentManager : Node
         if (directory != null)
         {
             directory.ListDirBegin();
-            string fileName = directory.GetNext();
-            while (fileName != "")
+            string elementName = directory.GetNext();
+            while (elementName != "")
             {
                 if (directory.CurrentIsDir())
                 {
-                    fileName = directory.GetNext();
+                    elementName = directory.GetNext();
                     continue;
                 }
 
-                bool hasPassed = AddWeapons(fileName.GetBaseName());
+                bool hasPassed = AddWeapons(elementName.GetBaseName());
                 if (!hasPassed)
                 {
-                    string errorMessage = $"Couldn't Add Weapon Using The Path: {filePath}";
-                    GD.PrintErr(errorMessage);
+                    string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                    string message = $"Couldn't Add Weapon Using The Path - {filePath}";
+                    PrintRich.PrintError(className, message);
+
                     return;
                 }
 
-                fileName = directory.GetNext();
+                elementName = directory.GetNext();
             }
         }
         else
         {
-            string errorMessage = $"Couldn't Access Using The Path: {filePath}";
-            GD.PrintErr(errorMessage);
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Couldn't Access Using The Path: {filePath}";
+            PrintRich.PrintError(className, message);
         }
     }
 
@@ -94,12 +99,11 @@ public partial class EquipmentManager : Node
 
                 Weapons.Add(weapon);
             }
-            catch (Exception exception)
+            catch
             {
-                string errorMessage = exception.ToString();
-                if (exception.Message.Trim() != "") errorMessage = exception.Message;
-
-                GD.PrintErr(errorMessage);
+                string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string message = $"";
+                PrintRich.PrintError(className, message);
 
                 return false;
             }
@@ -241,8 +245,10 @@ public partial class EquipmentManager : Node
             return armor;
         }
 
-        string errorMessage = "Couldn't Find Equipment Type. Returning Null";
-        GD.PrintErr(errorMessage);
+        string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+        string message = $"Couldn't Find Equipment Type";
+        string result = $"Returning Null";
+        PrintRich.PrintError(className, message, result);
 
         return null;
     }
@@ -264,7 +270,8 @@ public partial class EquipmentManager : Node
         };
 
         int maxSubGrade = 4;
-        if (subGrade > maxSubGrade && grade < maxSubGrade)
+        int maxGrade = 9;
+        if (subGrade > maxSubGrade && grade < maxGrade)
         {
             grade++;
             subGrade = 0;
@@ -279,7 +286,8 @@ public partial class EquipmentManager : Node
         equipment.SubGrade++;
 
         int maxSubGrade = 4;
-        if (equipment.SubGrade > maxSubGrade && equipment.Grade < maxSubGrade)
+        int maxGrade = 9;
+        if (equipment.SubGrade > maxSubGrade && equipment.Grade < maxGrade)
         {
             equipment.Grade++;
             equipment.SubGrade = 0;
@@ -301,8 +309,9 @@ public partial class EquipmentManager : Node
         }
         else
         {
-            string errorMessage = $"Couldn't Upgrade {equipment.Name}";
-            GD.PrintErr(errorMessage);
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Couldn't Upgrade {equipment.Name}";
+            PrintRich.PrintError(className, message);
         }
     }
 
@@ -343,7 +352,7 @@ public partial class EquipmentManager : Node
             float subGradeIncrease = dictionary["SubGradeIncrease"].As<float>();
 
             // Go through the grades first (Coarse tuning)
-            int maxSubGrade = 5;
+            int maxSubGrade = 4;
             for (int grade = 0; grade < weapon.Grade; grade++)
             {
                 for (int subGrade = 0; subGrade < maxSubGrade; subGrade++)
@@ -436,9 +445,10 @@ public partial class EquipmentManager : Node
         }
         catch
         {
-            string errorMessage = $"Ingredients For Recipe Don't Exist";
-
-            GD.PrintErr(errorMessage);
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Ingredients For Recipe Don't Exist";
+            string result = "Returning Null";
+            PrintRich.PrintError(className, message, result);
 
             return null;
         }
@@ -447,11 +457,12 @@ public partial class EquipmentManager : Node
     private List<GC.Dictionary<string, Variant>> GetIngredientDictionaries(Equipment equipment, bool getNextRecipe, List<Variant> gradeDictionaries)
     {
         int maxSubGrade = 4;
+        int maxGrade = 9;
         int grade = equipment.Grade;
         int subGrade = getNextRecipe ? equipment.SubGrade + 1 : equipment.SubGrade;
 
         // Move onto the next grade
-        if (subGrade > maxSubGrade && grade < maxSubGrade)
+        if (subGrade > maxSubGrade && grade < maxGrade)
         {
             grade++;
             subGrade = 0;
@@ -484,9 +495,13 @@ public partial class EquipmentManager : Node
         foreach (GC.Dictionary<string, Variant> ingredientDictionary in ingredientDictionaries)
         {
             int amount = ingredientDictionary["Amount"].As<int>();
+            string ingredientName = GetIngredientName(ingredientDictionary, craftingDictionary, equipmentType);
+
+            if (string.IsNullOrEmpty(ingredientName)) continue;
+
             GC.Dictionary<string, Variant> dictionary = new GC.Dictionary<string, Variant>()
             {
-                { "Name", GetIngredientName(ingredientDictionary, craftingDictionary, equipmentType) },
+                { "Name", ingredientName },
                 { "Amount", amount }
             };
             recipe.Add(dictionary);
@@ -494,7 +509,7 @@ public partial class EquipmentManager : Node
         return recipe;
     }
 
-    private string GetIngredientName(GC.Dictionary<string, Variant> ingredientDictionary, GC.Dictionary<string, Variant> craftingDictionary, EquipmentType equipmentType)
+    private string GetIngredientName(GC.Dictionary<string, Variant> ingredientDictionary, GC.Dictionary<string, Variant> craftingDictionary, EquipmentType equipmentType, [CallerLineNumber] int lineNumber = 0)
     {
         string key = ingredientDictionary["Key"].As<string>();
         if (key == "EquipmentMaterial")
@@ -509,21 +524,34 @@ public partial class EquipmentManager : Node
             return equipmentMaterial.Name;
         }
 
-        string craftingKey = craftingDictionary[key].As<string>();
-        string equipmentTypeString = $"{equipmentType}Material";
-
-        bool hasEquipmentTypeString = craftingDictionary.Keys.Contains(equipmentTypeString);
-        string materialTypeName = hasEquipmentTypeString ? craftingDictionary[equipmentTypeString].As<string>() : "";
-
-        string ingredientName = key switch
+        try
         {
-            "LocaleMaterial" => GetLocaleMaterialName(ingredientDictionary, craftingKey),
-            "SubLocaleMaterial" => GetSubLocaleMaterialName(craftingKey),
-            "Monster" => GetMonsterMaterialName(ingredientDictionary, materialTypeName, craftingKey),
-            _ => GetMaterialName(craftingKey),
-        };
+            string craftingKey = craftingDictionary[key].As<string>();
+            string equipmentTypeString = $"{equipmentType}Material";
 
-        return ingredientName;
+            bool hasEquipmentTypeString = craftingDictionary.Keys.Contains(equipmentTypeString);
+            string materialTypeName = hasEquipmentTypeString ? craftingDictionary[equipmentTypeString].As<string>() : "";
+
+            string ingredientName = key switch
+            {
+                "LocaleMaterial" => GetLocaleMaterialName(ingredientDictionary, craftingKey),
+                "SubLocaleMaterial" => GetSubLocaleMaterialName(craftingKey),
+                "Monster" => GetMonsterMaterialName(ingredientDictionary, materialTypeName, craftingKey),
+                _ => GetMaterialName(craftingKey),
+            };
+
+            return ingredientName;
+
+        }
+        catch
+        {
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Ingredient Doesn't Exist - {key}";
+            string result = $"Returning Empty String";
+            PrintRich.PrintError(className, message, result);
+
+            return "";
+        }
     }
 
     // Convert the key + rarity into the desired ingredient | e.g. (Locale Material = Swamp) + (Rarity = 2) = Machalite Ore 
@@ -645,8 +673,8 @@ public partial class EquipmentManager : Node
 
     public Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
-        WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
-        WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
+        WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
+        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
         int grade = weaponData["Grade"].As<int>();
         int subGrade = weaponData["SubGrade"].As<int>();
 
@@ -679,8 +707,8 @@ public partial class EquipmentManager : Node
 
     public Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
     {
-        ArmorCategory category = (ArmorCategory)armorData["Category"].As<int>();
-        ArmorSet set = (ArmorSet)armorData["Set"].As<int>();
+        ArmorCategory category = (ArmorCategory) armorData["Category"].As<int>();
+        ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
         int grade = armorData["Grade"].As<int>();
         int subGrade = armorData["SubGrade"].As<int>();
 

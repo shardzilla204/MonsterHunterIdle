@@ -28,7 +28,7 @@ public partial class Signals : Node
 	public delegate void MonsterSlayedEventHandler(Monster monster);
 
 	[Signal]
-	public delegate void MonsterLeftEventHandler(Monster monster);
+	public delegate void MonsterLeftEventHandler();
 
 	[Signal]
 	public delegate void MonsterEncounterFinishedEventHandler();

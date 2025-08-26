@@ -54,7 +54,7 @@ public partial class Monster : Node
       Specials.AddRange(monster.Specials);
       SpecialWeaknesses.AddRange(monster.SpecialWeaknesses);
 
-      Level = level;
+      Level = Math.Max(monster.Level, level);
       Locales.AddRange(monster.Locales);
    }
 }

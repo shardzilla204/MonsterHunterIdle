@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 using GC = Godot.Collections;
 
@@ -62,6 +63,13 @@ public partial class PrintRich : Node
 
 		string loadSuccessMessage = $"{fileName} Successfully Loaded";
 		PrintLine(TextColor.Green, loadSuccessMessage);
+	}
+
+	public static void PrintError(string className, string message, string result = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0)
+	{
+		result = string.IsNullOrEmpty(result) ? "" : $"| {result}";
+		string errorMessage = $"{className}.cs | {memberName} (Line {lineNumber}) | {message} {result}";
+		GD.PrintErr(errorMessage);
 	}
 
 	public static void PrintLocales(TextColor textColor)

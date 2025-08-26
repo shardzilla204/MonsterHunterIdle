@@ -22,11 +22,13 @@ public partial class MonsterHealthBar : NinePatchRect
 	public override void _ExitTree()
 	{
 		MonsterHunterIdle.Signals.MonsterDamaged -= DamageMonster;
+		MonsterHunterIdle.Signals.MonsterEncounterFinished -= QueueFree;
 	}
 
     public override void _EnterTree()
     {
 		MonsterHunterIdle.Signals.MonsterDamaged += DamageMonster;
+		MonsterHunterIdle.Signals.MonsterEncounterFinished += QueueFree;
     }
 
 	public override void _Ready()

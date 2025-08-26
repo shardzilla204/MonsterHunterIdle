@@ -4,22 +4,34 @@
 [ext_resource type="Script" uid="uid://ci1ce3e8s3j1m" path="res://Scripts/CollectionLog.cs" id="2_uhfum"]
 [ext_resource type="Texture2D" uid="uid://wt0dg0rsb03u" path="res://Assets/Images/Material/BugGrey.png" id="3_7y3pg"]
 
-[node name="CollectionLog" type="NinePatchRect" node_paths=PackedStringArray("_materialName", "_materialIcon")]
+[node name="CollectionLog" type="Control" node_paths=PackedStringArray("_ninePatchRect", "_materialName", "_materialIcon")]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_uhfum")
+_ninePatchRect = NodePath("NinePatchRect")
+_materialName = NodePath("NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MaterialName")
+_materialIcon = NodePath("NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MaterialIcon")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color(0.1, 0.1, 0.1, 1)
 custom_minimum_size = Vector2(250, 75)
-offset_right = 250.0
-offset_bottom = 75.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 texture = ExtResource("1_mlu12")
-patch_margin_left = 15
+patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
-script = ExtResource("2_uhfum")
-_materialName = NodePath("MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MaterialName")
-_materialIcon = NodePath("MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MaterialIcon")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +43,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer"]
 self_modulate = Color(0.15, 0.15, 0.15, 1)
 layout_mode = 2
 texture = ExtResource("1_mlu12")
@@ -40,22 +52,22 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect"]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/MarginContainer/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/NinePatchRect/MarginContainer"]
 layout_mode = 2
 
-[node name="MaterialName" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="MaterialName" type="Label" parent="NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -63,13 +75,13 @@ theme_override_font_sizes/font_size = 20
 text = "Testing"
 vertical_alignment = 1
 
-[node name="MaterialIcon" type="TextureRect" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="MaterialIcon" type="TextureRect" parent="NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_7y3pg")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 30

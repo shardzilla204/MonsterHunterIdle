@@ -138,9 +138,8 @@ public partial class ItemBoxInterface : Container
 
 	private void ClearDisplay()
 	{
-		for (int i = 1; i < _parentContainer.GetChildCount(); i++)
+		foreach (Container childContainer in _parentContainer.GetChildren())
 		{
-			Container childContainer = _parentContainer.GetChild<Container>(i);
 			childContainer.QueueFree();
 		}
 		

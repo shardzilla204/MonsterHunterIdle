@@ -1,3 +1,4 @@
+using System.Reflection;
 using Godot;
 using GC = Godot.Collections;
 
@@ -192,8 +193,10 @@ public partial class HunterManager : Node
 
       if (desiredWeapon == null)
       {
-         string errorMessage = $"Couldn't Find Desired Weapon Of {targetWeapon.Category} {targetWeapon.Tree}. Returning Null";
-         GD.PrintErr(errorMessage);
+         string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+         string message = $"Couldn't Find Desired Weapon Of {targetWeapon.Category} {targetWeapon.Tree}";
+         string result = $"Returning Null";
+         PrintRich.PrintError(className, message, result);
       }
 
       return desiredWeapon;
@@ -205,8 +208,10 @@ public partial class HunterManager : Node
 
       if (desiredArmor == null)
       {
-         string errorMessage = $"Couldn't Find Desired Equipment Of {targetArmor.Category} {targetArmor.Set}. Returning Null";
-         GD.PrintErr(errorMessage);
+         string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+         string message = $"Couldn't Find Desired Armor Of {targetArmor.Category} {targetArmor.Set}";
+         string result = $"Returning Null";
+         PrintRich.PrintError(className, message, result);
       }
 
       return desiredArmor;

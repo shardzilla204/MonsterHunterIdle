@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using GC = Godot.Collections;
 
@@ -58,12 +59,12 @@ public partial class PalicoEquipmentManager : Node
 
                 Weapons.Add(palicoWeapon);
             }
-            catch (Exception exception)
+            catch
             {
-                string errorMessage = exception.ToString();
-                if (exception.Message.Trim() != "") errorMessage = exception.Message;
-
-                GD.PrintErr(errorMessage);
+                string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string message = $"Couldn't Find Weapons";
+                string result = "Returning False";
+                PrintRich.PrintError(className, message, result);
 
                 return false;
             }

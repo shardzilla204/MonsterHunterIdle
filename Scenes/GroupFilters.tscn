@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqicmkaih1461"]
 
-[ext_resource type="Script" uid="uid://jl48uq0n5f0p" path="res://Scenes/Interface/GroupFilters.cs" id="1_cfka7"]
+[ext_resource type="Script" uid="uid://jl48uq0n5f0p" path="res://Scripts/GroupFilters.cs" id="1_cfka7"]
 
 [node name="GroupFilters" type="VBoxContainer" node_paths=PackedStringArray("_filterContainer")]
 theme_override_constants/separation = 5

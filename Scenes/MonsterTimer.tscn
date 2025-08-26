@@ -41,4 +41,6 @@ texture_progress = ExtResource("3_u8qqk")
 tint_progress = Color(1.82897e-06, 0.570628, 0.730392, 1)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 10.0
+one_shot = true
+ignore_time_scale = true

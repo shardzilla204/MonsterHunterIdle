@@ -1,6 +1,7 @@
 using Godot;
 using GC = Godot.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace MonsterHunterIdle;
 
@@ -63,7 +64,11 @@ public partial class GameManager : Node
 		}
 		catch (KeyNotFoundException)
 		{
-			GD.PrintErr("Couldn't set data. Saving game");
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Couldn't Load Data";
+            string result = $"Saving Game";
+            PrintRich.PrintError(className, message, result);
+			
 			SaveGame();
 		}
 	}
@@ -92,7 +97,10 @@ public partial class GameManager : Node
 
 		if (gameFile.GetLength() == 0)
 		{
-			GD.PrintErr("Game File Is Empty");
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Game File Is Empty";
+            PrintRich.PrintError(className, message);
+
 			return;
 		}
 

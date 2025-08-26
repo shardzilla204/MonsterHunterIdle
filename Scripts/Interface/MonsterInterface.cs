@@ -29,6 +29,7 @@ public partial class MonsterInterface : NinePatchRect
 	private MonsterTimer _monsterTimer;
 
 	private Monster _monster;
+	private Vector2 _renderPosition;
 
 	public override void _ExitTree()
 	{
@@ -49,6 +50,8 @@ public partial class MonsterInterface : NinePatchRect
 		_attackButton.Pressed += OnAttackedMonster;
 		_exitButton.Pressed += OnEscapedMonster;
 
+		_renderPosition = _monsterRender.Position;
+
 		SetMonster(null);
 	}
 
@@ -61,22 +64,30 @@ public partial class MonsterInterface : NinePatchRect
 		SetMonster(monster);
 	}
 
-	private void SetMonster(Monster monster)
+	private async void SetMonster(Monster monster, bool hasSlayed = false)
 	{
+		// For showing tweens | Encounter, Leave & Escape
+		if (!hasSlayed)
+		{
+			_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
+		}
+
 		_monster = monster;
 
 		_monsterName.Text = monster != null ? monster.Name : "";
 		_monsterIcon.Texture = monster != null ? MonsterHunterIdle.GetMonsterIcon(monster.Name) : null;
-		_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
+
+		_monsterRender.PivotOffset = _monsterRender.Size / 2;
+		_exitButton.Visible = monster != null;
+
 
 		if (monster != null)
 		{
+			Tween tweenEncounter = TweenEncounter();
+			await ToSignal(tweenEncounter, Tween.SignalName.Finished);
+
 			MonsterHealthBar monsterHealthBar = MonsterHunterIdle.PackedScenes.GetMonsterHealthBar(monster);
-			monsterHealthBar.Depleted += () =>
-			{
-				SlayedMonster();
-				monsterHealthBar.QueueFree();
-			};
+			monsterHealthBar.Depleted += SlayedMonster;
 			_monsterInformation.AddChild(monsterHealthBar);
 			_monsterTimer.Start();
 			_starContainer.Fill(monster);
@@ -89,7 +100,14 @@ public partial class MonsterInterface : NinePatchRect
 			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncounterFinished);
 		}
 
-		_exitButton.Visible = monster != null;
+		// For showing tween | Slayed
+		if (hasSlayed)
+		{
+			Tween tweenSlayed = TweenSlayed();
+			await ToSignal(tweenSlayed, Tween.SignalName.Finished);
+
+			_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
+		}
 	}
 
 	private void OnAttackedMonster()
@@ -118,15 +136,18 @@ public partial class MonsterInterface : NinePatchRect
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterSlayed, _monster);
 		MonsterHunterIdle.MonsterManager.Encounter.GetEncounterRewards(_monster);
 
-		SetMonster(null);
+		SetMonster(null, true);
 	}
 
-	private void OnMonsterLeft(Monster monster)
+	private async void OnMonsterLeft()
 	{
 		// Console message
-		string monsterMessage = PrintRich.GetMonsterMessage(monster);
+		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
 		string monsterLeftMessage = $"The {monsterMessage} Has Left The Locale";
 		PrintRich.PrintLine(TextColor.Orange, monsterLeftMessage);
+
+		Tween tweenLeave = TweenLeave();
+		await ToSignal(tweenLeave, Tween.SignalName.Finished);
 
 		SetMonster(null);
 	}
@@ -143,12 +164,15 @@ public partial class MonsterInterface : NinePatchRect
 		SetMonster(null);
 	}
 
-	private void OnEscapedMonster()
+	private async void OnEscapedMonster()
 	{
 		// Console message
 		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
 		string escapedMonsterMessage = $"You Escaped The {monsterMessage} Encounter";
 		PrintRich.PrintLine(TextColor.Orange, escapedMonsterMessage);
+
+		Tween tweenEscape = TweenEscape();
+		await ToSignal(tweenEscape, Tween.SignalName.Finished);
 
 		SetMonster(null);
 	}
@@ -184,12 +208,93 @@ public partial class MonsterInterface : NinePatchRect
 			.SetEase(Tween.EaseType.Out);
 		tween.Finished += damageLabel.QueueFree;
 
-		Vector2 offset = new Vector2(0, -50);
-		Vector2 targetPosition = damageLabel.Position + offset;
+		int offsetY = -50;
+		Vector2 targetPosition = damageLabel.Position + new Vector2(0, offsetY);
 		tween.TweenProperty(damageLabel, "position", targetPosition, duration);
 
 		Color transparent = damageLabel.SelfModulate;
 		transparent.A = 0;
 		tween.TweenProperty(damageLabel, "self_modulate", transparent, duration);
+	}
+
+	// No need to reset to original state as the original state is the target
+	private Tween TweenEncounter()
+	{
+		int offsetX = (int) Size.X;
+		Vector2 startPosition = _monsterRender.Position + new Vector2(offsetX, 0);
+		_monsterRender.Position = startPosition;
+
+		float duration = 0.5f;
+		Tween tween = CreateTween().SetParallel(true).SetTrans(Tween.TransitionType.Quad);
+		tween.TweenProperty(_monsterRender, "position", _renderPosition, duration);
+
+		return tween;
+	}
+
+	private Tween TweenLeave()
+	{
+		int offsetX = (int)-Size.X;
+		Vector2 targetPosition = _monsterRender.Position + new Vector2(offsetX, _monsterRender.Position.Y);
+
+		float duration = 0.5f;
+		Tween tween = CreateTween().SetParallel(true).SetTrans(Tween.TransitionType.Quad);
+		tween.TweenProperty(_monsterRender, "position", targetPosition, duration);
+		tween.Finished += () =>
+		{
+			// Reset all properties to original state
+			_monsterRender.Position = _renderPosition;
+		};
+		return tween;
+	}
+
+	private Tween TweenEscape()
+	{
+		Vector2 startScale = _monsterRender.Scale;
+
+		float scaleValue = 0.25f;
+		Vector2 targetScale = new Vector2(scaleValue, scaleValue);
+
+		Color transparent = Colors.White;
+		transparent.A = 0;
+
+		float duration = 0.5f;
+		Tween tween = CreateTween().SetParallel(true).SetTrans(Tween.TransitionType.Quad);
+		tween.TweenProperty(_monsterRender, "scale", targetScale, duration);
+		tween.TweenProperty(_monsterRender, "self_modulate", transparent, duration);
+		tween.Finished += () =>
+		{
+			// Reset all properties to original state
+			_monsterRender.Scale = startScale;
+			_monsterRender.SelfModulate = Colors.White;
+		};
+		return tween;
+	}
+
+	private Tween TweenSlayed()
+	{
+		float startRotation = _monsterRender.Rotation;
+
+		int offsetY = (int) Size.Y;
+		Vector2 targetPosition = _monsterRender.Position + new Vector2(_monsterRender.Position.X, offsetY);
+
+		float targetRotation = Mathf.DegToRad(-15);
+
+		Color transparent = Colors.White;
+		transparent.A = 0;
+
+		float duration = 1;
+		Tween tween = CreateTween().SetParallel(true);
+		tween.TweenProperty(_monsterRender, "position", targetPosition, duration);
+		tween.TweenProperty(_monsterRender, "rotation", targetRotation, duration / 2);
+		tween.TweenProperty(_monsterRender, "self_modulate", transparent, duration);
+		tween.Finished += () =>
+		{
+			// Reset all properties to original state
+			_monsterRender.Position = _renderPosition;
+			_monsterRender.Rotation = startRotation;
+			_monsterRender.SelfModulate = Colors.White;
+		};
+
+		return tween;
 	}
 }
