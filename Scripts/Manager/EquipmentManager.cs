@@ -673,8 +673,8 @@ public partial class EquipmentManager : Node
 
     public Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
-        WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
-        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
+        WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
+        WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
         int grade = weaponData["Grade"].As<int>();
         int subGrade = weaponData["SubGrade"].As<int>();
 
@@ -707,8 +707,8 @@ public partial class EquipmentManager : Node
 
     public Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
     {
-        ArmorCategory category = (ArmorCategory) armorData["Category"].As<int>();
-        ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
+        ArmorCategory category = (ArmorCategory)armorData["Category"].As<int>();
+        ArmorSet set = (ArmorSet)armorData["Set"].As<int>();
         int grade = armorData["Grade"].As<int>();
         int subGrade = armorData["SubGrade"].As<int>();
 
