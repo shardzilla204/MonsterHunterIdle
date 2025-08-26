@@ -54,6 +54,7 @@ public partial class EquipmentManager : Node
                     continue;
                 }
 
+<<<<<<< HEAD
                 bool hasPassed = AddWeapons(elementName.GetBaseName());
                 if (!hasPassed)
                 {
@@ -61,6 +62,13 @@ public partial class EquipmentManager : Node
                     string message = $"Couldn't Add Weapon Using The Path - {filePath}";
                     PrintRich.PrintError(className, message);
 
+=======
+                bool hasPassed = AddWeapons(fileName.GetBaseName());
+                if (!hasPassed)
+                {
+                    string errorMessage = $"Couldn't Add Weapon Using The Path: {filePath}";
+                    GD.PrintErr(errorMessage);
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
                     return;
                 }
 
@@ -445,10 +453,16 @@ public partial class EquipmentManager : Node
         }
         catch
         {
+<<<<<<< HEAD
             string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
             string message = $"Ingredients For Recipe Don't Exist";
             string result = "Returning Null";
             PrintRich.PrintError(className, message, result);
+=======
+            string errorMessage = $"Ingredients For Recipe Don't Exist";
+
+            GD.PrintErr(errorMessage);
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 
             return null;
         }
@@ -673,8 +687,8 @@ public partial class EquipmentManager : Node
 
     public Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
-        WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
-        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
+        WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
+        WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
         int grade = weaponData["Grade"].As<int>();
         int subGrade = weaponData["SubGrade"].As<int>();
 
@@ -707,8 +721,8 @@ public partial class EquipmentManager : Node
 
     public Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
     {
-        ArmorCategory category = (ArmorCategory) armorData["Category"].As<int>();
-        ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
+        ArmorCategory category = (ArmorCategory)armorData["Category"].As<int>();
+        ArmorSet set = (ArmorSet)armorData["Set"].As<int>();
         int grade = armorData["Grade"].As<int>();
         int subGrade = armorData["SubGrade"].As<int>();
 

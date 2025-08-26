@@ -97,7 +97,10 @@ public partial class CraftingInterface : Container
 		}
 
 		List<Equipment> filteredEquipment = new List<Equipment>();
+<<<<<<< HEAD
 		List<Equipment> filteredGroupEquipment = new List<Equipment>();
+=======
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 		foreach (string filterKey in filters.Keys)
 		{
 			List<Equipment> equipment = [.. MonsterHunterIdle.EquipmentManager.Weapons];
@@ -146,18 +149,31 @@ public partial class CraftingInterface : Container
 			if (isGroupFilter)
 			{
 				// Filter through the current equipment if there is nothing filter through all the equipment
+<<<<<<< HEAD
 				if (filteredEquipment.Count > 0)
 				{
 					// * Current filtered equipment
 					List<Equipment> groupEquipment = GetGroupEquipment(filteredEquipment, groupCategory);
 					filteredGroupEquipment.AddRange(groupEquipment);
+=======
+				List<Equipment> groupEquipment = new List<Equipment>();
+				string targetCategoryString = groupCategory.ToString();
+				if (filteredEquipment.Count > 0)
+				{
+					// * Current filtered equipment
+					filteredEquipment = [.. GetGroupEquipment(filteredEquipment, groupCategory)];
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 					continue;
 				}
 				else
 				{
 					// * All equipment
+<<<<<<< HEAD
 					List<Equipment> groupEquipment = GetGroupEquipment(equipment, groupCategory);
 					filteredGroupEquipment.AddRange(groupEquipment);
+=======
+					filteredEquipment = [.. GetGroupEquipment(equipment, groupCategory)];
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 					continue;
 				}
 			}
@@ -165,12 +181,15 @@ public partial class CraftingInterface : Container
 			// Subtract miscellaneous filters
 			if (filterKey.Contains("HasNotCrafted"))
 			{
+<<<<<<< HEAD
 				// Filter any equipment that has been filtered by group (tree/set)
 				if (filteredGroupEquipment.Count > 0)
 				{
 					filteredGroupEquipment = [.. filteredGroupEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
 					continue;
 				}
+=======
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 				if (filteredEquipment.Count > 0)
 				{
 					filteredEquipment = [.. filteredEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
@@ -181,6 +200,7 @@ public partial class CraftingInterface : Container
 				}
 			}
 		}
+<<<<<<< HEAD
 
 		if (filteredGroupEquipment.Count > 0)
 		{
@@ -190,29 +210,48 @@ public partial class CraftingInterface : Container
 		{
 			ShowEquipment(filteredEquipment);
 		}
+=======
+		ShowEquipment(filteredEquipment);
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 	}
 
 	private List<Equipment> GetGroupEquipment(List<Equipment> equipment, GroupCategory groupCategory)
 	{
+<<<<<<< HEAD
 		string groupString = groupCategory.ToString();
+=======
+		string categoryString = groupCategory.ToString();
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 		List<Equipment> groupEquipment = new List<Equipment>();
 		foreach (Equipment equipmentPiece in equipment)
 		{
 			if (equipmentPiece is Weapon weapon)
 			{
 				WeaponTree targetTree;
+<<<<<<< HEAD
 				bool isSuccessful = Enum.TryParse(groupString, out targetTree);
+=======
+				bool isSuccessful = Enum.TryParse(categoryString, out targetTree);
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 				if (!isSuccessful || weapon.Tree != targetTree) continue;
 
 				groupEquipment.Add(weapon);
 			}
 			else if (equipmentPiece is Armor armor)
 			{
+<<<<<<< HEAD
 				string[] groupSubStrings = MonsterHunterIdle.AddSpacing(groupString).Split(" ");
 				foreach (string groupSubString in groupSubStrings)
 				{
 					ArmorSet targetSet;
 					bool isSuccessful = Enum.TryParse(groupSubString, out targetSet);
+=======
+				string[] categorySubStrings = MonsterHunterIdle.AddSpacing(categoryString).Split(" ");
+				foreach (string categorySubString in categorySubStrings)
+				{
+					ArmorSet targetSet;
+					bool isSuccessful = Enum.TryParse(categorySubString, out targetSet);
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 					if (!isSuccessful || armor.Set != targetSet) continue;
 
 					groupEquipment.Add(armor);

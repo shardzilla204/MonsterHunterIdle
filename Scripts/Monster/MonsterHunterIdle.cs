@@ -38,7 +38,9 @@ public enum StatType
 }
 
 /*
+	TODO: Add search filter in crafting interface
 	TODO: Add Palico equipment data
+	TODO: Add equipment status element
 	TODO: Add monster weakness damage
 	TODO: Add attacking charge bar
 	TODO: Add weapons:

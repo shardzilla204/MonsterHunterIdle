@@ -26,6 +26,10 @@ patch_margin_right = 20
 patch_margin_bottom = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="SearchFilter"]
+<<<<<<< HEAD
+=======
+custom_minimum_size = Vector2(0, 50)
+>>>>>>> 8bdf1fb21243a11b032b1a6bf9312ddbc92bc3fa
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
