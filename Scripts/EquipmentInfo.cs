@@ -47,11 +47,13 @@ public partial class EquipmentInfo : HBoxContainer
 
         if (equipment is Weapon weapon)
         {
-            _changeEquipmentButton.Text = weapon.Tree == WeaponTree.None ? "None" : equipment.Name;
+            string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
+            _changeEquipmentButton.Text = weapon.Tree == WeaponTree.None ? "None" : $"{equipment.Name}{subGrade}";
         }
         else if (equipment is Armor armor)
         {
-            _changeEquipmentButton.Text = armor.Set == ArmorSet.None ? "None" : equipment.Name;
+            string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
+            _changeEquipmentButton.Text = armor.Set == ArmorSet.None ? "None" : $"{equipment.Name}{subGrade}";
         }
     }
 

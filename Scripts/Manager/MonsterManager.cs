@@ -115,6 +115,8 @@ public partial class MonsterManager : Node
 				monster = localeMonsters[monsterID];
 			}
 
+			GD.Print($"Monster Level: {monster.Level}");
+
 			Monster monsterClone = new Monster();
 			int monsterlevel = GetMonsterLevel();
 			monsterClone.Clone(monster, monsterlevel);

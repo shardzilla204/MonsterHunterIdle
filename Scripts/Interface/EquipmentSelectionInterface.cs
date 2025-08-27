@@ -6,10 +6,10 @@ namespace MonsterHunterIdle;
 public partial class EquipmentSelectionInterface : NinePatchRect
 {
     [Export]
-    private Container _equipmentOptionContainer;
+    private Container _equipmentInfoButtonContainer;
 
-    private List<EquipmentOptionButton> _equipmentOptionButtons = new List<EquipmentOptionButton>();
-    private EquipmentOptionInfoInterface _equipmentOptionInfoInterface;
+    private List<EquipmentInfoButton> _equipmentInfoButtons = new List<EquipmentInfoButton>();
+    private EquipmentInfoPopup _equipmentInfoPopup;
 
     private Equipment _equipment;
 
@@ -28,15 +28,15 @@ public partial class EquipmentSelectionInterface : NinePatchRect
     public override void _Ready()
     {
         // No reason to display if there are equipment count is 0
-        if (_equipmentOptionButtons.Count == 0)
+        if (_equipmentInfoButtons.Count == 0)
         {
             QueueFree();
             return;
         }
 
         // Toggle the equipment button that is currently being used
-        EquipmentOptionButton equipmentOptionButton = _equipmentOptionButtons.Find(option => option.Equipment.Name == _equipment.Name);
-        equipmentOptionButton.OnToggled(true);
+        EquipmentInfoButton equipmentInfoButton = _equipmentInfoButtons.Find(option => option.Equipment.Name == _equipment.Name);
+        equipmentInfoButton.OnToggled(true);
     }
 
     // Add equipment buttons that correspond to the equipment type
@@ -62,16 +62,16 @@ public partial class EquipmentSelectionInterface : NinePatchRect
 
     private void AddEquipmentOption(Equipment equipment)
     {
-        EquipmentOptionButton equipmentOptionButton = MonsterHunterIdle.PackedScenes.GetEquipmentOptionButton(equipment);
-        _equipmentOptionButtons.Add(equipmentOptionButton);
-        _equipmentOptionContainer.AddChild(equipmentOptionButton);
-        equipmentOptionButton.Pressed += () =>
+        EquipmentInfoButton equipmentInfoButton = MonsterHunterIdle.PackedScenes.GetEquipmentInfoButton(equipment);
+        _equipmentInfoButtons.Add(equipmentInfoButton);
+        _equipmentInfoButtonContainer.AddChild(equipmentInfoButton);
+        equipmentInfoButton.Pressed += () =>
         {
-            ShowEquipmentPopup(equipmentOptionButton.Equipment);
+            ShowEquipmentPopup(equipmentInfoButton.Equipment);
 
             // Unpress the other buttons   
-            List<EquipmentOptionButton> otherButtons = _equipmentOptionButtons.FindAll(button => button != equipmentOptionButton);
-            foreach (EquipmentOptionButton otherButton in otherButtons)
+            List<EquipmentInfoButton> otherButtons = _equipmentInfoButtons.FindAll(button => button != equipmentInfoButton);
+            foreach (EquipmentInfoButton otherButton in otherButtons)
             {
                 otherButton.OnToggled(false);
             }
@@ -80,21 +80,21 @@ public partial class EquipmentSelectionInterface : NinePatchRect
 
     private void ShowEquipmentInfo(Equipment equipment)
     {
-        int index = IsInstanceValid(_equipmentOptionInfoInterface) ? 2 : 1;
-        if (IsInstanceValid(_equipmentOptionInfoInterface)) _equipmentOptionInfoInterface.QueueFree();
+        int index = IsInstanceValid(_equipmentInfoPopup) ? 2 : 1;
+        if (IsInstanceValid(_equipmentInfoPopup)) _equipmentInfoPopup.QueueFree();
 
-        _equipmentOptionInfoInterface = MonsterHunterIdle.PackedScenes.GetEquipmentOptionInfoInterface(equipment);
+        _equipmentInfoPopup = MonsterHunterIdle.PackedScenes.GetEquipmentInfoPopup(equipment);
         Container interfaceContainer = GetParentOrNull<Container>();
-        AddSibling(_equipmentOptionInfoInterface);
-        interfaceContainer.MoveChild(_equipmentOptionInfoInterface, index); // Move the node behind the monster interface
+        AddSibling(_equipmentInfoPopup);
+        interfaceContainer.MoveChild(_equipmentInfoPopup, index); // Move the node behind the monster interface
 
         // GD.Print($"Showing Equipment Info For: {equipment.Name}");
     }
 
     private void ShowEquipmentPopup(Equipment equipment)
     {
-        EquipmentOptionInfoInterface equipmentOptionInfoInterface = MonsterHunterIdle.PackedScenes.GetEquipmentOptionInfoInterface(equipment);
-        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.Popup, equipmentOptionInfoInterface);
+        EquipmentInfoPopup equipmentInfoPopup = MonsterHunterIdle.PackedScenes.GetEquipmentInfoPopup(equipment);
+        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.Popup, equipmentInfoPopup);
     }
 
     private void OnInterfaceChanged(InterfaceType interfaceType)

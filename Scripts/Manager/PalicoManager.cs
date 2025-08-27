@@ -10,7 +10,7 @@ public partial class PalicoManager : Node
 	private float _actionIntervalSeconds = 5f;
 
 	public List<Palico> Palicos = new List<Palico>();
-	public int MaxPalicoCount = 8;
+	public int MaxPalicoCount = 4;
 
 	public PalicoEquipmentManager Equipment;
 
@@ -36,6 +36,7 @@ public partial class PalicoManager : Node
 
 			foreach (Palico palico in Palicos)
 			{
+				// Attack if monster is present or gather materials
 				if (MonsterHunterIdle.MonsterManager.Encounter.IsInEncounter)
 				{
 					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoHunted, palico);

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b2ppi4k21w0ka" path="res://Scenes/CraftingMaterialLog.tscn" id="8_uavyu"]
 [ext_resource type="PackedScene" uid="uid://bswmie3ykm27p" path="res://Scenes/Interface/PalicoInterface.tscn" id="9_gfvhb"]
 [ext_resource type="PackedScene" uid="uid://4y140m71x08b" path="res://Scenes/MonsterHealthBar.tscn" id="9_lpem0"]
-[ext_resource type="PackedScene" uid="uid://cu6wsj8xy6u58" path="res://Scenes/Button/EquipmentOptionButton.tscn" id="10_t5y2m"]
+[ext_resource type="PackedScene" uid="uid://cu6wsj8xy6u58" path="res://Scenes/Button/EquipmentInfoButton.tscn" id="10_t5y2m"]
 [ext_resource type="PackedScene" uid="uid://bw4u26g4y1yol" path="res://Scenes/Interface/EquipmentSelectionInterface.tscn" id="11_8g285"]
 [ext_resource type="PackedScene" uid="uid://bstf16dj3clka" path="res://Scenes/CollectionLog.tscn" id="11_lpem0"]
 [ext_resource type="PackedScene" uid="uid://chdi0djbtcipo" path="res://Scenes/EquipmentInfo.tscn" id="11_xli7x"]
@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bqidmrlic8wme" path="res://Scenes/SellMaterialLog.tscn" id="13_20l7k"]
 [ext_resource type="PackedScene" uid="uid://bjsci3hnvis7i" path="res://Scenes/Interface/LoadoutInterface.tscn" id="13_lpem0"]
 [ext_resource type="PackedScene" uid="uid://cfaeelnf6kj7i" path="res://Scenes/PalicoDetails.tscn" id="13_vskh8"]
-[ext_resource type="PackedScene" uid="uid://ceddoticjyw40" path="res://Scenes/Interface/EquipmentOptionInfoInterface.tscn" id="13_xli7x"]
+[ext_resource type="PackedScene" uid="uid://ceddoticjyw40" path="res://Scenes/EquipmentInfoPopup.tscn" id="13_xli7x"]
 [ext_resource type="PackedScene" uid="uid://bdgbg84n18kya" path="res://Scenes/MaterialLog.tscn" id="14_t5y2m"]
 [ext_resource type="Script" uid="uid://4yxgxv0tplev" path="res://Scripts/Signals.cs" id="15_8g285"]
 [ext_resource type="PackedScene" uid="uid://c65r7swivg2d1" path="res://Scenes/CraftingFilter.tscn" id="15_uyatr"]
@@ -55,13 +55,13 @@ _palicoDetails = ExtResource("13_vskh8")
 _materialLog = ExtResource("14_t5y2m")
 _craftingMaterialLog = ExtResource("8_uavyu")
 _monsterHealthBar = ExtResource("9_lpem0")
-_equipmentOptionButton = ExtResource("10_t5y2m")
+_equipmentInfoButton = ExtResource("10_t5y2m")
 _equipmentInfo = ExtResource("11_xli7x")
 _sellMaterialLogContainer = ExtResource("12_u8ama")
 _sellMaterialLog = ExtResource("13_20l7k")
 _craftingFilter = ExtResource("15_uyatr")
+_equipmentInfoPopup = ExtResource("13_xli7x")
 _equipmentSelectionInterface = ExtResource("11_8g285")
-_equipmentOptionInfoInterface = ExtResource("13_xli7x")
 _monsterInterface = ExtResource("4_i6lr1")
 _collectionLogInterface = ExtResource("5_cdtog")
 _itemBoxInterface = ExtResource("6_jlcpi")
@@ -92,6 +92,7 @@ _encounter = NodePath("MonsterEncounter")
 
 [node name="MonsterEncounter" type="Node" parent="Managers/MonsterManager"]
 script = ExtResource("22_u0u51")
+_encounterIncrease = 0.5
 
 [node name="EquipmentManager" type="Node" parent="Managers"]
 script = ExtResource("23_sm2tf")

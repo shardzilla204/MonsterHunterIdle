@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu6wsj8xy6u58"]
 
-[ext_resource type="Script" uid="uid://dlrep0mn0n8ys" path="res://Scripts/Button/EquipmentOptionButton.cs" id="1_7jikd"]
+[ext_resource type="Script" uid="uid://dlrep0mn0n8ys" path="res://Scripts/Button/EquipmentInfoButton.cs" id="1_7jikd"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="2_veior"]
 
-[node name="EquipmentOptionButton" type="Button" node_paths=PackedStringArray("_iconTextureRect")]
+[node name="EquipmentInfoButton" type="Button" node_paths=PackedStringArray("_iconTextureRect")]
 custom_minimum_size = Vector2(50, 50)
 toggle_mode = true
 flat = true

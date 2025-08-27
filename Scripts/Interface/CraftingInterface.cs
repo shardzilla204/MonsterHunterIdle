@@ -279,6 +279,7 @@ public partial class CraftingInterface : Container
 		int previousEquipmentSubGrade = hunterEquipment.SubGrade;
 
 		MonsterHunterIdle.EquipmentManager.UpgradeEquipment(hunterEquipment);
+		MonsterHunterIdle.HunterManager.Equip(hunterEquipment);
 
 		// Console message
 		string previousSubGrade = previousEquipmentSubGrade == 0 ? "" : $" (+{previousEquipmentSubGrade})";

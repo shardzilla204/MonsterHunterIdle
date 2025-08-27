@@ -95,4 +95,7 @@ public partial class Signals : Node
 
 	[Signal]
 	public delegate void GameDeletedEventHandler();
+
+	[Signal]
+	public delegate void GameQuitEventHandler();
 }

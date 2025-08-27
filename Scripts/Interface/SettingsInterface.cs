@@ -21,6 +21,6 @@ public partial class SettingsInterface : NinePatchRect
         _saveButton.Pressed += () => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.GameSaved);
         _loadButton.Pressed += () => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.GameLoaded);
         _deleteButton.Pressed += () => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.GameDeleted);
-        _exitButton.Pressed += () => GetTree().Quit();
+        _exitButton.Pressed += () => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.GameQuit);
     }
 }

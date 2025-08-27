@@ -12,7 +12,7 @@ public partial class StatDetail : Container
 
 	public void FillPalicoStat(StatType statType, string value)
 	{
-		_statIcon.Texture = MonsterHunterIdle.GetStatIcon(statType);
+		_statIcon.Texture = MonsterHunterIdle.GetStatTypeIcon(statType);
 		_statLabel.Text = value;
 	}
 }

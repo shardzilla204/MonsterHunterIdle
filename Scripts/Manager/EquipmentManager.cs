@@ -299,6 +299,7 @@ public partial class EquipmentManager : Node
             Weapon upgradedWeapon = GetWeapon(weapon.Category, weapon.Tree, weapon.Grade, weapon.SubGrade);
             weapon.Name = upgradedWeapon.Name;
             weapon.Attack = upgradedWeapon.Attack;
+            weapon.SpecialAttack = upgradedWeapon.SpecialAttack;
             weapon.Affinity = upgradedWeapon.Affinity;
         }
         else if (equipment is Armor armor)

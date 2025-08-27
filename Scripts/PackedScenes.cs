@@ -31,7 +31,7 @@ public partial class PackedScenes : Node
    private PackedScene _monsterHealthBar;
 
    [Export]
-   private PackedScene _equipmentOptionButton;
+   private PackedScene _equipmentInfoButton;
 
    [Export]
    private PackedScene _equipmentInfo;
@@ -45,12 +45,12 @@ public partial class PackedScenes : Node
    [Export]
    private PackedScene _craftingFilter;
 
+   [Export]
+   private PackedScene _equipmentInfoPopup;
+
    [ExportGroup("Interfaces")]
    [Export]
    private PackedScene _equipmentSelectionInterface;
-
-   [Export]
-   private PackedScene _equipmentOptionInfoInterface;
 
    [Export]
    private PackedScene _monsterInterface;
@@ -117,11 +117,11 @@ public partial class PackedScenes : Node
       return equipmentInfo;
    }
 
-   public EquipmentOptionButton GetEquipmentOptionButton(Equipment equipment)
+   public EquipmentInfoButton GetEquipmentInfoButton(Equipment equipment)
    {
-      EquipmentOptionButton equipmentOptionButton = _equipmentOptionButton.Instantiate<EquipmentOptionButton>();
-      equipmentOptionButton.SetEquipment(equipment);
-      return equipmentOptionButton;
+      EquipmentInfoButton equipmentInfoButton = _equipmentInfoButton.Instantiate<EquipmentInfoButton>();
+      equipmentInfoButton.SetEquipment(equipment);
+      return equipmentInfoButton;
    }
 
    public CraftingMaterialLog GetCraftingMaterialLog(Material material, int amount)
@@ -207,11 +207,11 @@ public partial class PackedScenes : Node
       return _itemBoxInterface.Instantiate<ItemBoxInterface>();
    }
 
-   public EquipmentOptionInfoInterface GetEquipmentOptionInfoInterface(Equipment equipment)
+   public EquipmentInfoPopup GetEquipmentInfoPopup(Equipment equipment)
    {
-      EquipmentOptionInfoInterface equipmentOptionInfoInterface = _equipmentOptionInfoInterface.Instantiate<EquipmentOptionInfoInterface>();
-      equipmentOptionInfoInterface.SetEquipment(equipment);
-      return equipmentOptionInfoInterface;
+      EquipmentInfoPopup equipmentInfoPopup = _equipmentInfoPopup.Instantiate<EquipmentInfoPopup>();
+      equipmentInfoPopup.SetEquipment(equipment);
+      return equipmentInfoPopup;
    }
 
    public SettingsInterface GetSettingsInterface()

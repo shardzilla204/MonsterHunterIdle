@@ -8,10 +8,10 @@ public partial class MonsterEncounter : Node
 	[Export]
 	private float _maxEncounterChance = 100;
 
-	[Export(PropertyHint.Range, "1, 25, 1")]
-	private float _encounterIncrease = 1;
+	[Export(PropertyHint.Range, "0.1, 25, .1")]
+	private float _encounterIncrease = 1f;
 
-	private float _encounterChance = 0;
+	private float _encounterChance = 0f;
 
 	public int Time;
 	public int Health;

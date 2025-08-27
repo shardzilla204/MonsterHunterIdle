@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://datcki515ci25"
-path="res://.godot/imported/IceIcon.png-a5436fc96cbe3bc73dbefc303555c928.ctex"
+uid="uid://cx82wrepyfptx"
+path="res://.godot/imported/SleepIcon.png-7b9ad0633179992cde7d68504080218f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Stat/IceIcon.png"
-dest_files=["res://.godot/imported/IceIcon.png-a5436fc96cbe3bc73dbefc303555c928.ctex"]
+source_file="res://Assets/Images/Special/SleepIcon.png"
+dest_files=["res://.godot/imported/SleepIcon.png-7b9ad0633179992cde7d68504080218f.ctex"]
 
 [params]
 

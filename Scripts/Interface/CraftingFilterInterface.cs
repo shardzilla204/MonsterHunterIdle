@@ -37,8 +37,6 @@ public partial class CraftingFilterInterface : NinePatchRect
         _groupFilters.FiltersChanged += OnEquipmentFiltersChanged;
 
         Filters.Add("HasNotCrafted", false);
-
-        GD.Print(Filters);
     }
 
     private void OnCheckBoxToggled(bool isToggled, string keyName)
@@ -53,7 +51,6 @@ public partial class CraftingFilterInterface : NinePatchRect
         {
             Filters[categoryName] = equipmentFilters[categoryName];
         }
-        GD.Print(Filters);
 
         EmitSignal(SignalName.FiltersChanged, Filters);
     }

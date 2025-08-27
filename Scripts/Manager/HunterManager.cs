@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using GC = Godot.Collections;
@@ -64,11 +65,16 @@ public partial class HunterManager : Node
 
    public Hunter Hunter;
 
+   public GC.Dictionary<string, int> MonstersSlayed = new GC.Dictionary<string, int>();
+
    public override void _EnterTree()
    {
       MonsterHunterIdle.HunterManager = this;
+      MonsterHunterIdle.Signals.MonsterSlayed += OnMonsterSlayed;
 
       Hunter = new Hunter(_startingZenny);
+
+      FillMonstersSlayedDictionary();
    }
 
    private void AddStartingEquipment()
@@ -139,6 +145,16 @@ public partial class HunterManager : Node
       MonsterHunterIdle.EquipmentManager.CraftedArmor.Add(armor);
    }
 
+   // Used for resetting
+   private void FillMonstersSlayedDictionary()
+   {
+      List<Monster> monsters = MonsterHunterIdle.MonsterManager.Monsters;
+      foreach (Monster monster in monsters)
+      {
+         MonstersSlayed.Add(monster.Name, 0);
+      }
+   }
+
    public void AddHunterPoints(int progressAmount)
    {
       Hunter.Points += progressAmount;
@@ -167,7 +183,6 @@ public partial class HunterManager : Node
    private void IncreaseHunterProgress()
    {
       int pointsIncrease = 100;
-
       Hunter.PointsRequired += pointsIncrease;
    }
 
@@ -180,12 +195,35 @@ public partial class HunterManager : Node
    {
       int attack = Hunter.Weapon.Attack;
 
+      (float Min, float Max) weaponPercentage = GetWeaponPercentage();
+
       RandomNumberGenerator RNG = new RandomNumberGenerator();
-      float minPercent = 0.05f;
-      float maxPercent = 0.25f;
-      float randomPercentage = RNG.RandfRange(minPercent, maxPercent);
+      float randomPercentage = RNG.RandfRange(weaponPercentage.Min, weaponPercentage.Max);
+
       return Mathf.RoundToInt(attack * randomPercentage);
    }
+
+   public int GetHunterSpecialAttack()
+   {
+      if (Hunter.Weapon.Special == SpecialType.None) return 0;
+      
+      int specialAttack = Hunter.Weapon.SpecialAttack;
+
+      (float Min, float Max) weaponPercentage = GetWeaponPercentage();
+
+      RandomNumberGenerator RNG = new RandomNumberGenerator();
+      float randomPercentage = RNG.RandfRange(weaponPercentage.Min, weaponPercentage.Max);
+
+      return Mathf.RoundToInt(specialAttack * randomPercentage);
+   }
+
+   private (float Min, float Max) GetWeaponPercentage() => Hunter.Weapon.Category switch
+   {
+      WeaponCategory.SwordAndShield => (0.05f, 0.15f),
+      WeaponCategory.GreatSword => (0.4f, 0.5f),
+      WeaponCategory.LongSword => (0.15f, 0.3f),
+      _ => (0.05f, 0.25f),
+   };
 
    public Equipment FindWeapon(Weapon targetWeapon)
    {
@@ -259,6 +297,40 @@ public partial class HunterManager : Node
       return armor;
    }
 
+   public void Equip(Equipment equipment)
+   {
+      if (equipment is Weapon weapon)
+      {
+         Hunter.Weapon = weapon;
+      }
+      else if (equipment is Armor armor)
+      {
+         switch (armor.Category)
+         {
+            case ArmorCategory.Head:
+               Hunter.Head = armor;
+               break;
+            case ArmorCategory.Arm:
+               Hunter.Arm = armor;
+               break;
+            case ArmorCategory.Chest:
+               Hunter.Chest = armor;
+               break;
+            case ArmorCategory.Waist:
+               Hunter.Waist = armor;
+               break;
+            case ArmorCategory.Leg:
+               Hunter.Leg = armor;
+               break;
+         }
+      }
+   }
+
+   public void OnMonsterSlayed(Monster monster)
+   {
+      MonstersSlayed[monster.Name]++;
+   }
+
    // Data methods
    /// <see cref="GameManager.SaveGame"/>
    public GC.Dictionary<string, Variant> GetData()
@@ -274,7 +346,8 @@ public partial class HunterManager : Node
          { "Chest", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Chest) },
          { "Arm", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Arm) },
          { "Waist", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Waist) },
-         { "Leg", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Leg) }
+         { "Leg", MonsterHunterIdle.EquipmentManager.GetArmorPieceData(Hunter.Leg) },
+         { "MonstersSlayed", MonstersSlayed }
       };
       return hunterData;
    }
@@ -304,6 +377,8 @@ public partial class HunterManager : Node
 
       GC.Dictionary<string, Variant> legData = hunterData["Leg"].As<GC.Dictionary<string, Variant>>();
       Hunter.Leg = MonsterHunterIdle.EquipmentManager.GetArmorPieceFromData(legData);
+
+      MonstersSlayed = hunterData["MonstersSlayed"].As<GC.Dictionary<string, int>>();
    }
 
    /// <see cref="GameManager.DeleteGame"/>
@@ -312,5 +387,8 @@ public partial class HunterManager : Node
       Hunter = new Hunter(_startingZenny);
 
       AddStartingEquipment();
+
+      MonstersSlayed.Clear();
+      FillMonstersSlayedDictionary();
    }
 }

@@ -2,7 +2,7 @@ using Godot;
 
 namespace MonsterHunterIdle;
 
-public partial class EquipmentOptionInfoInterface : NinePatchRect
+public partial class EquipmentInfoPopup : NinePatchRect
 {
     [Export]
     private Container _infoContainer;
@@ -136,22 +136,30 @@ public partial class EquipmentOptionInfoInterface : NinePatchRect
         _equipment = equipment; 
 
         Texture2D equipmentIcon = MonsterHunterIdle.GetEquipmentIcon(equipment);
-        HBoxContainer infoNode = GetInfoNode(equipmentIcon, equipment.Name);
+        string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
+        HBoxContainer infoNode = GetInfoNode(equipmentIcon, $"{equipment.Name}{subGrade}");
         _infoContainer.AddChild(infoNode);
 
         if (equipment is Weapon weapon)
         {
-            Texture2D attackIcon = MonsterHunterIdle.GetStatIcon(StatType.Attack);
+            Texture2D attackIcon = MonsterHunterIdle.GetStatTypeIcon(StatType.Attack);
             HBoxContainer attackInfoNode = GetInfoNode(attackIcon, $"{weapon.Attack}");
             _infoContainer.AddChild(attackInfoNode);
 
-            Texture2D affinityIcon = MonsterHunterIdle.GetStatIcon(StatType.Affinity);
+            Texture2D affinityIcon = MonsterHunterIdle.GetStatTypeIcon(StatType.Affinity);
             HBoxContainer affinityInfoNode = GetInfoNode(affinityIcon, $"{weapon.Affinity}%");
             _infoContainer.AddChild(affinityInfoNode);
+
+            if (weapon.Special != SpecialType.None)
+            {
+                Texture2D specialIcon = MonsterHunterIdle.GetSpecialTypeIcon(weapon.Special);
+                HBoxContainer specialIconNode = GetInfoNode(specialIcon, $"{weapon.SpecialAttack}");
+                _infoContainer.AddChild(specialIconNode);   
+            }
         }
         else if (equipment is Armor armor)
         {
-            Texture2D defenseIcon = MonsterHunterIdle.GetStatIcon(StatType.Defense);
+            Texture2D defenseIcon = MonsterHunterIdle.GetStatTypeIcon(StatType.Defense);
             HBoxContainer defenseInfoNode = GetInfoNode(defenseIcon, $"{armor.Defense}");
             _infoContainer.AddChild(defenseInfoNode);
         }

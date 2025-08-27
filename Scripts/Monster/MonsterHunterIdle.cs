@@ -19,9 +19,7 @@ public enum SpecialType
 	Paralysis,
 	Sleep,
 	Stun,
-	BlastBlight,
-	BubbleBlight,
-	HellfireBlight
+	Blastblight
 }
 
 public enum StatType
@@ -29,26 +27,20 @@ public enum StatType
 	Attack,
 	Defense,
 	Affinity,
-	Water,
-	Fire,
-	Thunder,
-	Ice,
-	Dragon,
 	Health
 }
 
 /*
-	TODO: Add search filter in crafting interface
 	TODO: Add Palico equipment data
-	TODO: Add equipment status element
-	TODO: Add monster weakness damage
 	TODO: Add attacking charge bar
 	TODO: Add weapons:
 		Great Sword
 		Long Sword
 
-	TODO: Have filter support multiple groups
-	TODO: Fix monster level not being filtered with hunter rank
+	// TODO: Add monster weakness damage
+	// TODO: Add equipment status element
+	// TODO: Have filter support multiple groups
+	// TODO: Fix monster level not being filtered with hunter rank
 		
 	// TODO: Add equipment status element
 	// TODO: Just have two names and add on the Roman numeral
@@ -105,7 +97,13 @@ public partial class MonsterHunterIdle : Node
 		OfflineThresholdMult = _offlineThresholdMult;
 	}
 
-	public static Texture2D GetStatIcon(StatType statType)
+	public static Texture2D GetSpecialTypeIcon(SpecialType specialType)
+	{
+		string filePath = $"res://Assets/Images/Special/{specialType}Icon.png";
+		return GetTexture(filePath);
+	}
+
+	public static Texture2D GetStatTypeIcon(StatType statType)
 	{
 		string filePath = $"res://Assets/Images/Stat/{statType}Icon.png";
 		return GetTexture(filePath);

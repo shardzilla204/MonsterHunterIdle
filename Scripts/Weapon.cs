@@ -7,7 +7,9 @@ namespace MonsterHunterIdle;
 public enum WeaponCategory
 {
     None = -1,
-    SwordAndShield
+    SwordAndShield,
+    GreatSword,
+    LongSword
 }
 
 public enum WeaponTree
@@ -42,7 +44,7 @@ public partial class Weapon : Equipment
     public int Attack = 0;
     public int SpecialAttack = 0;
     public SpecialType Special;
-    public float Affinity = 0;
+    public int Affinity = 0;
     public WeaponCategory Category = WeaponCategory.None;
     public WeaponTree Tree = WeaponTree.None;
 

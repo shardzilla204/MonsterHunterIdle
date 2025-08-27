@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b355a2vsrps70"
-path="res://.godot/imported/DragonIcon.png-e80082793e992cc290b94e3de68ce434.ctex"
+uid="uid://hggcjwiy1bev"
+path="res://.godot/imported/FireIcon.png-8d9c762c74c0cb34ef0b74d6892f47ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Stat/DragonIcon.png"
-dest_files=["res://.godot/imported/DragonIcon.png-e80082793e992cc290b94e3de68ce434.ctex"]
+source_file="res://Assets/Images/Special/FireIcon.png"
+dest_files=["res://.godot/imported/FireIcon.png-8d9c762c74c0cb34ef0b74d6892f47ec.ctex"]
 
 [params]
 

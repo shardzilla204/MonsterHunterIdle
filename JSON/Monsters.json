@@ -7,7 +7,7 @@
          "Health": 500,
          "Level": 1,
          "Specials": null,
-         "SpecialWeaknesses": [ "Fire", "Poison", "Sleep", "BlastBlight" ],
+         "SpecialWeaknesses": [ "Fire", "Poison", "Sleep", "Blastblight" ],
          "Locales": [ "Forest", "Desert", "Swamp" ]
       },
       {
@@ -34,7 +34,7 @@
          "Health": 450,
          "Level": 1,
          "Specials": [ "Water" ],
-         "SpecialWeaknesses": [ "Fire", "Poison", "BlastBlight" ],
+         "SpecialWeaknesses": [ "Fire", "Poison", "Blastblight" ],
          "Locales": [ "Desert", "Swamp" ]
       },
       {
@@ -61,7 +61,7 @@
          "Health": 450,
          "Level": 3,
          "Specials": null,
-         "SpecialWeaknesses": [ "Fire", "BlastBlight" ],
+         "SpecialWeaknesses": [ "Fire", "Blastblight" ],
          "Locales": [ "Desert", "Swamp" ]
       },
       {

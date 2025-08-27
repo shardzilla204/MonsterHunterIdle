@@ -16,6 +16,11 @@ public partial class GameManager : Node
 		MonsterHunterIdle.Signals.GameSaved += SaveGame;
 		MonsterHunterIdle.Signals.GameLoaded += LoadGame;
 		MonsterHunterIdle.Signals.GameDeleted += DeleteGame;
+		MonsterHunterIdle.Signals.GameQuit += () =>
+		{
+			SaveGame();
+			GetTree().Quit();
+		};
 
 		GetWindow().CloseRequested += SaveGame;
 	}

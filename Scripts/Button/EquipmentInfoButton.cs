@@ -2,8 +2,7 @@ using Godot;
 
 namespace MonsterHunterIdle;
 
-// TODO: Change the icon color depending on the rarity
-public partial class EquipmentOptionButton : CustomButton
+public partial class EquipmentInfoButton : CustomButton
 {
     [Export]
     private TextureRect _iconTextureRect;

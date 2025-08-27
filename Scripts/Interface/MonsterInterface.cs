@@ -114,16 +114,41 @@ public partial class MonsterInterface : NinePatchRect
 	{
 		if (_monster == null) return;
 
-		int hunterAttack = MonsterHunterIdle.HunterManager.GetHunterAttack();
+		HunterManager hunterManager = MonsterHunterIdle.HunterManager;
+		int hunterAttack = hunterManager.GetHunterAttack();
+		int hunterSpecialAttack = hunterManager.GetHunterSpecialAttack();
+
+		bool hasHitWeakness = HasHitWeakness();
+		if (hasHitWeakness && hunterSpecialAttack != 0)
+		{
+			// Add weakness damage
+			float bonusPercentage = 1.75f;
+			hunterSpecialAttack = Mathf.RoundToInt(hunterSpecialAttack * bonusPercentage);
+		}
+
+		int totalDamage = hunterAttack + hunterSpecialAttack;
 
 		// Console message
 		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
-		string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {hunterAttack} HP";
+		string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({hunterManager.Hunter.Weapon.Special})";
+		string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {attackMessage} | {totalDamage} HP";
 		PrintRich.Print(TextColor.Orange, monsterAttackedMessage);
 
-		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, hunterAttack);
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, totalDamage);
 
-		TweenDamageLabel(hunterAttack);
+		Label attackNode = GetDamageNode(hunterAttack, TextColor.Red);
+		TweenNode(attackNode);
+
+		HBoxContainer specialAttackNode = GetSpecialAttackNode(hunterSpecialAttack);
+		TweenNode(specialAttackNode);
+	}
+
+	private bool HasHitWeakness()
+	{
+		SpecialType weaponSpecialType = MonsterHunterIdle.HunterManager.Hunter.Weapon.Special;
+		bool hasHitWeakness = _monster.SpecialWeaknesses.Contains(weaponSpecialType);
+		
+		return hasHitWeakness;
 	}
 
 	private void SlayedMonster()
@@ -177,12 +202,13 @@ public partial class MonsterInterface : NinePatchRect
 		SetMonster(null);
 	}
 
-	private Label GetDamageLabel(int damage)
+	private Label GetDamageNode(int damage, TextColor color)
 	{
-		string redColorHex = PrintRich.GetColorHex(TextColor.Red);
-		Vector2 size = new Vector2(50, 100);
+		string redColorHex = PrintRich.GetColorHex(color);
+		Vector2 size = new Vector2(40, 100);
 		Label damageLabel = new Label()
 		{
+			MouseFilter = MouseFilterEnum.Ignore,
 			Text = $"+ {damage}",
 			Size = size,
 			Position = GetLocalMousePosition() - (size / 2),
@@ -196,25 +222,56 @@ public partial class MonsterInterface : NinePatchRect
 		return damageLabel;
 	}
 
-	private void TweenDamageLabel(int damage)
+	private HBoxContainer GetSpecialAttackNode(int specialAttack)
 	{
-		Label damageLabel = GetDamageLabel(damage);
-		AddChild(damageLabel);
+		HBoxContainer specialAttackNode = new HBoxContainer()
+		{
+			MouseFilter = MouseFilterEnum.Ignore
+		};
+		int separation = 0;
+		specialAttackNode.AddThemeConstantOverride("separation", separation);
+
+		int textureSize = 50;
+		Texture2D specialTypeIcon = MonsterHunterIdle.GetSpecialTypeIcon(MonsterHunterIdle.HunterManager.Hunter.Weapon.Special);
+		TextureRect specialTexture = new TextureRect()
+		{
+			MouseFilter = MouseFilterEnum.Ignore,
+			Texture = specialTypeIcon,
+			CustomMinimumSize = new Vector2(textureSize, textureSize),
+			ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+			StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
+		};
+		
+		Label damageLabel = GetDamageNode(specialAttack, TextColor.Orange);
+
+		specialAttackNode.AddChild(damageLabel);
+		specialAttackNode.AddChild(specialTexture);
+
+		specialAttackNode.Position = GetLocalMousePosition() - (specialAttackNode.Size / 2);
+
+		return specialAttackNode;
+	}
+
+	private void TweenNode(Control node)
+	{
+		AddChild(node);
 
 		float duration = 1;
 		Tween tween = CreateTween()
 			.SetParallel(true)
 			.SetTrans(Tween.TransitionType.Quad)
 			.SetEase(Tween.EaseType.Out);
-		tween.Finished += damageLabel.QueueFree;
+		tween.Finished += node.QueueFree;
 
+		RandomNumberGenerator RNG = new RandomNumberGenerator();
+		int offsetX = RNG.RandiRange(-50, 50);
 		int offsetY = -50;
-		Vector2 targetPosition = damageLabel.Position + new Vector2(0, offsetY);
-		tween.TweenProperty(damageLabel, "position", targetPosition, duration);
+		Vector2 targetPosition = node.Position + new Vector2(offsetX, offsetY);
+		tween.TweenProperty(node, "position", targetPosition, duration);
 
-		Color transparent = damageLabel.SelfModulate;
+		Color transparent = node.SelfModulate;
 		transparent.A = 0;
-		tween.TweenProperty(damageLabel, "self_modulate", transparent, duration);
+		tween.TweenProperty(node, "self_modulate", transparent, duration);
 	}
 
 	// No need to reset to original state as the original state is the target

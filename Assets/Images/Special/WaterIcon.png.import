@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hggcjwiy1bev"
-path="res://.godot/imported/FireIcon.png-62487281feb7d9ba18328ee5f7f47edf.ctex"
+uid="uid://d1of5jdvmaoag"
+path="res://.godot/imported/WaterIcon.png-be8a07d13960d9f8763527641d551226.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Stat/FireIcon.png"
-dest_files=["res://.godot/imported/FireIcon.png-62487281feb7d9ba18328ee5f7f47edf.ctex"]
+source_file="res://Assets/Images/Special/WaterIcon.png"
+dest_files=["res://.godot/imported/WaterIcon.png-be8a07d13960d9f8763527641d551226.ctex"]
 
 [params]
 

@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cnico6uxrr3xj" path="res://Assets/Images/Stat/DefenseIcon.png" id="5_ajrcy"]
 [ext_resource type="Texture2D" uid="uid://bakmmfwb0e2ty" path="res://Assets/Images/Stat/AffinityIcon.png" id="6_ayr8g"]
 
-[node name="LoadoutStats" type="NinePatchRect" node_paths=PackedStringArray("_attackStatLabel", "_defenseStatLabel", "_affinityStatLabel")]
-custom_minimum_size = Vector2(350, 65)
+[node name="LoadoutStats" type="NinePatchRect" node_paths=PackedStringArray("_statContainer")]
+custom_minimum_size = Vector2(375, 65)
 theme = ExtResource("1_w2m8b")
 texture = ExtResource("2_sh7ai")
 patch_margin_left = 20
@@ -16,9 +16,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 script = ExtResource("3_2tdsb")
-_attackStatLabel = NodePath("MarginContainer/StatContainer/AttackStat/AttackStatLabel")
-_defenseStatLabel = NodePath("MarginContainer/StatContainer/DefenseStat/DefenseStatLabel")
-_affinityStatLabel = NodePath("MarginContainer/StatContainer/AffinityStat/AffinityStatLabel")
+_statContainer = NodePath("MarginContainer/StatContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -42,7 +40,6 @@ theme_override_constants/v_separation = 0
 [node name="AttackStat" type="HBoxContainer" parent="MarginContainer/StatContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
@@ -56,13 +53,12 @@ stretch_mode = 5
 
 [node name="AttackStatLabel" type="Label" parent="MarginContainer/StatContainer/AttackStat"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "100"
 
 [node name="DefenseStat" type="HBoxContainer" parent="MarginContainer/StatContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
@@ -76,13 +72,12 @@ stretch_mode = 5
 
 [node name="DefenseStatLabel" type="Label" parent="MarginContainer/StatContainer/DefenseStat"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "100"
 
 [node name="AffinityStat" type="HBoxContainer" parent="MarginContainer/StatContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 theme_override_constants/separation = 0
 alignment = 1
 
@@ -96,5 +91,5 @@ stretch_mode = 5
 
 [node name="AffinityStatLabel" type="Label" parent="MarginContainer/StatContainer/AffinityStat"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "100%"
