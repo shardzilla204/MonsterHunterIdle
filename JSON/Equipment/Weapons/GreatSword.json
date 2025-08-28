@@ -1,0 +1,55 @@
+{
+    "GreatSword":
+    {
+        "Ore":
+        {
+            "Names": [ "Buster Sword", "Buster Blade" ],
+            "Special": "None"
+        },
+        "Great Jagras":
+        {
+            "Names": [ "Jagras Blade", "Jagras Hacker" ],
+            "Special": "Water"
+        },
+        "Pukei-Pukei":
+        {
+            "Names": [ "Blooming Blade", "Datura Blaze" ],
+            "Special": "Poison"
+        },
+        "Barroth":
+        {
+            "Names": [ "Carapace Buster", "Barroth Shredder" ],
+            "Special": "None"
+        },
+        "Great Girros":
+        {
+            "Names": [ "Girros Blade", "Malady's Kiss" ],
+            "Special": "Paralysis"
+        },
+        "Tobi-Kadachi":
+        {
+            "Names": [ "Thunder Blade", "Lightning Punisher" ],
+            "Special": "Thunder"
+        },
+        "Jyuratodus":
+        {
+            "Names": [ "Aqua Slasher", "Water Golem" ],
+            "Special": "Water"
+        },
+        "Anjanath":
+        {
+            "Names": [ "Flammenzahn", "Flammenzahn +" ],
+            "Special": "Fire"
+        },
+        "Legiana":
+        {
+            "Names": [ "Freeze Blade", "Frost Blaze" ],
+            "Special": "Ice"
+        },
+        "Rathalos":
+        {
+            "Names": [ "Flame Blade", "Red Wing" ],
+            "Special": "Fire"
+        }
+    }
+}

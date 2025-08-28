@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bswmie3ykm27p"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_wobee"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_5rugl"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_5rugl"]
 [ext_resource type="Script" uid="uid://bbvpk72h2ocld" path="res://Scripts/Interface/PalicoInterface.cs" id="3_278o4"]
 [ext_resource type="PackedScene" uid="uid://c877crexigmrw" path="res://Scenes/Button/RecruitPalicoButton.tscn" id="4_82w8p"]
 

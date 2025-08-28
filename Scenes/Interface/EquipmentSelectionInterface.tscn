@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw4u26g4y1yol"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_ncfyl"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_u4ewh"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_u4ewh"]
 [ext_resource type="Script" uid="uid://cy7r6xqeklhlp" path="res://Scripts/Interface/EquipmentSelectionInterface.cs" id="3_26cmv"]
 
 [node name="EquipmentSelectionInterface" type="NinePatchRect" node_paths=PackedStringArray("_equipmentInfoButtonContainer")]

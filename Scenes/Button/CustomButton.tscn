@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2de4022hso7h"]
 
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="1_h146e"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="1_p5mdj"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="1_p5mdj"]
 
 [node name="CustomButton" type="Button"]
 custom_minimum_size = Vector2(0, 50)

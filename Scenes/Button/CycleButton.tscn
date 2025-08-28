@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcsiof323lxef"]
 
 [ext_resource type="Script" uid="uid://5gnlsonka1o0" path="res://Scripts/Button/CycleButton.cs" id="1_ricoi"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="2_xmc3g"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="2_xmc3g"]
 
 [node name="CycleButton" type="Button" node_paths=PackedStringArray("_localeIcon")]
 custom_minimum_size = Vector2(75, 75)

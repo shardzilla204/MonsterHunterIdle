@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dclyt5t42hfca"]
 
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_7iafy"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="1_7iafy"]
 [ext_resource type="Script" uid="uid://iiqtreal1wg7" path="res://Scripts/Interface/RecipeInterface.cs" id="2_u6d3j"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_dxvlr"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_dxvlr"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="5_j1fq3"]
-[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="5_pxox7"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/ZennyIcon.png" id="5_pxox7"]
 
 [node name="CraftingInterface" type="NinePatchRect" node_paths=PackedStringArray("_acceptButton", "_cancelButton", "_craftingLabel", "_craftingCostLabel", "_craftingMaterialLogContainer")]
 custom_minimum_size = Vector2(350, 250)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ceddoticjyw40"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_xbbc2"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_oaake"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_oaake"]
 [ext_resource type="Script" uid="uid://ckvyru5bxsl2w" path="res://Scripts/Interface/EquipmentInfoPopup.cs" id="3_6wvvt"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="4_8f5lr"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="5_w3oew"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="5_w3oew"]
 
 [node name="EquipmentInfoPopup" type="NinePatchRect" node_paths=PackedStringArray("_infoContainer", "_cancelButton", "_supplyButton")]
 custom_minimum_size = Vector2(300, 380)

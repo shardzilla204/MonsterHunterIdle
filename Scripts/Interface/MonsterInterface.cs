@@ -30,6 +30,10 @@ public partial class MonsterInterface : NinePatchRect
 
 	private Monster _monster;
 	private Vector2 _renderPosition;
+	private ChargeBarTimer _chargeBarTimer;
+
+	private bool _isAttackButtonPressed = false;
+	private bool _isHovering = false;
 
 	public override void _ExitTree()
 	{
@@ -47,6 +51,9 @@ public partial class MonsterInterface : NinePatchRect
 
 	public override void _Ready()
 	{
+		_attackButton.MouseEntered += () => _isHovering = true;
+		_attackButton.MouseExited += () => _isHovering = false;
+
 		_attackButton.Pressed += OnAttackedMonster;
 		_exitButton.Pressed += OnEscapedMonster;
 
@@ -54,6 +61,13 @@ public partial class MonsterInterface : NinePatchRect
 
 		SetMonster(null);
 	}
+
+	public override void _Process(double delta)
+	{
+		if (!_isHovering) return;
+
+		_isAttackButtonPressed = Input.IsMouseButtonPressed(MouseButton.Left);
+    }
 
 	private void OnMonsterEncountered(Monster monster)
 	{
@@ -110,43 +124,57 @@ public partial class MonsterInterface : NinePatchRect
 		}
 	}
 
-	private void OnAttackedMonster()
+	private async void OnAttackedMonster()
 	{
-		if (_monster == null) return;
-
-		int hunterAttack = EquipmentManager.GetWeaponAttack();
-		int hunterSpecialAttack = EquipmentManager.GetWeaponSpecialAttack();
-
-		bool hasHitWeakness = HasHitWeakness();
-		if (hasHitWeakness && hunterSpecialAttack != 0)
+		if (_monster == null || IsInstanceValid(_chargeBarTimer)) return;
+		
+		while (_isAttackButtonPressed)
 		{
-			// Add weakness damage
-			float bonusPercentage = 1.75f;
-			hunterSpecialAttack = Mathf.RoundToInt(hunterSpecialAttack * bonusPercentage);
+			// ? Add charge first & once it's done, attack
+			float weaponChargeTime = EquipmentManager.GetWeaponChargeTime();
+			_chargeBarTimer = MonsterHunterIdle.PackedScenes.GetChargeBarTimer(weaponChargeTime);
+			_chargeBarTimer.TreeExited += () => _chargeBarTimer = null;
+			
+			AddChild(_chargeBarTimer);
+
+			await ToSignal(_chargeBarTimer, ChargeBarTimer.SignalName.ChargingFinished);
+
+			int hunterAttack = EquipmentManager.GetWeaponAttack();
+			int hunterSpecialAttack = EquipmentManager.GetWeaponSpecialAttack();
+
+			bool hasHitWeakness = HasHitWeakness();
+			if (hasHitWeakness && hunterSpecialAttack != 0)
+			{
+				// Add weakness damage
+				float bonusPercentage = 1.75f;
+				hunterSpecialAttack = Mathf.RoundToInt(hunterSpecialAttack * bonusPercentage);
+			}
+
+			int totalDamage = hunterAttack + hunterSpecialAttack;
+
+			// Console message
+			string monsterMessage = PrintRich.GetMonsterMessage(_monster);
+			string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({Hunter.Weapon.Special})";
+			string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {attackMessage} | {totalDamage} HP";
+			PrintRich.Print(TextColor.Orange, monsterAttackedMessage);
+
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, totalDamage);
+
+			Label attackNode = GetDamageNode(hunterAttack, TextColor.Red);
+			TweenNode(attackNode);
+
+			if (hunterSpecialAttack == 0 || Hunter.Weapon.Special == SpecialType.None) return;
+
+			HBoxContainer specialAttackNode = GetSpecialAttackNode(hunterSpecialAttack);
+			TweenNode(specialAttackNode);
 		}
-
-		int totalDamage = hunterAttack + hunterSpecialAttack;
-
-		// Console message
-		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
-		string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({Hunter.Weapon.Special})";
-		string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {attackMessage} | {totalDamage} HP";
-		PrintRich.Print(TextColor.Orange, monsterAttackedMessage);
-
-		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, totalDamage);
-
-		Label attackNode = GetDamageNode(hunterAttack, TextColor.Red);
-		TweenNode(attackNode);
-
-		HBoxContainer specialAttackNode = GetSpecialAttackNode(hunterSpecialAttack);
-		TweenNode(specialAttackNode);
 	}
 
 	private bool HasHitWeakness()
 	{
 		SpecialType weaponSpecialType = Hunter.Weapon.Special;
 		bool hasHitWeakness = _monster.SpecialWeaknesses.Contains(weaponSpecialType);
-		
+
 		return hasHitWeakness;
 	}
 

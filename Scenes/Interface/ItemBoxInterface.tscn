@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdcn2eh3nvkj0"]
 
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_nhaxt"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="1_nhaxt"]
 [ext_resource type="Script" uid="uid://dsrgcsjsg5c15" path="res://Scripts/Interface/ItemBoxInterface.cs" id="2_dn6mp"]
 [ext_resource type="Script" uid="uid://uppbqshujc8e" path="res://Scripts/ItemBoxSearch.cs" id="4_67b84"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="4_ovme2"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="5_ckesc"]
-[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="6_f6qii"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="5_ckesc"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/ZennyIcon.png" id="6_f6qii"]
 
 [node name="ItemBoxInterface" type="VBoxContainer" node_paths=PackedStringArray("_parentContainer", "_itemBoxSearch", "_sellModeButton")]
 custom_minimum_size = Vector2(375, 0)

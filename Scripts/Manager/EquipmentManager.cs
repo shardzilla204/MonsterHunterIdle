@@ -624,7 +624,15 @@ public partial class EquipmentManager : Node
         WeaponCategory.SwordAndShield => (0.05f, 0.15f),
         WeaponCategory.GreatSword => (0.4f, 0.5f),
         WeaponCategory.LongSword => (0.15f, 0.3f),
-        _ => (0.05f, 0.25f),
+        _ => (0.05f, 0.25f)
+    };
+
+    public static float GetWeaponChargeTime() => Hunter.Weapon.Category switch
+    {
+        WeaponCategory.SwordAndShield => 0.45f,
+        WeaponCategory.GreatSword => 1f,
+        WeaponCategory.LongSword => 0.6f,
+        _ => 0.5f
     };
 
     // Data methods

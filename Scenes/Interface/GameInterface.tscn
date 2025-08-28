@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_uqexu"]
 [ext_resource type="Script" uid="uid://cwl2430a7vrkp" path="res://Scripts/Interface/GameInterface.cs" id="2_y0pnk"]
 [ext_resource type="PackedScene" uid="uid://b61iq26ngrfk2" path="res://Scenes/Interface/InterfaceController.tscn" id="3_n0iap"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="4_oeyxj"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="4_oeyxj"]
 [ext_resource type="FontFile" uid="uid://1q6rnlq3mobb" path="res://Assets/Fonts/MonsterHunter2.ttf" id="5_swubd"]
 [ext_resource type="PackedScene" uid="uid://dcsiof323lxef" path="res://Scenes/Button/CycleButton.tscn" id="6_jcvlw"]
 [ext_resource type="Script" uid="uid://bsijeraaeiioi" path="res://Scripts/Popups.cs" id="7_y0pnk"]

@@ -16,7 +16,7 @@ run/main_scene="res://Scenes/Interface/GameInterface.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Godot/app_userdata/MonsterHunterIdle"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
-config/icon="res://Assets/Images/UserInterface/MonsterHunterLogo.png"
+config/icon="res://Assets/Images/MonsterHunterLogo.png"
 
 [autoload]
 

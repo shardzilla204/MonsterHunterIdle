@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://03jc5rlgbljl"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_hrapt"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_wf48e"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="1_wf48e"]
 [ext_resource type="Script" uid="uid://bv4t3d6bqfe4p" path="res://Scripts/Interface/CraftingInterface.cs" id="2_nl2qf"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="4_7m3vw"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_pjkd8"]
-[ext_resource type="Texture2D" uid="uid://oo5awpxlbdsu" path="res://Assets/Images/Icon/Filter.png" id="6_r7xwb"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_pjkd8"]
+[ext_resource type="Texture2D" uid="uid://oo5awpxlbdsu" path="res://Assets/Images/Filter.png" id="6_r7xwb"]
 
 [node name="CraftingInterface" type="HBoxContainer" node_paths=PackedStringArray("_craftButtonContainer", "_filterButton")]
 offset_right = 350.0

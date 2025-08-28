@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4y140m71x08b"]
 
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="1_7tajs"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="1_7tajs"]
 [ext_resource type="Script" uid="uid://chpikjdxvjogj" path="res://Scripts/Monster/MonsterHealthBar.cs" id="2_ewlxx"]
 
 [node name="MonsterHealthBar" type="NinePatchRect" node_paths=PackedStringArray("_delayTimer", "_damageBar", "_healthBar")]
