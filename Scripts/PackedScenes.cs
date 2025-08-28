@@ -48,6 +48,9 @@ public partial class PackedScenes : Node
    [Export]
    private PackedScene _equipmentInfoPopup;
 
+   [Export]
+   private PackedScene _chargeBarTimer;
+
    [ExportGroup("Interfaces")]
    [Export]
    private PackedScene _equipmentSelectionInterface;
@@ -178,6 +181,13 @@ public partial class PackedScenes : Node
       craftingFilter.SetTexture(fileName);
       craftingFilter.Category = category;
       return craftingFilter;
+   }
+
+   public ChargeBarTimer GetChargeBarTimer(float timeThreshold)
+   {
+      ChargeBarTimer chargeBarTimer = _chargeBarTimer.Instantiate<ChargeBarTimer>();
+      chargeBarTimer.SetTimeThreshold(timeThreshold);
+      return chargeBarTimer;
    }
 
    // * Interface scenes

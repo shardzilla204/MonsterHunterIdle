@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ce2opufs0jrv1" path="res://Scripts/EquipmentInfo.cs" id="1_7f766"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="3_ycf5j"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_jlpmm"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_jlpmm"]
 
 [node name="EquipmentInfo" type="HBoxContainer" node_paths=PackedStringArray("_iconTextureRect", "_changeEquipmentButton")]
 mouse_filter = 2

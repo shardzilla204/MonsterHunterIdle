@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://do32mb2sltcv8"]
 
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="1_5up4o"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="1_5up4o"]
 [ext_resource type="Script" uid="uid://wl0fact0avjh" path="res://Scripts/Interface/SettingsInterface.cs" id="2_iyggt"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="3_s7em0"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_i4c1e"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_i4c1e"]
 
 [node name="SettingsInterface" type="NinePatchRect" node_paths=PackedStringArray("_saveButton", "_loadButton", "_deleteButton", "_exitButton")]
 custom_minimum_size = Vector2(350, 250)

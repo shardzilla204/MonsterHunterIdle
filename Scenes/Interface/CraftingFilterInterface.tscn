@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckt57vg7yeo5v"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_t4426"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_8c1ux"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_8c1ux"]
 [ext_resource type="Script" uid="uid://dctjgb3u6pvsh" path="res://Scripts/Interface/CraftingFilterInterface.cs" id="3_kbj5w"]
 [ext_resource type="PackedScene" uid="uid://cdv8ki6wneh2t" path="res://Scenes/WeaponFilters.tscn" id="5_5wgiu"]
-[ext_resource type="Texture2D" uid="uid://d0h6pdwymb6qd" path="res://Assets/Images/UserInterface/Circle.png" id="5_o7g54"]
+[ext_resource type="Texture2D" uid="uid://d0h6pdwymb6qd" path="res://Assets/Images/Circle.png" id="5_o7g54"]
 [ext_resource type="PackedScene" uid="uid://csu81qyfh2bo2" path="res://Scenes/ArmorFilters.tscn" id="6_7o3jd"]
 [ext_resource type="PackedScene" uid="uid://bqicmkaih1461" path="res://Scenes/GroupFilters.tscn" id="7_cvxxh"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b37vvfqqpf0mf"]
 
 [ext_resource type="Script" uid="uid://coxb0dv68agq4" path="res://Scripts/Monster/MonsterTimer.cs" id="1_o12ww"]
-[ext_resource type="Texture2D" uid="uid://vsnx247i3mlt" path="res://Assets/Images/UserInterface/Donut.png" id="2_lgpa4"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="3_u8qqk"]
+[ext_resource type="Texture2D" uid="uid://vsnx247i3mlt" path="res://Assets/Images/Donut.png" id="2_lgpa4"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="3_u8qqk"]
 
 [node name="MonsterTimer" type="TextureRect" node_paths=PackedStringArray("_progressBar", "_timer")]
 self_modulate = Color(0.72, 0.2592, 0.2592, 1)
@@ -30,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 max_value = 30.0
+step = 0.01
 value = 30.0
 fill_mode = 4
 nine_patch_stretch = true
@@ -41,6 +42,6 @@ texture_progress = ExtResource("3_u8qqk")
 tint_progress = Color(1.82897e-06, 0.570628, 0.730392, 1)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 30.0
 one_shot = true
 ignore_time_scale = true

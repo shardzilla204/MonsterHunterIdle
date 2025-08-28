@@ -1,0 +1,45 @@
+{
+    "LongSword":
+    {
+        "Ore":
+        {
+            "Names": [ "Iron Katana", "Iron Grace" ],
+            "Special": "None"
+        },
+        "Kulu-Ya-Ku":
+        {
+            "Names": [ "First Dance", "Last Dance" ],
+            "Special": "None"
+        },
+        "Tobi-Kadachi":
+        {
+            "Names": [ "Pulsar Shotel", "Kadachi Fang" ],
+            "Special": "Thunder"
+        },
+        "Jyuratodus":
+        {
+            "Names": [ "Jyura Shotel", "Dipterus" ],
+            "Special": "Water"
+        },
+        "Anjanath":
+        {
+            "Names": [ "Blazing Shotel", "Anja Scimitar" ],
+            "Special": "Fire"
+        },
+        "Rathian":
+        {
+            "Names": [ "Wyvern Blade \"Leaf\"", "Wyvern Blade \"Verde\"" ],
+            "Special": "Fire"
+        },
+        "Legiana":
+        {
+            "Names": [ "Glacial Shotel", "Stealer" ],
+            "Special": "Ice"
+        },
+        "Rathalos":
+        {
+            "Names": [ "Wyvern Blade \"Fall\"", "Wyvern Blade \"Blood\"" ],
+            "Special": "Fire"
+        }
+    }
+}

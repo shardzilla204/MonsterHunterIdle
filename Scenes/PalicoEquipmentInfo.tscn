@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de0tkmmxhdr37" path="res://Scripts/Palico/PalicoEquipmentInfo.cs" id="1_yu3h8"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="6_ab7w6"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="7_k0t6i"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="7_k0t6i"]
 
 [node name="PalicoEquipmentInfo" type="HBoxContainer" node_paths=PackedStringArray("_iconTexture", "_equipButton")]
 theme_override_constants/separation = 0

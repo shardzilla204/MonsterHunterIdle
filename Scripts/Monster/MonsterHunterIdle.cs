@@ -32,10 +32,10 @@ public enum StatType
 
 /*
 	TODO: Add Palico equipment data
-	TODO: Add attacking charge bar
+	// TODO: Add attacking charge bar
 	TODO: Add weapons:
-		Great Sword
-		Long Sword
+	//	Great Sword
+	//	Long Sword
 
 	// TODO: Add monster weakness damage
 	// TODO: Add equipment status element
@@ -124,13 +124,13 @@ public partial class MonsterHunterIdle : Node
 		{
 			if (weapon.Category == WeaponCategory.None) return null;
 
-			filePath = $"res://Assets/Images/Icon/Weapons/{weapon.Category}Icon{gradeColorString}.png";
+			filePath = $"res://Assets/Images/Weapons/{weapon.Category}Icon{gradeColorString}.png";
 		}
 		else if (equipment is Armor armor)
 		{
 			if (armor.Category == ArmorCategory.None) return null;
 			
-			filePath = $"res://Assets/Images/Icon/Armor/{armor.Category}Icon{gradeColorString}.png";
+			filePath = $"res://Assets/Images/Armor/{armor.Category}Icon{gradeColorString}.png";
 		}
 		return GetTexture(filePath);
 	}

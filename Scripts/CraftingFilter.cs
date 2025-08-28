@@ -28,7 +28,7 @@ public partial class CraftingFilter : HBoxContainer
 
     public void SetTexture(string fileName)
     {
-        string folderPath = "res://Assets/Images/Icon/Filter/";
+        string folderPath = "res://Assets/Images/Filter/";
         string filePath = $"{folderPath}/{fileName}Filter.png";
 
         Texture2D filterIcon = MonsterHunterIdle.GetTexture(filePath);

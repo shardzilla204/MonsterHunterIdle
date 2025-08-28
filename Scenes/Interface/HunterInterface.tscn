@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://ksdf7gtoe15v"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_4x1ic"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_7ffap"]
-[ext_resource type="Texture2D" uid="uid://c63hmsdahg6h1" path="res://Assets/Images/Icon/HunterRankPointIcon.png" id="3_0ga8u"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_7ffap"]
+[ext_resource type="Texture2D" uid="uid://c63hmsdahg6h1" path="res://Assets/Images/HunterRankPointIcon.png" id="3_0ga8u"]
 [ext_resource type="Script" uid="uid://dpd11slshpgyh" path="res://Scripts/Interface/HunterInterface.cs" id="3_7ffap"]
 [ext_resource type="PackedScene" uid="uid://dj8yua44jvdxr" path="res://Scenes/HunterProgressBar.tscn" id="4_iosnr"]
-[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/Icon/ZennyIcon.png" id="5_qumx7"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/ZennyIcon.png" id="5_qumx7"]
 [ext_resource type="Script" uid="uid://dgeu7hr2vla8i" path="res://Scripts/HunterMonsterStats.cs" id="7_iosnr"]
 
 [node name="HunterInterface" type="NinePatchRect" node_paths=PackedStringArray("_hunterRankLabel", "_hunterProgress", "_zennyLabel", "_monsterSlayedContainer")]

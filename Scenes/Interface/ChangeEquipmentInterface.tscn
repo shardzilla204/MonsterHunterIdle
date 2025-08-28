@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://vbphx0fd642i" path="res://Scripts/Interface/ChangeEquipmentInterface.cs" id="2_pho16"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="3_6ifmy"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="3_f2m0c"]
-[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/UserInterface/RoundedSquare.png" id="4_6ifmy"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="3_f2m0c"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_6ifmy"]
 
 [node name="ChangeEquipmentInterface" type="NinePatchRect" node_paths=PackedStringArray("_changeLabel", "_yesButton", "_noButton")]
 custom_minimum_size = Vector2(350, 250)

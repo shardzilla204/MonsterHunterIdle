@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://btgy07d3c0r00"]
 
 [ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_n0yl2"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/UserInterface/BorderBox.png" id="2_di348"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_di348"]
 [ext_resource type="Script" uid="uid://bkds84r75gwow" path="res://Scripts/LoadoutInfo.cs" id="3_yqctp"]
 
 [node name="LoadoutInfo" type="NinePatchRect" node_paths=PackedStringArray("_equipmentInfoContainer")]

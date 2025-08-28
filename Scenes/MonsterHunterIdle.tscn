@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d2ns481hjn578"]
+[gd_scene load_steps=42 format=3 uid="uid://d2ns481hjn578"]
 
 [ext_resource type="Script" uid="uid://cb1mv80mxtdxp" path="res://Scripts/Monster/MonsterHunterIdle.cs" id="1_c5mcf"]
 [ext_resource type="Script" uid="uid://dov5pjrkrpw64" path="res://Scripts/PackedScenes.cs" id="2_oe44a"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://4yxgxv0tplev" path="res://Scripts/Signals.cs" id="15_8g285"]
 [ext_resource type="PackedScene" uid="uid://c65r7swivg2d1" path="res://Scenes/CraftingFilter.tscn" id="15_uyatr"]
 [ext_resource type="Script" uid="uid://bwabhljl73234" path="res://Scripts/PrintRich.cs" id="16_jlcpi"]
+[ext_resource type="PackedScene" uid="uid://denpjxbfcmp56" path="res://Scenes/ChargeBarTimer.tscn" id="17_c4ivd"]
 [ext_resource type="PackedScene" uid="uid://blqsy01kwcben" path="res://Scenes/Interface/ChangeEquipmentInterface.tscn" id="18_obnql"]
 [ext_resource type="Script" uid="uid://dyba1ua3vc4ya" path="res://Scripts/Manager/HunterManager.cs" id="19_gfvhb"]
 [ext_resource type="Script" uid="uid://dgiw4enl7acbv" path="res://Scripts/Manager/ItemBox.cs" id="19_i6lr1"]
@@ -61,6 +62,7 @@ _sellMaterialLogContainer = ExtResource("12_u8ama")
 _sellMaterialLog = ExtResource("13_20l7k")
 _craftingFilter = ExtResource("15_uyatr")
 _equipmentInfoPopup = ExtResource("13_xli7x")
+_chargeBarTimer = ExtResource("17_c4ivd")
 _equipmentSelectionInterface = ExtResource("11_8g285")
 _monsterInterface = ExtResource("4_i6lr1")
 _collectionLogInterface = ExtResource("5_cdtog")
@@ -92,7 +94,7 @@ _encounter = NodePath("MonsterEncounter")
 
 [node name="MonsterEncounter" type="Node" parent="Managers/MonsterManager"]
 script = ExtResource("22_u0u51")
-_encounterIncrease = 0.5
+_encounterIncrease = 10.0
 
 [node name="EquipmentManager" type="Node" parent="Managers"]
 script = ExtResource("23_sm2tf")
