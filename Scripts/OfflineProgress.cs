@@ -6,15 +6,13 @@ namespace MonsterHunterIdle;
 
 public partial class OfflineProgress : Node
 {
-    private string _offlineFilePath = "user://offline.time";
-    private string _dataKey = "Time";
+    private static string _offlineFilePath = "user://offline.time";
+    private static string _dataKey = "Time";
 
-    public Dictionary<string, int> TimeDifference = new Dictionary<string, int>();
+    public static Dictionary<string, int> TimeDifference = new Dictionary<string, int>();
 
     public override void _EnterTree()
     {
-        MonsterHunterIdle.OfflineProgress = this;
-
         GetWindow().CloseRequested += SaveProgress;
     }
 
@@ -30,7 +28,7 @@ public partial class OfflineProgress : Node
         }
     }
 
-    public void SaveProgress()
+    public static void SaveProgress()
     {
         using FileAccess gameFile = FileAccess.Open(_offlineFilePath, FileAccess.ModeFlags.Write);
         string jsonString = Json.Stringify(GetData(), "\t");
@@ -47,7 +45,7 @@ public partial class OfflineProgress : Node
         PrintRich.PrintLine(TextColor.Green, saveSuccessMessage);
     }
 
-    public void LoadProgress()
+    public static void LoadProgress()
     {
         using FileAccess gameFile = FileAccess.Open(_offlineFilePath, FileAccess.ModeFlags.Read);
         string jsonString = gameFile.GetAsText();
@@ -78,7 +76,7 @@ public partial class OfflineProgress : Node
         PrintRich.PrintLine(TextColor.Green, loadSuccessMessage);
     }
 
-    private Dictionary<string, Variant> GetData()
+    private static Dictionary<string, Variant> GetData()
     {
         return new Dictionary<string, Variant>()
         {
@@ -97,7 +95,7 @@ public partial class OfflineProgress : Node
         second
         dst
     */
-    private void CalculateTimeDifference(Dictionary<string, Variant> offlineData)
+    private static void CalculateTimeDifference(Dictionary<string, Variant> offlineData)
     {
         TimeDifference = new Dictionary<string, int>()
         {
@@ -108,7 +106,7 @@ public partial class OfflineProgress : Node
         PrintRich.PrintTimeDifference(TimeDifference);
     }
 
-    private int GetTimeDifference(Dictionary<string, Variant> offlineData, string keyName)
+    private static int GetTimeDifference(Dictionary<string, Variant> offlineData, string keyName)
     {
         Dictionary currentTime = Time.GetDatetimeDictFromSystem();
         Dictionary previousTime = offlineData[_dataKey].As<Dictionary>();

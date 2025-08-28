@@ -17,7 +17,7 @@ public partial class PalicoInterface : Container
 
 	public override void _Ready()
 	{
-		foreach (Palico palico in MonsterHunterIdle.PalicoManager.Palicos)
+		foreach (Palico palico in PalicoManager.Palicos)
 		{
 			AddPalicoDetails(palico);
 		}
@@ -34,7 +34,7 @@ public partial class PalicoInterface : Container
 		PrintRich.PrintLine(TextColor.Yellow, recruitedPalicoMessage);
 
 		Palico palico = new Palico();
-		MonsterHunterIdle.PalicoManager.Palicos.Add(palico);
+		PalicoManager.Palicos.Add(palico);
 		AddPalicoDetails(palico);
 		OnLoadoutOpened(palico); // Show loadout
 		CheckAmount();
@@ -63,16 +63,16 @@ public partial class PalicoInterface : Container
 
 	private void UpdateText()
 	{
-		int palicoCount = MonsterHunterIdle.PalicoManager.Palicos.Count;
-		int maxPalicoCount = MonsterHunterIdle.PalicoManager.MaxPalicoCount;
+		int palicoCount = PalicoManager.Palicos.Count;
+		int maxPalicoCount = PalicoManager.MaxPalicoCount;
 
 		_palicoAmount.Text = $"{palicoCount} / {maxPalicoCount}";
 	}
 
 	private void CheckAmount()
 	{
-		int palicoCount = MonsterHunterIdle.PalicoManager.Palicos.Count;
-		int maxPalicoCount = MonsterHunterIdle.PalicoManager.MaxPalicoCount;
+		int palicoCount = PalicoManager.Palicos.Count;
+		int maxPalicoCount = PalicoManager.MaxPalicoCount;
 
 		_recruitPalicoButton.Disabled = palicoCount == maxPalicoCount ? true : false;
 	}

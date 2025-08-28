@@ -51,12 +51,12 @@ public partial class Weapon : Equipment
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
         Array<string> names = dictionary["Names"].As<Array<string>>();
-        MonsterHunterIdle.EquipmentManager.SetWeaponName(this, names);
+        EquipmentManager.SetWeaponName(this, names);
 
         string specialTypeString = dictionary["Special"].As<string>();
         Special = Enum.Parse<SpecialType>(specialTypeString);
 
-        Attack = MonsterHunterIdle.EquipmentManager.GetAttackValue(this);
-        SpecialAttack = MonsterHunterIdle.EquipmentManager.GetSpecialValue(this);
+        Attack = EquipmentManager.GetAttackValue(this);
+        SpecialAttack = EquipmentManager.GetSpecialValue(this);
     }
 }

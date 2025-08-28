@@ -31,11 +31,10 @@ public partial class ChangeEquipmentInterface : NinePatchRect
 
     private void OnYesButtonPressed()
     {
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
         if (_equipment is Weapon weapon)
         {
-            Weapon oldWeapon = hunter.Weapon;
-            hunter.Weapon = weapon;
+            Weapon oldWeapon = Hunter.Weapon;
+            Hunter.Weapon = weapon;
 
             if (oldWeapon != null)
             {
@@ -50,24 +49,24 @@ public partial class ChangeEquipmentInterface : NinePatchRect
             switch (armor.Category)
             {
                 case ArmorCategory.Head:
-                    oldArmor = hunter.Head;
-                    hunter.Head = armor;
+                    oldArmor = Hunter.Head;
+                    Hunter.Head = armor;
                     break;
                 case ArmorCategory.Chest:
-                    oldArmor = hunter.Chest;
-                    hunter.Chest = armor;
+                    oldArmor = Hunter.Chest;
+                    Hunter.Chest = armor;
                     break;
                 case ArmorCategory.Arm:
-                    oldArmor = hunter.Arm;
-                    hunter.Arm = armor;
+                    oldArmor = Hunter.Arm;
+                    Hunter.Arm = armor;
                     break;
                 case ArmorCategory.Waist:
-                    oldArmor = hunter.Waist;
-                    hunter.Waist = armor;
+                    oldArmor = Hunter.Waist;
+                    Hunter.Waist = armor;
                     break;
                 case ArmorCategory.Leg:
-                    oldArmor = hunter.Leg;
-                    hunter.Leg = armor;
+                    oldArmor = Hunter.Leg;
+                    Hunter.Leg = armor;
                     break;
             }
 

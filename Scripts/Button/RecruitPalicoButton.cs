@@ -26,10 +26,10 @@ public partial class RecruitPalicoButton : CustomButton
 	// Recruit palico
 	private void OnPressed()
 	{
-		if (MonsterHunterIdle.PalicoManager.Palicos.Count == MonsterHunterIdle.PalicoManager.MaxPalicoCount) return;
-		if (MonsterHunterIdle.HunterManager.Hunter.Zenny < _currentPrice) return;
+		if (PalicoManager.Palicos.Count == PalicoManager.MaxPalicoCount) return;
+		if (Hunter.Zenny < _currentPrice) return;
 
-		MonsterHunterIdle.HunterManager.Hunter.Zenny -= _currentPrice;
+		Hunter.Zenny -= _currentPrice;
 		EmitSignal(SignalName.PalicoRecruited);
 		CalculatePrice();
 	}
@@ -37,10 +37,10 @@ public partial class RecruitPalicoButton : CustomButton
 	private void CalculatePrice()
 	{
 		float priceMult = 1.65f;
-		_currentPrice = MonsterHunterIdle.PalicoManager.Palicos.Count switch 
+		_currentPrice = PalicoManager.Palicos.Count switch 
 		{
 			0 => _basePrice,
-			_ => Mathf.RoundToInt(MonsterHunterIdle.PalicoManager.Palicos.Count * _basePrice * priceMult)
+			_ => Mathf.RoundToInt(PalicoManager.Palicos.Count * _basePrice * priceMult)
 		};
 		_priceLabel.Text = $"{_currentPrice}";
 	}

@@ -45,14 +45,14 @@ public partial class EquipmentSelectionInterface : NinePatchRect
         _equipment = equipment;
         if (equipment is Weapon)
         {
-            foreach (Weapon weapon in MonsterHunterIdle.EquipmentManager.CraftedWeapons)
+            foreach (Weapon weapon in EquipmentManager.CraftedWeapons)
             {
                 AddEquipmentOption(weapon);
             }
         }
         else if (equipment is Armor targetArmor)
         {
-            List<Armor> armorList = MonsterHunterIdle.EquipmentManager.CraftedArmor.FindAll(armor => armor.Category == targetArmor.Category);
+            List<Armor> armorList = EquipmentManager.CraftedArmor.FindAll(armor => armor.Category == targetArmor.Category);
             foreach (Armor armor in armorList)
             {
                 AddEquipmentOption(armor);

@@ -69,7 +69,7 @@ public partial class ItemBoxInterface : Container
 
 		ClearDisplay();
 
-		List<Material> distinctMaterials = MonsterHunterIdle.ItemBox.Materials.Distinct().ToList();
+		List<Material> distinctMaterials = ItemBox.Materials.Distinct().ToList();
 
 		if (!_sellModeButton.ButtonPressed)
 		{
@@ -125,7 +125,7 @@ public partial class ItemBoxInterface : Container
 
 		ClearDisplay();
 
-		List<Material> distinctMaterials = filteredMaterials.Count == 0 ? MonsterHunterIdle.ItemBox.Materials.Distinct().ToList() : filteredMaterials.ToList();
+		List<Material> distinctMaterials = filteredMaterials.Count == 0 ? ItemBox.Materials.Distinct().ToList() : filteredMaterials.ToList();
 		if (!_sellModeButton.ButtonPressed)
 		{
 			AddMaterialLogs(distinctMaterials);
@@ -175,10 +175,10 @@ public partial class ItemBoxInterface : Container
 		{
 			Material material = MonsterHunterIdle.FindMaterial(materialName);
 			int amount = materialsToSell[materialName];
-			MonsterHunterIdle.ItemBox.SubtractMaterial(material, amount);
+			ItemBox.SubtractMaterial(material, amount);
 
-			int zenny = MonsterHunterIdle.ItemBox.GetSellValue(material) * amount;
-			MonsterHunterIdle.HunterManager.AddZenny(zenny);
+			int zenny = ItemBox.GetSellValue(material) * amount;
+			HunterManager.AddZenny(zenny);
 
 			string soldMessage = $"Sold {amount} {materialName} For {zenny} Zenny";
 			PrintRich.PrintLine(TextColor.Yellow, soldMessage);

@@ -22,7 +22,7 @@ public partial class PalicoEquipmentManager : Node
 
     public override void _EnterTree()
     {
-        MonsterHunterIdle.PalicoManager.Equipment = this;
+        PalicoManager.Equipment = this;
 
         // LoadEquipment();
         // LoadRecipes();

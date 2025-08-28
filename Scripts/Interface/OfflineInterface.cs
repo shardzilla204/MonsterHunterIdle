@@ -54,9 +54,9 @@ public partial class OfflineInterface : ColorRect
     private void GetRewards()
     {
         List<Material> rewards = new List<Material>();
-        int gatherThreshold = (int) (MonsterHunterIdle.PalicoManager.ActionIntervalSeconds * MonsterHunterIdle.OfflineThresholdMult);
+        int gatherThreshold = (int) (PalicoManager.ActionIntervalSeconds * MonsterHunterIdle.OfflineThresholdMult);
         int gatherCount = _seconds / gatherThreshold;
-        int palicoCount = MonsterHunterIdle.PalicoManager.Palicos.Count;
+        int palicoCount = PalicoManager.Palicos.Count;
 
         if (palicoCount == 0)
         {
@@ -81,6 +81,6 @@ public partial class OfflineInterface : ColorRect
             _materialLogContainer.AddChild(materialLog);
         }
 
-        MonsterHunterIdle.ItemBox.Materials.AddRange(rewards);
+        ItemBox.Materials.AddRange(rewards);
     }
 }

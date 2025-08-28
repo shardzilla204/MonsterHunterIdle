@@ -67,19 +67,21 @@ public partial class ItemBox : Node
       },
    };
 
-   public List<Material> Materials = new List<Material>();
+   private static GC.Array<GC.Dictionary<string, Variant>> StartingMaterials = new GC.Array<GC.Dictionary<string, Variant>>();
+
+   public static List<Material> Materials = new List<Material>();
 
    public override void _EnterTree()
    {
-      MonsterHunterIdle.ItemBox = this;
-
       MonsterHunterIdle.Signals.LocaleMaterialAdded += Materials.Add;
       MonsterHunterIdle.Signals.MonsterMaterialAdded += Materials.Add;
+
+      StartingMaterials = _startingMaterials;
    }
 
-   private void AddStartingMaterials()
+   private static void AddStartingMaterials()
    {
-      foreach (GC.Dictionary<string, Variant> materialDictionary in _startingMaterials)
+      foreach (GC.Dictionary<string, Variant> materialDictionary in StartingMaterials)
       {
          string materialName = materialDictionary["Name"].As<string>();
          Material material = MonsterHunterIdle.FindMaterial(materialName);
@@ -92,17 +94,17 @@ public partial class ItemBox : Node
       }
    }
 
-   public Material FindMaterial(string materialName)
+   public static Material FindMaterial(string materialName)
    {
       return Materials.Find(material => material.Name == materialName);
    }
 
-   public List<Material> FindAllMaterial(string materialName)
+   public static List<Material> FindAllMaterial(string materialName)
    {
       return Materials.FindAll(material => material.Name == materialName);
    }
 
-   public void SubtractMaterial(Material material, int amount)
+   public static void SubtractMaterial(Material material, int amount)
    {
       for (int i = 0; i < amount; i++)
       {
@@ -110,7 +112,7 @@ public partial class ItemBox : Node
       }
    }
 
-   public int GetSellValue(Material material) => material.Rarity switch
+   public static int GetSellValue(Material material) => material.Rarity switch
    {
       1 => 1,
       2 => 5,
@@ -123,7 +125,7 @@ public partial class ItemBox : Node
 
    // Data methods
    /// <see cref="GameManager.SaveGame">
-   public GC.Dictionary<string, Variant> GetData()
+   public static GC.Dictionary<string, Variant> GetData()
    {
       // GC.Array<string> materialsData = new GC.Array<string>();
       GC.Dictionary<string, Variant> materialsData = new GC.Dictionary<string, Variant>();
@@ -139,7 +141,7 @@ public partial class ItemBox : Node
    }
 
    /// <see cref="GameManager.LoadGame">
-   public void SetData(GC.Dictionary<string, Variant> itemBoxData)
+   public static void SetData(GC.Dictionary<string, Variant> itemBoxData)
    {
       foreach (string materialName in itemBoxData.Keys)
       {
@@ -153,7 +155,7 @@ public partial class ItemBox : Node
    }
 
    /// <see cref="GameManager.DeleteGame">
-   public void DeleteData()
+   public static void DeleteData()
    {
       Materials.Clear();
 

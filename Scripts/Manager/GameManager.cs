@@ -7,12 +7,10 @@ namespace MonsterHunterIdle;
 
 public partial class GameManager : Node
 {
-	private string _gameFilePath = "user://savegame.sav";
+	private static string _gameFilePath = "user://savegame.sav";
 
 	public override void _EnterTree()
 	{
-		MonsterHunterIdle.GameManager = this;
-
 		MonsterHunterIdle.Signals.GameSaved += SaveGame;
 		MonsterHunterIdle.Signals.GameLoaded += LoadGame;
 		MonsterHunterIdle.Signals.GameDeleted += DeleteGame;
@@ -37,32 +35,32 @@ public partial class GameManager : Node
 		}
 	}
 
-	private GC.Dictionary<string, Variant> GetData()
+	private static GC.Dictionary<string, Variant> GetData()
 	{
 		return new GC.Dictionary<string, Variant>()
 		{
-			{ "Hunter", MonsterHunterIdle.HunterManager.GetData() },
-			{ "ItemBox", MonsterHunterIdle.ItemBox.GetData() },
-			{ "Equipment", MonsterHunterIdle.EquipmentManager.GetData() },
-			{ "Palicos", MonsterHunterIdle.PalicoManager.GetData() }
+			{ "Hunter", HunterManager.GetData() },
+			{ "ItemBox", ItemBox.GetData() },
+			{ "Equipment", EquipmentManager.GetData() },
+			{ "Palicos", PalicoManager.GetData() }
 		};
 	}
 
-	private void SetData(GC.Dictionary<string, Variant> gameData)
+	private static void SetData(GC.Dictionary<string, Variant> gameData)
 	{
 		try
 		{
 			GC.Dictionary<string, Variant> hunterData = gameData["Hunter"].As<GC.Dictionary<string, Variant>>();
-			MonsterHunterIdle.HunterManager.SetData(hunterData);
+			HunterManager.SetData(hunterData);
 
 			GC.Dictionary<string, Variant> itemBoxData = gameData["ItemBox"].As<GC.Dictionary<string, Variant>>();
-			MonsterHunterIdle.ItemBox.SetData(itemBoxData);
+			ItemBox.SetData(itemBoxData);
 
 			GC.Dictionary<string, Variant> equipmentData = gameData["Equipment"].As<GC.Dictionary<string, Variant>>();
-			MonsterHunterIdle.EquipmentManager.SetData(equipmentData);
+			EquipmentManager.SetData(equipmentData);
 
 			GC.Array<GC.Dictionary<string, Variant>> palicosData = gameData["Palicos"].As<GC.Array<GC.Dictionary<string, Variant>>>();
-			MonsterHunterIdle.PalicoManager.SetData(palicosData);
+			PalicoManager.SetData(palicosData);
 
 			// GC.Dictionary<string, Variant> poglinEnemiesData = gameData["Poglin Enemies"].As<GC.Dictionary<string, Variant>>();
 			// PickleClicker.PoglinEnemyManager.SetData(poglinEnemiesData);
@@ -78,7 +76,7 @@ public partial class GameManager : Node
 		}
 	}
 
-	public void SaveGame()
+	public static void SaveGame()
 	{
 		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Write);
 		string jsonString = Json.Stringify(GetData(), "\t");
@@ -95,7 +93,7 @@ public partial class GameManager : Node
 		PrintRich.PrintLine(TextColor.Green, saveSuccessMessage);
 	}
 
-	public void LoadGame()
+	public static void LoadGame()
 	{
 		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Read);
 		string jsonString = gameFile.GetAsText();
@@ -128,12 +126,12 @@ public partial class GameManager : Node
 
 	// ! Important !
 	/// Erase equipment first as added starting equipment from deleting hunter data will also be erased 
-	private void DeleteGame()
+	private static void DeleteGame()
 	{
-		MonsterHunterIdle.EquipmentManager.DeleteData();
-		MonsterHunterIdle.ItemBox.DeleteData();
-		MonsterHunterIdle.HunterManager.DeleteData();
-		MonsterHunterIdle.PalicoManager.DeleteData();
+		EquipmentManager.DeleteData();
+		ItemBox.DeleteData();
+		HunterManager.DeleteData();
+		PalicoManager.DeleteData();
 
 		SaveGame();
 	}

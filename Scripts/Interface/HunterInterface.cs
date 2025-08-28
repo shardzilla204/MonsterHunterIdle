@@ -37,9 +37,9 @@ public partial class HunterInterface : NinePatchRect
 
 	private void OnHunterLeveledUp()
 	{
-		_hunterRankLabel.Text = $"HR {MonsterHunterIdle.HunterManager.Hunter.Rank}";
+		_hunterRankLabel.Text = $"HR {Hunter.Rank}";
 		_hunterProgress.Update();
-		_zennyLabel.Text = $"{MonsterHunterIdle.HunterManager.Hunter.Zenny}z";
+		_zennyLabel.Text = $"{Hunter.Zenny}z";
 	}
 
 	private void SetMonstersSlayed()
@@ -50,10 +50,9 @@ public partial class HunterInterface : NinePatchRect
 			monsterSlayedNode.QueueFree();
 		}
 
-		HunterManager hunterManager = MonsterHunterIdle.HunterManager;
-		foreach (string monsterName in hunterManager.MonstersSlayed.Keys)
+		foreach (string monsterName in HunterManager.MonstersSlayed.Keys)
 		{
-			int slayCount = hunterManager.MonstersSlayed[monsterName];
+			int slayCount = HunterManager.MonstersSlayed[monsterName];
 			HBoxContainer monsterSlayedNode = GetMonsterSlayedNode(monsterName, slayCount);
 			_monsterSlayedContainer.AddChild(monsterSlayedNode);
 		}

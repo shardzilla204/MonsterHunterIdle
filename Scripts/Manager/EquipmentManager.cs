@@ -10,24 +10,22 @@ namespace MonsterHunterIdle;
 
 public partial class EquipmentManager : Node
 {
-    public List<Weapon> Weapons = new List<Weapon>();
-    public List<Armor> Armor = new List<Armor>();
-    public GC.Dictionary<string, Variant> Recipes = new GC.Dictionary<string, Variant>();
+    public static List<Weapon> Weapons = new List<Weapon>();
+    public static List<Armor> Armor = new List<Armor>();
+    public static GC.Dictionary<string, Variant> Recipes = new GC.Dictionary<string, Variant>();
 
-    public List<Weapon> CraftedWeapons = new List<Weapon>();
-    public List<Armor> CraftedArmor = new List<Armor>();
+    public static List<Weapon> CraftedWeapons = new List<Weapon>();
+    public static List<Armor> CraftedArmor = new List<Armor>();
 
-    private string _weaponFolderPath = "Equipment/Weapons";
+    private static string _weaponFolderPath = "Equipment/Weapons";
 
     public override void _EnterTree()
     {
-        MonsterHunterIdle.EquipmentManager = this;
-
         LoadEquipment();
     }
 
     // Go through provided file paths and load weapons and armor
-    private void LoadEquipment()
+    private static void LoadEquipment()
     {
         string weaponFilePath = $"res://JSON/{_weaponFolderPath}/";
         LoadWeapons(weaponFilePath);
@@ -39,7 +37,7 @@ public partial class EquipmentManager : Node
     /// Take the file name without the extension (<see cref="string.GetBaseName()"/>) 
     /// Use fileName and folderPath (<see cref="LoadWeapons.folderPath"/>) as parameters in the provided method
     /// If successful, iterate to the next file
-    private void LoadWeapons(string filePath)
+    private static void LoadWeapons(string filePath)
     {
         using DirAccess directory = DirAccess.Open(filePath);
         if (directory != null)
@@ -75,7 +73,7 @@ public partial class EquipmentManager : Node
         }
     }
 
-    private bool AddWeapons(string fileName)
+    private static bool AddWeapons(string fileName)
     {
         GC.Dictionary<string, Variant> weaponTreeData = MonsterHunterIdle.LoadFile(fileName, _weaponFolderPath).As<GC.Dictionary<string, Variant>>();
         if (weaponTreeData == null) return false;
@@ -111,7 +109,7 @@ public partial class EquipmentManager : Node
         return true;
     }
 
-    public Weapon GetWeapon(WeaponCategory category, WeaponTree tree, int grade = 0, int subGrade = 0)
+    public static Weapon GetWeapon(WeaponCategory category, WeaponTree tree, int grade = 0, int subGrade = 0)
     {
         if (tree == WeaponTree.None) return new Weapon();
 
@@ -133,7 +131,7 @@ public partial class EquipmentManager : Node
         return weapon;
     }
 
-    private void LoadArmor()
+    private static void LoadArmor()
     {
         string fileName = "Armor";
         string folderPath = "Equipment/Armor";
@@ -156,7 +154,7 @@ public partial class EquipmentManager : Node
         }
     }
 
-    public Armor GetArmor(ArmorCategory category, ArmorSet set, int grade, int subGrade)
+    public static Armor GetArmor(ArmorCategory category, ArmorSet set, int grade, int subGrade)
     {
         if (set == ArmorSet.None) return new Armor(category, set);
 
@@ -175,7 +173,7 @@ public partial class EquipmentManager : Node
         return armor;
     }
 
-    public void SetWeaponName(Weapon weapon, GC.Array<string> names)
+    public static void SetWeaponName(Weapon weapon, GC.Array<string> names)
     {
         int maxSubGrade = 4;
         int grade = weapon.Grade;
@@ -192,14 +190,14 @@ public partial class EquipmentManager : Node
         }
     }
 
-    public void SetArmorName(Armor armor, GC.Array<string> names)
+    public static void SetArmorName(Armor armor, GC.Array<string> names)
     {
         int armorCategoryIndex = (int) armor.Category;
         string romanNumeral = GetRomanNumeral(armor.Grade);
         armor.Name = $"{armor.Set} {names[armorCategoryIndex]} {romanNumeral}";
     }
 
-    private string GetRomanNumeral(int grade) => grade switch
+    private static string GetRomanNumeral(int grade) => grade switch
     {
         0 => "I",
         1 => "II",
@@ -214,7 +212,7 @@ public partial class EquipmentManager : Node
         _ => ""
     };
 
-    public bool HasCrafted(Equipment equipment)
+    public static bool HasCrafted(Equipment equipment)
     {
         bool hasCrafted = false;
         if (equipment is Weapon targetWeapon)
@@ -230,7 +228,7 @@ public partial class EquipmentManager : Node
         return hasCrafted;
     }
 
-    public Equipment GetHunterEquipment(Equipment equipment)
+    public static Equipment GetHunterEquipment(Equipment equipment)
     {
         if (equipment is Weapon targetWeapon)
         {
@@ -253,7 +251,7 @@ public partial class EquipmentManager : Node
         return null;
     }
 
-    public int GetCraftingCost(int grade, int subGrade)
+    public static int GetCraftingCost(int grade, int subGrade)
     {
         int[,] craftingCosts =
         {
@@ -281,7 +279,7 @@ public partial class EquipmentManager : Node
         return craftingCost;
     }
 
-    public void UpgradeEquipment(Equipment equipment)
+    public static void UpgradeEquipment(Equipment equipment)
     {
         equipment.SubGrade++;
 
@@ -316,7 +314,7 @@ public partial class EquipmentManager : Node
         }
     }
 
-    public int GetAttackValue(Weapon weapon)
+    public static int GetAttackValue(Weapon weapon)
     {
         string fileName = "WeaponAttack";
         string folderName = "Equipment";
@@ -327,7 +325,7 @@ public partial class EquipmentManager : Node
         return attack;
     }
 
-    public int GetSpecialValue(Weapon weapon)
+    public static int GetSpecialValue(Weapon weapon)
     {
         string fileName = "WeaponSpecial";
         string folderName = "Equipment";
@@ -338,7 +336,7 @@ public partial class EquipmentManager : Node
         return special;
     }
 
-    private int GetWeaponValue(GC.Array<GC.Dictionary<string, Variant>> dictionaries, Weapon weapon)
+    private static int GetWeaponValue(GC.Array<GC.Dictionary<string, Variant>> dictionaries, Weapon weapon)
     {
         float value = 0;
         string treeName = weapon.Tree.ToString();
@@ -374,7 +372,7 @@ public partial class EquipmentManager : Node
         return Mathf.RoundToInt(value);
     }
 
-    public int GetDefenseValue(int grade, int subGrade = 0)
+    public static int GetDefenseValue(int grade, int subGrade = 0)
     {
         string fileName = "ArmorDefense";
         string folderName = "Equipment";
@@ -387,7 +385,7 @@ public partial class EquipmentManager : Node
         return defenseValue;
     }
 
-    public List<GC.Dictionary<string, Variant>> GetRecipe(Equipment equipment, bool getNextRecipe = false)
+    public static List<GC.Dictionary<string, Variant>> GetRecipe(Equipment equipment, bool getNextRecipe = false)
     {
         // Get the specified ingredient names
         string fileName = "RecipeIngredients";
@@ -409,7 +407,7 @@ public partial class EquipmentManager : Node
         return null;
     }
 
-    private List<GC.Dictionary<string, Variant>> GetArmorRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary)
+    private static List<GC.Dictionary<string, Variant>> GetArmorRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary)
     {
         // Get the dictionaries
         string fileName = "ArmorRecipe";
@@ -421,7 +419,7 @@ public partial class EquipmentManager : Node
         return armorRecipe;
     }
 
-    private List<GC.Dictionary<string, Variant>> GetWeaponRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary)
+    private static List<GC.Dictionary<string, Variant>> GetWeaponRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary)
     {
         // Get the dictionaries
         string fileName = "WeaponRecipe";
@@ -433,7 +431,7 @@ public partial class EquipmentManager : Node
         return weaponRecipe;
     }
 
-    private List<Variant> GetGradeDictionaries(GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
+    private static List<Variant> GetGradeDictionaries(GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
     {
         try
         {
@@ -455,7 +453,7 @@ public partial class EquipmentManager : Node
         }
     }
 
-    private List<GC.Dictionary<string, Variant>> GetIngredientDictionaries(Equipment equipment, bool getNextRecipe, List<Variant> gradeDictionaries)
+    private static List<GC.Dictionary<string, Variant>> GetIngredientDictionaries(Equipment equipment, bool getNextRecipe, List<Variant> gradeDictionaries)
     {
         int maxSubGrade = 4;
         int maxGrade = 9;
@@ -475,7 +473,7 @@ public partial class EquipmentManager : Node
         return ingredientDictionaries;
     }
 
-    private List<GC.Dictionary<string, Variant>> GetRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
+    private static List<GC.Dictionary<string, Variant>> GetRecipe(Equipment equipment, bool getNextRecipe, GC.Dictionary<string, Variant> craftingDictionary, GC.Dictionary<string, Variant> equipmentRecipeDictionaries)
     {
         List<Variant> gradeDictionaries = GetGradeDictionaries(craftingDictionary, equipmentRecipeDictionaries);
         List<GC.Dictionary<string, Variant>> ingredientDictionaries = GetIngredientDictionaries(equipment, getNextRecipe, gradeDictionaries);
@@ -510,7 +508,7 @@ public partial class EquipmentManager : Node
         return recipe;
     }
 
-    private string GetIngredientName(GC.Dictionary<string, Variant> ingredientDictionary, GC.Dictionary<string, Variant> craftingDictionary, EquipmentType equipmentType, [CallerLineNumber] int lineNumber = 0)
+    private static string GetIngredientName(GC.Dictionary<string, Variant> ingredientDictionary, GC.Dictionary<string, Variant> craftingDictionary, EquipmentType equipmentType, [CallerLineNumber] int lineNumber = 0)
     {
         string key = ingredientDictionary["Key"].As<string>();
         if (key == "EquipmentMaterial")
@@ -521,7 +519,7 @@ public partial class EquipmentManager : Node
                 EquipmentType.Armor => "Wingdrake Hide",
                 _ => ""
             };
-            LocaleMaterial equipmentMaterial = MonsterHunterIdle.LocaleManager.FindMaterial(materialName);
+            LocaleMaterial equipmentMaterial = LocaleManager.FindMaterial(materialName);
             return equipmentMaterial.Name;
         }
 
@@ -556,26 +554,26 @@ public partial class EquipmentManager : Node
     }
 
     // Convert the key + rarity into the desired ingredient | e.g. (Locale Material = Swamp) + (Rarity = 2) = Machalite Ore 
-    private string GetLocaleMaterialName(GC.Dictionary<string, Variant> ingredientDictionary, string localeName)
+    private static string GetLocaleMaterialName(GC.Dictionary<string, Variant> ingredientDictionary, string localeName)
     {
         LocaleType localeType = Enum.Parse<LocaleType>(localeName);
         int rarity = ingredientDictionary["Rarity"].As<int>();
-        LocaleMaterial localeMaterial = MonsterHunterIdle.LocaleManager.GetLocaleMaterial(localeType, rarity);
+        LocaleMaterial localeMaterial = LocaleManager.GetLocaleMaterial(localeType, rarity);
         return localeMaterial.Name;
     }
 
-    private string GetSubLocaleMaterialName(string materialName)
+    private static string GetSubLocaleMaterialName(string materialName)
     {
-        LocaleMaterial subLocaleMaterial = MonsterHunterIdle.LocaleManager.FindMaterial(materialName);
+        LocaleMaterial subLocaleMaterial = LocaleManager.FindMaterial(materialName);
         return subLocaleMaterial.Name;
     }
 
-    private string GetMonsterMaterialName(GC.Dictionary<string, Variant> ingredientDictionary, string materialTypeName, string monsterName)
+    private static string GetMonsterMaterialName(GC.Dictionary<string, Variant> ingredientDictionary, string materialTypeName, string monsterName)
     {
-        Monster monster = MonsterHunterIdle.MonsterManager.FindMonster(monsterName);
+        Monster monster = MonsterManager.FindMonster(monsterName);
         int rarity = ingredientDictionary["Rarity"].As<int>();
 
-        List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MonsterManager.GetMonsterMaterials(monster);
+        List<MonsterMaterial> monsterMaterials = MonsterManager.GetMonsterMaterials(monster);
         if (rarity == 0)
         {
             List<MonsterMaterial> rarityOneMonsterMaterials = monsterMaterials.FindAll(material => material.Rarity == 0);
@@ -589,15 +587,49 @@ public partial class EquipmentManager : Node
         }
     }
 
-    private string GetMaterialName(string materialName)
+    private static string GetMaterialName(string materialName)
     {
         Material material = MonsterHunterIdle.FindMaterial(materialName);
         return material.Name;
     }
 
+    public static int GetWeaponAttack()
+    {
+        int attack = Hunter.Weapon.Attack;
+
+        (float Min, float Max) weaponPercentage = GetWeaponPercentage();
+
+        RandomNumberGenerator RNG = new RandomNumberGenerator();
+        float randomPercentage = RNG.RandfRange(weaponPercentage.Min, weaponPercentage.Max);
+
+        return Mathf.RoundToInt(attack * randomPercentage);
+    }
+
+    public static int GetWeaponSpecialAttack()
+    {
+        if (Hunter.Weapon.Special == SpecialType.None) return 0;
+        
+        int specialAttack = Hunter.Weapon.SpecialAttack;
+
+        (float Min, float Max) weaponPercentage = GetWeaponPercentage();
+
+        RandomNumberGenerator RNG = new RandomNumberGenerator();
+        float randomPercentage = RNG.RandfRange(weaponPercentage.Min, weaponPercentage.Max);
+
+        return Mathf.RoundToInt(specialAttack * randomPercentage);
+    }
+
+    private static (float Min, float Max) GetWeaponPercentage() => Hunter.Weapon.Category switch
+    {
+        WeaponCategory.SwordAndShield => (0.05f, 0.15f),
+        WeaponCategory.GreatSword => (0.4f, 0.5f),
+        WeaponCategory.LongSword => (0.15f, 0.3f),
+        _ => (0.05f, 0.25f),
+    };
+
     // Data methods
     /// <see cref="GameManager.SaveGame"/>
-    public GC.Dictionary<string, Variant> GetData()
+    public static GC.Dictionary<string, Variant> GetData()
     {
         GC.Dictionary<string, Variant> equipmentData = new GC.Dictionary<string, Variant>()
         {
@@ -607,7 +639,7 @@ public partial class EquipmentManager : Node
         return equipmentData;
     }
 
-    private GC.Array<GC.Dictionary<string, Variant>> GetWeaponsData()
+    private static GC.Array<GC.Dictionary<string, Variant>> GetWeaponsData()
     {
         GC.Array<GC.Dictionary<string, Variant>> weaponsData = new GC.Array<GC.Dictionary<string, Variant>>();
         foreach (Weapon weapon in CraftedWeapons)
@@ -618,7 +650,7 @@ public partial class EquipmentManager : Node
         return weaponsData;
     }
 
-    public GC.Dictionary<string, Variant> GetWeaponData(Weapon weapon)
+    public static GC.Dictionary<string, Variant> GetWeaponData(Weapon weapon)
     {
         GC.Dictionary<string, Variant> weaponData = new GC.Dictionary<string, Variant>()
         {
@@ -630,7 +662,7 @@ public partial class EquipmentManager : Node
         return weaponData;
     }
 
-    private GC.Array<GC.Dictionary<string, Variant>> GetArmorData()
+    private static GC.Array<GC.Dictionary<string, Variant>> GetArmorData()
     {
         GC.Array<GC.Dictionary<string, Variant>> armorData = new GC.Array<GC.Dictionary<string, Variant>>();
         foreach (Armor armor in CraftedArmor)
@@ -641,7 +673,7 @@ public partial class EquipmentManager : Node
         return armorData;
     }
 
-    public GC.Dictionary<string, Variant> GetArmorPieceData(Armor armor)
+    public static GC.Dictionary<string, Variant> GetArmorPieceData(Armor armor)
     {
         GC.Dictionary<string, Variant> armorPieceData = new GC.Dictionary<string, Variant>()
         {
@@ -654,13 +686,13 @@ public partial class EquipmentManager : Node
     }
 
     /// <see cref="GameManager.LoadGame"/>
-    public void SetData(GC.Dictionary<string, Variant> equipmentData)
+    public static void SetData(GC.Dictionary<string, Variant> equipmentData)
     {
         CraftedWeapons.AddRange(GetWeaponsFromData(equipmentData));
         CraftedArmor.AddRange(GetArmorFromData(equipmentData));
     }
 
-    private List<Weapon> GetWeaponsFromData(GC.Dictionary<string, Variant> equipmentData)
+    private static List<Weapon> GetWeaponsFromData(GC.Dictionary<string, Variant> equipmentData)
     {
         List<Weapon> weapons = new List<Weapon>();
         GC.Array<GC.Dictionary<string, Variant>> weaponsData = equipmentData["Weapons"].As<GC.Array<GC.Dictionary<string, Variant>>>();
@@ -672,7 +704,7 @@ public partial class EquipmentManager : Node
         return weapons;
     }
 
-    public Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
+    public static Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
         WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
         WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
@@ -683,7 +715,7 @@ public partial class EquipmentManager : Node
         return weapon;
     }
 
-    // public PalicoWeapon GetPalicoWeaponFromData(GC.Dictionary<string, Variant> weaponData)
+    // public static PalicoWeapon GetPalicoWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     // {
     //      WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
     //     WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
@@ -694,7 +726,7 @@ public partial class EquipmentManager : Node
     //     return weapon;
     // }
 
-    private List<Armor> GetArmorFromData(GC.Dictionary<string, Variant> equipmentData)
+    private static List<Armor> GetArmorFromData(GC.Dictionary<string, Variant> equipmentData)
     {
         List<Armor> armor = new List<Armor>();
         GC.Array<GC.Dictionary<string, Variant>> armorData = equipmentData["Armor"].As<GC.Array<GC.Dictionary<string, Variant>>>();
@@ -706,7 +738,7 @@ public partial class EquipmentManager : Node
         return armor;
     }
 
-    public Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
+    public static Armor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
     {
         ArmorCategory category = (ArmorCategory)armorData["Category"].As<int>();
         ArmorSet set = (ArmorSet)armorData["Set"].As<int>();
@@ -718,7 +750,7 @@ public partial class EquipmentManager : Node
     }
 
     /// <see cref="GameManager.DeleteGame"/>
-    public void DeleteData()
+    public static void DeleteData()
     {
         CraftedWeapons.Clear();
         CraftedArmor.Clear();

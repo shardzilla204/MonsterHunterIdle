@@ -25,9 +25,7 @@ public partial class LoadoutStats : NinePatchRect
 
     private void SetStats()
     {
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
-
-        int weaponAttack = hunter.Weapon != null ? hunter.Weapon.Attack : 0;
+        int weaponAttack = Hunter.Weapon != null ? Hunter.Weapon.Attack : 0;
         HBoxContainer attackNode = GetStatNode(StatType.Attack, $"{weaponAttack}");
         _statContainer.AddChild(attackNode);
 
@@ -35,13 +33,13 @@ public partial class LoadoutStats : NinePatchRect
         HBoxContainer defenseNode = GetStatNode(StatType.Defense, $"{armorDefense}");
         _statContainer.AddChild(defenseNode);
 
-        int weaponAffinity = hunter.Weapon != null ? hunter.Weapon.Affinity : 0;
+        int weaponAffinity = Hunter.Weapon != null ? Hunter.Weapon.Affinity : 0;
         HBoxContainer affinityNode = GetStatNode(StatType.Affinity, $"{weaponAffinity}%");
         _statContainer.AddChild(affinityNode);
 
-        if (hunter.Weapon.Special != SpecialType.None && hunter.Weapon.SpecialAttack != 0)
+        if (Hunter.Weapon.Special != SpecialType.None && Hunter.Weapon.SpecialAttack != 0)
         {
-            HBoxContainer specialAttackNode = GetStatNode(hunter.Weapon.Special, $"{hunter.Weapon.SpecialAttack}");
+            HBoxContainer specialAttackNode = GetStatNode(Hunter.Weapon.Special, $"{Hunter.Weapon.SpecialAttack}");
             _statContainer.AddChild(specialAttackNode);
         }
     }
@@ -58,13 +56,12 @@ public partial class LoadoutStats : NinePatchRect
     private int GetArmorDefense()
     {
         int hunterDefense = 0;
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
 
-        if (hunter.Head.Name != "") hunterDefense += hunter.Head.Defense;
-        if (hunter.Chest.Name != "") hunterDefense += hunter.Chest.Defense;
-        if (hunter.Arm.Name != "") hunterDefense += hunter.Arm.Defense;
-        if (hunter.Waist.Name != "") hunterDefense += hunter.Waist.Defense;
-        if (hunter.Leg.Name != "") hunterDefense += hunter.Leg.Defense;
+        if (Hunter.Head.Name != "") hunterDefense += Hunter.Head.Defense;
+        if (Hunter.Chest.Name != "") hunterDefense += Hunter.Chest.Defense;
+        if (Hunter.Arm.Name != "") hunterDefense += Hunter.Arm.Defense;
+        if (Hunter.Waist.Name != "") hunterDefense += Hunter.Waist.Defense;
+        if (Hunter.Leg.Name != "") hunterDefense += Hunter.Leg.Defense;
 
         return hunterDefense;
     }

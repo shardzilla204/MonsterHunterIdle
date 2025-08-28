@@ -43,15 +43,15 @@ public partial class GatherButton : CustomButton
 
 		_gatherProgress.Value = 0;
 
-		LocaleMaterial localeMaterial = MonsterHunterIdle.LocaleManager.GetLocaleMaterial();
+		LocaleMaterial localeMaterial = LocaleManager.GetLocaleMaterial();
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.LocaleMaterialAdded, localeMaterial);
 
-		MonsterHunterIdle.HunterManager.AddHunterPoints(1);
+		HunterManager.AddHunterPoints(1);
 	}
 
 	private void OnLocaleChanged()
 	{
-		LocaleType localeType = MonsterHunterIdle.LocaleManager.Locale.Type;
-		_gatherIcon.Texture = MonsterHunterIdle.LocaleManager.GetGatherIcon(localeType);
+		LocaleType localeType = LocaleManager.Locale.Type;
+		_gatherIcon.Texture = LocaleManager.GetGatherIcon(localeType);
 	}
 }

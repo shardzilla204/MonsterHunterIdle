@@ -34,7 +34,7 @@ public partial class SellMaterialLog : MaterialLog
 
     private void OnTextSubmitted(string newText)
     {
-        List<Material> materials = MonsterHunterIdle.ItemBox.Materials.FindAll(material => material == Material);
+        List<Material> materials = ItemBox.Materials.FindAll(material => material == Material);
         int maxMaterialCount = materials.Count;
         int targetMaterialCount = int.Parse(newText);
 
@@ -53,7 +53,7 @@ public partial class SellMaterialLog : MaterialLog
 
     private void OnAddButtonPressed()
     {
-        List<Material> materials = MonsterHunterIdle.ItemBox.Materials.FindAll(material => material == Material);
+        List<Material> materials = ItemBox.Materials.FindAll(material => material == Material);
         int maxMaterialCount = materials.Count;
 
         Amount = Math.Min(maxMaterialCount, ++Amount);

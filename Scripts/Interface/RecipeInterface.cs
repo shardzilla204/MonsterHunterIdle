@@ -39,10 +39,10 @@ public partial class RecipeInterface : NinePatchRect
 		_acceptButton.Pressed += OnAcceptButtonPressed;
 		_cancelButton.Pressed += QueueFree;
 
-		bool hasCrafted = MonsterHunterIdle.EquipmentManager.HasCrafted(_equipment);
+		bool hasCrafted = EquipmentManager.HasCrafted(_equipment);
 		int grade = _equipment.Grade;
 		int subGrade = hasCrafted ? _equipment.SubGrade + 1 : _equipment.SubGrade;
-		_craftingCost = MonsterHunterIdle.EquipmentManager.GetCraftingCost(grade, subGrade);
+		_craftingCost = EquipmentManager.GetCraftingCost(grade, subGrade);
 
 		_craftingCostLabel.Text = $"{_craftingCost}z";
 	}
@@ -57,8 +57,8 @@ public partial class RecipeInterface : NinePatchRect
 		string recipeMessage = $"Showing Recipe For: {equipment.Name}{subGrade}";
 		PrintRich.PrintLine(TextColor.Yellow, recipeMessage);
 
-		bool hasCrafted = MonsterHunterIdle.EquipmentManager.HasCrafted(equipment);
-		List<GC.Dictionary<string, Variant>> recipe = MonsterHunterIdle.EquipmentManager.GetRecipe(equipment, hasCrafted);
+		bool hasCrafted = EquipmentManager.HasCrafted(equipment);
+		List<GC.Dictionary<string, Variant>> recipe = EquipmentManager.GetRecipe(equipment, hasCrafted);
 
 		foreach (GC.Dictionary<string, Variant> materialDictionary in recipe)
 		{
@@ -80,22 +80,22 @@ public partial class RecipeInterface : NinePatchRect
 
 	private void OnAcceptButtonPressed()
 	{
-		if (MonsterHunterIdle.HunterManager.Hunter.Zenny < _craftingCost) return;
+		if (Hunter.Zenny < _craftingCost) return;
 
 		bool hasMaterials = HasMaterials();
 		if (!hasMaterials) return;
 
-		MonsterHunterIdle.HunterManager.Hunter.Zenny -= _craftingCost;
+		Hunter.Zenny -= _craftingCost;
 
 		// Subtract materials from item box
 		foreach (CraftingMaterialLog craftingMaterialLog in _craftingMaterialLogContainer.GetChildren())
 		{
 			Material material = craftingMaterialLog.Material;
 			int amount = craftingMaterialLog.Amount;
-			MonsterHunterIdle.ItemBox.SubtractMaterial(material, amount);
+			ItemBox.SubtractMaterial(material, amount);
 		}
 
-		bool hasCrafted = MonsterHunterIdle.EquipmentManager.HasCrafted(_equipment);
+		bool hasCrafted = EquipmentManager.HasCrafted(_equipment);
 		if (hasCrafted)
 		{
 			// Upgrade equipment
@@ -106,12 +106,12 @@ public partial class RecipeInterface : NinePatchRect
 			// Craft equipment
 			if (_equipment is Weapon weapon)
 			{
-				MonsterHunterIdle.EquipmentManager.CraftedWeapons.Add(weapon);
+				EquipmentManager.CraftedWeapons.Add(weapon);
 				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.WeaponAdded, weapon);
 			}
 			else if (_equipment is Armor armor)
 			{
-				MonsterHunterIdle.EquipmentManager.CraftedArmor.Add(armor);
+				EquipmentManager.CraftedArmor.Add(armor);
 				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ArmorAdded, armor);
 			}
 			QueueFree();
@@ -126,7 +126,7 @@ public partial class RecipeInterface : NinePatchRect
 			Material requiredMaterial = craftingMaterialLog.Material;
 			int requiredAmount = craftingMaterialLog.Amount;
 
-			List<Material> targetMaterials = MonsterHunterIdle.ItemBox.FindAllMaterial(requiredMaterial.Name);
+			List<Material> targetMaterials = ItemBox.FindAllMaterial(requiredMaterial.Name);
 			if (targetMaterials.Count < requiredAmount) return false;
 		}
 

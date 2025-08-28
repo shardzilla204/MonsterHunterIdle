@@ -24,30 +24,22 @@ public partial class LoadoutInfo : NinePatchRect
 
     private void AddLoadoutInfo()
     {
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
-
-        Weapon hunterWeapon = hunter.Weapon;
-        EquipmentInfo weaponInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(hunterWeapon);
+        EquipmentInfo weaponInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Weapon);
         _equipmentInfoContainer.AddChild(weaponInfoNode);
 
-        Armor hunterHeadArmor = hunter.Head;
-        EquipmentInfo headArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(hunterHeadArmor);
+        EquipmentInfo headArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Head);
         _equipmentInfoContainer.AddChild(headArmorInfoNode);
 
-        Armor hunterChestArmor = hunter.Chest;
-        EquipmentInfo chestArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(hunterChestArmor);
+        EquipmentInfo chestArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Chest);
         _equipmentInfoContainer.AddChild(chestArmorInfoNode);
 
-        Armor hunterArmArmor = hunter.Arm;
-        EquipmentInfo armArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(hunterArmArmor);
+        EquipmentInfo armArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Arm);
         _equipmentInfoContainer.AddChild(armArmorInfoNode);
 
-        Armor hunterWaistArmor = hunter.Waist;
-        EquipmentInfo waistArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(hunterWaistArmor);
+        EquipmentInfo waistArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Waist);
         _equipmentInfoContainer.AddChild(waistArmorInfoNode);
 
-        Armor hunterLegArmor = hunter.Leg;
-        EquipmentInfo legArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(hunterLegArmor);
+        EquipmentInfo legArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Leg);
         _equipmentInfoContainer.AddChild(legArmorInfoNode);
     }
 

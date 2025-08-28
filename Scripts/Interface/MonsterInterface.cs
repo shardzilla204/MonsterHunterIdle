@@ -114,9 +114,8 @@ public partial class MonsterInterface : NinePatchRect
 	{
 		if (_monster == null) return;
 
-		HunterManager hunterManager = MonsterHunterIdle.HunterManager;
-		int hunterAttack = hunterManager.GetHunterAttack();
-		int hunterSpecialAttack = hunterManager.GetHunterSpecialAttack();
+		int hunterAttack = EquipmentManager.GetWeaponAttack();
+		int hunterSpecialAttack = EquipmentManager.GetWeaponSpecialAttack();
 
 		bool hasHitWeakness = HasHitWeakness();
 		if (hasHitWeakness && hunterSpecialAttack != 0)
@@ -130,7 +129,7 @@ public partial class MonsterInterface : NinePatchRect
 
 		// Console message
 		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
-		string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({hunterManager.Hunter.Weapon.Special})";
+		string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({Hunter.Weapon.Special})";
 		string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {attackMessage} | {totalDamage} HP";
 		PrintRich.Print(TextColor.Orange, monsterAttackedMessage);
 
@@ -145,7 +144,7 @@ public partial class MonsterInterface : NinePatchRect
 
 	private bool HasHitWeakness()
 	{
-		SpecialType weaponSpecialType = MonsterHunterIdle.HunterManager.Hunter.Weapon.Special;
+		SpecialType weaponSpecialType = Hunter.Weapon.Special;
 		bool hasHitWeakness = _monster.SpecialWeaknesses.Contains(weaponSpecialType);
 		
 		return hasHitWeakness;
@@ -159,7 +158,7 @@ public partial class MonsterInterface : NinePatchRect
 		PrintRich.Print(TextColor.Orange, monsterSlayedMessage); /// Don't print line | <see cref="PrintRich.PrintEncounterRewards">
 
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterSlayed, _monster);
-		MonsterHunterIdle.MonsterManager.Encounter.GetEncounterRewards(_monster);
+		MonsterManager.Encounter.GetEncounterRewards(_monster);
 
 		SetMonster(null, true);
 	}
@@ -232,7 +231,7 @@ public partial class MonsterInterface : NinePatchRect
 		specialAttackNode.AddThemeConstantOverride("separation", separation);
 
 		int textureSize = 50;
-		Texture2D specialTypeIcon = MonsterHunterIdle.GetSpecialTypeIcon(MonsterHunterIdle.HunterManager.Hunter.Weapon.Special);
+		Texture2D specialTypeIcon = MonsterHunterIdle.GetSpecialTypeIcon(Hunter.Weapon.Special);
 		TextureRect specialTexture = new TextureRect()
 		{
 			MouseFilter = MouseFilterEnum.Ignore,

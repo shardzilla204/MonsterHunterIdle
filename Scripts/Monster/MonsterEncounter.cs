@@ -58,8 +58,8 @@ public partial class MonsterEncounter : Node
 	{
 		_encounterChance = 0;
 
-		Locale locale = MonsterHunterIdle.LocaleManager.Locale;
-		Monster monster = MonsterHunterIdle.MonsterManager.GetRandomMonster(locale);
+		Locale locale = LocaleManager.Locale;
+		Monster monster = MonsterManager.GetRandomMonster(locale);
 		if (monster == null) return;
 
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncountered, monster);
@@ -68,10 +68,10 @@ public partial class MonsterEncounter : Node
 	public void GetEncounterRewards(Monster monster)
 	{
 		int pointsAmount = GetHunterPointsReward(monster);
-		MonsterHunterIdle.HunterManager.AddHunterPoints(pointsAmount);
+		HunterManager.AddHunterPoints(pointsAmount);
 
 		int zennyAmount = GetZennyReward(monster);
-		MonsterHunterIdle.HunterManager.AddZenny(zennyAmount);
+		HunterManager.AddZenny(zennyAmount);
 
 		List<MonsterMaterial> materialRewards = GetMaterialRewards(monster);
 		foreach (MonsterMaterial materialReward in materialRewards)
@@ -84,11 +84,11 @@ public partial class MonsterEncounter : Node
 
 	private List<MonsterMaterial> GetMaterialRewards(Monster targetMonster)
 	{
-		List<MonsterMaterial> monsterMaterials = MonsterHunterIdle.MonsterManager.GetMonsterMaterials(targetMonster, targetMonster.Level);
+		List<MonsterMaterial> monsterMaterials = MonsterManager.GetMonsterMaterials(targetMonster, targetMonster.Level);
 
 		List<MonsterMaterial> materialRewards = new List<MonsterMaterial>();
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
-		for (int i = 0; i < MonsterHunterIdle.MonsterManager.MaxRewardCount; i++)
+		for (int i = 0; i < MonsterManager.MaxRewardCount; i++)
 		{
 			int randomIndex = RNG.RandiRange(0, monsterMaterials.Count - 1);
 			materialRewards.Add(monsterMaterials[randomIndex]);

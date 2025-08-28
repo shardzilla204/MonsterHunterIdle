@@ -35,7 +35,7 @@ public partial class MaterialLog : Control
 
 	public virtual void SetMaterialAmount(Material targetMaterial)
 	{
-		List<Material> targetMaterials = MonsterHunterIdle.ItemBox.Materials.FindAll(material => material == targetMaterial);
+		List<Material> targetMaterials = ItemBox.Materials.FindAll(material => material == targetMaterial);
 		_materialAmount.Text = $"{targetMaterials.Count}";
 	}
 }

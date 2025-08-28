@@ -55,36 +55,35 @@ public partial class EquipmentInfoPopup : NinePatchRect
     private Equipment EquipEquipment()
     {
         Equipment equipment = null;
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
 
         if (_equipment is Weapon weapon)
         {
-            hunter.Weapon = weapon;
-            equipment = hunter.Weapon;
+            Hunter.Weapon = weapon;
+            equipment = Hunter.Weapon;
         }
         else if (_equipment is Armor armor)
         {
             switch (armor.Category)
             {
                 case ArmorCategory.Head:
-                    hunter.Head = armor;
-                    equipment = hunter.Head;
+                    Hunter.Head = armor;
+                    equipment = Hunter.Head;
                     break;
                 case ArmorCategory.Chest:
-                    hunter.Chest = armor;
-                    equipment = hunter.Chest;
+                    Hunter.Chest = armor;
+                    equipment = Hunter.Chest;
                     break;
                 case ArmorCategory.Arm:
-                    hunter.Arm = armor;
-                    equipment = hunter.Arm;
+                    Hunter.Arm = armor;
+                    equipment = Hunter.Arm;
                     break;
                 case ArmorCategory.Waist:
-                    hunter.Waist = armor;
-                    equipment = hunter.Waist;
+                    Hunter.Waist = armor;
+                    equipment = Hunter.Waist;
                     break;
                 case ArmorCategory.Leg:
-                    hunter.Leg = armor;
-                    equipment = hunter.Leg;
+                    Hunter.Leg = armor;
+                    equipment = Hunter.Leg;
                     break;
             }
         }
@@ -95,36 +94,35 @@ public partial class EquipmentInfoPopup : NinePatchRect
     private Equipment UnequipEquipment()
     {
         Equipment equipment = null;
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
 
         if (_equipment is Weapon)
         {
-            hunter.Weapon = new Weapon();
-            equipment = hunter.Weapon;
+            Hunter.Weapon = new Weapon();
+            equipment = Hunter.Weapon;
         }
         else if (_equipment is Armor armor)
         {
             switch (armor.Category)
             {
                 case ArmorCategory.Head:
-                    hunter.Head = new Armor(ArmorCategory.Head);
-                    equipment = hunter.Head;
+                    Hunter.Head = new Armor(ArmorCategory.Head);
+                    equipment = Hunter.Head;
                     break;
                 case ArmorCategory.Chest:
-                    hunter.Chest = new Armor(ArmorCategory.Chest);
-                    equipment = hunter.Chest;
+                    Hunter.Chest = new Armor(ArmorCategory.Chest);
+                    equipment = Hunter.Chest;
                     break;
                 case ArmorCategory.Arm:
-                    hunter.Arm = new Armor(ArmorCategory.Arm);
-                    equipment = hunter.Arm;
+                    Hunter.Arm = new Armor(ArmorCategory.Arm);
+                    equipment = Hunter.Arm;
                     break;
                 case ArmorCategory.Waist:
-                    hunter.Waist = new Armor(ArmorCategory.Waist);
-                    equipment = hunter.Waist;
+                    Hunter.Waist = new Armor(ArmorCategory.Waist);
+                    equipment = Hunter.Waist;
                     break;
                 case ArmorCategory.Leg:
-                    hunter.Leg = new Armor(ArmorCategory.Leg);
-                    equipment = hunter.Leg;
+                    Hunter.Leg = new Armor(ArmorCategory.Leg);
+                    equipment = Hunter.Leg;
                     break;
             }
         }
@@ -196,7 +194,7 @@ public partial class EquipmentInfoPopup : NinePatchRect
 
     private void SetSupplyButtonText(Equipment equipment)
     {
-        _isEquipped = MonsterHunterIdle.HunterManager.IsEquipped(equipment);
+        _isEquipped = HunterManager.IsEquipped(equipment);
         _supplyButton.Text = _isEquipped ? "Unequip" : "Equip";
     }
 

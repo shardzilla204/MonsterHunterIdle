@@ -76,7 +76,7 @@ public partial class PrintRich : Node
 	{
 		if (!IsConsoleEnabled) return;
 
-		List<LocaleMaterial> localeMaterials = MonsterHunterIdle.LocaleManager.Materials;
+		List<LocaleMaterial> localeMaterials = LocaleManager.Materials;
 
 		List<LocaleType> localeTypes = new List<LocaleType>() { LocaleType.Forest, LocaleType.Desert, LocaleType.Swamp };
 		foreach (LocaleType localeType in localeTypes)
@@ -95,7 +95,7 @@ public partial class PrintRich : Node
 	{
 		if (!IsConsoleEnabled) return;
 
-		List<Monster> monsters = MonsterHunterIdle.MonsterManager.Monsters;
+		List<Monster> monsters = MonsterManager.Monsters;
 		foreach (Monster monster in monsters)
 		{
 			PrintMonster(textColor, monster);
@@ -171,9 +171,9 @@ public partial class PrintRich : Node
 
 		GD.Print("Item Box: ");
 		string textColorString = TextColor.Orange.ToString().ToUpper();
-		for (int i = 0; i < MonsterHunterIdle.ItemBox.Materials.Count; i++)
+		for (int i = 0; i < ItemBox.Materials.Count; i++)
 		{
-			GD.PrintRich($"\t[color={textColorString}]{MonsterHunterIdle.ItemBox.Materials[i].Name}[/color]");
+			GD.PrintRich($"\t[color={textColorString}]{ItemBox.Materials[i].Name}[/color]");
 		}
 		GD.Print();
 	}

@@ -67,10 +67,10 @@ public partial class CraftingInterface : Container
 	{
 		ClearEquipment();
 
-		List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+		List<Equipment> weapons = [.. EquipmentManager.Weapons];
 		ShowEquipment(weapons);
 
-		List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
+		List<Equipment> armor = [.. EquipmentManager.Armor];
 		ShowEquipment(armor);
 
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.CraftButtonPressed, equipment);
@@ -88,10 +88,10 @@ public partial class CraftingInterface : Container
 		bool hasFilter = HasFilter(filters);
 		if (!hasFilter)
 		{
-			List<Equipment> weapons = [.. MonsterHunterIdle.EquipmentManager.Weapons];
+			List<Equipment> weapons = [.. EquipmentManager.Weapons];
 			ShowEquipment(weapons);
 
-			List<Equipment> armor = [.. MonsterHunterIdle.EquipmentManager.Armor];
+			List<Equipment> armor = [.. EquipmentManager.Armor];
 			ShowEquipment(armor);
 			return;
 		}
@@ -100,8 +100,8 @@ public partial class CraftingInterface : Container
 		List<Equipment> filteredGroupEquipment = new List<Equipment>();
 		foreach (string filterKey in filters.Keys)
 		{
-			List<Equipment> equipment = [.. MonsterHunterIdle.EquipmentManager.Weapons];
-			equipment.AddRange([.. MonsterHunterIdle.EquipmentManager.Armor]);
+			List<Equipment> equipment = [.. EquipmentManager.Weapons];
+			equipment.AddRange([.. EquipmentManager.Armor]);
 
 			bool isFiltered = filters[filterKey];
 			if (!isFiltered) continue;
@@ -168,16 +168,16 @@ public partial class CraftingInterface : Container
 				// Filter any equipment that has been filtered by group (tree/set)
 				if (filteredGroupEquipment.Count > 0)
 				{
-					filteredGroupEquipment = [.. filteredGroupEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
+					filteredGroupEquipment = [.. filteredGroupEquipment.FindAll(equipment => !EquipmentManager.HasCrafted(equipment))];
 					continue;
 				}
 				if (filteredEquipment.Count > 0)
 				{
-					filteredEquipment = [.. filteredEquipment.FindAll(equipment => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipment))];
+					filteredEquipment = [.. filteredEquipment.FindAll(equipment => !EquipmentManager.HasCrafted(equipment))];
 				}
 				else
 				{
-					filteredEquipment = [.. equipment.FindAll(equipPiece => !MonsterHunterIdle.EquipmentManager.HasCrafted(equipPiece))];
+					filteredEquipment = [.. equipment.FindAll(equipPiece => !EquipmentManager.HasCrafted(equipPiece))];
 				}
 			}
 		}
@@ -260,11 +260,11 @@ public partial class CraftingInterface : Container
 
 		if (targetEquipment is Weapon weapon)
 		{
-			hunterEquipment = MonsterHunterIdle.HunterManager.FindWeapon(weapon);
+			hunterEquipment = HunterManager.FindWeapon(weapon);
 		}
 		else if (targetEquipment is Armor armor)
 		{
-			hunterEquipment = MonsterHunterIdle.HunterManager.FindArmor(armor);
+			hunterEquipment = HunterManager.FindArmor(armor);
 		}
 		else
 		{
@@ -278,8 +278,8 @@ public partial class CraftingInterface : Container
 		string previousEquipmentName = hunterEquipment.Name;
 		int previousEquipmentSubGrade = hunterEquipment.SubGrade;
 
-		MonsterHunterIdle.EquipmentManager.UpgradeEquipment(hunterEquipment);
-		MonsterHunterIdle.HunterManager.Equip(hunterEquipment);
+		EquipmentManager.UpgradeEquipment(hunterEquipment);
+		HunterManager.Equip(hunterEquipment);
 
 		// Console message
 		string previousSubGrade = previousEquipmentSubGrade == 0 ? "" : $" (+{previousEquipmentSubGrade})";

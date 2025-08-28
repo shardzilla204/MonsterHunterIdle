@@ -23,13 +23,13 @@ public partial class CycleButton : CustomButton
 
 	private void OnLocaleChanged()
 	{
-		Locale locale = _isClockwise ? MonsterHunterIdle.LocaleManager.GetNextLocale() : MonsterHunterIdle.LocaleManager.GetPreviousLocale();
-		_localeIcon.Texture = MonsterHunterIdle.LocaleManager.GetLocaleIcon(locale.Type);
+		Locale locale = _isClockwise ? LocaleManager.GetNextLocale() : LocaleManager.GetPreviousLocale();
+		_localeIcon.Texture = LocaleManager.GetLocaleIcon(locale.Type);
 	}
 
 	private async void CycleLocale()
 	{
-		bool result = await MonsterHunterIdle.LocaleManager.CycleLocale(_isClockwise);
+		bool result = await LocaleManager.CycleLocale(_isClockwise);
 		if (!result) return;
 
 		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.LocaleChanged);

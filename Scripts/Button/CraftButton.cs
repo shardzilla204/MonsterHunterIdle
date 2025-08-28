@@ -25,10 +25,10 @@ public partial class CraftButton : CustomButton
 	{
 		if (equipment == null) return;
 
-		bool hasCrafted = MonsterHunterIdle.EquipmentManager.HasCrafted(equipment);
+		bool hasCrafted = EquipmentManager.HasCrafted(equipment);
 		_hasCreatedTexture.SelfModulate = hasCrafted ? Colors.SeaGreen : Colors.White;
 
-		equipment = hasCrafted ? MonsterHunterIdle.EquipmentManager.GetHunterEquipment(equipment) : equipment;
+		equipment = hasCrafted ? EquipmentManager.GetHunterEquipment(equipment) : equipment;
 		string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
 		_equipmentName.Text = $"{equipment.Name}{subGrade}";
 

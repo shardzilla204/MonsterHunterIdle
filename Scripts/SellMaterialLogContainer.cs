@@ -66,7 +66,7 @@ public partial class SellMaterialLogContainer : VBoxContainer
             Material material = MonsterHunterIdle.FindMaterial(materialName);
             int amount = MaterialsToSell[materialName];
 
-            int zenny = MonsterHunterIdle.ItemBox.GetSellValue(material) * amount;
+            int zenny = ItemBox.GetSellValue(material) * amount;
             totalZenny += zenny;
         }
 

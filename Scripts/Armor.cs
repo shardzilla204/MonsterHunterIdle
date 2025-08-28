@@ -55,8 +55,8 @@ public partial class Armor : Equipment
     {
         string setName = Set.ToString();
         Array<string> names = dictionary[setName].As<Array<string>>();
-        MonsterHunterIdle.EquipmentManager.SetArmorName(this, names);
+        EquipmentManager.SetArmorName(this, names);
 
-        Defense = MonsterHunterIdle.EquipmentManager.GetDefenseValue(Grade, SubGrade);
+        Defense = EquipmentManager.GetDefenseValue(Grade, SubGrade);
     }
 }

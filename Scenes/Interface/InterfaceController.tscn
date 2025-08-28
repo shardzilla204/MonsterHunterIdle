@@ -314,8 +314,9 @@ stretch_mode = 5
 
 [node name="HunterProgress" type="TextureProgressBar" parent="OtherButtons/MarginContainer/VBoxContainer/HunterButton/NinePatchRect/MarginContainer/TextureRect"]
 layout_mode = 2
+offset_top = 5.0
 offset_right = 55.0
-offset_bottom = 55.0
+offset_bottom = 45.0
 fill_mode = 3
 nine_patch_stretch = true
 texture_progress = ExtResource("4_qhs4v")

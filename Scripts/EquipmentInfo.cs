@@ -65,29 +65,28 @@ public partial class EquipmentInfo : HBoxContainer
 
     private void EquipmentChanged(Equipment equipment)
     {
-        Hunter hunter = MonsterHunterIdle.HunterManager.Hunter;
         if (_equipment is Weapon && equipment is Weapon)
         {
-            SetInfo(hunter.Weapon);
+            SetInfo(Hunter.Weapon);
         }
         else if (_equipment is Armor && equipment is Armor newArmor)
         {
             switch (newArmor.Category)
             {
                 case ArmorCategory.Head:
-                    SetInfo(hunter.Head);
+                    SetInfo(Hunter.Head);
                     break;
                 case ArmorCategory.Chest:
-                    SetInfo(hunter.Chest);
+                    SetInfo(Hunter.Chest);
                     break;
                 case ArmorCategory.Arm:
-                    SetInfo(hunter.Arm);
+                    SetInfo(Hunter.Arm);
                     break;
                 case ArmorCategory.Waist:
-                    SetInfo(hunter.Waist);
+                    SetInfo(Hunter.Waist);
                     break;
                 case ArmorCategory.Leg:
-                    SetInfo(hunter.Leg);
+                    SetInfo(Hunter.Leg);
                     break;
             }
         }

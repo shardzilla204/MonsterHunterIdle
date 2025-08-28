@@ -12,7 +12,7 @@ public partial class InterfaceController : Container
 
 	public override void _EnterTree()
 	{
-		MonsterHunterIdle.Signals.LocaleChanged += () => _gatherIcon.Texture = MonsterHunterIdle.LocaleManager.Locale.GatherIcon;
+		MonsterHunterIdle.Signals.LocaleChanged += () => _gatherIcon.Texture = LocaleManager.Locale.GatherIcon;
 		MonsterHunterIdle.Signals.HunterPointsChanged += OnHunterPointsChanged;
 		MonsterHunterIdle.Signals.GameDeleted += OnHunterPointsChanged;
 
@@ -26,7 +26,7 @@ public partial class InterfaceController : Container
 
 	private void OnHunterPointsChanged()
 	{
-		_hunterProgressBar.MaxValue = MonsterHunterIdle.HunterManager.Hunter.PointsRequired;
-		_hunterProgressBar.Value = MonsterHunterIdle.HunterManager.Hunter.Points;
+		_hunterProgressBar.MaxValue = Hunter.PointsRequired;
+		_hunterProgressBar.Value = Hunter.Points;
 	}
 }

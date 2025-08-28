@@ -20,22 +20,20 @@ public partial class LocaleManager : Node
 	[Export]
 	private LocaleType _startingLocale = LocaleType.Forest;
 
-	public Locale Locale;
-	public List<Locale> LocaleQueue = new List<Locale>();
+	public static Locale Locale;
+	public static List<Locale> LocaleQueue = new List<Locale>();
 
-	public List<LocaleMaterial> Materials = new List<LocaleMaterial>();
+	public static List<LocaleMaterial> Materials = new List<LocaleMaterial>();
 
 	public override void _EnterTree()
 	{
-		MonsterHunterIdle.LocaleManager = this;
-
 		LoadMaterials();
 		SetLocaleQueue();
 
-		Locale = LocaleQueue.Find(locale => locale.Type == _startingLocale);
+		Locale = LocaleQueue.Find(locale => locale.Type == _startingLocale); // ! Call this after SetLocaleQueue()
 	}
 
-	private void LoadMaterials()
+	private static void LoadMaterials()
 	{
 		string fileName = "LocaleMaterials";
 		GC.Dictionary<string, Variant> localeMaterialData = MonsterHunterIdle.LoadFile(fileName).As<GC.Dictionary<string, Variant>>();
@@ -53,7 +51,7 @@ public partial class LocaleManager : Node
 		PrintRich.PrintLocales(TextColor.Blue);
 	}
 
-	private void SetLocaleQueue()
+	private static void SetLocaleQueue()
 	{
 		List<LocaleType> localeQueue = new List<LocaleType>() { LocaleType.Forest, LocaleType.Desert, LocaleType.Swamp };
 		foreach (LocaleType localeType in localeQueue)
@@ -63,11 +61,11 @@ public partial class LocaleManager : Node
 		}
 	}
 
-	public Task<bool> CycleLocale(bool isGettingNext)
+	public static Task<bool> CycleLocale(bool isGettingNext)
 	{
 		try
 		{
-			Locale targetLocale = isGettingNext ? MonsterHunterIdle.LocaleManager.GetNextLocale() : MonsterHunterIdle.LocaleManager.GetPreviousLocale();
+			Locale targetLocale = isGettingNext ? GetNextLocale() : GetPreviousLocale();
 			Locale currentLocale = Locale;
 
 			// Grab the current element. Remove and append to the end of the list.
@@ -95,21 +93,21 @@ public partial class LocaleManager : Node
 		}
 	}
 
-	public Locale GetNextLocale()
+	public static Locale GetNextLocale()
 	{
-		List<Locale> locales = MonsterHunterIdle.LocaleManager.LocaleQueue;
-		LocaleType localeType = MonsterHunterIdle.LocaleManager.Locale.Type;
+		List<Locale> locales = LocaleQueue;
+		LocaleType localeType = Locale.Type;
 		return locales.SkipWhile(locale => locale.Type != localeType).Skip(1).DefaultIfEmpty(locales[0]).FirstOrDefault();
 	}
 
-	public Locale GetPreviousLocale()
+	public static Locale GetPreviousLocale()
 	{
-		List<Locale> locales = MonsterHunterIdle.LocaleManager.LocaleQueue;
-		LocaleType localeType = MonsterHunterIdle.LocaleManager.Locale.Type;
+		List<Locale> locales = LocaleQueue;
+		LocaleType localeType = Locale.Type;
 		return locales.TakeWhile(locale => locale.Type != localeType).DefaultIfEmpty(locales[locales.Count - 1]).LastOrDefault();
 	}
 
-	public LocaleMaterial GetLocaleMaterial()
+	public static LocaleMaterial GetLocaleMaterial()
 	{
 		List<LocaleMaterial> localeMaterials = FindMaterials(Locale.Type);
 
@@ -138,42 +136,42 @@ public partial class LocaleManager : Node
 		return null;
 	}
 
-	public LocaleMaterial GetLocaleMaterial(LocaleType localeType, int rarity)
+	public static LocaleMaterial GetLocaleMaterial(LocaleType localeType, int rarity)
 	{
 		List<LocaleMaterial> localeMaterials = FindMaterials(localeType);
 		return localeMaterials.Find(material => material.Rarity == rarity && material.Locales.Count == 1 && material.Locales.Contains(localeType));
 	}
 
-	public LocaleMaterial FindMaterial(string materialName)
+	public static LocaleMaterial FindMaterial(string materialName)
 	{
 		return Materials.Find(material => material.Name == materialName);
 	}
 
-	private List<LocaleMaterial> FindMaterials(LocaleType localeType)
+	private static List<LocaleMaterial> FindMaterials(LocaleType localeType)
 	{
 		List<LocaleMaterial> localeMaterials = Materials.FindAll(material => material.Locales.Contains(localeType));
 		return localeMaterials;
 	}
 
-	public Texture2D GetBackground(LocaleType localeType)
+	public static Texture2D GetBackground(LocaleType localeType)
 	{
 		string filePath = $"res://Assets/Images/Locale/{localeType}.png";
 		return ResourceLoader.Load<Texture2D>(filePath);
 	}
 	
-	public Texture2D GetLocaleIcon(LocaleType localeType)
+	public static Texture2D GetLocaleIcon(LocaleType localeType)
 	{
 		string filePath = $"res://Assets/Images/Locale/Locale/{localeType}LocaleIcon.png";
 		return ResourceLoader.Load<Texture2D>(filePath);
 	}
 
-	public Texture2D GetGatherIcon(LocaleType localeType)
+	public static Texture2D GetGatherIcon(LocaleType localeType)
 	{
 		string filePath = $"res://Assets/Images/Locale/Gather/{GetLocaleMaterialString(localeType)}GatherIcon.png";
 		return ResourceLoader.Load<Texture2D>(filePath);
 	}
 
-	private string GetLocaleMaterialString(LocaleType localeType) => localeType switch 
+	private static string GetLocaleMaterialString(LocaleType localeType) => localeType switch 
 	{
 		LocaleType.Forest => "Vegetation",
 		LocaleType.Desert => "Bone",

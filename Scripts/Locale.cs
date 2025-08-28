@@ -9,9 +9,9 @@ public partial class Locale : Node
 	{
 		Name = localeType.ToString();
 		Type = localeType;
-		LocaleIcon = MonsterHunterIdle.LocaleManager.GetLocaleIcon(localeType);
-		Background = MonsterHunterIdle.LocaleManager.GetBackground(localeType);
-		GatherIcon = MonsterHunterIdle.LocaleManager.GetGatherIcon(localeType);
+		LocaleIcon = LocaleManager.GetLocaleIcon(localeType);
+		Background = LocaleManager.GetBackground(localeType);
+		GatherIcon = LocaleManager.GetGatherIcon(localeType);
 	}
 
 	public new string Name;

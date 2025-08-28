@@ -76,15 +76,6 @@ public partial class MonsterHunterIdle : Node
 	[Export(PropertyHint.Range, "1, 50, 0.1")]
 	private float _offlineThresholdMult = 25f;
 
-	public static HunterManager HunterManager;
-	public static PalicoManager PalicoManager;
-	public static LocaleManager LocaleManager;
-	public static MonsterManager MonsterManager;
-	public static EquipmentManager EquipmentManager;
-	public static GameManager GameManager;
-	public static ItemBox ItemBox;
-	public static OfflineProgress OfflineProgress;
-
 	public static Signals Signals = new Signals();
 	public static PackedScenes PackedScenes;
 
@@ -182,29 +173,29 @@ public partial class MonsterHunterIdle : Node
 
 	public void GetRewards(int progressAmount, int zennyAmount)
 	{
-		HunterManager.Hunter.Zenny += zennyAmount;
+		Hunter.Zenny += zennyAmount;
 
-		HunterManager.Hunter.Points += progressAmount;
+		Hunter.Points += progressAmount;
 		CheckHunterProgress();
 	}
 
 	private void AddHunterProgress(int progress)
 	{
-		HunterManager.Hunter.Points += progress;
+		Hunter.Points += progress;
 	}
 
 	private void CheckHunterProgress()
 	{
-		if (HunterManager.Hunter.Points < HunterManager.Hunter.PointsRequired) return;
+		if (Hunter.Points < Hunter.PointsRequired) return;
 
-		HunterManager.Hunter.Rank++;
-		HunterManager.Hunter.Points -= HunterManager.Hunter.PointsRequired;
+		Hunter.Rank++;
+		Hunter.Points -= Hunter.PointsRequired;
 		GetMaxHunterProgress();
 	}
 
 	private void GetMaxHunterProgress()
 	{
-		if (HunterManager.Hunter.Rank < 100) HunterManager.Hunter.PointsRequired += 100;
+		if (Hunter.Rank < 100) Hunter.PointsRequired += 100;
 	}
 
 	public static Variant LoadFile(string fileName, string folderName = "")

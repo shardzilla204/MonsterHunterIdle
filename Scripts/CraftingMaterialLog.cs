@@ -24,7 +24,7 @@ public partial class CraftingMaterialLog : NinePatchRect
         _materialIcon.Texture = material == null ? null : MonsterHunterIdle.GetMaterialIcon(material);
         _materialName.Text = material == null ? "" : material.Name;
 
-        int itemBoxAmount = MonsterHunterIdle.ItemBox.FindAllMaterial(material.Name).Count;
+        int itemBoxAmount = ItemBox.FindAllMaterial(material.Name).Count;
         _materialAmount.Text = material == null ? "" : $"{itemBoxAmount}  / {amount}";
     }
 }

@@ -24,7 +24,7 @@ public partial class ItemBoxSearch : LineEdit
 
 	private Array<string> GetKeywords()
 	{
-		IEnumerable<Material> distinctMaterials = MonsterHunterIdle.ItemBox.Materials.Distinct();
+		IEnumerable<Material> distinctMaterials = ItemBox.Materials.Distinct();
 		Array<string> keywords = new Array<string>();
 		foreach (Material uniqueMaterial in distinctMaterials)
 		{
@@ -38,7 +38,7 @@ public partial class ItemBoxSearch : LineEdit
 
 	private Array<Material> FindMaterials(string keyword)
 	{
-		List<Material> distinctMaterials = MonsterHunterIdle.ItemBox.Materials.Distinct().ToList();
+		List<Material> distinctMaterials = ItemBox.Materials.Distinct().ToList();
 		List<Material> materials = distinctMaterials.FindAll(uniqueMaterial => uniqueMaterial.Name.ToUpper().Contains(keyword));
 
 		Array<Material> materialsFound = [.. materials]; // Convert From System.Collections.Generic.List To Godot.Collections.Array

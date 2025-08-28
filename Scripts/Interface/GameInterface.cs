@@ -36,7 +36,7 @@ public partial class GameInterface : Control
         MonsterInterface monsterInterface = MonsterHunterIdle.PackedScenes.GetMonsterInterface();
         _interfaceContainer.AddChild(monsterInterface);
 
-        Dictionary<string, int> timeDifference = MonsterHunterIdle.OfflineProgress.TimeDifference;
+        Dictionary<string, int> timeDifference = OfflineProgress.TimeDifference;
         OfflineInterface offlineInterface = MonsterHunterIdle.PackedScenes.GetOfflineInterface(timeDifference);
         CallDeferred("add_sibling", offlineInterface);
     }
@@ -51,7 +51,7 @@ public partial class GameInterface : Control
 
     private void OnLocaleChanged()
     {
-        Locale locale = MonsterHunterIdle.LocaleManager.Locale;
+        Locale locale = LocaleManager.Locale;
 
         _localeLabel.Text = locale.Name;
         _localeIcon.Texture = locale.LocaleIcon;
