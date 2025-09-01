@@ -3,15 +3,15 @@
     [
         {
             "Trees": [ "GreatJagras" ],
-            "Value": 25,
+            "Value": 15,
             "GradeIncrease": 2.5,
             "SubGradeIncrease": 2.5
         },
         {
             "Trees": [ "PukeiPukei" ],
-            "Value": 50,
-            "GradeIncrease": 10,
-            "SubGradeIncrease": 10
+            "Value": 30,
+            "GradeIncrease": 4,
+            "SubGradeIncrease": 2.5
         }
     ]
 }

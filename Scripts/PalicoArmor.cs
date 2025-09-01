@@ -3,28 +3,30 @@ using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-public partial class PalicoArmor : Armor
+public partial class PalicoArmor : PalicoEquipment
 {
     public PalicoArmor(){}
-
-    public PalicoArmor(PalicoEquipmentCategory category)
+    
+    public PalicoArmor(PalicoEquipmentType type)
     {
-        Category = category;
+        Type = type;
     }
 
-    public PalicoArmor(PalicoEquipmentCategory category, ArmorSet set)
+    public PalicoArmor(PalicoEquipmentType type, ArmorSet set)
     {
-        Category = category;
+        Type = type;
         Set = set;
     }
 
-    public new PalicoEquipmentCategory Category = PalicoEquipmentCategory.None;
+    public int Defense = 0;
+    public new ArmorSet Set = ArmorSet.None;
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
-        Name = dictionary["Name"].As<string>();
+        Array<string> armorNames = dictionary[Set.ToString()].As<Array<string>>();
+        string armorName = armorNames[(int) Type - 1]; // Go down an index for head & chest
+        Name = PalicoEquipmentManager.GetArmorName(this, armorName);
 
-        Array<int> defenseValues = dictionary["Defense"].As<Array<int>>();
-        Defense = defenseValues[SubGrade];
+        Defense = EquipmentManager.GetDefenseValue(Grade, SubGrade) / 2;
     }
 }

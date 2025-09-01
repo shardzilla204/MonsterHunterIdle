@@ -34,7 +34,7 @@ public enum ArmorSet
 
 public partial class Armor : Equipment
 {
-    public Armor() { }
+    public Armor(){}
 
     public Armor(ArmorCategory category)
     {
@@ -47,6 +47,7 @@ public partial class Armor : Equipment
         Set = set;
     }
 
+    public new EquipmentType Type = EquipmentType.Armor;
     public int Defense = 0;
     public ArmorCategory Category = ArmorCategory.None;
     public new ArmorSet Set = ArmorSet.None;

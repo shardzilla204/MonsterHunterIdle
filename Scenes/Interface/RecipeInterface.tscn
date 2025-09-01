@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="5_j1fq3"]
 [ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/ZennyIcon.png" id="5_pxox7"]
 
-[node name="CraftingInterface" type="NinePatchRect" node_paths=PackedStringArray("_acceptButton", "_cancelButton", "_craftingLabel", "_craftingCostLabel", "_craftingMaterialLogContainer")]
+[node name="RecipeInterface" type="NinePatchRect" node_paths=PackedStringArray("_acceptButton", "_cancelButton", "_craftingLabel", "_craftingCostLabel", "_craftingMaterialLogContainer")]
 custom_minimum_size = Vector2(350, 250)
 size_flags_vertical = 3
 texture = ExtResource("1_7iafy")

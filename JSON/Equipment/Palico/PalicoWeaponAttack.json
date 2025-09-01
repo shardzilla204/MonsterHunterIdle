@@ -1,0 +1,17 @@
+{
+    "PalicoWeaponAttack":
+    [
+        {
+            "Trees": [ "Ore", "Kulu", "PukeiPukei" ],
+            "Value": 25,
+            "GradeIncrease": 2.5,
+            "SubGradeIncrease": 3
+        },
+        {
+            "Trees": [ "GreatJagras" ],
+            "Value": 15,
+            "GradeIncrease": 2,
+            "SubGradeIncrease": 3
+        }
+    ]
+}

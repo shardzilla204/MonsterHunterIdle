@@ -21,7 +21,7 @@ public partial class PalicoDetails : NinePatchRect
 
 	public override void _Ready()
 	{
-		_palicoNameEdit.TextSubmitted += (string text) => 
+		_palicoNameEdit.TextSubmitted += (string text) =>
 		{
 			_palicoNameEdit.ReleaseFocus();
 			if (text == "")
@@ -57,7 +57,8 @@ public partial class PalicoDetails : NinePatchRect
 
 		for (int i = 0; i < statTypes.Count; i++)
 		{
-			SetStat(statTypes[i], statValues[i]);
+			HBoxContainer statDetail = GetStatDetail(statTypes[i], statValues[i]);
+			_statsContainer.AddChild(statDetail);
 		}
 	}
 
@@ -70,10 +71,29 @@ public partial class PalicoDetails : NinePatchRect
 		}
 	}
 
-	private void SetStat(StatType statType, int value)
+	private HBoxContainer GetStatDetail(StatType statType, int value)
 	{
-		StatDetail statDetail = MonsterHunterIdle.PackedScenes.GetStatDetail();
-		statDetail.FillPalicoStat(statType, $"{value}");
-		_statsContainer.AddChild(statDetail);
+		HBoxContainer statDetail = new HBoxContainer();
+		statDetail.AddThemeConstantOverride("separation", 5);
+
+		int iconSize = 30;
+		Texture2D statTexture = MonsterHunterIdle.GetStatTypeIcon(statType);
+		TextureRect statIcon = new TextureRect()
+		{
+			Texture = statTexture,
+			CustomMinimumSize = new Vector2(iconSize, iconSize),
+			ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+			StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
+		};
+
+		Label statLabel = new Label()
+		{
+			Text = $"+ {value}"
+		};
+
+		statDetail.AddChild(statIcon);
+		statDetail.AddChild(statLabel);
+
+		return statDetail;
 	}
 }

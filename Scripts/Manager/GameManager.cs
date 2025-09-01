@@ -42,7 +42,8 @@ public partial class GameManager : Node
 			{ "Hunter", HunterManager.GetData() },
 			{ "ItemBox", ItemBox.GetData() },
 			{ "Equipment", EquipmentManager.GetData() },
-			{ "Palicos", PalicoManager.GetData() }
+			{ "Palicos", PalicoManager.GetData() },
+			{ "PalicoEquipment", PalicoEquipmentManager.GetData() },
 		};
 	}
 
@@ -62,8 +63,8 @@ public partial class GameManager : Node
 			GC.Array<GC.Dictionary<string, Variant>> palicosData = gameData["Palicos"].As<GC.Array<GC.Dictionary<string, Variant>>>();
 			PalicoManager.SetData(palicosData);
 
-			// GC.Dictionary<string, Variant> poglinEnemiesData = gameData["Poglin Enemies"].As<GC.Dictionary<string, Variant>>();
-			// PickleClicker.PoglinEnemyManager.SetData(poglinEnemiesData);
+			GC.Dictionary<string, Variant> palicoEquipmentData = gameData["PalicoEquipment"].As<GC.Dictionary<string, Variant>>();
+			PalicoEquipmentManager.SetData(palicoEquipmentData);
 		}
 		catch (KeyNotFoundException)
 		{
@@ -90,7 +91,7 @@ public partial class GameManager : Node
 		{
 			saveSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
 		}
-		PrintRich.PrintLine(TextColor.Green, saveSuccessMessage);
+		PrintRich.PrintSuccess(saveSuccessMessage);
 	}
 
 	public static void LoadGame()
@@ -121,7 +122,7 @@ public partial class GameManager : Node
 		{
 			loadSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
 		}
-		PrintRich.PrintLine(TextColor.Green, loadSuccessMessage);
+		PrintRich.PrintSuccess(loadSuccessMessage);
 	}
 
 	// ! Important !
@@ -132,6 +133,7 @@ public partial class GameManager : Node
 		ItemBox.DeleteData();
 		HunterManager.DeleteData();
 		PalicoManager.DeleteData();
+		PalicoEquipmentManager.DeleteData();
 
 		SaveGame();
 	}

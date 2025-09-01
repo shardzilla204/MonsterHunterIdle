@@ -9,21 +9,44 @@ public partial class PalicoManager : Node
 	[Export(PropertyHint.Range, "1, 10, 0.5")]
 	private float _actionIntervalSeconds = 5f;
 
+	[Export]
+	private int _startingPalicoCount = 0;
+
 	public static List<Palico> Palicos = new List<Palico>();
 	public static int MaxPalicoCount = 4;
 
-	public static PalicoEquipmentManager Equipment;
-
 	public static float ActionIntervalSeconds = 5;
+	public static int StartingPalicoCount = 0;
 
 	public override void _EnterTree()
 	{
 		ActionIntervalSeconds = _actionIntervalSeconds;
+		StartingPalicoCount = _startingPalicoCount;
 	}
 
 	public override void _Ready()
 	{
 		ActionInterval();
+	}
+
+	private static string GetRandomName()
+	{
+		string[] names = ["Matthew", "Jonathan", "Aiden", "Nathan", "Kristian", "Jaydon", "Brenyn", "Eyan", "Mindy", "Carrigan"];
+		int nameCount = names.Length - 1;
+		RandomNumberGenerator RNG = new RandomNumberGenerator();
+		int randomIndex = RNG.RandiRange(0, nameCount);
+
+		return names[randomIndex];
+	}
+
+	private static void AddStartingPalicos()
+	{
+		for (int i = 0; i < StartingPalicoCount; i++)
+		{
+			Palico palico = new Palico();
+			palico.Name = GetRandomName();
+			Palicos.Add(palico);
+		}
 	}
 
 	private async void ActionInterval()
@@ -53,6 +76,115 @@ public partial class PalicoManager : Node
 				}
 			}
 		}
+	}
+
+	public static bool IsEquipped(Palico palico, PalicoEquipment equipment)
+	{
+		bool isEquipped = false;
+		if (equipment is PalicoWeapon targetWeapon)
+		{
+			if (palico.Weapon.Name == "") return false;
+			isEquipped = palico.Weapon.Tree == targetWeapon.Tree;
+		}
+		else if (equipment is PalicoArmor targetArmor)
+		{
+			PalicoArmor armor = GetArmor(palico, targetArmor);
+			if (armor.Name == "") return false;
+
+			isEquipped = armor.Set == targetArmor.Set;
+		}
+		return isEquipped;
+	}
+
+	public static void Equip(Palico palico, PalicoEquipment equipment)
+	{
+		if (equipment is PalicoWeapon weapon)
+		{
+			palico.Weapon = weapon;
+		}
+		else if (equipment is PalicoArmor armor)
+		{
+			if (armor.Type == PalicoEquipmentType.Head)
+			{
+				palico.Head = armor;
+			}
+			else if (armor.Type == PalicoEquipmentType.Chest)
+			{
+				palico.Chest = armor;
+			}
+		}
+
+		string equipMessage = $"{palico.Name} Has Equipped {equipment.Name}";
+		PrintRich.PrintLine(TextColor.Orange, equipMessage);
+	}
+
+	public static void Unequip(Palico palico, PalicoEquipment equipment)
+	{
+		if (equipment is PalicoWeapon)
+		{
+			palico.Weapon = new PalicoWeapon();
+		}
+		else if (equipment is PalicoArmor armor)
+		{
+			if (armor.Type == PalicoEquipmentType.Head)
+			{
+				palico.Head = new PalicoArmor(PalicoEquipmentType.Head);
+			}
+			else if (armor.Type == PalicoEquipmentType.Chest)
+			{
+				palico.Chest = new PalicoArmor(PalicoEquipmentType.Chest);
+			}
+		}
+
+		string equipMessage = $"{palico.Name} Has Equipped {equipment.Name}";
+		PrintRich.PrintLine(TextColor.Orange, equipMessage);
+	}
+
+	private static PalicoArmor GetArmor(Palico palico, PalicoArmor armor)
+	{
+		switch (armor.Type)
+		{
+			case PalicoEquipmentType.Head:
+				return palico.Head;
+			case PalicoEquipmentType.Chest:
+				return palico.Chest;
+			default:
+				return null;
+		}
+	}
+
+	// For upgrading equipment 
+	public static void Equip(PalicoEquipment equipment)
+	{
+		Palico palico = null;
+
+		if (equipment is PalicoWeapon weapon)
+		{
+			palico = Palicos.Find(palico => palico.Weapon == weapon);
+			if (palico == null) return;
+
+			palico.Weapon = weapon;
+		}
+		else if (equipment is PalicoArmor armor)
+		{
+			if (armor.Type == PalicoEquipmentType.Head)
+			{
+				palico = Palicos.Find(palico => palico.Head == armor);
+				if (palico == null) return;
+
+				palico.Head = armor;
+			}
+			else if (armor.Type == PalicoEquipmentType.Chest)
+			{
+				palico = Palicos.Find(palico => palico.Chest == armor);
+				if (palico == null) return;
+
+				palico.Chest = armor;
+			}
+		}
+
+		string equipMessage = $"{palico.Name} Has Equipped {equipment.Name}";
+		PrintRich.PrintLine(TextColor.Orange, equipMessage);
 	}
 
 	public static GC.Array<GC.Dictionary<string, Variant>> GetData()
@@ -99,7 +231,7 @@ public partial class PalicoManager : Node
 	public static void DeleteData()
 	{
 		Palicos.Clear();
-		Equipment.CraftedWeapons.Clear();
-		Equipment.CraftedArmor.Clear();
+
+		AddStartingPalicos();
 	}
 }

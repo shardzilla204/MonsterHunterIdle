@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
@@ -59,34 +60,7 @@ public partial class Signals : Node
 	[Signal]
 	public delegate void LocaleMaterialUsedEventHandler(LocaleMaterial localeMaterial);
 
-	// Miscellaneous Signals
-	[Signal]
-	public delegate void CollectionLogTimedOutEventHandler(CollectionLog collectionLog);
-
-	[Signal]
-	public delegate void InterfaceChangedEventHandler(InterfaceType interfaceType);
-
-	[Signal]
-	public delegate void CraftButtonPressedEventHandler(Equipment equipment);
-
-	[Signal]
-	public delegate void EquipmentUpgradedEventHandler(Equipment equipment);
-
-	[Signal]
-	public delegate void WeaponAddedEventHandler(Weapon weapon);
-
-	[Signal]
-	public delegate void ArmorAddedEventHandler(Armor armor);
-
-	[Signal]
-	public delegate void EquipmentChangedEventHandler(Equipment equipment);
-
-	[Signal]
-	public delegate void ChangeEquipmentButtonPressedEventHandler(Equipment equipment);
-
-	[Signal]
-	public delegate void PopupEventHandler(Control node);
-
+	// Game Signals
 	[Signal]
 	public delegate void GameSavedEventHandler();
 
@@ -98,4 +72,53 @@ public partial class Signals : Node
 
 	[Signal]
 	public delegate void GameQuitEventHandler();
+
+	// Miscellaneous Signals
+	[Signal]
+	public delegate void CollectionLogTimedOutEventHandler(CollectionLog collectionLog);
+
+	[Signal]
+	public delegate void InterfaceChangedEventHandler(InterfaceType interfaceType);
+
+	[Signal]
+	public delegate void CraftButtonPressedEventHandler(Equipment equipment);
+
+	[Signal]
+	public delegate void PalicoCraftButtonPressedEventHandler(PalicoEquipment equipment);
+
+	[Signal]
+	public delegate void PalicoCraftOptionButtonPressedEventHandler(PalicoEquipment equipment, bool isCrafting, int index);
+
+	[Signal]
+	public delegate void EquipmentUpgradedEventHandler(Equipment equipment);
+
+	[Signal]
+	public delegate void PalicoEquipmentUpgradedEventHandler(PalicoEquipment equipment, int index);
+
+	[Signal]
+	public delegate void EquipmentAddedEventHandler(Equipment equipment);
+
+	[Signal]
+	public delegate void PalicoEquipmentAddedEventHandler(PalicoEquipment equipment, int index);
+
+	[Signal]
+	public delegate void EquipmentChangedEventHandler(Equipment equipment);
+
+	[Signal]
+	public delegate void PalicoEquipmentChangedEventHandler(PalicoEquipment equipment);
+
+	[Signal]
+	public delegate void ChangeEquipmentButtonPressedEventHandler(Equipment equipment);
+
+	[Signal]
+	public delegate void ChangePalicoEquipmentButtonPressedEventHandler(PalicoEquipmentType equipmentType);
+
+	[Signal]
+	public delegate void PopupEventHandler(Control node);
+
+	[Signal]
+	public delegate void FilterButtonToggledEventHandler(bool isToggled);
+
+	[Signal]
+	public delegate void FiltersChangedEventHandler(Dictionary<string, bool> filters);
 }

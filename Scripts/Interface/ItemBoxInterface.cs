@@ -22,12 +22,14 @@ public partial class ItemBoxInterface : Container
 	{
 		MonsterHunterIdle.Signals.LocaleMaterialAdded -= OnLocaleMaterialAdded;
 		MonsterHunterIdle.Signals.MonsterMaterialAdded -= OnMonsterMaterialAdded;
+		MonsterHunterIdle.Signals.InterfaceChanged -= OnInterfaceChanged;
 	}
 
 	public override void _EnterTree()
 	{
 		MonsterHunterIdle.Signals.LocaleMaterialAdded += OnLocaleMaterialAdded;
 		MonsterHunterIdle.Signals.MonsterMaterialAdded += OnMonsterMaterialAdded;
+		MonsterHunterIdle.Signals.InterfaceChanged += OnInterfaceChanged;
 	}
 
 	public override void _Ready()
@@ -38,6 +40,23 @@ public partial class ItemBoxInterface : Container
 		SellMode(false);
 	}
 
+	// * START - Signal Methods
+	private void OnLocaleMaterialAdded(LocaleMaterial localeMaterial)
+	{
+		UpdateMaterialLogs();
+	}
+
+	private void OnMonsterMaterialAdded(MonsterMaterial monsterMaterial)
+	{
+		UpdateMaterialLogs();
+	}
+
+	private void OnInterfaceChanged(InterfaceType interfaceType)
+	{
+		QueueFree();
+	}
+	// * END - Signal Methods
+
 	private void SellMode(bool isToggled)
 	{
 		Color green = Color.FromHtml(PrintRich.GetColorHex(TextColor.Green));
@@ -47,16 +66,6 @@ public partial class ItemBoxInterface : Container
 
 		UpdateMaterialLogs();
 		_itemBoxSearch.Text = "";
-	}
-
-	private void OnLocaleMaterialAdded(LocaleMaterial localeMaterial)
-	{
-		UpdateMaterialLogs();
-	}
-
-	private void OnMonsterMaterialAdded(MonsterMaterial monsterMaterial)
-	{
-		UpdateMaterialLogs();
 	}
 
 	private void UpdateMaterialLogs()

@@ -9,18 +9,29 @@ public partial class LoadoutInfo : NinePatchRect
 
     public override void _ExitTree()
     {
-        MonsterHunterIdle.Signals.ChangeEquipmentButtonPressed -= ChangeEquipmentButtonPressed;
+        MonsterHunterIdle.Signals.ChangeEquipmentButtonPressed -= OnChangeEquipmentButtonPressed;
     }
 
     public override void _EnterTree()
     {
-        MonsterHunterIdle.Signals.ChangeEquipmentButtonPressed += ChangeEquipmentButtonPressed;
+        MonsterHunterIdle.Signals.ChangeEquipmentButtonPressed += OnChangeEquipmentButtonPressed;
     }
 
     public override void _Ready()
     {
         AddLoadoutInfo();
     }
+
+    // * START - Signal Methods
+    private void OnChangeEquipmentButtonPressed(Equipment equipment)
+    {
+        EquipmentSelectionInterface equipmentSelectionInterface = MonsterHunterIdle.PackedScenes.GetEquipmentSelectionInterface(equipment);
+        if (equipmentSelectionInterface == null) return;
+
+        Container loadoutInterface = GetParentOrNull<Container>();
+        loadoutInterface.AddSibling(equipmentSelectionInterface);
+    }
+    // * END - Signal Methods
 
     private void AddLoadoutInfo()
     {
@@ -41,14 +52,5 @@ public partial class LoadoutInfo : NinePatchRect
 
         EquipmentInfo legArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Leg);
         _equipmentInfoContainer.AddChild(legArmorInfoNode);
-    }
-
-    private void ChangeEquipmentButtonPressed(Equipment equipment)
-    {
-        EquipmentSelectionInterface equipmentSelectionInterface = MonsterHunterIdle.PackedScenes.GetEquipmentSelectionInterface(equipment);
-        if (equipmentSelectionInterface == null) return;
-
-        Container loadoutInterface = GetParentOrNull<Container>();
-        loadoutInterface.AddSibling(equipmentSelectionInterface);
     }
 }

@@ -1,39 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxxq572d0rqo"]
+[gd_scene load_steps=5 format=3 uid="uid://yxxq572d0rqo"]
 
 [ext_resource type="Script" uid="uid://de0tkmmxhdr37" path="res://Scripts/Palico/PalicoEquipmentInfo.cs" id="1_yu3h8"]
+[ext_resource type="Texture2D" uid="uid://ccdgfn6e1pckk" path="res://Assets/Images/Palico/PalicoWeaponWhite.png" id="2_6j3a6"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/Button/CustomButton.cs" id="6_ab7w6"]
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="7_k0t6i"]
 
-[node name="PalicoEquipmentInfo" type="HBoxContainer" node_paths=PackedStringArray("_iconTexture", "_equipButton")]
+[node name="PalicoEquipmentInfo" type="HBoxContainer" node_paths=PackedStringArray("_iconTextureRect", "_changeEquipmentButton")]
 theme_override_constants/separation = 0
 script = ExtResource("1_yu3h8")
-_iconTexture = NodePath("Equipment/IconTexture")
-_equipButton = NodePath("Equipment/EquipButton")
+_iconTextureRect = NodePath("HBoxContainer/IconTextureRect")
+_changeEquipmentButton = NodePath("HBoxContainer/ChangeEquipmentButton")
 
-[node name="Equipment" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 5
 
-[node name="IconTexture" type="TextureRect" parent="Equipment"]
+[node name="IconTextureRect" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+texture = ExtResource("2_6j3a6")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EquipButton" type="Button" parent="Equipment"]
+[node name="ChangeEquipmentButton" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 14
-text = "None
+text = "Acorn Spade
 "
 flat = true
 script = ExtResource("6_ab7w6")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Equipment/EquipButton"]
-self_modulate = Color(0.1, 0.1, 0.1, 1)
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/ChangeEquipmentButton"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15

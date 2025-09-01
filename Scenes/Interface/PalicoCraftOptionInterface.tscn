@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://5ae7n3y7tb27"]
+
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="1_7p41w"]
+[ext_resource type="Script" uid="uid://ctn8nnw1ltigv" path="res://Scripts/Interface/PalicoCraftOptionInterface.cs" id="2_x84yt"]
+
+[node name="PalicoCraftOptionInterface" type="NinePatchRect" node_paths=PackedStringArray("_palicoCraftButtonOptionContainer")]
+custom_minimum_size = Vector2(350, 80)
+texture = ExtResource("1_7p41w")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource("2_x84yt")
+_palicoCraftButtonOptionContainer = NodePath("MarginContainer/ScrollContainer/PalicoCraftOptionButtonContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="PalicoCraftOptionButtonContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10

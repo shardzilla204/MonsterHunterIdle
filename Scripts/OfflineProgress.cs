@@ -42,7 +42,7 @@ public partial class OfflineProgress : Node
         {
             saveSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
         }
-        PrintRich.PrintLine(TextColor.Green, saveSuccessMessage);
+        PrintRich.PrintSuccess(saveSuccessMessage);
     }
 
     public static void LoadProgress()
@@ -73,7 +73,7 @@ public partial class OfflineProgress : Node
         {
             loadSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
         }
-        PrintRich.PrintLine(TextColor.Green, loadSuccessMessage);
+        PrintRich.PrintSuccess(loadSuccessMessage);
     }
 
     private static Dictionary<string, Variant> GetData()

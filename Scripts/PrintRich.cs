@@ -30,15 +30,30 @@ public partial class PrintRich : Node
 	[Export]
 	private bool _areFilePathsVisible = false;
 
-	public static bool IsConsoleEnabled;
-	public static bool AreFileMessagesEnabled;
-	public static bool AreFilePathsVisible;
+	[Export]
+	private bool _areLocaleMessagesEnabled = false;
+
+	[Export]
+	private bool _areMonsterMessagesEnabled = false;
+
+	[Export]
+	private bool _areEquipmentMessagesEnabled = false;
+
+	public static bool IsConsoleEnabled = true;
+	public static bool AreFileMessagesEnabled = false;
+	public static bool AreFilePathsVisible = false;
+	public static bool AreLocaleMessagesEnabled = false;
+	public static bool AreMonsterMessagesEnabled = false;
+	public static bool AreEquipmentMessagesEnabled = false;
 
 	public override void _EnterTree()
 	{
 		IsConsoleEnabled = _isConsoleEnabled;
 		AreFileMessagesEnabled = _areFileMessagesEnabled;
 		AreFilePathsVisible = _areFilePathsVisible;
+		AreLocaleMessagesEnabled = _areLocaleMessagesEnabled;
+		AreMonsterMessagesEnabled = _areMonsterMessagesEnabled;
+		AreEquipmentMessagesEnabled = _areEquipmentMessagesEnabled;
 	}
 
 	public static void Print(TextColor textColor, string text)
@@ -59,7 +74,7 @@ public partial class PrintRich : Node
 
 	public static void PrintSuccess(string fileName)
 	{
-		if (!IsConsoleEnabled) return;
+		if (!AreFileMessagesEnabled) return;
 
 		string loadSuccessMessage = $"{fileName} Successfully Loaded";
 		PrintLine(TextColor.Green, loadSuccessMessage);
@@ -74,7 +89,7 @@ public partial class PrintRich : Node
 
 	public static void PrintLocales(TextColor textColor)
 	{
-		if (!IsConsoleEnabled) return;
+		if (!AreLocaleMessagesEnabled) return;
 
 		List<LocaleMaterial> localeMaterials = LocaleManager.Materials;
 
@@ -93,8 +108,6 @@ public partial class PrintRich : Node
 
 	public static void PrintMonsters(TextColor textColor)
 	{
-		if (!IsConsoleEnabled) return;
-
 		List<Monster> monsters = MonsterManager.Monsters;
 		foreach (Monster monster in monsters)
 		{
@@ -105,6 +118,8 @@ public partial class PrintRich : Node
 
 	private static void PrintMonster(TextColor textColor, Monster monster)
 	{
+		if (!AreMonsterMessagesEnabled) return;
+
 		Print(textColor, $"Name: {monster.Name}");
 		Print(textColor, $"Description: {monster.Description}");
 		Print(textColor, $"Health: {monster.Health}");
@@ -144,6 +159,8 @@ public partial class PrintRich : Node
 
 	public static void PrintEquipmentInfo(TextColor textColor, Equipment equipment)
 	{
+		if (!AreEquipmentMessagesEnabled) return;
+		
 		if (equipment is Weapon weapon)
 		{
 			Print(textColor, "Weapon: ");
@@ -162,24 +179,44 @@ public partial class PrintRich : Node
 			Print(textColor, $"\tGrade: {armor.Grade}");
 			Print(textColor, $"\tSub Grade: {armor.SubGrade}");
 		}
+		else if (equipment is PalicoWeapon palicoWeapon)
+		{
+			Print(textColor, "Palico Weapon: ");
+			Print(textColor, $"\tName: {palicoWeapon.Name}");
+			Print(textColor, $"\tCategory: {palicoWeapon.Type}");
+			Print(textColor, $"\tTree: {palicoWeapon.Tree}");
+			Print(textColor, $"\tGrade: {palicoWeapon.Grade}");
+			Print(textColor, $"\tSub Grade: {palicoWeapon.SubGrade}");
+		}
+		else if (equipment is PalicoArmor palicoArmor)
+		{
+			Print(textColor, "Palico Armor: ");
+			Print(textColor, $"\tName: {palicoArmor.Name}");
+			Print(textColor, $"\tCategory: {palicoArmor.Type}");
+			Print(textColor, $"\tSet: {palicoArmor.Set}");
+			Print(textColor, $"\tGrade: {palicoArmor.Grade}");
+			Print(textColor, $"\tSub Grade: {palicoArmor.SubGrade}");
+		}
+
 		GD.Print(); // Spacing
 	}
 
-	public static void PrintMaterials()
+	public static void PrintMaterials(TextColor textColor)
 	{
 		if (!IsConsoleEnabled) return;
 
-		GD.Print("Item Box: ");
-		string textColorString = TextColor.Orange.ToString().ToUpper();
+		Print(textColor, "Item Box: ");
 		for (int i = 0; i < ItemBox.Materials.Count; i++)
 		{
-			GD.PrintRich($"\t[color={textColorString}]{ItemBox.Materials[i].Name}[/color]");
+			Print(textColor, ItemBox.Materials[i].Name);
 		}
-		GD.Print();
+		GD.Print(); // Spacing
 	}
 
 	public static void PrintEncounterRewards(int points, int zenny, List<MonsterMaterial> materialRewards)
 	{
+		if (!AreMonsterMessagesEnabled) return;
+
 		string pointsGainedMessage = $"\t+ {points} Hunter Points";
 		Print(TextColor.Orange, pointsGainedMessage);
 

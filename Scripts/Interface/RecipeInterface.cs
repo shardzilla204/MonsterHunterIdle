@@ -23,15 +23,22 @@ public partial class RecipeInterface : NinePatchRect
 
 	private Equipment _equipment;
 	private int _craftingCost = 0;
+	private bool _isUpgrading = false;
+
+	private int _index = -1; // For Palico equipment
 
 	public override void _ExitTree()
 	{
 		MonsterHunterIdle.Signals.CraftButtonPressed -= OnCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftButtonPressed -= OnCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftOptionButtonPressed -= OnPalicoCraftOptionButtonPressed;
 	}
 
 	public override void _EnterTree()
 	{
 		MonsterHunterIdle.Signals.CraftButtonPressed += OnCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftButtonPressed += OnCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftOptionButtonPressed += OnPalicoCraftOptionButtonPressed;
 	}
 
 	public override void _Ready()
@@ -46,34 +53,14 @@ public partial class RecipeInterface : NinePatchRect
 
 		_craftingCostLabel.Text = $"{_craftingCost}z";
 	}
-
-	public void SetMaterials(Equipment equipment)
+	
+	// * START - Signal Methods
+	private void OnCraftButtonPressed(Equipment equipment)
 	{
-		_equipment = equipment;
-
-		string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
-
-		// Console message
-		string recipeMessage = $"Showing Recipe For: {equipment.Name}{subGrade}";
-		PrintRich.PrintLine(TextColor.Yellow, recipeMessage);
-
-		bool hasCrafted = EquipmentManager.HasCrafted(equipment);
-		List<GC.Dictionary<string, Variant>> recipe = EquipmentManager.GetRecipe(equipment, hasCrafted);
-
-		foreach (GC.Dictionary<string, Variant> materialDictionary in recipe)
-		{
-			string name = materialDictionary["Name"].As<string>();
-			int amount = materialDictionary["Amount"].As<int>();
-
-			Material material = MonsterHunterIdle.FindMaterial(name);
-			CraftingMaterialLog craftingMaterialLog = MonsterHunterIdle.PackedScenes.GetCraftingMaterialLog(material, amount);
-			_craftingMaterialLogContainer.AddChild(craftingMaterialLog);
-		}
-
-		_craftingLabel.Text = hasCrafted ? "Upgrade" : "Forge";
+		QueueFree();
 	}
 
-	private void OnCraftButtonPressed(Equipment equipment)
+	private void OnPalicoCraftOptionButtonPressed(PalicoEquipment equipment, bool isCrafting, int index)
 	{
 		QueueFree();
 	}
@@ -95,27 +82,95 @@ public partial class RecipeInterface : NinePatchRect
 			ItemBox.SubtractMaterial(material, amount);
 		}
 
-		bool hasCrafted = EquipmentManager.HasCrafted(_equipment);
-		if (hasCrafted)
+		if (_isUpgrading)
 		{
-			// Upgrade equipment
-			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentUpgraded, _equipment);
+			if (_equipment is not PalicoEquipment)
+			{
+				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentUpgraded, _equipment);
+			}
+			else
+			{
+				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoEquipmentUpgraded, _equipment, _index);
+			}
 		}
 		else
 		{
-			// Craft equipment
-			if (_equipment is Weapon weapon)
-			{
-				EquipmentManager.CraftedWeapons.Add(weapon);
-				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.WeaponAdded, weapon);
-			}
-			else if (_equipment is Armor armor)
-			{
-				EquipmentManager.CraftedArmor.Add(armor);
-				MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ArmorAdded, armor);
-			}
-			QueueFree();
+			AddEquipment();
 		}
+	}
+	// * END - Signal Methods
+
+	public void SetMaterials(Equipment equipment, bool isCrafting, int index)
+	{
+		_equipment = equipment;
+		_index = index;
+		GD.Print($"Setting Index: {_index}");
+
+		string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
+
+		// Console message
+		string recipeMessage = $"Showing Recipe For: {equipment.Name}{subGrade}";
+		PrintRich.PrintLine(TextColor.Yellow, recipeMessage);
+
+		// If crafting, don't get the next recipe
+		List<GC.Dictionary<string, Variant>> recipe;
+		if (equipment is PalicoEquipment palicoEquipment)
+		{
+			recipe = PalicoEquipmentManager.GetEquipmentRecipe(palicoEquipment, !isCrafting);
+		}
+		else
+		{
+			isCrafting = !EquipmentManager.HasCrafted(equipment);
+			recipe = EquipmentManager.GetEquipmentRecipe(equipment);
+		}
+
+		if (recipe == null)
+		{
+			QueueFree();
+			return;
+		}
+
+		foreach (GC.Dictionary<string, Variant> materialDictionary in recipe)
+		{
+			string name = materialDictionary["Name"].As<string>();
+			int amount = materialDictionary["Amount"].As<int>();
+
+			Material material = MonsterHunterIdle.FindMaterial(name);
+			CraftingMaterialLog craftingMaterialLog = MonsterHunterIdle.PackedScenes.GetCraftingMaterialLog(material, amount);
+			_craftingMaterialLogContainer.AddChild(craftingMaterialLog);
+		}
+
+		_isUpgrading = !isCrafting;
+
+		_craftingLabel.Text = isCrafting ? "Forge" : "Upgrade";
+	}
+
+	private void AddEquipment()
+	{
+		if (_equipment is Weapon weapon)
+		{
+			EquipmentManager.CraftedWeapons.Add(weapon);
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentAdded, weapon);
+		}
+		else if (_equipment is Armor armor)
+		{
+			EquipmentManager.CraftedArmor.Add(armor);
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentAdded, armor);
+		}
+		else if (_equipment is PalicoWeapon palicoWeapon)
+		{
+			PalicoEquipmentManager.CraftedWeapons.Add(palicoWeapon);
+			int weaponCount = PalicoEquipmentManager.FindCraftedWeapons(palicoWeapon).Count - 1;
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoEquipmentAdded, palicoWeapon, ++_index + weaponCount);
+			GD.Print($"New Index On Adding Equipment: {_index + weaponCount}");
+		}
+		else if (_equipment is PalicoArmor palicoArmor)
+		{
+			PalicoEquipmentManager.CraftedArmor.Add(palicoArmor);
+			int armorCount = PalicoEquipmentManager.FindCraftedArmor(palicoArmor).Count - 1;
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoEquipmentAdded, palicoArmor, ++_index + armorCount);
+		}
+		QueueFree();
 	}
 
 	private bool HasMaterials()

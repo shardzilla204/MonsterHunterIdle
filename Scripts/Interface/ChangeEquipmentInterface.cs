@@ -4,6 +4,9 @@ namespace MonsterHunterIdle;
 
 public partial class ChangeEquipmentInterface : NinePatchRect
 {
+    [Signal]
+    public delegate void FinishedEventHandler(Equipment equipment);
+
     [Export]
     private Label _changeLabel;
 
@@ -18,7 +21,9 @@ public partial class ChangeEquipmentInterface : NinePatchRect
     public override void _Ready()
     {
         _yesButton.Pressed += OnYesButtonPressed;
-        _noButton.Pressed += OnNoButtonPressed;
+        _noButton.Pressed += QueueFree;
+
+        TreeExiting += () => EmitSignal(SignalName.Finished, _equipment);
     }
 
     public void SetEquipment(Equipment equipment)
@@ -79,12 +84,5 @@ public partial class ChangeEquipmentInterface : NinePatchRect
         }
 
         QueueFree();
-        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentChanged, _equipment);
-    }
-
-    private void OnNoButtonPressed()
-    {
-        QueueFree();
-        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentChanged, _equipment);
     }
 }

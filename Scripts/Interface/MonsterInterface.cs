@@ -40,6 +40,7 @@ public partial class MonsterInterface : NinePatchRect
 		MonsterHunterIdle.Signals.MonsterEncountered -= OnMonsterEncountered;
 		MonsterHunterIdle.Signals.LocaleChanged -= OnLocaleChanged;
 		MonsterHunterIdle.Signals.MonsterLeft -= OnMonsterLeft;
+		// MonsterHunterIdle.Signals.InterfaceChanged -= OnInterfaceChanged;
 	}
 
 	public override void _EnterTree()
@@ -47,6 +48,7 @@ public partial class MonsterInterface : NinePatchRect
 		MonsterHunterIdle.Signals.MonsterEncountered += OnMonsterEncountered;
 		MonsterHunterIdle.Signals.LocaleChanged += OnLocaleChanged;
 		MonsterHunterIdle.Signals.MonsterLeft += OnMonsterLeft;
+		// MonsterHunterIdle.Signals.InterfaceChanged += OnInterfaceChanged;
 	}
 
 	public override void _Ready()
@@ -67,8 +69,9 @@ public partial class MonsterInterface : NinePatchRect
 		if (!_isHovering) return;
 
 		_isAttackButtonPressed = Input.IsMouseButtonPressed(MouseButton.Left);
-    }
+	}
 
+	// * START - Signal Methods
 	private void OnMonsterEncountered(Monster monster)
 	{
 		string monsterMessage = PrintRich.GetMonsterMessage(monster);
@@ -76,119 +79,6 @@ public partial class MonsterInterface : NinePatchRect
 		PrintRich.PrintLine(TextColor.Orange, monsterEncounteredMessage);
 
 		SetMonster(monster);
-	}
-
-	private async void SetMonster(Monster monster, bool hasSlayed = false)
-	{
-		// For showing tweens | Encounter, Leave & Escape
-		if (!hasSlayed)
-		{
-			_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
-		}
-
-		_monster = monster;
-
-		_monsterName.Text = monster != null ? monster.Name : "";
-		_monsterIcon.Texture = monster != null ? MonsterHunterIdle.GetMonsterIcon(monster.Name) : null;
-
-		_monsterRender.PivotOffset = _monsterRender.Size / 2;
-		_exitButton.Visible = monster != null;
-
-
-		if (monster != null)
-		{
-			Tween tweenEncounter = TweenEncounter();
-			await ToSignal(tweenEncounter, Tween.SignalName.Finished);
-
-			MonsterHealthBar monsterHealthBar = MonsterHunterIdle.PackedScenes.GetMonsterHealthBar(monster);
-			monsterHealthBar.Depleted += SlayedMonster;
-			_monsterInformation.AddChild(monsterHealthBar);
-			_monsterTimer.Start();
-			_starContainer.Fill(monster);
-		}
-		else
-		{
-			_monsterTimer.Stop();
-			_starContainer.Empty();
-
-			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncounterFinished);
-		}
-
-		// For showing tween | Slayed
-		if (hasSlayed)
-		{
-			Tween tweenSlayed = TweenSlayed();
-			await ToSignal(tweenSlayed, Tween.SignalName.Finished);
-
-			_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
-		}
-	}
-
-	private async void OnAttackedMonster()
-	{
-		if (_monster == null || IsInstanceValid(_chargeBarTimer)) return;
-		
-		while (_isAttackButtonPressed)
-		{
-			// ? Add charge first & once it's done, attack
-			float weaponChargeTime = EquipmentManager.GetWeaponChargeTime();
-			_chargeBarTimer = MonsterHunterIdle.PackedScenes.GetChargeBarTimer(weaponChargeTime);
-			_chargeBarTimer.TreeExited += () => _chargeBarTimer = null;
-			
-			AddChild(_chargeBarTimer);
-
-			await ToSignal(_chargeBarTimer, ChargeBarTimer.SignalName.ChargingFinished);
-
-			int hunterAttack = EquipmentManager.GetWeaponAttack();
-			int hunterSpecialAttack = EquipmentManager.GetWeaponSpecialAttack();
-
-			bool hasHitWeakness = HasHitWeakness();
-			if (hasHitWeakness && hunterSpecialAttack != 0)
-			{
-				// Add weakness damage
-				float bonusPercentage = 1.75f;
-				hunterSpecialAttack = Mathf.RoundToInt(hunterSpecialAttack * bonusPercentage);
-			}
-
-			int totalDamage = hunterAttack + hunterSpecialAttack;
-
-			// Console message
-			string monsterMessage = PrintRich.GetMonsterMessage(_monster);
-			string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({Hunter.Weapon.Special})";
-			string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {attackMessage} | {totalDamage} HP";
-			PrintRich.Print(TextColor.Orange, monsterAttackedMessage);
-
-			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, totalDamage);
-
-			Label attackNode = GetDamageNode(hunterAttack, TextColor.Red);
-			TweenNode(attackNode);
-
-			if (hunterSpecialAttack == 0 || Hunter.Weapon.Special == SpecialType.None) return;
-
-			HBoxContainer specialAttackNode = GetSpecialAttackNode(hunterSpecialAttack);
-			TweenNode(specialAttackNode);
-		}
-	}
-
-	private bool HasHitWeakness()
-	{
-		SpecialType weaponSpecialType = Hunter.Weapon.Special;
-		bool hasHitWeakness = _monster.SpecialWeaknesses.Contains(weaponSpecialType);
-
-		return hasHitWeakness;
-	}
-
-	private void SlayedMonster()
-	{
-		// Console message
-		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
-		string monsterSlayedMessage = $"The {monsterMessage} Has Been Slayed";
-		PrintRich.Print(TextColor.Orange, monsterSlayedMessage); /// Don't print line | <see cref="PrintRich.PrintEncounterRewards">
-
-		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterSlayed, _monster);
-		MonsterManager.Encounter.GetEncounterRewards(_monster);
-
-		SetMonster(null, true);
 	}
 
 	private async void OnMonsterLeft()
@@ -227,6 +117,125 @@ public partial class MonsterInterface : NinePatchRect
 		await ToSignal(tweenEscape, Tween.SignalName.Finished);
 
 		SetMonster(null);
+	}
+
+	private void OnHealthBarDepleted()
+	{
+		// Console message
+		string monsterMessage = PrintRich.GetMonsterMessage(_monster);
+		string monsterSlayedMessage = $"The {monsterMessage} Has Been Slayed";
+		PrintRich.Print(TextColor.Orange, monsterSlayedMessage); /// Don't print line | <see cref="PrintRich.PrintEncounterRewards">
+
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterSlayed, _monster);
+		MonsterManager.Encounter.GetEncounterRewards(_monster);
+
+		SetMonster(null, true);
+	}
+
+	private async void OnAttackedMonster()
+	{
+		if (_monster == null || IsInstanceValid(_chargeBarTimer)) return;
+
+		while (_isAttackButtonPressed)
+		{
+			// ? Add charge first & once it's done, attack
+			float weaponChargeTime = EquipmentManager.GetWeaponChargeTime();
+			_chargeBarTimer = MonsterHunterIdle.PackedScenes.GetChargeBarTimer(weaponChargeTime);
+			_chargeBarTimer.TreeExited += () => _chargeBarTimer = null;
+
+			AddChild(_chargeBarTimer);
+
+			await ToSignal(_chargeBarTimer, ChargeBarTimer.SignalName.ChargingFinished);
+
+			int hunterAttack = EquipmentManager.GetWeaponAttack();
+			int hunterSpecialAttack = EquipmentManager.GetWeaponSpecialAttack();
+
+			bool hasHitWeakness = HasHitWeakness();
+			if (hasHitWeakness && hunterSpecialAttack != 0)
+			{
+				// Add weakness damage
+				float bonusPercentage = 1.75f;
+				hunterSpecialAttack = Mathf.RoundToInt(hunterSpecialAttack * bonusPercentage);
+			}
+
+			int totalDamage = hunterAttack + hunterSpecialAttack;
+
+			// Console message
+			string monsterMessage = PrintRich.GetMonsterMessage(_monster);
+			string attackMessage = hunterSpecialAttack == 0 ? $"{hunterAttack}" : $"{hunterAttack} + {hunterSpecialAttack} ({Hunter.Weapon.Special})";
+			string monsterAttackedMessage = $"The {monsterMessage} Has Been Damaged For {attackMessage} | {totalDamage} HP";
+			PrintRich.Print(TextColor.Orange, monsterAttackedMessage);
+
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, totalDamage);
+
+			Label attackNode = GetDamageNode(hunterAttack, TextColor.Red);
+			TweenNode(attackNode);
+
+			if (hunterSpecialAttack == 0 || Hunter.Weapon.Special == SpecialType.None) return;
+
+			HBoxContainer specialAttackNode = GetSpecialAttackNode(hunterSpecialAttack);
+			TweenNode(specialAttackNode);
+		}
+	}
+
+	private void OnInterfaceChanged(InterfaceType interfaceType)
+	{
+		QueueFree();
+	}
+	// * END - Signal Methods
+
+	private async void SetMonster(Monster monster, bool hasSlayed = false)
+	{
+		// For showing tweens | Encounter, Leave & Escape
+		if (!hasSlayed)
+		{
+			_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
+		}
+
+		_monster = monster;
+
+		_monsterName.Text = monster != null ? monster.Name : "";
+		_monsterIcon.Texture = monster != null ? MonsterHunterIdle.GetMonsterIcon(monster.Name) : null;
+
+		_monsterRender.PivotOffset = _monsterRender.Size / 2;
+		_exitButton.Visible = monster != null;
+
+
+		if (monster != null)
+		{
+			Tween tweenEncounter = TweenEncounter();
+			await ToSignal(tweenEncounter, Tween.SignalName.Finished);
+
+			MonsterHealthBar monsterHealthBar = MonsterHunterIdle.PackedScenes.GetMonsterHealthBar(monster);
+			monsterHealthBar.Depleted += OnHealthBarDepleted;
+			_monsterInformation.AddChild(monsterHealthBar);
+			_monsterTimer.Start();
+			_starContainer.Fill(monster);
+		}
+		else
+		{
+			_monsterTimer.Stop();
+			_starContainer.Empty();
+
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncounterFinished);
+		}
+
+		// For showing tween | Slayed
+		if (hasSlayed)
+		{
+			Tween tweenSlayed = TweenSlayed();
+			await ToSignal(tweenSlayed, Tween.SignalName.Finished);
+
+			_monsterRender.Texture = monster != null ? MonsterHunterIdle.GetMonsterRender(monster.Name) : null;
+		}
+	}
+
+	private bool HasHitWeakness()
+	{
+		SpecialType weaponSpecialType = Hunter.Weapon.Special;
+		bool hasHitWeakness = _monster.SpecialWeaknesses.Contains(weaponSpecialType);
+
+		return hasHitWeakness;
 	}
 
 	private Label GetDamageNode(int damage, TextColor color)
@@ -268,7 +277,7 @@ public partial class MonsterInterface : NinePatchRect
 			ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
 			StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
 		};
-		
+
 		Label damageLabel = GetDamageNode(specialAttack, TextColor.Orange);
 
 		specialAttackNode.AddChild(damageLabel);
@@ -279,6 +288,7 @@ public partial class MonsterInterface : NinePatchRect
 		return specialAttackNode;
 	}
 
+	// * START - Tween Methods
 	private void TweenNode(Control node)
 	{
 		AddChild(node);
@@ -304,7 +314,7 @@ public partial class MonsterInterface : NinePatchRect
 	// No need to reset to original state as the original state is the target
 	private Tween TweenEncounter()
 	{
-		int offsetX = (int) Size.X;
+		int offsetX = (int)Size.X;
 		Vector2 startPosition = _monsterRender.Position + new Vector2(offsetX, 0);
 		_monsterRender.Position = startPosition;
 
@@ -358,7 +368,7 @@ public partial class MonsterInterface : NinePatchRect
 	{
 		float startRotation = _monsterRender.Rotation;
 
-		int offsetY = (int) Size.Y;
+		int offsetY = (int)Size.Y;
 		Vector2 targetPosition = _monsterRender.Position + new Vector2(_monsterRender.Position.X, offsetY);
 
 		float targetRotation = Mathf.DegToRad(-15);
@@ -381,4 +391,5 @@ public partial class MonsterInterface : NinePatchRect
 
 		return tween;
 	}
+	// * END - Tween Methods
 }

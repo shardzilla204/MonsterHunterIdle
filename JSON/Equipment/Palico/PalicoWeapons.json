@@ -1,0 +1,70 @@
+{
+    "PalicoWeapons":
+    {
+        "Ore":
+        {
+            "Name": "Acorn Spade",
+            "Special": "None"
+        },
+        "Great Jagras":
+        {
+            "Name": "Jag Gunhammer",
+            "Special": "None"
+        },
+        "Kulu-Ya-Ku":
+        {
+            "Name": "Kulu Lute",
+            "Special": "None"
+        },
+        "Pukei-Pukei":
+        {
+            "Name": "Pukei Bow",
+            "Special": "None"
+        },
+        "Barroth":
+        {
+            "Name": "Barroth Mace",
+            "Special": "None"
+        },
+        "Tobi-Kadachi":
+        {
+            "Name": "Kadachi Fork",
+            "Special": "Thunder"
+        },
+        "Paolumu":
+        {
+            "Name": "Lumu Pawpads",
+            "Special": "None"
+        },
+        "Jyuratodus":
+        {
+            "Name": "Jyura Sword",
+            "Special": "Water"
+        },
+        "Anjanath":
+        {
+            "Name": "Anja Bonehammer",
+            "Special": "Fire"
+        },
+        "Rathian":
+        {
+            "Name": "Rathian Rapier",
+            "Special": "Poison"
+        },
+        "Legiana":
+        {
+            "Name": "Legiana Sword",
+            "Special": "Ice"
+        },
+        "Diablos":
+        {
+            "Name": "Diablos Hammer",
+            "Special": "None"
+        },
+        "Rathalos":
+        {
+            "Name": "Rathalos Blade",
+            "Special": "Fire"
+        }
+    }
+}

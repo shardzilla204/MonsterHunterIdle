@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 
 namespace MonsterHunterIdle;
@@ -6,59 +5,104 @@ namespace MonsterHunterIdle;
 public partial class PalicoEquipmentInfo : HBoxContainer
 {
 	[Export]
-	private PalicoEquipmentCategory _equipmentType;
+	private TextureRect _iconTextureRect;
 
 	[Export]
-	private TextureRect _iconTexture;
+	private CustomButton _changeEquipmentButton;
 
-	[Export]
-	private CustomButton _equipButton;
+	private Palico _palico;
+	private PalicoEquipmentType _equipmentType = PalicoEquipmentType.None;
+	private PalicoEquipment _equipment;
 
 	public override void _Ready()
 	{
-		string textureFilePath = GetTextureFilePath();
-		if (textureFilePath == "") return;
+		SetEquipment();
+		SetTexture();
+		_changeEquipmentButton.Pressed += OnChangeEquipmentButtonPressed;
+	}
 
-		Texture2D texture = MonsterHunterIdle.GetTexture(textureFilePath);
-		_iconTexture.Texture = texture;
+	// * START - Signal Methods
+	private void OnChangeEquipmentButtonPressed()
+	{
+		if (_equipment == null) return;
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ChangePalicoEquipmentButtonPressed, (int) _equipmentType);
+	}
+	// * END - Signal Methods
+
+	// If the palico has equipment that corresponds to the equipment type then show to icon of that, otherwise use the default icon
+	private void SetTexture()
+	{
+		PalicoEquipment equipment = _equipment;
+
+		Texture2D equipmentIcon;
+		if (equipment != null)
+		{
+			equipmentIcon = MonsterHunterIdle.GetEquipmentIcon(equipment);
+		}
+		else
+		{
+			string textureFilePath = GetTextureFilePath();
+			if (textureFilePath == "") return;
+
+			equipmentIcon = MonsterHunterIdle.GetTexture(textureFilePath);
+		}
+
+		_iconTextureRect.Texture = equipmentIcon;
+	}
+
+	private void SetEquipment()
+	{
+		if (_equipmentType is PalicoEquipmentType.Weapon)
+		{
+			_equipment = _palico.Weapon;
+		}
+		else if (_equipmentType is PalicoEquipmentType.Head)
+		{
+			_equipment = _palico.Head;
+		}
+		else if (_equipmentType is PalicoEquipmentType.Chest)
+		{
+			_equipment = _palico.Chest;
+		}
 	}
 
 	private string GetTextureFilePath() => _equipmentType switch
 	{
-		PalicoEquipmentCategory.Weapon => "res://Assets/Images/Icon/PalicoWeaponIconWhite.png",
-		PalicoEquipmentCategory.Head => "res://Assets/Images/Icon/PalicoHeadEquipmentIcon.png",
-		PalicoEquipmentCategory.Chest => "res://Assets/Images/Icon/PalicoChestEquipmentIcon.png",
+		PalicoEquipmentType.Weapon => "res://Assets/Images/Palico/PalicoWeaponWhite.png",
+		PalicoEquipmentType.Head => "res://Assets/Images/Palico/PalicoHeadWhite.png",
+		PalicoEquipmentType.Chest => "res://Assets/Images/Palico/PalicoChestWhite.png",
 		_ => ""
 	};
 
-	public void SetStats(Palico palico)
+	public void SetPalico(Palico palico, PalicoEquipmentType equipmentType)
 	{
-		if (_equipmentType is PalicoEquipmentCategory.Weapon)
+		_palico = palico;
+		_equipmentType = equipmentType;
+		
+		if (equipmentType is PalicoEquipmentType.Weapon)
 		{
-			SetWeaponStats(palico);
+			SetEquipmentText(palico.Weapon);
 		}
-		else if (_equipmentType is PalicoEquipmentCategory.Head)
+		else if (equipmentType is PalicoEquipmentType.Head)
 		{
-			SetHelmetStats(palico);
+			SetEquipmentText(palico.Head);
 		}
-		else if (_equipmentType is PalicoEquipmentCategory.Chest)
+		else if (equipmentType is PalicoEquipmentType.Chest)
 		{
-			SetChestStats(palico);
+			SetEquipmentText(palico.Chest);
 		}
 	}
 
-	private void SetWeaponStats(Palico palico)
+	private void SetEquipmentText(PalicoEquipment equipment)
 	{
-		_equipButton.Text = palico.Weapon is null ? "None" : palico.Weapon.Name;
-	}
-
-	private void SetHelmetStats(Palico palico)
-	{
-		_equipButton.Text = palico.Head is null ? "None" : palico.Head.Name;
-	}
-
-	private void SetChestStats(Palico palico)
-	{
-		_equipButton.Text = palico.Chest is null ? "None" : palico.Chest.Name;
+		string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
+		if (equipment is PalicoWeapon weapon)
+        {
+            _changeEquipmentButton.Text = weapon.Tree == WeaponTree.None ? "None" : $"{equipment.Name}{subGrade}";
+        }
+        else if (equipment is PalicoArmor armor)
+        {
+            _changeEquipmentButton.Text = armor.Set == ArmorSet.None ? "None" : $"{equipment.Name}{subGrade}";
+        }
 	}
 }

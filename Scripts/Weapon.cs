@@ -33,7 +33,7 @@ public enum WeaponTree
 
 public partial class Weapon : Equipment
 {
-    public Weapon() { }
+    public Weapon(){}
 
     public Weapon(WeaponCategory category, WeaponTree tree)
     {
@@ -41,6 +41,7 @@ public partial class Weapon : Equipment
         Tree = tree;
     }
 
+    public new EquipmentType Type = EquipmentType.Weapon;
     public int Attack = 0;
     public int SpecialAttack = 0;
     public SpecialType Special;

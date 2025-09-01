@@ -48,6 +48,7 @@ public partial class EquipmentInfoPopup : NinePatchRect
             equipment = UnequipEquipment();
         }
         SetSupplyButtonText(equipment);
+
         MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.EquipmentChanged, equipment);
     }
 
@@ -135,61 +136,34 @@ public partial class EquipmentInfoPopup : NinePatchRect
 
         Texture2D equipmentIcon = MonsterHunterIdle.GetEquipmentIcon(equipment);
         string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
-        HBoxContainer infoNode = GetInfoNode(equipmentIcon, $"{equipment.Name}{subGrade}");
+        HBoxContainer infoNode = Scenes.GetInfoNode(equipmentIcon, $"{equipment.Name}{subGrade}");
         _infoContainer.AddChild(infoNode);
 
         if (equipment is Weapon weapon)
         {
             Texture2D attackIcon = MonsterHunterIdle.GetStatTypeIcon(StatType.Attack);
-            HBoxContainer attackInfoNode = GetInfoNode(attackIcon, $"{weapon.Attack}");
+            HBoxContainer attackInfoNode = Scenes.GetInfoNode(attackIcon, $"{weapon.Attack}");
             _infoContainer.AddChild(attackInfoNode);
 
             Texture2D affinityIcon = MonsterHunterIdle.GetStatTypeIcon(StatType.Affinity);
-            HBoxContainer affinityInfoNode = GetInfoNode(affinityIcon, $"{weapon.Affinity}%");
+            HBoxContainer affinityInfoNode = Scenes.GetInfoNode(affinityIcon, $"{weapon.Affinity}%");
             _infoContainer.AddChild(affinityInfoNode);
 
             if (weapon.Special != SpecialType.None)
             {
                 Texture2D specialIcon = MonsterHunterIdle.GetSpecialTypeIcon(weapon.Special);
-                HBoxContainer specialIconNode = GetInfoNode(specialIcon, $"{weapon.SpecialAttack}");
-                _infoContainer.AddChild(specialIconNode);   
+                HBoxContainer specialIconNode = Scenes.GetInfoNode(specialIcon, $"{weapon.SpecialAttack}");
+                _infoContainer.AddChild(specialIconNode);
             }
         }
         else if (equipment is Armor armor)
         {
             Texture2D defenseIcon = MonsterHunterIdle.GetStatTypeIcon(StatType.Defense);
-            HBoxContainer defenseInfoNode = GetInfoNode(defenseIcon, $"{armor.Defense}");
+            HBoxContainer defenseInfoNode = Scenes.GetInfoNode(defenseIcon, $"{armor.Defense}");
             _infoContainer.AddChild(defenseInfoNode);
         }
 
         SetSupplyButtonText(equipment);
-    }
-
-    private HBoxContainer GetInfoNode(Texture2D texture, string text)
-    {
-        HBoxContainer infoNode = new HBoxContainer();
-
-        int size = 40;
-        TextureRect iconTextureRect = new TextureRect()
-        {
-            Texture = texture,
-            CustomMinimumSize = new Vector2(size, size),
-            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
-        };
-        infoNode.AddChild(iconTextureRect);
-
-        Label nameLabel = new Label()
-        {
-            Text = text,
-            HorizontalAlignment = HorizontalAlignment.Right,
-            SizeFlagsHorizontal = SizeFlags.ExpandFill
-        };
-        int fontSize = 20;
-        nameLabel.AddThemeFontSizeOverride("font_size", fontSize);
-        infoNode.AddChild(nameLabel);
-
-        return infoNode;
     }
 
     private void SetSupplyButtonText(Equipment equipment)

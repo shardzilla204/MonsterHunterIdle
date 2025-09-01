@@ -31,12 +31,18 @@ public enum StatType
 }
 
 /*
-	TODO: Add Palico equipment data
-	// TODO: Add attacking charge bar
+	TODO: Fix swapping out equipment
 	TODO: Add weapons:
 	//	Great Sword
 	//	Long Sword
 
+	// TODO: Add Palico equipment data
+	// TODO: Show the recipe of the first item in list from palico equipment
+	// TODO: Reassign equipment index when upgrading palico equipment
+	// TODO: When exiting the recipe interface, also remove the palico craft option interface
+	// TODO: Fix bug where you can make as much of the palico equipment as you want
+
+	// TODO: Add attacking charge bar
 	// TODO: Add monster weakness damage
 	// TODO: Add equipment status element
 	// TODO: Have filter support multiple groups
@@ -119,7 +125,7 @@ public partial class MonsterHunterIdle : Node
 	public static Texture2D GetEquipmentIcon(Equipment equipment)
 	{
 		string filePath = "";
-		string gradeColorString = GetGradeColorString(equipment);
+		string gradeColorString = GetGradeColorString(equipment.Grade);
 		if (equipment is Weapon weapon)
 		{
 			if (weapon.Category == WeaponCategory.None) return null;
@@ -132,10 +138,30 @@ public partial class MonsterHunterIdle : Node
 			
 			filePath = $"res://Assets/Images/Armor/{armor.Category}Icon{gradeColorString}.png";
 		}
+		else if (equipment is PalicoWeapon palicoWeapon)
+		{
+			if (palicoWeapon.Type == PalicoEquipmentType.None) return null;
+
+			filePath = $"res://Assets/Images/Palico/Palico{palicoWeapon.Type}{gradeColorString}.png";
+		}
+		else if (equipment is PalicoArmor palicoArmor)
+		{
+			if (palicoArmor.Type == PalicoEquipmentType.None) return null;
+
+			if (palicoArmor.Type == PalicoEquipmentType.Head)
+			{
+				filePath = $"res://Assets/Images/Palico/Palico{palicoArmor.Type}{gradeColorString}.png";
+
+			}
+			else if (palicoArmor.Type == PalicoEquipmentType.Chest)
+			{
+				filePath = $"res://Assets/Images/Palico/Palico{palicoArmor.Type}{gradeColorString}.png";
+			}
+		}
 		return GetTexture(filePath);
 	}
 
-	public static string GetGradeColorString(Equipment equipment) => equipment.Grade switch
+	public static string GetGradeColorString(int grade) => grade switch
 	{
 		0 => "White",
 		1 => "Green",
@@ -148,6 +174,39 @@ public partial class MonsterHunterIdle : Node
 	public static Texture2D GetTexture(string filePath)
 	{
 		return ResourceLoader.Load<Texture2D>(filePath);
+	}
+
+	public static string GetRomanNumeral(int grade) => grade switch
+    {
+        0 => "I",
+        1 => "II",
+        2 => "III",
+        3 => "IV",
+        4 => "V",
+        5 => "VI",
+        6 => "VII",
+        7 => "VII",
+        8 => "IX",
+        9 => "X",
+        _ => ""
+    };
+
+	public static int GetCraftingCost(int grade, int subGrade)
+	{
+		int[,] craftingCosts =
+		{
+			{ 10, 20, 30, 40, 50 },
+			{ 300, 100, 150, 200, 250 },
+			{ 600, 200, 300, 400, 500 },
+			{ 900, 300, 450, 600, 750 },
+			{ 1500, 500, 750, 1000, 1250 },
+			{ 3000, 1000, 1500, 2000, 2500 },
+			{ 6000, 2000, 3000, 4000, 5000 },
+			{ 12000, 4000, 6000, 8000, 10000 },
+			{ 30000, 10000, 15000, 20000, 25000 },
+			{ 75000, 25000, 37500, 50000, 62500 }
+		};
+		return craftingCosts[grade, subGrade];
 	}
 
 	public static int GetMaterialWeight(int rarity) => rarity switch

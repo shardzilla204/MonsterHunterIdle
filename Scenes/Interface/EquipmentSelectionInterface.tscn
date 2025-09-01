@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_u4ewh"]
 [ext_resource type="Script" uid="uid://cy7r6xqeklhlp" path="res://Scripts/Interface/EquipmentSelectionInterface.cs" id="3_26cmv"]
 
-[node name="EquipmentSelectionInterface" type="NinePatchRect" node_paths=PackedStringArray("_equipmentInfoButtonContainer")]
+[node name="EquipmentSelectionInterface" type="NinePatchRect" node_paths=PackedStringArray("_equipmentSelectionButtonContainer")]
 custom_minimum_size = Vector2(80, 380)
 size_flags_vertical = 3
 theme = ExtResource("1_ncfyl")
@@ -14,7 +14,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 script = ExtResource("3_26cmv")
-_equipmentInfoButtonContainer = NodePath("MarginContainer/ScrollContainer/EquipmentInfoButtonContainer")
+_equipmentSelectionButtonContainer = NodePath("MarginContainer/ScrollContainer/EquipmentSelectionButtonContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -32,7 +32,7 @@ theme_override_constants/margin_bottom = 15
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="EquipmentInfoButtonContainer" type="FlowContainer" parent="MarginContainer/ScrollContainer"]
+[node name="EquipmentSelectionButtonContainer" type="FlowContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

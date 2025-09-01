@@ -7,21 +7,6 @@ namespace MonsterHunterIdle;
 public partial class PackedScenes : Node
 {
    [Export]
-   private PackedScene _statDetail;
-
-   [Export]
-   private PackedScene _palicoLoadout;
-
-   [Export]
-   private PackedScene _collectionLog;
-
-   [Export]
-   private PackedScene _equipmentButton;
-
-   [Export]
-   private PackedScene _palicoDetails;
-
-   [Export]
    private PackedScene _materialLog;
 
    [Export]
@@ -29,12 +14,6 @@ public partial class PackedScenes : Node
 
    [Export]
    private PackedScene _monsterHealthBar;
-
-   [Export]
-   private PackedScene _equipmentInfoButton;
-
-   [Export]
-   private PackedScene _equipmentInfo;
 
    [Export]
    private PackedScene _sellMaterialLogContainer;
@@ -46,10 +25,44 @@ public partial class PackedScenes : Node
    private PackedScene _craftingFilter;
 
    [Export]
-   private PackedScene _equipmentInfoPopup;
+   private PackedScene _chargeBarTimer;
 
    [Export]
-   private PackedScene _chargeBarTimer;
+   private PackedScene _collectionLog;
+
+   [ExportGroup("Equipment")]
+   [Export]
+   private PackedScene _equipmentButton;
+
+   [Export]
+   private PackedScene _equipmentInfo;
+
+   [Export]
+   private PackedScene _equipmentInfoButton;
+
+   [Export]
+   private PackedScene _equipmentInfoPopup;
+
+
+   [ExportGroup("Palico")]
+   [Export]
+   private PackedScene _palicoEquipmentInfo;
+
+   [Export]
+   private PackedScene _palicoDetails;
+
+   [Export]
+   private PackedScene _palicoCraftButton;
+
+   [Export]
+   private PackedScene _palicoCraftOptionButton;
+
+   [ExportSubgroup("Interfaces")]
+   [Export]
+   private PackedScene _palicoLoadoutInterface;
+
+   [Export]
+   private PackedScene _palicoCraftOptionInterface;
 
    [ExportGroup("Interfaces")]
    [Export]
@@ -96,11 +109,6 @@ public partial class PackedScenes : Node
       MonsterHunterIdle.PackedScenes = this;
    }
 
-   public StatDetail GetStatDetail()
-   {
-      return _statDetail.Instantiate<StatDetail>();
-   }
-
    public SellMaterialLog GetSellMaterialLog(Material material)
    {
       SellMaterialLog sellMaterialLog = _sellMaterialLog.Instantiate<SellMaterialLog>();
@@ -120,11 +128,11 @@ public partial class PackedScenes : Node
       return equipmentInfo;
    }
 
-   public EquipmentInfoButton GetEquipmentInfoButton(Equipment equipment)
+   public EquipmentSelectionButton GetEquipmentInfoButton(Equipment equipment)
    {
-      EquipmentInfoButton equipmentInfoButton = _equipmentInfoButton.Instantiate<EquipmentInfoButton>();
-      equipmentInfoButton.SetEquipment(equipment);
-      return equipmentInfoButton;
+      EquipmentSelectionButton equipmentSelectionButton = _equipmentInfoButton.Instantiate<EquipmentSelectionButton>();
+      equipmentSelectionButton.SetEquipment(equipment);
+      return equipmentSelectionButton;
    }
 
    public CraftingMaterialLog GetCraftingMaterialLog(Material material, int amount)
@@ -139,11 +147,11 @@ public partial class PackedScenes : Node
       return _collectionLog.Instantiate<CollectionLog>();
    }
 
-   public PalicoLoadout GetPalicoLoadout(Palico palico)
+   public PalicoLoadoutInterface GetPalicoLoadoutInterface(Palico palico)
    {
-      PalicoLoadout palicoLoadout = _palicoLoadout.Instantiate<PalicoLoadout>();
-      palicoLoadout.SetPalico(palico);
-      return palicoLoadout;
+      PalicoLoadoutInterface palicoLoadoutInterface = _palicoLoadoutInterface.Instantiate<PalicoLoadoutInterface>();
+      palicoLoadoutInterface.SetPalico(palico);
+      return palicoLoadoutInterface;
    }
 
    public MonsterHealthBar GetMonsterHealthBar(Monster monster)
@@ -152,6 +160,27 @@ public partial class PackedScenes : Node
       monsterHealthBar.SetMonster(monster);
 
       return monsterHealthBar;
+   }
+
+   public PalicoEquipmentInfo GetPalicoEquipmentInfo(Palico palico, PalicoEquipmentType equipmentType)
+   {
+      PalicoEquipmentInfo palicoEquipmentInfo = _palicoEquipmentInfo.Instantiate<PalicoEquipmentInfo>();
+      palicoEquipmentInfo.SetPalico(palico, equipmentType);
+      return palicoEquipmentInfo;
+   }
+
+   public PalicoCraftButton GetPalicoCraftButton(PalicoEquipment equipment)
+   {
+      PalicoCraftButton palicoCraftButton = _palicoCraftButton.Instantiate<PalicoCraftButton>();
+      palicoCraftButton.SetEquipment(equipment);
+      return palicoCraftButton;
+   }
+
+   public PalicoCraftOptionButton GetPalicoCraftOptionButton(PalicoEquipment equipment)
+   {
+      PalicoCraftOptionButton palicoCraftOptionButton = _palicoCraftOptionButton.Instantiate<PalicoCraftOptionButton>();
+      palicoCraftOptionButton.SetEquipment(equipment);
+      return palicoCraftOptionButton;
    }
 
    public PalicoDetails GetPalicoDetails()
@@ -191,10 +220,10 @@ public partial class PackedScenes : Node
    }
 
    // * Interface scenes
-   public RecipeInterface GetRecipeInterface(Equipment equipment)
+   public RecipeInterface GetRecipeInterface(Equipment equipment, bool isCrafting, int index)
    {
       RecipeInterface recipeInterface = _recipeInterface.Instantiate<RecipeInterface>();
-      recipeInterface.SetMaterials(equipment);
+      recipeInterface.SetMaterials(equipment, isCrafting, index);
       return recipeInterface;
    }
 
@@ -209,6 +238,13 @@ public partial class PackedScenes : Node
    {
       EquipmentSelectionInterface equipmentSelectionInterface = _equipmentSelectionInterface.Instantiate<EquipmentSelectionInterface>();
       equipmentSelectionInterface.SetEquipment(equipment);
+      return equipmentSelectionInterface;
+   }
+
+   public EquipmentSelectionInterface GetEquipmentSelectionInterface(PalicoEquipmentType equipmentType)
+   {
+      EquipmentSelectionInterface equipmentSelectionInterface = _equipmentSelectionInterface.Instantiate<EquipmentSelectionInterface>();
+      equipmentSelectionInterface.SetEquipment(equipmentType);
       return equipmentSelectionInterface;
    }
 
@@ -239,9 +275,9 @@ public partial class PackedScenes : Node
       return _playerInterface.Instantiate<HunterInterface>();
    }
 
-   public VBoxContainer GetLoadoutInterface()
+   public LoadoutInterface GetLoadoutInterface()
    {
-      return _loadoutInterface.Instantiate<VBoxContainer>();
+      return _loadoutInterface.Instantiate<LoadoutInterface>();
    }
 
    public PalicoInterface GetPalicoInterface()
@@ -269,5 +305,13 @@ public partial class PackedScenes : Node
       OfflineInterface offlineInterface = _offlineInterface.Instantiate<OfflineInterface>();
       offlineInterface.SetTime(timeDifference);
       return offlineInterface;
+   }
+
+   public PalicoCraftOptionInterface GetPalicoCraftOptionInterface(PalicoEquipment equipment, int index)
+   {
+      PalicoCraftOptionInterface palicoCraftOptionInterface = _palicoCraftOptionInterface.Instantiate<PalicoCraftOptionInterface>();
+      palicoCraftOptionInterface.Equipment = equipment;
+      palicoCraftOptionInterface.Index = index;
+      return palicoCraftOptionInterface;
    }
 }

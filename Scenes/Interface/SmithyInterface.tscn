@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0n1t51bigln2" path="res://Scripts/Interface/SmithyInterface.cs" id="1_bma4t"]
 [ext_resource type="PackedScene" uid="uid://03jc5rlgbljl" path="res://Scenes/Interface/CraftingInterface.tscn" id="10_nx1pp"]
 
-[node name="SmithyDisplay" type="VBoxContainer"]
+[node name="SmithyInterface" type="HBoxContainer"]
 offset_right = 350.0
 offset_bottom = 504.0
 script = ExtResource("1_bma4t")

@@ -1,0 +1,17 @@
+{
+    "PalicoWeaponSpecial":
+    [
+        {
+            "Trees": [ "GreatJagras" ],
+            "Value": 5,
+            "GradeIncrease": 2,
+            "SubGradeIncrease": 3
+        },
+        {
+            "Trees": [ "PukeiPukei" ],
+            "Value": 10,
+            "GradeIncrease": 2.5,
+            "SubGradeIncrease": 3
+        }
+    ]
+}

@@ -20,12 +20,14 @@ public partial class HunterInterface : NinePatchRect
 	{
 		MonsterHunterIdle.Signals.HunterLeveledUp -= OnHunterLeveledUp;
 		MonsterHunterIdle.Signals.MonsterSlayed -= OnMonsterSlayed;
+		MonsterHunterIdle.Signals.InterfaceChanged -= OnInterfaceChanged;
 	}
 
 	public override void _EnterTree()
 	{
 		MonsterHunterIdle.Signals.HunterLeveledUp += OnHunterLeveledUp;
 		MonsterHunterIdle.Signals.MonsterSlayed += OnMonsterSlayed;
+		MonsterHunterIdle.Signals.InterfaceChanged += OnInterfaceChanged;
 	}
 
 	public override void _Ready()
@@ -35,12 +37,24 @@ public partial class HunterInterface : NinePatchRect
 		SetMonstersSlayed();
 	}
 
+	// * START - Signal Methods
 	private void OnHunterLeveledUp()
 	{
 		_hunterRankLabel.Text = $"HR {Hunter.Rank}";
 		_hunterProgress.Update();
 		_zennyLabel.Text = $"{Hunter.Zenny}z";
 	}
+
+	private void OnMonsterSlayed(Monster monster)
+	{
+		SetMonstersSlayed();
+	}
+
+	private void OnInterfaceChanged(InterfaceType interfaceType)
+	{
+		QueueFree();
+	}
+	// * END - Signal Methods
 
 	private void SetMonstersSlayed()
 	{
@@ -89,10 +103,5 @@ public partial class HunterInterface : NinePatchRect
 		monsterSlayedNode.AddChild(monsterSlayedCount);
 
 		return monsterSlayedNode;
-	}
-
-	private void OnMonsterSlayed(Monster monster)
-	{
-		SetMonstersSlayed();
 	}
 }

@@ -10,19 +10,12 @@ public enum EquipmentType
     Armor,
 }
 
-public enum PalicoEquipmentCategory
-{
-    None = -1,
-    Weapon,
-    Head,
-    Chest
-}
-
 public abstract partial class Equipment : Node
 {
     public new string Name = "";
     public int Grade = 0;
     public int SubGrade = 0;
+    public EquipmentType Type = EquipmentType.None;
 
     public abstract void SetEquipment(Dictionary<string, Variant> dictionary);
 }

@@ -29,8 +29,19 @@ public partial class CraftingFilterInterface : NinePatchRect
 
     public Dictionary<string, bool> Filters = new Dictionary<string, bool>();
 
+    public override void _ExitTree()
+    {
+        MonsterHunterIdle.Signals.FilterButtonToggled -= OnFilterButtonToggled;
+    }
+
+    public override void _EnterTree()
+    {
+        MonsterHunterIdle.Signals.FilterButtonToggled += OnFilterButtonToggled;
+    }
+
     public override void _Ready()
     {
+
         _hasNotCraftedCheckBox.Toggled += (isToggled) => OnCheckBoxToggled(isToggled, "HasNotCrafted");
         _weaponFilters.FiltersChanged += OnEquipmentFiltersChanged;
         _armorFilters.FiltersChanged += OnEquipmentFiltersChanged;
@@ -53,5 +64,10 @@ public partial class CraftingFilterInterface : NinePatchRect
         }
 
         EmitSignal(SignalName.FiltersChanged, Filters);
+    }
+
+    private void OnFilterButtonToggled(bool isToggled)
+    {
+        QueueFree();
     }
 }

@@ -14,18 +14,56 @@ public partial class EquipmentInfo : HBoxContainer
 
     public override void _ExitTree()
     {
-        MonsterHunterIdle.Signals.EquipmentChanged -= EquipmentChanged;
+        MonsterHunterIdle.Signals.EquipmentChanged -= OnEquipmentChanged;
     }
 
     public override void _EnterTree()
     {
-        MonsterHunterIdle.Signals.EquipmentChanged += EquipmentChanged;
+        MonsterHunterIdle.Signals.EquipmentChanged += OnEquipmentChanged;
     }
 
     public override void _Ready()
     {
-        _changeEquipmentButton.Pressed += ChangeEquipmentButtonPressed;
+        _changeEquipmentButton.Pressed += OnChangeEquipmentButtonPressed;
     }
+
+    // * START - Signal Methods
+    private void OnChangeEquipmentButtonPressed()
+    {
+        if (_equipment == null) return;
+        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ChangeEquipmentButtonPressed, _equipment);
+    }
+
+    // Update the info displayed
+    private void OnEquipmentChanged(Equipment equipment)
+    {
+        if (_equipment is Weapon && equipment is Weapon)
+        {
+            SetInfo(Hunter.Weapon);
+        }
+        else if (_equipment is Armor && equipment is Armor newArmor)
+        {
+            switch (newArmor.Category)
+            {
+                case ArmorCategory.Head:
+                    SetInfo(Hunter.Head);
+                    break;
+                case ArmorCategory.Chest:
+                    SetInfo(Hunter.Chest);
+                    break;
+                case ArmorCategory.Arm:
+                    SetInfo(Hunter.Arm);
+                    break;
+                case ArmorCategory.Waist:
+                    SetInfo(Hunter.Waist);
+                    break;
+                case ArmorCategory.Leg:
+                    SetInfo(Hunter.Leg);
+                    break;
+            }
+        }
+    }
+    // * END - Signal Methods
 
     /// Equipment will never be null, but empty | <see cref="Hunter"/>
     public void SetEquipment(Equipment equipment)
@@ -54,41 +92,6 @@ public partial class EquipmentInfo : HBoxContainer
         {
             string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
             _changeEquipmentButton.Text = armor.Set == ArmorSet.None ? "None" : $"{equipment.Name}{subGrade}";
-        }
-    }
-
-    private void ChangeEquipmentButtonPressed()
-    {
-        if (_equipment == null) return;
-        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ChangeEquipmentButtonPressed, _equipment);
-    }
-
-    private void EquipmentChanged(Equipment equipment)
-    {
-        if (_equipment is Weapon && equipment is Weapon)
-        {
-            SetInfo(Hunter.Weapon);
-        }
-        else if (_equipment is Armor && equipment is Armor newArmor)
-        {
-            switch (newArmor.Category)
-            {
-                case ArmorCategory.Head:
-                    SetInfo(Hunter.Head);
-                    break;
-                case ArmorCategory.Chest:
-                    SetInfo(Hunter.Chest);
-                    break;
-                case ArmorCategory.Arm:
-                    SetInfo(Hunter.Arm);
-                    break;
-                case ArmorCategory.Waist:
-                    SetInfo(Hunter.Waist);
-                    break;
-                case ArmorCategory.Leg:
-                    SetInfo(Hunter.Leg);
-                    break;
-            }
         }
     }
 }

@@ -1,9 +1,10 @@
+using System;
 using Godot;
 using Godot.Collections;
 
 namespace MonsterHunterIdle;
 
-public partial class PalicoWeapon : Weapon
+public partial class PalicoWeapon : PalicoEquipment
 {
     public PalicoWeapon(){}
 
@@ -12,16 +13,21 @@ public partial class PalicoWeapon : Weapon
         Tree = tree;
     }
 
-    public new PalicoEquipmentCategory Category = PalicoEquipmentCategory.Weapon;
+    public new PalicoEquipmentType Type = PalicoEquipmentType.Weapon;
+    public int Attack = 0;
+    public int SpecialAttack = 0;
+    public SpecialType Special;
+    public int Affinity = 0;
+    public WeaponTree Tree = WeaponTree.None;
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
         Name = dictionary["Name"].As<string>();
 
-        Array<int> attackValues = dictionary["Attack"].As<Array<int>>();
-        Attack = attackValues[SubGrade];
+        string specialTypeString = dictionary["Special"].As<string>();
+        Special = Enum.Parse<SpecialType>(specialTypeString);
 
-        Array<int> affinityValues = dictionary["Affinity"].As<Array<int>>();
-        Affinity = affinityValues.Count != 0 ? affinityValues[SubGrade] : 0;
+        Attack = PalicoEquipmentManager.GetAttackValue(this);
+        SpecialAttack = PalicoEquipmentManager.GetSpecialValue(this);
     }
 }

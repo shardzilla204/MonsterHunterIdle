@@ -16,7 +16,7 @@ public partial class Palico : Node
    public int Affinity = 0;
    public int Defense = 10;
 
-   public Weapon Weapon;
-   public Armor Head;
-   public Armor Chest;
+   public PalicoWeapon Weapon = new PalicoWeapon();
+   public PalicoArmor Head = new PalicoArmor(PalicoEquipmentType.Head);
+   public PalicoArmor Chest = new PalicoArmor(PalicoEquipmentType.Chest);
 }

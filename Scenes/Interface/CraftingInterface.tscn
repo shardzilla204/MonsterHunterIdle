@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_pjkd8"]
 [ext_resource type="Texture2D" uid="uid://oo5awpxlbdsu" path="res://Assets/Images/Filter.png" id="6_r7xwb"]
 
-[node name="CraftingInterface" type="HBoxContainer" node_paths=PackedStringArray("_craftButtonContainer", "_filterButton")]
+[node name="CraftingInterface" type="VBoxContainer" node_paths=PackedStringArray("_craftButtonContainer", "_filterButton")]
 offset_right = 350.0
 offset_bottom = 250.0
 size_flags_vertical = 3

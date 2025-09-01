@@ -1,27 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://bswmie3ykm27p"]
 
-[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_wobee"]
-[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_5rugl"]
-[ext_resource type="Script" uid="uid://bbvpk72h2ocld" path="res://Scripts/Interface/PalicoInterface.cs" id="3_278o4"]
-[ext_resource type="PackedScene" uid="uid://c877crexigmrw" path="res://Scenes/Button/RecruitPalicoButton.tscn" id="4_82w8p"]
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_52dih"]
+[ext_resource type="Script" uid="uid://bbvpk72h2ocld" path="res://Scripts/Interface/PalicoInterface.cs" id="2_xbd7u"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="3_yo3jx"]
+[ext_resource type="PackedScene" uid="uid://c877crexigmrw" path="res://Scenes/Button/RecruitPalicoButton.tscn" id="4_tquil"]
 
 [node name="PalicoInterface" type="VBoxContainer" node_paths=PackedStringArray("_recruitPalicoButton", "_palicoAmount", "_palicoContainer")]
-offset_right = 350.0
-offset_bottom = 324.0
-theme = ExtResource("1_wobee")
+custom_minimum_size = Vector2(300, 0)
+offset_right = 250.0
+offset_bottom = 520.0
+theme = ExtResource("1_52dih")
 theme_override_constants/separation = 5
-script = ExtResource("3_278o4")
+script = ExtResource("2_xbd7u")
 _recruitPalicoButton = NodePath("PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/RecruitPalicoButton")
 _palicoAmount = NodePath("PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/PalicoAmount")
 _palicoContainer = NodePath("PalicoRecruitment/MarginContainer/VBoxContainer/ScrollContainer/PalicoContainer")
 
 [node name="PalicoRecruitment" type="NinePatchRect" parent="."]
-custom_minimum_size = Vector2(350, 300)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
-theme = ExtResource("1_wobee")
-texture = ExtResource("2_5rugl")
+theme = ExtResource("1_52dih")
+texture = ExtResource("3_yo3jx")
 patch_margin_left = 20
 patch_margin_top = 20
 patch_margin_right = 20
@@ -47,7 +48,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="RecruitPalicoButton" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_82w8p")]
+[node name="RecruitPalicoButton" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_tquil")]
 layout_mode = 2
 
 [node name="PalicoAmount" type="Label" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer"]

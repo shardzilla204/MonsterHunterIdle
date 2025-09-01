@@ -1,0 +1,18 @@
+{
+    "PalicoArmor":
+    {
+        "Leather": [ "Cap", "Vest" ],
+        "Jagras": [ "Helm", "Mail" ],
+        "Kulu": [ "Turban", "Vest" ],
+        "Pukei": [ "Hood", "Mantle" ],
+        "Barroth": [ "Helm", "Mail" ],
+        "Kadachi": [ "Hood", "Suit" ],
+        "Paolumu": [ "Hat", "Cape" ],
+        "Jyuratodus": [ "Helm", "Mail" ],
+        "Anjanath": [ "Helm", "Mail" ],
+        "Rathian": [ "Helm", "Mail" ],
+        "Legiana": [ "Helm", "Mail" ],
+        "Diablos": [ "Helm", "Mail" ],
+        "Rathalos": [ "Helm", "Mail" ]
+    }
+}

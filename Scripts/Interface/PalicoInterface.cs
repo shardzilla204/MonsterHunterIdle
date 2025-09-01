@@ -13,7 +13,19 @@ public partial class PalicoInterface : Container
 	[Export]
 	private Container _palicoContainer;
 
-	private PalicoLoadout _palicoLoadout;
+	private PalicoLoadoutInterface _palicoLoadoutInterface;
+
+	public override void _ExitTree()
+	{
+		MonsterHunterIdle.Signals.ChangePalicoEquipmentButtonPressed -= OnChangePalicoEquipmentButtonPressed;
+		MonsterHunterIdle.Signals.InterfaceChanged -= OnInterfaceChanged;
+    }
+
+    public override void _EnterTree()
+    {
+        MonsterHunterIdle.Signals.ChangePalicoEquipmentButtonPressed += OnChangePalicoEquipmentButtonPressed;
+		MonsterHunterIdle.Signals.InterfaceChanged += OnInterfaceChanged;
+    }
 
 	public override void _Ready()
 	{
@@ -26,6 +38,15 @@ public partial class PalicoInterface : Container
 
 		UpdateText();
 	}
+	
+	// * START - Signal Methods
+    private void OnChangePalicoEquipmentButtonPressed(PalicoEquipmentType equipmentType)
+    {
+        EquipmentSelectionInterface equipmentSelectionInterface = MonsterHunterIdle.PackedScenes.GetEquipmentSelectionInterface(equipmentType);
+        if (equipmentSelectionInterface == null) return;
+
+        AddSibling(equipmentSelectionInterface);
+    }
 
 	private void OnPalicoRecruited()
 	{
@@ -42,6 +63,12 @@ public partial class PalicoInterface : Container
 		UpdateText();
 	}
 
+	private void OnInterfaceChanged(InterfaceType interfaceType)
+	{
+		QueueFree();
+	}
+    // * END - Signal Methods
+
 	private void AddPalicoDetails(Palico palico)
 	{
 		PalicoDetails palicoDetails = MonsterHunterIdle.PackedScenes.GetPalicoDetails();
@@ -52,13 +79,13 @@ public partial class PalicoInterface : Container
 
 	private void OnLoadoutOpened(Palico palico)
 	{
-		if (IsInstanceValid(_palicoLoadout)) 
+		if (IsInstanceValid(_palicoLoadoutInterface)) 
 		{
-			_palicoLoadout.QueueFree();
+			_palicoLoadoutInterface.QueueFree();
 		} 
 
-		_palicoLoadout = MonsterHunterIdle.PackedScenes.GetPalicoLoadout(palico);
-		AddChild(_palicoLoadout); // For display orientation/placement as PalicoInterface is a container
+		_palicoLoadoutInterface = MonsterHunterIdle.PackedScenes.GetPalicoLoadoutInterface(palico);
+		AddChild(_palicoLoadoutInterface); // For display orientation/placement as PalicoInterface is a container
 	}
 
 	private void UpdateText()

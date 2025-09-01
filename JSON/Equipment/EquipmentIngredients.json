@@ -1,0 +1,156 @@
+{
+    "EquipmentIngredients":
+    [
+        {
+            "Monster": "None",
+            "Tree": "Ore",
+            "Set": "Leather",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Godbug",
+            "SubRarityThreeMaterial": "Earth Crystal"
+        },
+        {
+            "Monster": "Great Jagras",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Hide",
+            "Tree": "GreatJagras",
+            "Set": "Jagras",
+            "SubMonster": "Jyuratodus",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Flowfern",
+            "SubRarityThreeMaterial": "Earth Crystal"
+        },
+        {
+            "Monster": "Kulu-Ya-Ku",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Hide",
+            "Tree": "KuluYaKu",
+            "Set": "Kulu",
+            "SubMonster": "Great Jagras",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Godbug",
+            "SubRarityThreeMaterial": "Monster Bone +"
+        },
+        {
+            "Monster": "Pukei-Pukei",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Shell",
+            "Tree": "PukeiPukei",
+            "Set": "Pukei",
+            "SubMonster": "Rathian",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Toadstool",
+            "SubRarityThreeMaterial": "Carpenterbug"
+        },
+        {
+            "Monster": "Barroth",
+            "WeaponMaterial": "Claw",
+            "ArmorMaterial": "Shell",
+            "Tree": "Barroth",
+            "Set": "Barroth",
+            "SubMonster": "Diablos",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Godbug",
+            "SubRarityThreeMaterial": "Carpenterbug"
+        },
+        {
+            "Monster": "Great Girros",
+            "WeaponMaterial": "Fang",
+            "ArmorMaterial": "Scale",
+            "Tree": "GreatGirros",
+            "Set": "Girros",
+            "SubMonster": "Tobi-Kadachi",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Parashroom",
+            "SubRarityThreeMaterial": "Earth Crystal"
+        },
+        {
+            "Monster": "Tobi-Kadachi",
+            "WeaponMaterial": "Claw",
+            "ArmorMaterial": "Scale",
+            "Tree": "TobiKadachi",
+            "Set": "Kadachi",
+            "SubMonster": "Great Girros",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Thunderbug",
+            "SubRarityThreeMaterial": "Monster Bone +"
+        },
+        {
+            "Monster": "Paolumu",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Pelt",
+            "Tree": "Paolumu",
+            "Set": "Paolumu",
+            "SubMonster": "Legiana",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Godbug",
+            "SubRarityThreeMaterial": "Carpenterbug"
+        },
+        {
+            "Monster": "Jyuratodus",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Shell",
+            "Tree": "Jyuratodus",
+            "Set": "Jyuratodus",
+            "SubMonster": "Great Jagras",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Flowfern",
+            "SubRarityThreeMaterial": "Carpenterbug"
+        },
+        {
+            "Monster": "Anjanath",
+            "WeaponMaterial": "Fang",
+            "ArmorMaterial": "Scale",
+            "Tree": "Anjanath",
+            "Set": "Anjanath",
+            "SubMonster": "Rathalos",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Fire Herb",
+            "SubRarityThreeMaterial": "Monster Bone +"
+        },
+        {
+            "Monster": "Rathian",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Shell",
+            "Tree": "Rathian",
+            "Set": "Rathian",
+            "SubMonster": "Pukei-Pukei",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Toadstool",
+            "SubRarityThreeMaterial": "Monster Bone +"
+        },
+        {
+            "Monster": "Legiana",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Hide",
+            "Tree": "Legiana",
+            "Set": "Legiana",
+            "SubMonster": "Paolumu",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Snow Herb",
+            "SubRarityThreeMaterial": "Earth Crystal"
+        },
+        {
+            "Monster": "Diablos",
+            "WeaponMaterial": "Fang",
+            "ArmorMaterial": "Shell",
+            "Tree": "Diablos",
+            "Set": "Diablos",
+            "SubMonster": "Barroth",
+            "LocaleMaterial": "Desert",
+            "SubLocaleMaterial": "Godbug",
+            "SubRarityThreeMaterial": "Carpenterbug"
+        },
+        {
+            "Monster": "Rathalos",
+            "WeaponMaterial": "Scale",
+            "ArmorMaterial": "Wingtalon",
+            "Tree": "Rathalos",
+            "Set": "Rathalos",
+            "SubMonster": "Anjanath",
+            "LocaleMaterial": "Swamp",
+            "SubLocaleMaterial": "Fire Herb",
+            "SubRarityThreeMaterial": "Earth Crystal"
+        }
+    ]
+}

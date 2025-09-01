@@ -1,3 +1,4 @@
+using System.Reflection;
 using Godot;
 using Godot.Collections;
 
@@ -18,8 +19,6 @@ public partial class GameInterface : Control
     [Export]
     private TextureRect _localeBackground;
 
-    private Control _interface;
-
     public override void _EnterTree()
     {
         MonsterHunterIdle.Signals.LocaleChanged += OnLocaleChanged;
@@ -29,9 +28,7 @@ public partial class GameInterface : Control
     public override void _Ready()
     {
         OnLocaleChanged();
-
-        _interface = GetInterface(MonsterHunterIdle.StartingInterface);
-        _interfaceContainer.AddChild(_interface);
+        OnInterfaceChanged(MonsterHunterIdle.StartingInterface);
 
         MonsterInterface monsterInterface = MonsterHunterIdle.PackedScenes.GetMonsterInterface();
         _interfaceContainer.AddChild(monsterInterface);
@@ -41,12 +38,20 @@ public partial class GameInterface : Control
         CallDeferred("add_sibling", offlineInterface);
     }
 
+    // * START - Signal Methods
     private void OnInterfaceChanged(InterfaceType interfaceType)
     {
-        _interface.QueueFree();
-        _interface = GetInterface(interfaceType);
-        _interfaceContainer.AddChild(_interface);
-        _interfaceContainer.MoveChild(_interface, 0);
+        Control nextInterface = GetInterface(interfaceType);
+        if (nextInterface == null)
+        {
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Couldn't Find Interface: {interfaceType}";
+            PrintRich.PrintError(className, message);
+
+            return;
+        }
+        _interfaceContainer.AddChild(nextInterface);
+        _interfaceContainer.MoveChild(nextInterface, 0);
     }
 
     private void OnLocaleChanged()
@@ -57,6 +62,7 @@ public partial class GameInterface : Control
         _localeIcon.Texture = locale.LocaleIcon;
         _localeBackground.Texture = locale.Background;
     }
+    // * END - Signal Methods
 
     private Control GetInterface(InterfaceType interfaceType) => interfaceType switch
     {
@@ -64,9 +70,9 @@ public partial class GameInterface : Control
         InterfaceType.ItemBox => MonsterHunterIdle.PackedScenes.GetItemBoxInterface(),
         InterfaceType.Loadout => MonsterHunterIdle.PackedScenes.GetLoadoutInterface(),
         InterfaceType.Smithy => MonsterHunterIdle.PackedScenes.GetSmithyInterface(),
-        InterfaceType.Hunter => MonsterHunterIdle.PackedScenes.GetHunterInterface(), 
+        InterfaceType.Hunter => MonsterHunterIdle.PackedScenes.GetHunterInterface(),
         InterfaceType.Palico => MonsterHunterIdle.PackedScenes.GetPalicoInterface(),
         InterfaceType.Settings => MonsterHunterIdle.PackedScenes.GetSettingsInterface(),
-        _ => MonsterHunterIdle.PackedScenes.GetCollectionLogInterface()
+        _ => null
     };  
 }

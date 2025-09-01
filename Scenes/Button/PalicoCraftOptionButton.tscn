@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ymwvlf66yfys"]
+
+[ext_resource type="Script" uid="uid://bsa2s5qh16b63" path="res://Scripts/PalicoCraftOptionButton.cs" id="1_b3l5r"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="2_b2vlh"]
+[ext_resource type="Texture2D" uid="uid://ccdgfn6e1pckk" path="res://Assets/Images/Palico/PalicoWeaponWhite.png" id="3_cvenf"]
+
+[node name="PalicoCraftOptionButton" type="Button" node_paths=PackedStringArray("_iconTextureRect")]
+custom_minimum_size = Vector2(50, 50)
+flat = true
+script = ExtResource("1_b3l5r")
+_iconTextureRect = NodePath("NinePatchRect/MarginContainer/IconTextureRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(0.25, 0.25, 0.25, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_b2vlh")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="IconTextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_cvenf")
+expand_mode = 1
+stretch_mode = 5

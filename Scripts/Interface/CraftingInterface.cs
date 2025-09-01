@@ -15,55 +15,174 @@ public partial class CraftingInterface : Container
 	[Export]
 	private CustomButton _filterButton;
 
-	private CraftButton _craftButton;
-	
-	private CraftingFilterInterface _craftingFilterInterface;
-
 	public override void _ExitTree()
 	{
+		MonsterHunterIdle.Signals.FiltersChanged -= OnFiltersChanged;
+		MonsterHunterIdle.Signals.EquipmentAdded -= OnEquipmentAdded;
 		MonsterHunterIdle.Signals.EquipmentUpgraded -= OnEquipmentUpgraded;
-		MonsterHunterIdle.Signals.EquipmentChanged -= OnEquipmentChanged;
-		MonsterHunterIdle.Signals.WeaponAdded -= OnEquipmentAdded;
-		MonsterHunterIdle.Signals.ArmorAdded -= OnEquipmentAdded;
+		MonsterHunterIdle.Signals.PalicoEquipmentAdded -= OnPalicoEquipmentAdded;
+		MonsterHunterIdle.Signals.PalicoEquipmentUpgraded -= OnPalicoEquipmentUpgraded;
+		MonsterHunterIdle.Signals.CraftButtonPressed -= OnCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftButtonPressed -= OnPalicoCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftOptionButtonPressed -= OnPalicoCraftOptionButtonPressed;
 	}
 
 	public override void _EnterTree()
 	{
+		MonsterHunterIdle.Signals.FiltersChanged += OnFiltersChanged;
+		MonsterHunterIdle.Signals.EquipmentAdded += OnEquipmentAdded;
 		MonsterHunterIdle.Signals.EquipmentUpgraded += OnEquipmentUpgraded;
-		MonsterHunterIdle.Signals.EquipmentChanged += OnEquipmentChanged;
-		MonsterHunterIdle.Signals.WeaponAdded += OnEquipmentAdded;
-		MonsterHunterIdle.Signals.ArmorAdded += OnEquipmentAdded;
+		MonsterHunterIdle.Signals.PalicoEquipmentAdded += OnPalicoEquipmentAdded;
+		MonsterHunterIdle.Signals.PalicoEquipmentUpgraded += OnPalicoEquipmentUpgraded;
+		MonsterHunterIdle.Signals.CraftButtonPressed += OnCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftButtonPressed += OnPalicoCraftButtonPressed;
+		MonsterHunterIdle.Signals.PalicoCraftOptionButtonPressed += OnPalicoCraftOptionButtonPressed;
 	}
 
 	public override void _Ready()
 	{
-		_filterButton.Toggled += OnFilterButtonToggled;
+		_filterButton.Toggled += (isToggled) => MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.FilterButtonToggled, isToggled);
 
 		// Refresh the equipment
-		OnEquipmentChanged();
+		RefreshEquipment();
 	}
 
-	private void OnFilterButtonToggled(bool isToggled)
-	{
-		if (isToggled)
-		{
-			_craftingFilterInterface = MonsterHunterIdle.PackedScenes.GetCraftingFilterInterface();
-			_craftingFilterInterface.FiltersChanged += OnFiltersChanged;
-			AddChild(_craftingFilterInterface);
-		}
-		else
-		{
-			_craftingFilterInterface.QueueFree();
-		}
-	}
-
+	// * START - Signal Functions
 	private void OnFiltersChanged(GC.Dictionary<string, bool> filters)
 	{
 		ClearEquipment();
 		ShowFilteredEquipment(filters);
 	}
 
-	private void OnEquipmentChanged(Equipment equipment = null)
+	private async void OnEquipmentAdded(Equipment equipment)
+	{
+		ChangeEquipmentInterface changeEquipmentInterface = MonsterHunterIdle.PackedScenes.GetChangeEquipmentInterface(equipment);
+		changeEquipmentInterface.Finished += (newEquipment) => equipment = newEquipment;
+		AddChild(changeEquipmentInterface);
+
+		await ToSignal(changeEquipmentInterface, ChangeEquipmentInterface.SignalName.Finished);
+
+		RefreshEquipment(equipment);
+	}
+
+	private void OnEquipmentUpgraded(Equipment equipment)
+	{
+		Equipment equipmentToUpgrade;
+
+		if (equipment is Weapon weapon)
+		{
+			equipmentToUpgrade = HunterManager.FindWeapon(weapon);
+		}
+		else if (equipment is Armor armor)
+		{
+			equipmentToUpgrade = HunterManager.FindArmor(armor);
+		}
+		else
+		{
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+			string message = $"Couldn't Find Equipment";
+			PrintRich.PrintError(className, message);
+
+			return;
+		}
+
+		string previousEquipmentName = equipmentToUpgrade.Name;
+		int previousEquipmentSubGrade = equipmentToUpgrade.SubGrade;
+
+		EquipmentManager.UpgradeEquipment(equipmentToUpgrade);
+		HunterManager.Equip(equipmentToUpgrade);
+
+		// Console message
+		string previousSubGrade = previousEquipmentSubGrade == 0 ? "" : $" (+{previousEquipmentSubGrade})";
+		string subGrade = equipmentToUpgrade.SubGrade == 0 ? "" : $" (+{equipmentToUpgrade.SubGrade})";
+		string upgradedMessage = $"{previousEquipmentName}{previousSubGrade} Has Been Successfully Upgraded To {equipmentToUpgrade.Name}{subGrade}";
+		PrintRich.PrintLine(TextColor.Orange, upgradedMessage);
+
+		RefreshEquipment(equipment);
+	}
+
+	private void OnPalicoEquipmentAdded(PalicoEquipment equipment, int index)
+	{	
+		AddPalicoCraftOptionInterface(equipment, index);
+		RefreshEquipment(equipment, index);
+	}
+
+	private void OnPalicoEquipmentUpgraded(PalicoEquipment equipment, int index)
+	{
+		PalicoEquipment equipmentToUpgrade;
+
+		GD.Print($"Index On Equipment Upgrade: {index}");
+		if (equipment is PalicoWeapon targetWeapon)
+		{
+			List<PalicoWeapon> weapons = PalicoEquipmentManager.FindCraftedWeapons(targetWeapon);
+			equipmentToUpgrade = weapons[index];
+		}
+		else if (equipment is PalicoArmor targetArmor)
+		{
+			List<PalicoArmor> armor = PalicoEquipmentManager.FindCraftedArmor(targetArmor);
+			equipmentToUpgrade = armor[index];
+		}
+		else
+		{
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+			string message = $"Couldn't Find Equipment";
+			PrintRich.PrintError(className, message);
+
+			return;
+		}
+
+		string previousEquipmentName = equipmentToUpgrade.Name;
+		int previousEquipmentSubGrade = equipmentToUpgrade.SubGrade;
+
+		PalicoEquipmentManager.UpgradeEquipment(equipmentToUpgrade);
+		PalicoManager.Equip(equipmentToUpgrade);
+
+		PrintRich.PrintEquipmentInfo(TextColor.Pink, equipmentToUpgrade);
+
+		// Console message
+		string previousSubGrade = previousEquipmentSubGrade == 0 ? "" : $" (+{previousEquipmentSubGrade})";
+		string subGrade = equipmentToUpgrade.SubGrade == 0 ? "" : $" (+{equipmentToUpgrade.SubGrade})";
+		string upgradedMessage = $"{previousEquipmentName}{previousSubGrade} Has Been Successfully Upgraded To {equipmentToUpgrade.Name}{subGrade}";
+		PrintRich.PrintLine(TextColor.Orange, upgradedMessage);
+
+		RefreshEquipment(equipmentToUpgrade, index);
+
+		PalicoCraftOptionInterface palicoCraftOptionInterface = MonsterHunterIdle.PackedScenes.GetPalicoCraftOptionInterface(equipmentToUpgrade, index);
+		AddChild(palicoCraftOptionInterface);
+	}
+
+	private void OnCraftButtonPressed(Equipment equipment)
+	{
+		AddRecipeInterface(equipment);
+	}
+
+	private void OnPalicoCraftButtonPressed(PalicoEquipment equipment)
+	{
+		AddPalicoCraftOptionInterface(equipment);
+	}
+
+	private void OnPalicoCraftOptionButtonPressed(PalicoEquipment equipment, bool isCrafting, int index)
+	{
+		AddRecipeInterface(equipment, isCrafting, index);
+	}
+	// * END - Signal Functions
+
+	private void AddPalicoCraftOptionInterface(PalicoEquipment equipment, int index = -1)
+	{
+		PalicoCraftOptionInterface palicoCraftOptionInterface = MonsterHunterIdle.PackedScenes.GetPalicoCraftOptionInterface(equipment, index);
+		CallDeferred("add_child", palicoCraftOptionInterface);
+	}
+
+	private void AddRecipeInterface(Equipment equipment, bool isCrafting = false, int index = -1)
+	{
+		GD.Print($"Adding Recipe Interface For: {equipment.Name}");
+		if (equipment == null) return;
+
+		RecipeInterface recipeInterface = MonsterHunterIdle.PackedScenes.GetRecipeInterface(equipment, isCrafting, index);
+		CallDeferred("add_child", recipeInterface);
+	}
+
+	private void RefreshEquipment(Equipment equipment = null, int index = -1)
 	{
 		ClearEquipment();
 
@@ -73,13 +192,22 @@ public partial class CraftingInterface : Container
 		List<Equipment> armor = [.. EquipmentManager.Armor];
 		ShowEquipment(armor);
 
-		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.CraftButtonPressed, equipment);
-	}
+		List<PalicoEquipment> palicoWeapons = [.. PalicoEquipmentManager.Weapons];
+		ShowPalicoEquipment(palicoWeapons);
 
-	private void OnEquipmentAdded(Equipment equipment = null)
-	{
-		ChangeEquipmentInterface changeEquipmentInterface = MonsterHunterIdle.PackedScenes.GetChangeEquipmentInterface(equipment);
-		AddSibling(changeEquipmentInterface);
+		List<PalicoEquipment> palicoArmor = [.. PalicoEquipmentManager.Armor];
+		ShowPalicoEquipment(palicoArmor);
+
+		if (equipment == null) return;
+
+		if (equipment is not PalicoEquipment)
+		{
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.CraftButtonPressed, equipment);
+		}
+		else
+		{
+			MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoCraftOptionButtonPressed, equipment, false, index);
+		}
 	}
 
 	private void ShowFilteredEquipment(GC.Dictionary<string, bool> filters)
@@ -233,8 +361,16 @@ public partial class CraftingInterface : Container
 		foreach (Equipment equipmentPiece in equipment)
 		{
 			CraftButton craftButton = MonsterHunterIdle.PackedScenes.GetCraftButton(equipmentPiece);
-			craftButton.Pressed += () => SetEquipmentButton(craftButton);
 			_craftButtonContainer.AddChild(craftButton);
+		}
+	}
+
+	private void ShowPalicoEquipment(List<PalicoEquipment> palicoEquipment)
+	{
+		foreach (PalicoEquipment equipmentPiece in palicoEquipment)
+		{
+			PalicoCraftButton palicoCraftButton = MonsterHunterIdle.PackedScenes.GetPalicoCraftButton(equipmentPiece);
+			_craftButtonContainer.AddChild(palicoCraftButton);
 		}
 	}
 
@@ -246,47 +382,5 @@ public partial class CraftingInterface : Container
 			_craftButtonContainer.RemoveChild(child);
 			child.QueueFree();
 		}
-	}
-
-	private void SetEquipmentButton(CraftButton equipmentCraftButton)
-	{
-		_craftButton = equipmentCraftButton;
-	}
-
-	private void OnEquipmentUpgraded(Equipment equipment)
-	{
-		Equipment targetEquipment = _craftButton.Equipment;
-		Equipment hunterEquipment;
-
-		if (targetEquipment is Weapon weapon)
-		{
-			hunterEquipment = HunterManager.FindWeapon(weapon);
-		}
-		else if (targetEquipment is Armor armor)
-		{
-			hunterEquipment = HunterManager.FindArmor(armor);
-		}
-		else
-		{
-			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
-			string message = $"Couldn't Find {targetEquipment.Name}";
-            PrintRich.PrintError(className, message);
-
-			return;
-		}
-
-		string previousEquipmentName = hunterEquipment.Name;
-		int previousEquipmentSubGrade = hunterEquipment.SubGrade;
-
-		EquipmentManager.UpgradeEquipment(hunterEquipment);
-		HunterManager.Equip(hunterEquipment);
-
-		// Console message
-		string previousSubGrade = previousEquipmentSubGrade == 0 ? "" : $" (+{previousEquipmentSubGrade})";
-		string subGrade = hunterEquipment.SubGrade == 0 ? "" : $" (+{hunterEquipment.SubGrade})";
-		string upgradedMessage = $"{previousEquipmentName}{previousSubGrade} Has Been Successfully Upgraded To {hunterEquipment.Name}{subGrade}";
-		PrintRich.PrintLine(TextColor.Orange, upgradedMessage);
-
-		OnEquipmentChanged(equipment);
 	}
 }
