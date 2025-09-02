@@ -19,8 +19,8 @@ mouse_filter = 2
 theme = ExtResource("1_uqexu")
 script = ExtResource("2_y0pnk")
 _interfaceContainer = NodePath("LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/InterfaceContainer")
-_localeLabel = NodePath("LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2/LocaleLabel")
-_localeIcon = NodePath("LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2/LocaleIcon")
+_localeLabel = NodePath("LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer/LocaleLabel")
+_localeIcon = NodePath("LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer/LocaleIcon")
 _localeBackground = NodePath("LocaleBackground")
 
 [node name="LocaleBackground" type="TextureRect" parent="."]
@@ -88,18 +88,18 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LocaleIcon" type="TextureRect" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2"]
+[node name="LocaleIcon" type="TextureRect" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LocaleLabel" type="Label" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2"]
+[node name="LocaleLabel" type="Label" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -108,17 +108,17 @@ theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="CycleButton" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("6_jcvlw")]
+[node name="CycleButton" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer/HBoxContainer" instance=ExtResource("6_jcvlw")]
 layout_mode = 2
 
-[node name="CycleButton2" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("6_jcvlw")]
+[node name="CycleButton2" parent="LocaleBackground/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/HBoxContainer/HBoxContainer" instance=ExtResource("6_jcvlw")]
 layout_mode = 2
 _isClockwise = true
 

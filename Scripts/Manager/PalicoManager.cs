@@ -58,10 +58,22 @@ public partial class PalicoManager : Node
 			foreach (Palico palico in Palicos)
 			{
 				// Attack if monster is present or gather materials
-				if (MonsterManager.Encounter.IsInEncounter)
+				if (MonsterManager.Encounter.Monster != null)
 				{
 					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoHunted, palico);
-					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, palico.Weapon.Attack); // ! Change later
+
+					int weaponAttack = PalicoEquipmentManager.GetWeaponAttack(palico);
+					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, weaponAttack);
+
+					int weaponSpecialAttack = PalicoEquipmentManager.GetWeaponSpecialAttack(palico);
+					bool hasHitWeakness = HasHitWeakness();
+					if (hasHitWeakness && weaponSpecialAttack != 0)
+					{
+						// Add weakness damage
+						float bonusPercentage = 1.75f;
+						weaponSpecialAttack = Mathf.RoundToInt(weaponSpecialAttack * bonusPercentage);
+					}
+					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, weaponSpecialAttack);
 				}
 				else
 				{
@@ -77,6 +89,15 @@ public partial class PalicoManager : Node
 			}
 		}
 	}
+
+	private static bool HasHitWeakness()
+    {
+        SpecialType weaponSpecialType = Hunter.Weapon.Special;
+        bool hasHitWeakness = MonsterManager.Encounter.Monster.SpecialWeaknesses.Contains(weaponSpecialType);
+
+        return hasHitWeakness;
+    }
+
 
 	public static bool IsEquipped(Palico palico, PalicoEquipment equipment, int index)
 	{

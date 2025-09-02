@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="11_i4so3"]
 [ext_resource type="Texture2D" uid="uid://b77ct3d6g38x" path="res://Assets/Images/Monster/Render/PukeiPukeiRender.png" id="12_s37av"]
 
-[node name="MonsterInterface" type="NinePatchRect" node_paths=PackedStringArray("_monsterName", "_monsterIcon", "_monsterRender", "_monsterInformation", "_starContainer", "_attackButton", "_exitButton", "_monsterTimer")]
+[node name="MonsterInterface" type="NinePatchRect" node_paths=PackedStringArray("_monsterName", "_monsterIcon", "_monsterRender", "_monsterInformation", "_starContainer", "_exitButton", "_monsterTimer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,10 +30,9 @@ patch_margin_bottom = 20
 script = ExtResource("3_2843m")
 _monsterName = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MonsterInformation/HBoxContainer/MonsterName")
 _monsterIcon = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/MonsterIcon")
-_monsterRender = NodePath("MarginContainer/VBoxContainer/AttackButton/NinePatchRect/MonsterRender")
+_monsterRender = NodePath("MarginContainer/VBoxContainer/NinePatchRect/MonsterRender")
 _monsterInformation = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MonsterInformation")
 _starContainer = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MonsterInformation/HBoxContainer/StarContainer")
-_attackButton = NodePath("MarginContainer/VBoxContainer/AttackButton")
 _exitButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Spacing/ExitButton")
 _monsterTimer = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/MonsterTimer")
 
@@ -204,26 +203,17 @@ texture = ExtResource("11_2843m")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AttackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer"]
+clip_children = 1
 layout_mode = 2
 size_flags_vertical = 3
-flat = true
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/AttackButton"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 texture = ExtResource("11_i4so3")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="MonsterRender" type="TextureRect" parent="MarginContainer/VBoxContainer/AttackButton/NinePatchRect"]
+[node name="MonsterRender" type="TextureRect" parent="MarginContainer/VBoxContainer/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,7 +221,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-mouse_filter = 2
 texture = ExtResource("12_s37av")
 expand_mode = 1
 stretch_mode = 5

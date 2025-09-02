@@ -16,7 +16,7 @@ public partial class MonsterEncounter : Node
 	public int Time;
 	public int Health;
 	
-	public bool IsInEncounter = false;
+	public Monster Monster;
 	
 	public override void _EnterTree()
 	{
@@ -25,7 +25,7 @@ public partial class MonsterEncounter : Node
 
    	private async void IncreaseEncounterChance()
 	{
-		if (IsInEncounter) return;
+		if (Monster != null) return;
 
 		_encounterChance += _encounterIncrease;
 
@@ -39,9 +39,8 @@ public partial class MonsterEncounter : Node
 			PrintRich.PrintLine(TextColor.Orange, hasEncounteredMessage);
 
 			SetMonsterEncounter();
-			IsInEncounter = true;
 			await ToSignal(MonsterHunterIdle.Signals, Signals.SignalName.MonsterEncounterFinished);
-			IsInEncounter = false;
+			Monster = null;
 		}
 	}
 
@@ -59,10 +58,10 @@ public partial class MonsterEncounter : Node
 		_encounterChance = 0;
 
 		Locale locale = LocaleManager.Locale;
-		Monster monster = MonsterManager.GetRandomMonster(locale);
-		if (monster == null) return;
+		Monster = MonsterManager.GetRandomMonster(locale);
+		if (Monster == null) return;
 
-		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncountered, monster);
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterEncountered, Monster);
 	}
 
 	public void GetEncounterRewards(Monster monster)

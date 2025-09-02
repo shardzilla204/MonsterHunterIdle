@@ -105,11 +105,11 @@ public partial class PalicoEquipmentManager : Node
         {
             ArmorSet set = Enum.Parse<ArmorSet>(setName);
             GC.Array<string> setDictionary = setDictionaries[setName].As<GC.Array<string>>();
-            
+
             /// Start at 1 for just armor | <see cref="PalicoEquipmentType">
             for (int typeIndex = 1; typeIndex <= setDictionary.Count; typeIndex++)
             {
-                PalicoEquipmentType type = (PalicoEquipmentType) typeIndex;
+                PalicoEquipmentType type = (PalicoEquipmentType)typeIndex;
                 PalicoArmor palicoArmor = new PalicoArmor(type, set);
                 palicoArmor.SetEquipment(setDictionaries);
 
@@ -123,18 +123,18 @@ public partial class PalicoEquipmentManager : Node
     {
         foreach (GC.Dictionary<string, Variant> equipmentDictionary in StartingEquipment)
         {
-            PalicoEquipmentType equipmentType = (PalicoEquipmentType) equipmentDictionary["Type"].As<int>();
+            PalicoEquipmentType equipmentType = (PalicoEquipmentType)equipmentDictionary["Type"].As<int>();
             int grade = equipmentDictionary["Grade"].As<int>();
             int subGrade = equipmentDictionary["SubGrade"].As<int>();
 
             if (equipmentType == PalicoEquipmentType.Weapon)
             {
-                WeaponTree tree = (WeaponTree) equipmentDictionary["Tree"].As<int>();
+                WeaponTree tree = (WeaponTree)equipmentDictionary["Tree"].As<int>();
                 AddStartingWeapon(tree, grade, subGrade);
             }
             else
             {
-                ArmorSet set = (ArmorSet) equipmentDictionary["Set"].As<int>();
+                ArmorSet set = (ArmorSet)equipmentDictionary["Set"].As<int>();
                 AddStartingArmor(equipmentType, set, grade, subGrade);
             }
         }
@@ -209,7 +209,7 @@ public partial class PalicoEquipmentManager : Node
         string romanNumeral = MonsterHunterIdle.GetRomanNumeral(armor.Grade);
         return $"Felyne {armorName} {romanNumeral}";
     }
-    
+
     public static int GetAttackValue(PalicoWeapon weapon)
     {
         string fileName = "PalicoWeaponAttack";
@@ -266,6 +266,36 @@ public partial class PalicoEquipmentManager : Node
         }
         return Mathf.RoundToInt(value);
     }
+
+    // * START - Equipment Value Calculation Methods
+    public static int GetWeaponAttack(Palico palico)
+    {
+        int attack = palico.Weapon.Attack;
+
+        float minPercentage = 0.25f;
+        float maxPercentage = 1;
+
+        RandomNumberGenerator RNG = new RandomNumberGenerator();
+        float randomPercentage = RNG.RandfRange(minPercentage, maxPercentage);
+
+        return Mathf.RoundToInt(attack * randomPercentage);
+    }
+
+    public static int GetWeaponSpecialAttack(Palico palico)
+    {
+        if (palico.Weapon.Special == SpecialType.None) return 0;
+
+        int specialAttack = palico.Weapon.SpecialAttack;
+
+        float minPercentage = 0.25f;
+        float maxPercentage = 1;
+
+        RandomNumberGenerator RNG = new RandomNumberGenerator();
+        float randomPercentage = RNG.RandfRange(minPercentage, maxPercentage);
+
+        return Mathf.RoundToInt(specialAttack * randomPercentage);
+    }
+    // * END - Equipment Value Calculation Methods
 
     public static int GetCraftingCost(int grade, int subGrade)
     {
@@ -434,7 +464,6 @@ public partial class PalicoEquipmentManager : Node
         return PalicoManager.Palicos.Count > equipmentPieces.Count;
     }
 
-    // *
     public static List<GC.Dictionary<string, Variant>> GetEquipmentRecipe(PalicoEquipment equipment, bool isGettingNextRecipe)
     {
         // Load the file and get data
@@ -513,7 +542,7 @@ public partial class PalicoEquipmentManager : Node
             return null;
         }
     }
-    
+
     private static List<GC.Dictionary<string, Variant>> GetIngredientTemplates(PalicoEquipment equipment, bool isGettingNextRecipe, List<Variant> recipeTemplate)
     {
         int grade = equipment.Grade;
@@ -664,9 +693,8 @@ public partial class PalicoEquipmentManager : Node
         Material material = MonsterHunterIdle.FindMaterial(materialName);
         return material.Name;
     }
-    // *
 
-    // Data methods
+    // * START - Data Methods
     /// <see cref="GameManager.SaveGame"/>
     public static GC.Dictionary<string, Variant> GetData()
     {
@@ -745,7 +773,7 @@ public partial class PalicoEquipmentManager : Node
 
     public static PalicoWeapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
-        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
+        WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
         int grade = weaponData["Grade"].As<int>();
         int subGrade = weaponData["SubGrade"].As<int>();
 
@@ -767,8 +795,8 @@ public partial class PalicoEquipmentManager : Node
 
     public static PalicoArmor GetArmorPieceFromData(GC.Dictionary<string, Variant> armorData)
     {
-        PalicoEquipmentType type = (PalicoEquipmentType) armorData["Type"].As<int>();
-        ArmorSet set = (ArmorSet) armorData["Set"].As<int>();
+        PalicoEquipmentType type = (PalicoEquipmentType)armorData["Type"].As<int>();
+        ArmorSet set = (ArmorSet)armorData["Set"].As<int>();
         int grade = armorData["Grade"].As<int>();
         int subGrade = armorData["SubGrade"].As<int>();
 
@@ -790,4 +818,5 @@ public partial class PalicoEquipmentManager : Node
 
         if (HasStartingEquipment) AddStartingEquipment();
     }
+    // * END - Data Methods
 }
