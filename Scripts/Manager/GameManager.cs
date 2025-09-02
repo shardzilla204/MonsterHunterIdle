@@ -88,10 +88,10 @@ public partial class GameManager : Node
 	/// Erase equipment first as added starting equipment from deleting hunter data will also be erased 
 	private static void OnGameDeleted()
 	{
-		EquipmentManager.DeleteData();
 		ItemBox.DeleteData();
 		HunterManager.DeleteData();
 		PalicoManager.DeleteData();
+		EquipmentManager.DeleteData();
 		PalicoEquipmentManager.DeleteData();
 
 		OnGameSaved();

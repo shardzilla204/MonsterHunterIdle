@@ -49,6 +49,7 @@ public partial class EquipmentInfo : HBoxContainer
     /// Equipment will never be null, but empty | <see cref="Hunter"/>
     public void SetEquipment(Equipment equipment)
     {
+        GD.Print($"Name: {equipment.Name}");
         if (equipment is Weapon weapon)
         {
             _equipment = weapon.Tree == WeaponTree.None ? null : equipment;

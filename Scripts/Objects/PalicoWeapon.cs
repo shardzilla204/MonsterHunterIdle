@@ -22,7 +22,8 @@ public partial class PalicoWeapon : PalicoEquipment
 
     public override void SetEquipment(Dictionary<string, Variant> dictionary)
     {
-        Name = dictionary["Name"].As<string>();
+        string weaponName = dictionary["Name"].As<string>();
+        Name = PalicoEquipmentManager.GetWeaponName(this, weaponName);
 
         string specialTypeString = dictionary["Special"].As<string>();
         Special = Enum.Parse<SpecialType>(specialTypeString);

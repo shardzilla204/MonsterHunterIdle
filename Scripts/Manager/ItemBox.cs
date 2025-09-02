@@ -8,6 +8,9 @@ namespace MonsterHunterIdle;
 public partial class ItemBox : Node
 {
    [Export]
+   private bool _hasStartingMaterials = false;
+
+   [Export]
    private GC.Array<GC.Dictionary<string, Variant>> _startingMaterials = new GC.Array<GC.Dictionary<string, Variant>>()
    {
       new GC.Dictionary<string, Variant>()
@@ -67,7 +70,8 @@ public partial class ItemBox : Node
       },
    };
 
-   private static GC.Array<GC.Dictionary<string, Variant>> StartingMaterials = new GC.Array<GC.Dictionary<string, Variant>>();
+   private static bool _HasStartingMaterials = false;
+   private static GC.Array<GC.Dictionary<string, Variant>> _StartingMaterials = new GC.Array<GC.Dictionary<string, Variant>>();
 
    public static List<Material> Materials = new List<Material>();
 
@@ -76,12 +80,12 @@ public partial class ItemBox : Node
       MonsterHunterIdle.Signals.LocaleMaterialAdded += Materials.Add;
       MonsterHunterIdle.Signals.MonsterMaterialAdded += Materials.Add;
 
-      StartingMaterials = _startingMaterials;
+      _StartingMaterials = _startingMaterials;
    }
 
    private static void AddStartingMaterials()
    {
-      foreach (GC.Dictionary<string, Variant> materialDictionary in StartingMaterials)
+      foreach (GC.Dictionary<string, Variant> materialDictionary in _StartingMaterials)
       {
          string materialName = materialDictionary["Name"].As<string>();
          Material material = MonsterHunterIdle.FindMaterial(materialName);
@@ -159,7 +163,6 @@ public partial class ItemBox : Node
    {
       Materials.Clear();
 
-      // ? Comment in for testing
-      AddStartingMaterials();
+      if (_HasStartingMaterials) AddStartingMaterials();
    }
 }

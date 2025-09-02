@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://d2ns481hjn578"]
+[gd_scene load_steps=47 format=3 uid="uid://d2ns481hjn578"]
 
 [ext_resource type="Script" uid="uid://cb1mv80mxtdxp" path="res://Scripts/Monster/MonsterHunterIdle.cs" id="1_c5mcf"]
 [ext_resource type="Script" uid="uid://dov5pjrkrpw64" path="res://Scripts/PackedScenes/PackedScenes.cs" id="2_oe44a"]
@@ -22,11 +22,12 @@
 [ext_resource type="PackedScene" uid="uid://dhk4ts2nb2mi7" path="res://Scenes/PackedScenes/SellMaterialLogContainer.tscn" id="12_u8ama"]
 [ext_resource type="PackedScene" uid="uid://bqidmrlic8wme" path="res://Scenes/PackedScenes/SellMaterialLog.tscn" id="13_20l7k"]
 [ext_resource type="PackedScene" uid="uid://bjsci3hnvis7i" path="res://Scenes/PackedScenes/Interface/LoadoutInterface.tscn" id="13_lpem0"]
-[ext_resource type="PackedScene" uid="uid://cfaeelnf6kj7i" path="res://Scenes/PackedScenes/PalicoDetails.tscn" id="13_vskh8"]
+[ext_resource type="PackedScene" uid="uid://cfaeelnf6kj7i" path="res://Scenes/PackedScenes/PalicoInfo.tscn" id="13_vskh8"]
 [ext_resource type="PackedScene" uid="uid://ceddoticjyw40" path="res://Scenes/PackedScenes/EquipmentInfoPopup.tscn" id="13_xli7x"]
 [ext_resource type="PackedScene" uid="uid://bdgbg84n18kya" path="res://Scenes/PackedScenes/MaterialLog.tscn" id="14_t5y2m"]
 [ext_resource type="Script" uid="uid://4yxgxv0tplev" path="res://Scripts/Signals.cs" id="15_8g285"]
 [ext_resource type="PackedScene" uid="uid://c65r7swivg2d1" path="res://Scenes/CraftingFilter.tscn" id="15_uyatr"]
+[ext_resource type="PackedScene" uid="uid://5hsddw03y05i" path="res://Scenes/PackedScenes/PalicoEquipmentInfoPopup.tscn" id="16_680u1"]
 [ext_resource type="Script" uid="uid://bwabhljl73234" path="res://Scripts/PrintRich.cs" id="16_jlcpi"]
 [ext_resource type="PackedScene" uid="uid://denpjxbfcmp56" path="res://Scenes/ChargeBarTimer.tscn" id="17_c4ivd"]
 [ext_resource type="PackedScene" uid="uid://yxxq572d0rqo" path="res://Scenes/PackedScenes/PalicoEquipmentInfo.tscn" id="17_kv67e"]
@@ -65,7 +66,8 @@ _equipmentInfo = ExtResource("11_xli7x")
 _equipmentInfoButton = ExtResource("10_t5y2m")
 _equipmentInfoPopup = ExtResource("13_xli7x")
 _palicoEquipmentInfo = ExtResource("17_kv67e")
-_palicoDetails = ExtResource("13_vskh8")
+_palicoEquipmentInfoPopup = ExtResource("16_680u1")
+_palicoInfo = ExtResource("13_vskh8")
 _palicoCraftButton = ExtResource("18_2441y")
 _palicoCraftOptionButton = ExtResource("19_vf3e0")
 _palicoLoadoutInterface = ExtResource("4_fapt1")
@@ -121,14 +123,13 @@ script = ExtResource("19_i6lr1")
 
 [node name="PalicoManager" type="Node" parent="Managers"]
 script = ExtResource("3_lbts6")
-_startingPalicoCount = 1
 
 [node name="PalicoEquipmentManager" type="Node" parent="Managers/PalicoManager"]
 script = ExtResource("37_7fdre")
 
 [node name="HunterManager" type="Node" parent="Managers"]
 script = ExtResource("19_gfvhb")
-_startingZenny = 10000000
+_startingZenny = 0
 
 [node name="GameManager" type="Node" parent="Managers"]
 script = ExtResource("34_20l7k")

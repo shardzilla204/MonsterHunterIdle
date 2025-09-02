@@ -20,6 +20,8 @@ public partial class GatherButton : CustomButton
 
     public override void _EnterTree()
     {
+		base._EnterTree();
+		
 		MonsterHunterIdle.Signals.LocaleChanged += OnLocaleChanged;
     }
 

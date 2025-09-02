@@ -164,7 +164,7 @@ public partial class EquipmentInfoPopup : NinePatchRect
         // Add info nodes depending on equipment
         if (equipment is Weapon weapon)
         {
-            AddStatInfoNode(StatType.Affinity, weapon.Attack);
+            AddStatInfoNode(StatType.Attack, weapon.Attack);
             AddStatInfoNode(StatType.Affinity, weapon.Affinity);
 
             // Add special type info node

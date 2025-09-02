@@ -1,16 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfaeelnf6kj7i"]
+[gd_scene load_steps=5 format=3 uid="uid://cfaeelnf6kj7i"]
 
 [ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="1_ubcun"]
-[ext_resource type="Script" uid="uid://jfc76e23umnv" path="res://Scripts/Palico/PalicoDetails.cs" id="2_4amqb"]
+[ext_resource type="Script" uid="uid://jfc76e23umnv" path="res://Scripts/Palico/PalicoInfo.cs" id="2_4amqb"]
 [ext_resource type="Texture2D" uid="uid://fcvktt0gtafq" path="res://Assets/Images/Interface/LoadoutIcon.png" id="2_fwdl3"]
-[ext_resource type="Texture2D" uid="uid://jtvmyhpv5vwy" path="res://Assets/Images/Stat/AttackIcon.png" id="3_yxttb"]
-[ext_resource type="Texture2D" uid="uid://bakmmfwb0e2ty" path="res://Assets/Images/Stat/AffinityIcon.png" id="4_ay86m"]
-[ext_resource type="Texture2D" uid="uid://cnico6uxrr3xj" path="res://Assets/Images/Stat/DefenseIcon.png" id="5_aij73"]
 [ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/PackedScenes/Button/CustomButton.cs" id="6_27ftl"]
 
-[node name="PalicoDetails" type="NinePatchRect" node_paths=PackedStringArray("_palicoNameEdit", "_palicoLoadoutButton", "_statsContainer")]
+[node name="PalicoDetails" type="NinePatchRect" node_paths=PackedStringArray("_palicoNameEdit", "_palicoLoadoutButton", "_statContainer")]
 self_modulate = Color(0.1, 0.1, 0.1, 1)
-custom_minimum_size = Vector2(0, 75)
+custom_minimum_size = Vector2(0, 85)
 texture = ExtResource("1_ubcun")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -19,7 +16,7 @@ patch_margin_bottom = 10
 script = ExtResource("2_4amqb")
 _palicoNameEdit = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PalicoNameEdit")
 _palicoLoadoutButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PalicoLoadoutButton")
-_statsContainer = NodePath("MarginContainer/VBoxContainer/StatsContainer")
+_statContainer = NodePath("MarginContainer/VBoxContainer/StatContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -85,56 +82,6 @@ texture = ExtResource("2_fwdl3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="StatsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="StatContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="AttackStat" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StatsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/StatsContainer/AttackStat"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("3_yxttb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AttackLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsContainer/AttackStat"]
-layout_mode = 2
-text = "50"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AffinityStat" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StatsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/StatsContainer/AffinityStat"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("4_ay86m")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AffinityLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsContainer/AffinityStat"]
-layout_mode = 2
-text = "5%"
-
-[node name="DefenseStat" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StatsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/StatsContainer/DefenseStat"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("5_aij73")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="DefenseLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsContainer/DefenseStat"]
-layout_mode = 2
-text = "100"

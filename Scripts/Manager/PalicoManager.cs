@@ -61,7 +61,7 @@ public partial class PalicoManager : Node
 				if (MonsterManager.Encounter.IsInEncounter)
 				{
 					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoHunted, palico);
-					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, 5); // ! Change later
+					MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.MonsterDamaged, palico.Weapon.Attack); // ! Change later
 				}
 				else
 				{
@@ -78,20 +78,27 @@ public partial class PalicoManager : Node
 		}
 	}
 
-	public static bool IsEquipped(Palico palico, PalicoEquipment equipment)
+	public static bool IsEquipped(Palico palico, PalicoEquipment equipment, int index)
 	{
 		bool isEquipped = false;
 		if (equipment is PalicoWeapon targetWeapon)
 		{
 			if (palico.Weapon.Name == "") return false;
-			isEquipped = palico.Weapon.Tree == targetWeapon.Tree;
+
+			List<PalicoWeapon> weapons = PalicoEquipmentManager.FindCraftedWeapons(targetWeapon);
+			PalicoWeapon desiredWeapon = weapons[index];
+
+			isEquipped = palico.Weapon == desiredWeapon;
 		}
 		else if (equipment is PalicoArmor targetArmor)
 		{
 			PalicoArmor armor = GetArmor(palico, targetArmor);
 			if (armor.Name == "") return false;
 
-			isEquipped = armor.Set == targetArmor.Set;
+			List<PalicoArmor> armorPieces = PalicoEquipmentManager.FindCraftedArmor(armor);
+			PalicoArmor desiredArmor = armorPieces[index];
+
+			isEquipped = armor == desiredArmor;
 		}
 		return isEquipped;
 	}
@@ -118,6 +125,7 @@ public partial class PalicoManager : Node
 		PrintRich.PrintLine(TextColor.Orange, equipMessage);
 	}
 
+	// Create an "empty" object
 	public static void Unequip(Palico palico, PalicoEquipment equipment)
 	{
 		if (equipment is PalicoWeapon)
@@ -187,6 +195,7 @@ public partial class PalicoManager : Node
 		PrintRich.PrintLine(TextColor.Orange, equipMessage);
 	}
 
+	// * START - Data Methods
 	public static GC.Array<GC.Dictionary<string, Variant>> GetData()
 	{
 		GC.Array<GC.Dictionary<string, Variant>> palicosData = new GC.Array<GC.Dictionary<string, Variant>>();
@@ -202,9 +211,9 @@ public partial class PalicoManager : Node
 		GC.Dictionary<string, Variant> palicoData = new GC.Dictionary<string, Variant>()
 		{
 			{ "Name", palico.Name },
-			// { "Weapon", EquipmentManager.GetWeaponData(palico.Weapon) },
-			// { "Head", EquipmentManager.GetArmorPieceData(palico.Head) },
-			// { "Chest", EquipmentManager.GetArmorPieceData(palico.Chest) },
+			{ "Weapon", PalicoEquipmentManager.GetWeaponData(palico.Weapon) },
+			{ "Head", PalicoEquipmentManager.GetArmorPieceData(palico.Head) },
+			{ "Chest", PalicoEquipmentManager.GetArmorPieceData(palico.Chest) }
 		};
 		return palicoData;
 	}
@@ -222,9 +231,18 @@ public partial class PalicoManager : Node
 	{
 		Palico palico = new Palico();
 		palico.Name = palicoData["Name"].As<string>();
-		// PalicoWeapon weapon = 
-		// PalicoArmor
-		// PalicoArmor
+
+		GC.Dictionary<string, Variant> weaponData = palicoData["Weapon"].As<GC.Dictionary<string, Variant>>();
+		palico.Weapon = PalicoEquipmentManager.GetWeaponFromData(weaponData);
+
+		GC.Dictionary<string, Variant> headData = palicoData["Head"].As<GC.Dictionary<string, Variant>>();
+		palico.Head = PalicoEquipmentManager.GetArmorPieceFromData(headData);
+
+		GC.Dictionary<string, Variant> chestData = palicoData["Chest"].As<GC.Dictionary<string, Variant>>();
+		palico.Chest = PalicoEquipmentManager.GetArmorPieceFromData(chestData);
+		GD.Print(palico.Head == null);
+		GD.Print(palico.Head.Name == "");
+
 		return palico;
 	}
 
@@ -234,4 +252,5 @@ public partial class PalicoManager : Node
 
 		AddStartingPalicos();
 	}
+	// * END - Data Methods
 }

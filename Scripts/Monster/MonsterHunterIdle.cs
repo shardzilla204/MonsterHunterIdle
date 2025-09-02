@@ -128,9 +128,15 @@ public partial class MonsterHunterIdle : Node
 		string gradeColorString = GetGradeColorString(equipment.Grade);
 		if (equipment is Weapon weapon)
 		{
-			if (weapon.Category == WeaponCategory.None) return null;
-
-			filePath = $"res://Assets/Images/Weapons/{weapon.Category}Icon{gradeColorString}.png";
+			if (weapon.Category == WeaponCategory.None)
+			{
+				// Default icon
+				filePath = $"res://Assets/Images/Weapons/SwordAndShieldIconWhite.png";
+			}
+			else
+			{
+				filePath = $"res://Assets/Images/Weapons/{weapon.Category}Icon{gradeColorString}.png";
+			}
 		}
 		else if (equipment is Armor armor)
 		{

@@ -10,6 +10,41 @@ namespace MonsterHunterIdle;
 
 public partial class PalicoEquipmentManager : Node
 {
+    [Export]
+    private bool _hasStartingEquipment = false;
+
+    [Export]
+    private GC.Array<GC.Dictionary<string, Variant>> _startingEquipment = new GC.Array<GC.Dictionary<string, Variant>>()
+    {
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) PalicoEquipmentType.Weapon },
+            { "Tree", (int) WeaponTree.Ore },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) PalicoEquipmentType.Weapon },
+            { "Tree", (int) WeaponTree.Ore },
+            { "Grade", 2 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) PalicoEquipmentType.Head },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) PalicoEquipmentType.Chest },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        }
+    };
     public static List<PalicoWeapon> Weapons = new List<PalicoWeapon>();
     public static List<PalicoArmor> Armor = new List<PalicoArmor>();
 
@@ -18,6 +53,9 @@ public partial class PalicoEquipmentManager : Node
     public static List<PalicoWeapon> CraftedWeapons = new List<PalicoWeapon>();
     public static List<PalicoArmor> CraftedArmor = new List<PalicoArmor>();
 
+    public static bool HasStartingEquipment = false;
+    public static GC.Array<GC.Dictionary<string, Variant>> StartingEquipment = new GC.Array<GC.Dictionary<string, Variant>>();
+
     private const int _MaxGrade = 4;
     private const int _MaxSubGrade = 4;
 
@@ -25,8 +63,12 @@ public partial class PalicoEquipmentManager : Node
     {
         LoadPalicoWeapons();
         LoadPalicoArmor();
+
+        HasStartingEquipment = _hasStartingEquipment;
+        StartingEquipment = _startingEquipment;
     }
 
+    // * START - File Methods
     private static void LoadPalicoWeapons()
     {
         string fileName = "PalicoWeapons";
@@ -75,6 +117,44 @@ public partial class PalicoEquipmentManager : Node
             }
         }
     }
+    // * END - File Methods
+
+    public static void AddStartingEquipment()
+    {
+        foreach (GC.Dictionary<string, Variant> equipmentDictionary in StartingEquipment)
+        {
+            PalicoEquipmentType equipmentType = (PalicoEquipmentType) equipmentDictionary["Type"].As<int>();
+            int grade = equipmentDictionary["Grade"].As<int>();
+            int subGrade = equipmentDictionary["SubGrade"].As<int>();
+
+            if (equipmentType == PalicoEquipmentType.Weapon)
+            {
+                WeaponTree tree = (WeaponTree) equipmentDictionary["Tree"].As<int>();
+                AddStartingWeapon(tree, grade, subGrade);
+            }
+            else
+            {
+                ArmorSet set = (ArmorSet) equipmentDictionary["Set"].As<int>();
+                AddStartingArmor(equipmentType, set, grade, subGrade);
+            }
+        }
+    }
+
+    public static void AddStartingWeapon(WeaponTree tree, int grade, int subGrade)
+    {
+        PalicoWeapon weapon = GetWeapon(tree, grade, subGrade);
+        if (weapon == null) return;
+
+        CraftedWeapons.Add(weapon);
+    }
+
+    public static void AddStartingArmor(PalicoEquipmentType equipmentType, ArmorSet set, int grade, int subGrade)
+    {
+        PalicoArmor armor = GetArmor(equipmentType, set, grade, subGrade);
+        if (armor == null) return;
+
+        CraftedArmor.Add(armor);
+    }
 
     public static PalicoWeapon GetWeapon(WeaponTree tree, int grade = 0, int subGrade = 0)
     {
@@ -118,10 +198,10 @@ public partial class PalicoEquipmentManager : Node
         return armor;
     }
 
-    public static string GetWeaponName(PalicoWeapon weapon)
+    public static string GetWeaponName(PalicoWeapon weapon, string weaponName)
     {
         string romanNumeral = MonsterHunterIdle.GetRomanNumeral(weapon.Grade);
-        return $"{weapon.Name} {romanNumeral}";
+        return $"{weaponName} {romanNumeral}";
     }
 
     public static string GetArmorName(PalicoArmor armor, string armorName)
@@ -707,5 +787,7 @@ public partial class PalicoEquipmentManager : Node
 
         LoadPalicoWeapons();
         LoadPalicoArmor();
+
+        if (HasStartingEquipment) AddStartingEquipment();
     }
 }

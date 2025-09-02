@@ -33,7 +33,7 @@ public partial class LoadoutStats : NinePatchRect
 
     private void SetStats()
     {
-        int weaponAttack = Hunter.Weapon != null ? Hunter.Weapon.Attack : 0;
+        int weaponAttack = Hunter.Weapon.Name == "" ? Hunter.Weapon.Attack : 0;
         HBoxContainer attackStat = Scenes.GetLoadoutStat(StatType.Attack, $"{weaponAttack}");
         _statContainer.AddChild(attackStat);
 
@@ -41,7 +41,7 @@ public partial class LoadoutStats : NinePatchRect
         HBoxContainer defenseStat = Scenes.GetLoadoutStat(StatType.Defense, $"{armorDefense}");
         _statContainer.AddChild(defenseStat);
 
-        int weaponAffinity = Hunter.Weapon != null ? Hunter.Weapon.Affinity : 0;
+        int weaponAffinity = Hunter.Weapon.Name == "" ? Hunter.Weapon.Affinity : 0;
         HBoxContainer affinityStat = Scenes.GetLoadoutStat(StatType.Affinity, $"{weaponAffinity}%");
         _statContainer.AddChild(affinityStat);
 

@@ -16,6 +16,7 @@ public partial class PalicoEquipmentInfoPopup : NinePatchRect
     private Palico _palico;
     private PalicoEquipment _equipment;
     private bool _isEquipped;
+    private int _equipmentIndex;
 
     public override void _ExitTree()
     {
@@ -43,7 +44,7 @@ public partial class PalicoEquipmentInfoPopup : NinePatchRect
         QueueFree();
     }
     
-    private void OnChangeEquipmentButtonPressed(PalicoEquipmentType equipmentType)
+    private void OnChangeEquipmentButtonPressed(Palico palico, PalicoEquipmentType equipmentType)
     {
         QueueFree();
     }
@@ -66,39 +67,17 @@ public partial class PalicoEquipmentInfoPopup : NinePatchRect
         SetSupplyButtonText(_equipment);
 
         MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.PalicoEquipmentChanged, _palico);
+
+        QueueFree();
     }
     // * END - Signal Methods
 
-    // Create an empty equipment object
-    private PalicoEquipment UnequipEquipment()
-    {
-        PalicoEquipment equipment = null;
-
-        if (_equipment is PalicoWeapon)
-        {
-            _palico.Weapon = new PalicoWeapon();
-            equipment = _palico.Weapon;
-        }
-        else if (_equipment is PalicoArmor armor)
-        {
-            switch (armor.Type)
-            {
-                case PalicoEquipmentType.Head:
-                    _palico.Head = armor;
-                    break;
-                case PalicoEquipmentType.Chest:
-                    _palico.Chest = armor;
-                    break;
-            }
-        }
-        return equipment;
-    }
-
     // Set the palico 
-    public void SetEquipment(Palico palico, PalicoEquipment equipment)
+    public void SetEquipment(Palico palico, PalicoEquipment equipment, int index)
     {
         _palico = palico;
         _equipment = equipment;
+        _equipmentIndex = index;
 
         Texture2D equipmentIcon = MonsterHunterIdle.GetEquipmentIcon(equipment);
         string subGrade = equipment.SubGrade == 0 ? "" : $" (+{equipment.SubGrade})";
@@ -107,7 +86,7 @@ public partial class PalicoEquipmentInfoPopup : NinePatchRect
 
         if (equipment is PalicoWeapon weapon)
         {
-            AddStatInfoNode(StatType.Affinity, weapon.Attack);
+            AddStatInfoNode(StatType.Attack, weapon.Attack);
             AddStatInfoNode(StatType.Affinity, weapon.Affinity);
 
             if (weapon.Special != SpecialType.None)
@@ -135,7 +114,7 @@ public partial class PalicoEquipmentInfoPopup : NinePatchRect
     // Set the text depending if the equipment is equipped
     private void SetSupplyButtonText(PalicoEquipment equipment)
     {
-        bool isEquipped = PalicoManager.IsEquipped(_palico, equipment);
+        bool isEquipped = PalicoManager.IsEquipped(_palico, equipment, _equipmentIndex);
         _supplyButton.Text = isEquipped ? "Unequip" : "Equip";
     }
 }

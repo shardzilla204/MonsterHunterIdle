@@ -10,13 +10,12 @@ public partial class PalicoEquipmentInfo : HBoxContainer
 	[Export]
 	private CustomButton _changeEquipmentButton;
 
-	private Palico _palico;
 	private PalicoEquipmentType _equipmentType = PalicoEquipmentType.None;
+	private Palico _palico;
 	private PalicoEquipment _equipment;
 
 	public override void _Ready()
 	{
-		SetEquipment();
 		SetTexture();
 		_changeEquipmentButton.Pressed += OnChangeEquipmentButtonPressed;
 	}
@@ -25,7 +24,7 @@ public partial class PalicoEquipmentInfo : HBoxContainer
 	private void OnChangeEquipmentButtonPressed()
 	{
 		if (_equipment == null) return;
-		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ChangePalicoEquipmentButtonPressed, (int) _equipmentType);
+		MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.ChangePalicoEquipmentButtonPressed, _palico, (int) _equipmentType);
 	}
 	// * END - Signal Methods
 
@@ -35,7 +34,7 @@ public partial class PalicoEquipmentInfo : HBoxContainer
 		PalicoEquipment equipment = _equipment;
 
 		Texture2D equipmentIcon;
-		if (equipment != null)
+		if (equipment.Name != "")
 		{
 			equipmentIcon = MonsterHunterIdle.GetEquipmentIcon(equipment);
 		}
@@ -78,7 +77,7 @@ public partial class PalicoEquipmentInfo : HBoxContainer
 	{
 		_palico = palico;
 		_equipmentType = equipmentType;
-		
+
 		if (equipmentType is PalicoEquipmentType.Weapon)
 		{
 			SetEquipmentText(palico.Weapon);
@@ -91,6 +90,8 @@ public partial class PalicoEquipmentInfo : HBoxContainer
 		{
 			SetEquipmentText(palico.Chest);
 		}
+
+		SetEquipment();
 	}
 
 	private void SetEquipmentText(PalicoEquipment equipment)

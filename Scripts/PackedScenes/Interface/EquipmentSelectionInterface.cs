@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace MonsterHunterIdle;
 
@@ -12,6 +13,7 @@ public partial class EquipmentSelectionInterface : NinePatchRect
     private EquipmentInfoPopup _equipmentInfoPopup;
 
     private Equipment _equipment;
+    private Palico _palico;
 
     public override void _ExitTree()
     {
@@ -53,7 +55,8 @@ public partial class EquipmentSelectionInterface : NinePatchRect
     {
         QueueFree();
     }
-    private void OnChangePalicoEquipmentButtonPressed(PalicoEquipmentType equipmentType)
+    
+    private void OnChangePalicoEquipmentButtonPressed(Palico palico, PalicoEquipmentType equipmentType)
     {
         QueueFree();
     }
@@ -64,6 +67,7 @@ public partial class EquipmentSelectionInterface : NinePatchRect
     public void SetEquipment(Equipment equipment)
     {
         _equipment = equipment;
+
         if (equipment is Weapon)
         {
             foreach (Weapon weapon in EquipmentManager.CraftedWeapons)
@@ -82,41 +86,46 @@ public partial class EquipmentSelectionInterface : NinePatchRect
     }
 
     // For Palicos
-    public void SetEquipment(PalicoEquipmentType equipmentType)
+    public void SetEquipment(Palico palico, PalicoEquipmentType equipmentType)
     {
+        _palico = palico;
+
         if (equipmentType == PalicoEquipmentType.Weapon)
         {
-            foreach (PalicoWeapon weapon in PalicoEquipmentManager.CraftedWeapons)
+            for (int equipmentIndex = 0; equipmentIndex < PalicoEquipmentManager.CraftedWeapons.Count; equipmentIndex++)
             {
-                AddEquipmentOption(weapon);
+                PalicoWeapon weapon = PalicoEquipmentManager.CraftedWeapons[equipmentIndex];
+                AddEquipmentOption(weapon, equipmentIndex);
             }
         }
         else if (equipmentType == PalicoEquipmentType.Head)
         {
             List<PalicoArmor> headArmor = PalicoEquipmentManager.CraftedArmor.FindAll(armor => armor.Type == PalicoEquipmentType.Head);
-            foreach (PalicoArmor armorPiece in headArmor)
+            for (int equipmentIndex = 0; equipmentIndex < headArmor.Count; equipmentIndex++)
             {
-                AddEquipmentOption(armorPiece);
+                PalicoArmor headArmorPiece = headArmor[equipmentIndex];
+                AddEquipmentOption(headArmorPiece, equipmentIndex);
             }
         }
         else if (equipmentType == PalicoEquipmentType.Chest)
         {
             List<PalicoArmor> chestArmor = PalicoEquipmentManager.CraftedArmor.FindAll(armor => armor.Type == PalicoEquipmentType.Chest);
-            foreach (PalicoArmor armorPiece in chestArmor)
+            for (int equipmentIndex = 0; equipmentIndex < chestArmor.Count; equipmentIndex++)
             {
-                AddEquipmentOption(armorPiece);
+                PalicoArmor chestArmorPiece = chestArmor[equipmentIndex];
+                AddEquipmentOption(chestArmorPiece, equipmentIndex);
             }
         }
     }
 
-    private void AddEquipmentOption(Equipment equipment)
+    private void AddEquipmentOption(Equipment equipment, int index = -1)
     {
-        EquipmentSelectionButton equipmentSelectionButton = MonsterHunterIdle.PackedScenes.GetEquipmentInfoButton(equipment);
+        EquipmentSelectionButton equipmentSelectionButton = MonsterHunterIdle.PackedScenes.GetEquipmentInfoButton(equipment, index);
         _equipmentSelectionButtons.Add(equipmentSelectionButton);
         _equipmentSelectionButtonContainer.AddChild(equipmentSelectionButton);
         equipmentSelectionButton.Pressed += () =>
         {
-            ShowEquipmentPopup(equipmentSelectionButton.Equipment);
+            ShowEquipmentPopup(equipmentSelectionButton.Equipment, index);
 
             // Unpress the other buttons   
             List<EquipmentSelectionButton> otherButtons = _equipmentSelectionButtons.FindAll(button => button != equipmentSelectionButton);
@@ -138,9 +147,27 @@ public partial class EquipmentSelectionInterface : NinePatchRect
         interfaceContainer.MoveChild(_equipmentInfoPopup, positionIndex); // Move the node behind the monster interface
     }
 
-    private void ShowEquipmentPopup(Equipment equipment)
+    private void ShowEquipmentPopup(Equipment equipment, int index)
     {
-        EquipmentInfoPopup equipmentInfoPopup = MonsterHunterIdle.PackedScenes.GetEquipmentInfoPopup(equipment);
-        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.Popup, equipmentInfoPopup);
+        Control popup;
+        if (equipment is not PalicoEquipment palicoEquipment)
+        {
+            popup = MonsterHunterIdle.PackedScenes.GetEquipmentInfoPopup(equipment);
+        }
+        else 
+        {
+            popup = MonsterHunterIdle.PackedScenes.GetPalicoEquipmentInfoPopup(_palico, palicoEquipment, index);
+        }
+
+        if (popup == null)
+        {
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Couldn't Show Popup For Equipment: {equipment.Name}";
+            PrintRich.PrintError(className, message);
+
+            return;
+        }
+
+        MonsterHunterIdle.Signals.EmitSignal(Signals.SignalName.Popup, popup);
     }
 }

@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://5hsddw03y05i"]
+
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_0ydj6"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_kar8s"]
+[ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/PackedScenes/Button/CustomButton.cs" id="3_5q3vb"]
+[ext_resource type="Script" uid="uid://d4fhoam0oulo1" path="res://Scripts/PackedScenes/Interface/PalicoEquipmentInfoPopup.cs" id="3_kar8s"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_6apnn"]
+
+[node name="PalicoEquipmentInfoPopup" type="NinePatchRect" node_paths=PackedStringArray("_infoContainer", "_cancelButton", "_supplyButton")]
+custom_minimum_size = Vector2(300, 380)
+size_flags_vertical = 3
+theme = ExtResource("1_0ydj6")
+texture = ExtResource("2_kar8s")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource("3_kar8s")
+_infoContainer = NodePath("MarginContainer/VBoxContainer/InfoContainer")
+_cancelButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/CancelButton")
+_supplyButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SupplyButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="SupplyButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Equip"
+flat = true
+script = ExtResource("3_5q3vb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/SupplyButton"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6apnn")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+flat = true
+script = ExtResource("3_5q3vb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CancelButton"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6apnn")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10

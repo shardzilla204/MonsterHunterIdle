@@ -111,7 +111,7 @@ public partial class Signals : Node
 	public delegate void ChangeEquipmentButtonPressedEventHandler(Equipment equipment);
 
 	[Signal]
-	public delegate void ChangePalicoEquipmentButtonPressedEventHandler(PalicoEquipmentType equipmentType);
+	public delegate void ChangePalicoEquipmentButtonPressedEventHandler(Palico palico, PalicoEquipmentType equipmentType);
 
 	[Signal]
 	public delegate void PopupEventHandler(Control node);

@@ -10,6 +10,61 @@ namespace MonsterHunterIdle;
 
 public partial class EquipmentManager : Node
 {
+    [Export]
+    private GC.Array<GC.Dictionary<string, Variant>> _startingEquipment = new GC.Array<GC.Dictionary<string, Variant>>()
+    {
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) EquipmentType.Weapon },
+            { "Category", (int) WeaponCategory.SwordAndShield },
+            { "Tree", (int) WeaponTree.Ore },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) EquipmentType.Armor },
+            { "Category", (int) ArmorCategory.Head },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) EquipmentType.Armor },
+            { "Category", (int) ArmorCategory.Chest },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) EquipmentType.Armor },
+            { "Category", (int) ArmorCategory.Arm },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) EquipmentType.Armor },
+            { "Category", (int) ArmorCategory.Waist },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        },
+        new GC.Dictionary<string, Variant>()
+        {
+            { "Type", (int) EquipmentType.Armor },
+            { "Category", (int) ArmorCategory.Leg },
+            { "Set", (int) ArmorSet.Leather },
+            { "Grade", 0 },
+            { "SubGrade", 0 }
+        }
+    };
+
+    public static GC.Array<GC.Dictionary<string, Variant>> StartingEquipment = new GC.Array<GC.Dictionary<string, Variant>>();
+
     public static List<Weapon> Weapons = new List<Weapon>();
     public static List<Armor> Armor = new List<Armor>();
 
@@ -26,6 +81,7 @@ public partial class EquipmentManager : Node
     public override void _EnterTree()
     {
         LoadEquipment();
+        StartingEquipment = _startingEquipment;
     }
 
     // * START - File Methods
@@ -136,6 +192,76 @@ public partial class EquipmentManager : Node
         }
     }
     // * END - File Methods
+
+    // * START - Starting Methods
+    private static void AddStartingEquipment()
+    {
+        foreach (GC.Dictionary<string, Variant> equipmentDictionary in StartingEquipment)
+        {
+            EquipmentType equipmentType = (EquipmentType)equipmentDictionary["Type"].As<int>();
+            int grade = equipmentDictionary["Grade"].As<int>();
+            int subGrade = equipmentDictionary["SubGrade"].As<int>();
+
+            if (equipmentType == EquipmentType.Weapon)
+            {
+                WeaponCategory category = (WeaponCategory)equipmentDictionary["Category"].As<int>();
+                WeaponTree tree = (WeaponTree)equipmentDictionary["Tree"].As<int>();
+                AddStartingWeapon(category, tree, grade, subGrade);
+            }
+            else
+            {
+                ArmorCategory category = (ArmorCategory)equipmentDictionary["Category"].As<int>();
+                ArmorSet set = (ArmorSet)equipmentDictionary["Set"].As<int>();
+                AddStartingArmor(category, set, grade, subGrade);
+            }
+        }
+    }
+
+    private static void AddStartingWeapon(WeaponCategory category, WeaponTree tree, int grade, int subGrade)
+    {
+        Weapon weapon = GetWeapon(category, tree, grade, subGrade);
+        if (weapon == null) return;
+
+        Hunter.Weapon = weapon;
+
+        // Console message
+        string addedWeaponMessage = $"Added Weapon {weapon.Name} | {weapon.Grade + 1}.{weapon.SubGrade + 1}";
+        PrintRich.PrintLine(TextColor.Yellow, addedWeaponMessage);
+
+        CraftedWeapons.Add(weapon);
+    }
+
+    private static void AddStartingArmor(ArmorCategory category, ArmorSet set, int grade, int subGrade)
+    {
+        Armor armor = GetArmor(category, set, grade, subGrade);
+        if (armor == null) return;
+
+        switch (armor.Category)
+        {
+            case ArmorCategory.Head:
+                Hunter.Head = armor;
+                break;
+            case ArmorCategory.Chest:
+                Hunter.Chest = armor;
+                break;
+            case ArmorCategory.Arm:
+                Hunter.Arm = armor;
+                break;
+            case ArmorCategory.Waist:
+                Hunter.Waist = armor;
+                break;
+            case ArmorCategory.Leg:
+                Hunter.Leg = armor;
+                break;
+        }
+
+        // Console message
+        string addedArmorMessage = $"Added Armor {armor.Name} | {armor.Grade + 1}.{armor.SubGrade + 1}";
+        PrintRich.PrintLine(TextColor.Yellow, addedArmorMessage);
+
+        CraftedArmor.Add(armor);
+    }
+    // * END - Starting Methods
 
     // * START - Class Methods
     public static Weapon GetWeapon(WeaponCategory category, WeaponTree tree, int grade = 0, int subGrade = 0)
@@ -735,8 +861,8 @@ public partial class EquipmentManager : Node
 
     public static Weapon GetWeaponFromData(GC.Dictionary<string, Variant> weaponData)
     {
-        WeaponCategory category = (WeaponCategory)weaponData["Category"].As<int>();
-        WeaponTree tree = (WeaponTree)weaponData["Tree"].As<int>();
+        WeaponCategory category = (WeaponCategory) weaponData["Category"].As<int>();
+        WeaponTree tree = (WeaponTree) weaponData["Tree"].As<int>();
         int grade = weaponData["Grade"].As<int>();
         int subGrade = weaponData["SubGrade"].As<int>();
 
@@ -773,10 +899,13 @@ public partial class EquipmentManager : Node
         Weapons.Clear();
         Armor.Clear();
 
+
         CraftedWeapons.Clear();
         CraftedArmor.Clear();
 
         LoadEquipment();
+
+        AddStartingEquipment();
     }
     // * END - Data Methods
 }

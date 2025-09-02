@@ -31,7 +31,7 @@ public partial class PalicoInterface : Container
 	{
 		foreach (Palico palico in PalicoManager.Palicos)
 		{
-			AddPalicoDetails(palico);
+			AddPalicoInfo(palico);
 		}
 
 		_recruitPalicoButton.PalicoRecruited += OnPalicoRecruited;
@@ -40,9 +40,9 @@ public partial class PalicoInterface : Container
 	}
 	
 	// * START - Signal Methods
-    private void OnChangePalicoEquipmentButtonPressed(PalicoEquipmentType equipmentType)
+    private void OnChangePalicoEquipmentButtonPressed(Palico palico, PalicoEquipmentType equipmentType)
     {
-        EquipmentSelectionInterface equipmentSelectionInterface = MonsterHunterIdle.PackedScenes.GetEquipmentSelectionInterface(equipmentType);
+        EquipmentSelectionInterface equipmentSelectionInterface = MonsterHunterIdle.PackedScenes.GetEquipmentSelectionInterface(palico, equipmentType);
         if (equipmentSelectionInterface == null) return;
 
         AddSibling(equipmentSelectionInterface);
@@ -53,7 +53,7 @@ public partial class PalicoInterface : Container
 		Palico palico = new Palico();
 		palico.Name = PalicoManager.GetRandomName();
 		PalicoManager.Palicos.Add(palico);
-		AddPalicoDetails(palico);
+		AddPalicoInfo(palico);
 		OnLoadoutOpened(palico); // Show loadout
 		CheckAmount();
 
@@ -81,12 +81,11 @@ public partial class PalicoInterface : Container
 	}
     // * END - Signal Methods
 
-	private void AddPalicoDetails(Palico palico)
+	private void AddPalicoInfo(Palico palico)
 	{
-		PalicoDetails palicoDetails = MonsterHunterIdle.PackedScenes.GetPalicoDetails();
-		palicoDetails.Palico = palico;
-		palicoDetails.LoadoutOpened += OnLoadoutOpened;
-		_palicoContainer.AddChild(palicoDetails);
+		PalicoInfo palicoInfo = MonsterHunterIdle.PackedScenes.GetPalicoInfo(palico);
+		palicoInfo.LoadoutOpened += OnLoadoutOpened;
+		_palicoContainer.AddChild(palicoInfo);
 	}
 
 	private void SetAmountText()

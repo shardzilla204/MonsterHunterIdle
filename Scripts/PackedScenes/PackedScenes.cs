@@ -49,7 +49,10 @@ public partial class PackedScenes : Node
    private PackedScene _palicoEquipmentInfo;
 
    [Export]
-   private PackedScene _palicoDetails;
+   private PackedScene _palicoEquipmentInfoPopup;
+
+   [Export]
+   private PackedScene _palicoInfo;
 
    [Export]
    private PackedScene _palicoCraftButton;
@@ -128,10 +131,10 @@ public partial class PackedScenes : Node
       return equipmentInfo;
    }
 
-   public EquipmentSelectionButton GetEquipmentInfoButton(Equipment equipment)
+   public EquipmentSelectionButton GetEquipmentInfoButton(Equipment equipment, int index)
    {
       EquipmentSelectionButton equipmentSelectionButton = _equipmentInfoButton.Instantiate<EquipmentSelectionButton>();
-      equipmentSelectionButton.SetEquipment(equipment);
+      equipmentSelectionButton.SetEquipment(equipment, index);
       return equipmentSelectionButton;
    }
 
@@ -169,6 +172,13 @@ public partial class PackedScenes : Node
       return palicoEquipmentInfo;
    }
 
+   public PalicoEquipmentInfoPopup GetPalicoEquipmentInfoPopup(Palico palico, PalicoEquipment equipment, int index)
+   {
+      PalicoEquipmentInfoPopup palicoEquipmentInfoPopup = _palicoEquipmentInfoPopup.Instantiate<PalicoEquipmentInfoPopup>();
+      palicoEquipmentInfoPopup.SetEquipment(palico, equipment, index);
+      return palicoEquipmentInfoPopup;
+   }
+
    public PalicoCraftButton GetPalicoCraftButton(PalicoEquipment equipment)
    {
       PalicoCraftButton palicoCraftButton = _palicoCraftButton.Instantiate<PalicoCraftButton>();
@@ -183,9 +193,11 @@ public partial class PackedScenes : Node
       return palicoCraftOptionButton;
    }
 
-   public PalicoDetails GetPalicoDetails()
+   public PalicoInfo GetPalicoInfo(Palico palico)
    {
-      return _palicoDetails.Instantiate<PalicoDetails>();
+      PalicoInfo palicoInfo = _palicoInfo.Instantiate<PalicoInfo>();
+      palicoInfo.SetPalico(palico);
+      return palicoInfo;
    }
 
    public CraftButton GetCraftButton(Equipment equipment)
@@ -241,10 +253,10 @@ public partial class PackedScenes : Node
       return equipmentSelectionInterface;
    }
 
-   public EquipmentSelectionInterface GetEquipmentSelectionInterface(PalicoEquipmentType equipmentType)
+   public EquipmentSelectionInterface GetEquipmentSelectionInterface(Palico palico, PalicoEquipmentType equipmentType)
    {
       EquipmentSelectionInterface equipmentSelectionInterface = _equipmentSelectionInterface.Instantiate<EquipmentSelectionInterface>();
-      equipmentSelectionInterface.SetEquipment(equipmentType);
+      equipmentSelectionInterface.SetEquipment(palico, equipmentType);
       return equipmentSelectionInterface;
    }
 

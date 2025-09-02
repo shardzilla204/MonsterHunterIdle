@@ -10,61 +10,7 @@ public partial class HunterManager : Node
    [Export]
    private int _startingZenny = 100;
 
-   [Export]
-   private GC.Array<GC.Dictionary<string, Variant>> _startingEquipment = new GC.Array<GC.Dictionary<string, Variant>>()
-   {
-      new GC.Dictionary<string, Variant>()
-      {
-         { "Type", (int) EquipmentType.Weapon },
-         { "Category", (int) WeaponCategory.SwordAndShield },
-         { "Tree", (int) WeaponTree.Ore },
-         { "Grade", 0 },
-         { "SubGrade", 0 }
-      },
-      new GC.Dictionary<string, Variant>()
-      {
-         { "Type", (int) EquipmentType.Armor },
-         { "Category", (int) ArmorCategory.Head },
-         { "Set", (int) ArmorSet.Leather },
-         { "Grade", 0 },
-         { "SubGrade", 0 }
-      },
-      new GC.Dictionary<string, Variant>()
-      {
-         { "Type", (int) EquipmentType.Armor },
-         { "Category", (int) ArmorCategory.Chest },
-         { "Set", (int) ArmorSet.Leather },
-         { "Grade", 0 },
-         { "SubGrade", 0 }
-      },
-      new GC.Dictionary<string, Variant>()
-      {
-         { "Type", (int) EquipmentType.Armor },
-         { "Category", (int) ArmorCategory.Arm },
-         { "Set", (int) ArmorSet.Leather },
-         { "Grade", 0 },
-         { "SubGrade", 0 }
-      },
-      new GC.Dictionary<string, Variant>()
-      {
-         { "Type", (int) EquipmentType.Armor },
-         { "Category", (int) ArmorCategory.Waist },
-         { "Set", (int) ArmorSet.Leather },
-         { "Grade", 0 },
-         { "SubGrade", 0 }
-      },
-      new GC.Dictionary<string, Variant>()
-      {
-         { "Type", (int) EquipmentType.Armor },
-         { "Category", (int) ArmorCategory.Leg },
-         { "Set", (int) ArmorSet.Leather },
-         { "Grade", 0 },
-         { "SubGrade", 0 }
-      }
-   };
-
    public static int StartingZenny;
-   public static GC.Array<GC.Dictionary<string, Variant>> StartingEquipment = new GC.Array<GC.Dictionary<string, Variant>>();
 
    public static GC.Dictionary<string, int> MonstersSlayed = new GC.Dictionary<string, int>();
 
@@ -73,7 +19,6 @@ public partial class HunterManager : Node
       MonsterHunterIdle.Signals.MonsterSlayed += OnMonsterSlayed;
 
       StartingZenny = _startingZenny;
-      StartingEquipment = _startingEquipment;
       Hunter.ResetData();
 
       FillMonstersSlayedDictionary();
@@ -85,76 +30,6 @@ public partial class HunterManager : Node
       MonstersSlayed[monster.Name]++;
    }
    // * END - Signal Methods
-
-   // * START - Starting Methods
-   private static void AddStartingEquipment()
-   {
-      foreach (GC.Dictionary<string, Variant> equipmentDictionary in StartingEquipment)
-      {
-         EquipmentType equipmentType = (EquipmentType)equipmentDictionary["Type"].As<int>();
-         int grade = equipmentDictionary["Grade"].As<int>();
-         int subGrade = equipmentDictionary["SubGrade"].As<int>();
-
-         if (equipmentType == EquipmentType.Weapon)
-         {
-            WeaponCategory category = (WeaponCategory)equipmentDictionary["Category"].As<int>();
-            WeaponTree tree = (WeaponTree)equipmentDictionary["Tree"].As<int>();
-            AddStartingWeapon(category, tree, grade, subGrade);
-         }
-         else
-         {
-            ArmorCategory category = (ArmorCategory)equipmentDictionary["Category"].As<int>();
-            ArmorSet set = (ArmorSet)equipmentDictionary["Set"].As<int>();
-            AddStartingArmor(category, set, grade, subGrade);
-         }
-      }
-   }
-
-   private static void AddStartingWeapon(WeaponCategory category, WeaponTree tree, int grade, int subGrade)
-   {
-      Weapon weapon = EquipmentManager.GetWeapon(category, tree, grade, subGrade);
-      if (weapon == null) return;
-
-      Hunter.Weapon = weapon;
-
-      // Console message
-      string addedWeaponMessage = $"Added Weapon {weapon.Name} | {weapon.Grade + 1}.{weapon.SubGrade + 1}";
-      PrintRich.PrintLine(TextColor.Yellow, addedWeaponMessage);
-
-      EquipmentManager.CraftedWeapons.Add(weapon);
-   }
-
-   private static void AddStartingArmor(ArmorCategory category, ArmorSet set, int grade, int subGrade)
-   {
-      Armor armor = EquipmentManager.GetArmor(category, set, grade, subGrade);
-      if (armor == null) return;
-
-      switch (armor.Category)
-      {
-         case ArmorCategory.Head:
-            Hunter.Head = armor;
-            break;
-         case ArmorCategory.Chest:
-            Hunter.Chest = armor;
-            break;
-         case ArmorCategory.Arm:
-            Hunter.Arm = armor;
-            break;
-         case ArmorCategory.Waist:
-            Hunter.Waist = armor;
-            break;
-         case ArmorCategory.Leg:
-            Hunter.Leg = armor;
-            break;
-      }
-
-      // Console message
-      string addedArmorMessage = $"Added Armor {armor.Name} | {armor.Grade + 1}.{armor.SubGrade + 1}";
-      PrintRich.PrintLine(TextColor.Yellow, addedArmorMessage);
-
-      EquipmentManager.CraftedArmor.Add(armor);
-   }
-   // * END - Starting Methods
 
    // Used for resetting
    private static void FillMonstersSlayedDictionary()
@@ -386,8 +261,6 @@ public partial class HunterManager : Node
    public static void DeleteData()
    {
       Hunter.ResetData();
-
-      AddStartingEquipment();
 
       MonstersSlayed.Clear();
       FillMonstersSlayedDictionary();
