@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdcn2eh3nvkj0"]
+
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="1_nhaxt"]
+[ext_resource type="Script" uid="uid://dsrgcsjsg5c15" path="res://Scripts/PackedScenes/Interface/ItemBoxInterface.cs" id="2_dn6mp"]
+[ext_resource type="Script" uid="uid://uppbqshujc8e" path="res://Scripts/ItemBoxSearch.cs" id="4_67b84"]
+[ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/PackedScenes/Button/CustomButton.cs" id="4_ovme2"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="5_ckesc"]
+[ext_resource type="Texture2D" uid="uid://cfoie3f2tt73j" path="res://Assets/Images/ZennyIcon.png" id="6_f6qii"]
+
+[node name="ItemBoxInterface" type="VBoxContainer" node_paths=PackedStringArray("_parentContainer", "_itemBoxSearch", "_sellModeButton")]
+custom_minimum_size = Vector2(375, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_dn6mp")
+_parentContainer = NodePath("NinePatchRect/MarginContainer/ParentContainer")
+_itemBoxSearch = NodePath("SearchFilter/MarginContainer/HBoxContainer/ItemBoxSearch")
+_sellModeButton = NodePath("SearchFilter/MarginContainer/HBoxContainer/SellModeButton")
+
+[node name="SearchFilter" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+texture = ExtResource("1_nhaxt")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="SearchFilter"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SearchFilter/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ItemBoxSearch" type="LineEdit" parent="SearchFilter/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search..."
+flat = true
+script = ExtResource("4_67b84")
+
+[node name="SellModeButton" type="Button" parent="SearchFilter/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+toggle_mode = true
+flat = true
+script = ExtResource("4_ovme2")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SearchFilter/MarginContainer/HBoxContainer/SellModeButton"]
+self_modulate = Color(0.25, 0.25, 0.25, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_ckesc")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="SearchFilter/MarginContainer/HBoxContainer/SellModeButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="SearchFilter/MarginContainer/HBoxContainer/SellModeButton/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_f6qii")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(375, 250)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_nhaxt")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ParentContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/MarginContainer/ParentContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MaterialLogContainer" type="FlowContainer" parent="NinePatchRect/MarginContainer/ParentContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 11
+theme_override_constants/v_separation = 11

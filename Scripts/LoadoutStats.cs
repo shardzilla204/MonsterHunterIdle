@@ -9,46 +9,54 @@ public partial class LoadoutStats : NinePatchRect
 
     public override void _ExitTree()
     {
-        MonsterHunterIdle.Signals.EquipmentChanged -= EquipmentChanged;
+        MonsterHunterIdle.Signals.EquipmentChanged -= OnEquipmentChanged;
     }
 
     public override void _EnterTree()
     {
-        MonsterHunterIdle.Signals.EquipmentChanged += EquipmentChanged;
+        MonsterHunterIdle.Signals.EquipmentChanged += OnEquipmentChanged;
     }
 
     public override void _Ready()
     {
+        // Set initially
+        OnEquipmentChanged();
+    }
+
+    // * START - Signal Methods
+    private void OnEquipmentChanged()
+    {
         ClearStats();
         SetStats();
     }
+    // * END - Signal Methods
 
     private void SetStats()
     {
         int weaponAttack = Hunter.Weapon != null ? Hunter.Weapon.Attack : 0;
-        HBoxContainer attackNode = GetStatNode(StatType.Attack, $"{weaponAttack}");
-        _statContainer.AddChild(attackNode);
+        HBoxContainer attackStat = Scenes.GetLoadoutStat(StatType.Attack, $"{weaponAttack}");
+        _statContainer.AddChild(attackStat);
 
         int armorDefense = GetArmorDefense();
-        HBoxContainer defenseNode = GetStatNode(StatType.Defense, $"{armorDefense}");
-        _statContainer.AddChild(defenseNode);
+        HBoxContainer defenseStat = Scenes.GetLoadoutStat(StatType.Defense, $"{armorDefense}");
+        _statContainer.AddChild(defenseStat);
 
         int weaponAffinity = Hunter.Weapon != null ? Hunter.Weapon.Affinity : 0;
-        HBoxContainer affinityNode = GetStatNode(StatType.Affinity, $"{weaponAffinity}%");
-        _statContainer.AddChild(affinityNode);
+        HBoxContainer affinityStat = Scenes.GetLoadoutStat(StatType.Affinity, $"{weaponAffinity}%");
+        _statContainer.AddChild(affinityStat);
 
         if (Hunter.Weapon.Special != SpecialType.None && Hunter.Weapon.SpecialAttack != 0)
         {
-            HBoxContainer specialAttackNode = GetStatNode(Hunter.Weapon.Special, $"{Hunter.Weapon.SpecialAttack}");
-            _statContainer.AddChild(specialAttackNode);
+            HBoxContainer specialAttackStat = Scenes.GetLoadoutStat(Hunter.Weapon.Special, $"{Hunter.Weapon.SpecialAttack}");
+            _statContainer.AddChild(specialAttackStat);
         }
     }
 
     private void ClearStats()
     {
-        foreach (Node child in _statContainer.GetChildren())
+        foreach (Node loadoutStat in _statContainer.GetChildren())
         {
-            child.QueueFree();
+            loadoutStat.QueueFree();
         }
     }
 
@@ -64,50 +72,5 @@ public partial class LoadoutStats : NinePatchRect
         if (Hunter.Leg.Name != "") hunterDefense += Hunter.Leg.Defense;
 
         return hunterDefense;
-    }
-
-    private void EquipmentChanged(Equipment equipment)
-    {
-        ClearStats();
-        SetStats();
-    }
-
-    private HBoxContainer GetStatNode<T>(T enumType, string statValueString)
-    {
-        HBoxContainer statNode = new HBoxContainer()
-        {
-            Alignment = BoxContainer.AlignmentMode.Center,
-            SizeFlagsHorizontal = SizeFlags.ExpandFill
-        };
-        statNode.AddThemeConstantOverride("separation", 0);
-
-        Texture2D texture = new Texture2D();
-        if (enumType is StatType statType)
-        {
-            texture = MonsterHunterIdle.GetStatTypeIcon(statType);
-        }
-        else if (enumType is SpecialType specialType)
-        {
-            texture = MonsterHunterIdle.GetSpecialTypeIcon(specialType);
-        }
-
-        TextureRect statIcon = new TextureRect()
-        {
-            Texture = texture,
-            CustomMinimumSize = new Vector2(40, 40),
-            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
-        };
-
-        Label statLabel = new Label()
-        {
-            Text = statValueString
-        };
-        statLabel.AddThemeFontSizeOverride("font_size", 16);
-
-        statNode.AddChild(statIcon);
-        statNode.AddChild(statLabel);
-
-        return statNode;
     }
 }

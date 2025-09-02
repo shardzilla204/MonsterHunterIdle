@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://chdi0djbtcipo"]
+
+[ext_resource type="Script" uid="uid://ce2opufs0jrv1" path="res://Scripts/PackedScenes/EquipmentInfo.cs" id="1_7f766"]
+[ext_resource type="Script" uid="uid://doo1kuoqh2ywe" path="res://Scripts/PackedScenes/Button/CustomButton.cs" id="3_ycf5j"]
+[ext_resource type="Texture2D" uid="uid://su4cu3lno16" path="res://Assets/Images/RoundedSquare.png" id="4_jlpmm"]
+
+[node name="EquipmentInfo" type="HBoxContainer" node_paths=PackedStringArray("_iconTextureRect", "_changeEquipmentButton")]
+mouse_filter = 2
+script = ExtResource("1_7f766")
+_iconTextureRect = NodePath("IconTextureRect")
+_changeEquipmentButton = NodePath("ChangeEquipmentButton")
+
+[node name="IconTextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChangeEquipmentButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Hunter's Knife I"
+flat = true
+script = ExtResource("3_ycf5j")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ChangeEquipmentButton"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_jlpmm")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10

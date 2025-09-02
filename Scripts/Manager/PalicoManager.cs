@@ -29,7 +29,7 @@ public partial class PalicoManager : Node
 		ActionInterval();
 	}
 
-	private static string GetRandomName()
+	public static string GetRandomName()
 	{
 		string[] names = ["Matthew", "Jonathan", "Aiden", "Nathan", "Kristian", "Jaydon", "Brenyn", "Eyan", "Mindy", "Carrigan"];
 		int nameCount = names.Length - 1;

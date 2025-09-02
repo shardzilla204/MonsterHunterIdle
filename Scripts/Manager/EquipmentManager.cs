@@ -179,6 +179,7 @@ public partial class EquipmentManager : Node
         return armor;
     }
 
+    // If the weapon's grade is past 4, then get the next name
     public static void SetWeaponName(Weapon weapon, GC.Array<string> names)
     {
         int grade = weapon.Grade;
@@ -248,8 +249,17 @@ public partial class EquipmentManager : Node
             grade++;
             subGrade = 0;
         }
-        int craftingCost = MonsterHunterIdle.GetCraftingCost(grade, subGrade);
+        else
+        {
+            string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = "Equipment Is Maxed Out";
+            string result = "Returning 0";
+            PrintRich.PrintError(className, message, result);
 
+            return 0;
+        }
+
+        int craftingCost = MonsterHunterIdle.GetCraftingCost(grade, subGrade);
         return craftingCost;
     }
 
@@ -287,8 +297,8 @@ public partial class EquipmentManager : Node
     }
     // * END - Class Methods
 
-    // * START - Equipment Value Methods
-    public static int GetAttackValue(Weapon weapon)
+    // * START - Equipment Base Value Methods
+    public static int GetWeaponAttack(Weapon weapon)
     {
         string fileName = "WeaponAttack";
         string folderName = "Equipment";
@@ -299,15 +309,15 @@ public partial class EquipmentManager : Node
         return attack;
     }
 
-    public static int GetSpecialValue(Weapon weapon)
+    public static int GetWeaponSpecialAttack(Weapon weapon)
     {
         string fileName = "WeaponSpecial";
         string folderName = "Equipment";
         GC.Dictionary<string, Variant> specialData = MonsterHunterIdle.LoadFile(fileName, folderName).As<GC.Dictionary<string, Variant>>();
         GC.Array<GC.Dictionary<string, Variant>> specialDictionaries = specialData[fileName].As<GC.Array<GC.Dictionary<string, Variant>>>();
 
-        int special = GetWeaponValue(specialDictionaries, weapon);
-        return special;
+        int specialAttack = GetWeaponValue(specialDictionaries, weapon);
+        return specialAttack;
     }
     
     private static int GetWeaponValue(GC.Array<GC.Dictionary<string, Variant>> dictionaries, Weapon weapon)
@@ -345,7 +355,7 @@ public partial class EquipmentManager : Node
         return Mathf.RoundToInt(value);
     }
 
-    public static int GetDefenseValue(int grade, int subGrade = 0)
+    public static int GetArmorDefense(int grade, int subGrade = 0)
     {
         string fileName = "ArmorDefense";
         string folderName = "Equipment";
@@ -357,7 +367,7 @@ public partial class EquipmentManager : Node
 
         return defenseValue;
     }
-    // * END - Equipment Value Methods
+    // * END - Equipment Base Value Methods
 
     // * START - Equipment Value Calculation Methods
     public static int GetWeaponAttack()

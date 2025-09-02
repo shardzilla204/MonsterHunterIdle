@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://csu81qyfh2bo2"]
 
-[ext_resource type="Script" uid="uid://c0fwjgpmr52aj" path="res://Scripts/ArmorFilters.cs" id="1_2psmx"]
+[ext_resource type="Script" uid="uid://c0fwjgpmr52aj" path="res://Scripts/Filters/ArmorFilters.cs" id="1_2psmx"]
 
 [node name="ArmorFilters" type="VBoxContainer" node_paths=PackedStringArray("_filterContainer")]
 theme_override_constants/separation = 5

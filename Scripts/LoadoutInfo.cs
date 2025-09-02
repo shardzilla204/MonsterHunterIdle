@@ -35,22 +35,22 @@ public partial class LoadoutInfo : NinePatchRect
 
     private void AddLoadoutInfo()
     {
-        EquipmentInfo weaponInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Weapon);
-        _equipmentInfoContainer.AddChild(weaponInfoNode);
+        EquipmentInfo weaponInfo = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Weapon);
+        _equipmentInfoContainer.AddChild(weaponInfo);
 
-        EquipmentInfo headArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Head);
-        _equipmentInfoContainer.AddChild(headArmorInfoNode);
+        EquipmentInfo headInfo = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Head);
+        _equipmentInfoContainer.AddChild(headInfo);
 
-        EquipmentInfo chestArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Chest);
-        _equipmentInfoContainer.AddChild(chestArmorInfoNode);
+        EquipmentInfo chestInfo = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Chest);
+        _equipmentInfoContainer.AddChild(chestInfo);
 
-        EquipmentInfo armArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Arm);
-        _equipmentInfoContainer.AddChild(armArmorInfoNode);
+        EquipmentInfo armInfo = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Arm);
+        _equipmentInfoContainer.AddChild(armInfo);
 
-        EquipmentInfo waistArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Waist);
-        _equipmentInfoContainer.AddChild(waistArmorInfoNode);
+        EquipmentInfo waistInfo = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Waist);
+        _equipmentInfoContainer.AddChild(waistInfo);
 
-        EquipmentInfo legArmorInfoNode = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Leg);
-        _equipmentInfoContainer.AddChild(legArmorInfoNode);
+        EquipmentInfo legInfo = MonsterHunterIdle.PackedScenes.GetEquipmentInfo(Hunter.Leg);
+        _equipmentInfoContainer.AddChild(legInfo);
     }
 }

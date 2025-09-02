@@ -11,29 +11,92 @@ public partial class GameManager : Node
 
 	public override void _EnterTree()
 	{
-		MonsterHunterIdle.Signals.GameSaved += SaveGame;
-		MonsterHunterIdle.Signals.GameLoaded += LoadGame;
-		MonsterHunterIdle.Signals.GameDeleted += DeleteGame;
+		MonsterHunterIdle.Signals.GameSaved += OnGameSaved;
+		MonsterHunterIdle.Signals.GameLoaded += OnGameLoaded;
+		MonsterHunterIdle.Signals.GameDeleted += OnGameDeleted;
 		MonsterHunterIdle.Signals.GameQuit += () =>
 		{
-			SaveGame();
+			OnGameSaved();
 			GetTree().Quit();
 		};
 
-		GetWindow().CloseRequested += SaveGame;
+		GetWindow().CloseRequested += OnGameSaved;
 	}
 
 	public override void _Ready()
 	{
 		if (FileAccess.FileExists(_gameFilePath))
 		{
-			LoadGame();
+			OnGameLoaded();
 		}
 		else
 		{
-			DeleteGame(); // Set up save file
+			OnGameDeleted(); // Set up save file
 		}
 	}
+
+	// * START - Signal Methods
+	public static void OnGameSaved()
+	{
+		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Write);
+		string jsonString = Json.Stringify(GetData(), "\t");
+
+		if (jsonString == "") return;
+
+		gameFile.StoreLine(jsonString);
+
+		string saveSuccessMessage = "Game File Successfully Saved";
+		if (PrintRich.AreFilePathsVisible)
+		{
+			saveSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
+		}
+		PrintRich.PrintSuccess(saveSuccessMessage);
+	}
+
+	public static void OnGameLoaded()
+	{
+		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Read);
+		string jsonString = gameFile.GetAsText();
+
+		if (gameFile.GetLength() == 0)
+		{
+			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string message = $"Game File Is Empty";
+            PrintRich.PrintError(className, message);
+
+			return;
+		}
+
+		Json json = new Json();
+
+		Error result = json.Parse(jsonString);
+
+		if (result != Error.Ok) return;
+
+		GC.Dictionary<string, Variant> gameData = new GC.Dictionary<string, Variant>((GC.Dictionary) json.Data);
+		SetData(gameData);
+
+		string loadSuccessMessage = "Game File Successfully Loaded";
+		if (PrintRich.AreFilePathsVisible)
+		{
+			loadSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
+		}
+		PrintRich.PrintSuccess(loadSuccessMessage);
+	}
+
+	// ! Important !
+	/// Erase equipment first as added starting equipment from deleting hunter data will also be erased 
+	private static void OnGameDeleted()
+	{
+		EquipmentManager.DeleteData();
+		ItemBox.DeleteData();
+		HunterManager.DeleteData();
+		PalicoManager.DeleteData();
+		PalicoEquipmentManager.DeleteData();
+
+		OnGameSaved();
+	}
+	// * END - Signal Methods
 
 	private static GC.Dictionary<string, Variant> GetData()
 	{
@@ -73,68 +136,7 @@ public partial class GameManager : Node
             string result = $"Saving Game";
             PrintRich.PrintError(className, message, result);
 			
-			SaveGame();
+			OnGameSaved();
 		}
-	}
-
-	public static void SaveGame()
-	{
-		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Write);
-		string jsonString = Json.Stringify(GetData(), "\t");
-
-		if (jsonString == "") return;
-
-		gameFile.StoreLine(jsonString);
-
-		string saveSuccessMessage = "Game File Successfully Saved";
-		if (PrintRich.AreFilePathsVisible)
-		{
-			saveSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
-		}
-		PrintRich.PrintSuccess(saveSuccessMessage);
-	}
-
-	public static void LoadGame()
-	{
-		using FileAccess gameFile = FileAccess.Open(_gameFilePath, FileAccess.ModeFlags.Read);
-		string jsonString = gameFile.GetAsText();
-
-		if (gameFile.GetLength() == 0)
-		{
-			string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
-            string message = $"Game File Is Empty";
-            PrintRich.PrintError(className, message);
-
-			return;
-		}
-
-		Json json = new Json();
-
-		Error result = json.Parse(jsonString);
-
-		if (result != Error.Ok) return;
-
-		GC.Dictionary<string, Variant> gameData = new GC.Dictionary<string, Variant>((GC.Dictionary) json.Data);
-		SetData(gameData);
-
-		string loadSuccessMessage = "Game File Successfully Loaded";
-		if (PrintRich.AreFilePathsVisible)
-		{
-			loadSuccessMessage += $" At {gameFile.GetPathAbsolute()}";
-		}
-		PrintRich.PrintSuccess(loadSuccessMessage);
-	}
-
-	// ! Important !
-	/// Erase equipment first as added starting equipment from deleting hunter data will also be erased 
-	private static void DeleteGame()
-	{
-		EquipmentManager.DeleteData();
-		ItemBox.DeleteData();
-		HunterManager.DeleteData();
-		PalicoManager.DeleteData();
-		PalicoEquipmentManager.DeleteData();
-
-		SaveGame();
 	}
 }

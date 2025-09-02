@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bswmie3ykm27p"]
+
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_52dih"]
+[ext_resource type="Script" uid="uid://bbvpk72h2ocld" path="res://Scripts/PackedScenes/Interface/PalicoInterface.cs" id="2_xbd7u"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="3_yo3jx"]
+[ext_resource type="PackedScene" uid="uid://c877crexigmrw" path="res://Scenes/PackedScenes/Button/RecruitPalicoButton.tscn" id="4_tquil"]
+
+[node name="PalicoInterface" type="VBoxContainer" node_paths=PackedStringArray("_recruitPalicoButton", "_palicoAmount", "_palicoContainer")]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 250.0
+offset_bottom = 520.0
+theme = ExtResource("1_52dih")
+theme_override_constants/separation = 5
+script = ExtResource("2_xbd7u")
+_recruitPalicoButton = NodePath("PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/RecruitPalicoButton")
+_palicoAmount = NodePath("PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer/PalicoAmount")
+_palicoContainer = NodePath("PalicoRecruitment/MarginContainer/VBoxContainer/ScrollContainer/PalicoContainer")
+
+[node name="PalicoRecruitment" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("1_52dih")
+texture = ExtResource("3_yo3jx")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="PalicoRecruitment"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PalicoRecruitment/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PalicoRecruitment/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RecruitPalicoButton" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_tquil")]
+layout_mode = 2
+
+[node name="PalicoAmount" type="Label" parent="PalicoRecruitment/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "10 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PalicoRecruitment/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="PalicoContainer" type="VBoxContainer" parent="PalicoRecruitment/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5

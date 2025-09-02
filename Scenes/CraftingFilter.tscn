@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c65r7swivg2d1"]
 
-[ext_resource type="Script" uid="uid://ddb5va2m8cwgb" path="res://Scripts/CraftingFilter.cs" id="1_032th"]
+[ext_resource type="Script" uid="uid://ddb5va2m8cwgb" path="res://Scripts/PackedScenes/CraftingFilter.cs" id="1_032th"]
 
 [node name="CraftingFilter" type="HBoxContainer" node_paths=PackedStringArray("_checkBox", "_filterIcon")]
 size_flags_horizontal = 3

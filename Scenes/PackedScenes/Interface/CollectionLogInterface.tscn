@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5qqn6nqcf0j7"]
+
+[ext_resource type="Theme" uid="uid://cqgod6012ly7m" path="res://DefaultTheme.tres" id="1_42475"]
+[ext_resource type="Script" uid="uid://bwdkh2p1ml71n" path="res://Scripts/PackedScenes/Interface/CollectionLogInterface.cs" id="2_cpcbh"]
+[ext_resource type="Texture2D" uid="uid://jmj0ky65y56t" path="res://Assets/Images/BorderBox.png" id="2_um7fs"]
+[ext_resource type="PackedScene" uid="uid://duxb33vaodtes" path="res://Scenes/PackedScenes/Button/GatherButton.tscn" id="3_cegt5"]
+[ext_resource type="Script" uid="uid://car4v84fe0nph" path="res://Scripts/CollectionLogContainer.cs" id="4_bt1vb"]
+
+[node name="CollectionLogInterface" type="VBoxContainer" node_paths=PackedStringArray("_collectionLogContainer", "_scrollContainer")]
+custom_minimum_size = Vector2(350, 0)
+theme = ExtResource("1_42475")
+theme_override_constants/separation = 5
+script = ExtResource("2_cpcbh")
+_collectionLogContainer = NodePath("NinePatchRect2/MarginContainer/ScrollContainer/CollectionLogContainer")
+_scrollContainer = NodePath("NinePatchRect2/MarginContainer/ScrollContainer")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_um7fs")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect2/MarginContainer"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="CollectionLogContainer" type="VBoxContainer" parent="NinePatchRect2/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 2
+script = ExtResource("4_bt1vb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(344, 166)
+layout_mode = 2
+texture = ExtResource("2_um7fs")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 2
+offset_right = 344.0
+offset_bottom = 166.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GatherButton" parent="NinePatchRect/MarginContainer/HBoxContainer" instance=ExtResource("3_cegt5")]
+layout_mode = 2

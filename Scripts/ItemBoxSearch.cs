@@ -12,15 +12,17 @@ public partial class ItemBoxSearch : LineEdit
 	
 	public override void _Ready()
 	{
-		TextChanged += SearchMaterial;
+		TextChanged += OnSearchTextChanged;
 	}
 
-	private void SearchMaterial(string text)
+	// * START - Signal Methods
+	private void OnSearchTextChanged(string text)
 	{
 		string materialToFind = text.Trim();
 		Array<Material> materialsFound = FindMaterials(materialToFind.ToUpper());
 		EmitSignal(SignalName.FilterChanged, materialsFound);
 	}
+	// * END - Signal Methods
 
 	private Array<string> GetKeywords()
 	{

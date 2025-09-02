@@ -102,10 +102,10 @@ public partial class Signals : Node
 	public delegate void PalicoEquipmentAddedEventHandler(PalicoEquipment equipment, int index);
 
 	[Signal]
-	public delegate void EquipmentChangedEventHandler(Equipment equipment);
+	public delegate void EquipmentChangedEventHandler();
 
 	[Signal]
-	public delegate void PalicoEquipmentChangedEventHandler(PalicoEquipment equipment);
+	public delegate void PalicoEquipmentChangedEventHandler(Palico palico);
 
 	[Signal]
 	public delegate void ChangeEquipmentButtonPressedEventHandler(Equipment equipment);

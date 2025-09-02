@@ -79,24 +79,32 @@ public partial class HunterManager : Node
       FillMonstersSlayedDictionary();
    }
 
+   // * START - Signal Methods
+   public static void OnMonsterSlayed(Monster monster)
+   {
+      MonstersSlayed[monster.Name]++;
+   }
+   // * END - Signal Methods
+
+   // * START - Starting Methods
    private static void AddStartingEquipment()
    {
       foreach (GC.Dictionary<string, Variant> equipmentDictionary in StartingEquipment)
       {
-         EquipmentType equipmentType = (EquipmentType) equipmentDictionary["Type"].As<int>();
+         EquipmentType equipmentType = (EquipmentType)equipmentDictionary["Type"].As<int>();
          int grade = equipmentDictionary["Grade"].As<int>();
          int subGrade = equipmentDictionary["SubGrade"].As<int>();
 
          if (equipmentType == EquipmentType.Weapon)
          {
-            WeaponCategory category = (WeaponCategory) equipmentDictionary["Category"].As<int>();
-            WeaponTree tree = (WeaponTree) equipmentDictionary["Tree"].As<int>();
+            WeaponCategory category = (WeaponCategory)equipmentDictionary["Category"].As<int>();
+            WeaponTree tree = (WeaponTree)equipmentDictionary["Tree"].As<int>();
             AddStartingWeapon(category, tree, grade, subGrade);
          }
          else
          {
-            ArmorCategory category = (ArmorCategory) equipmentDictionary["Category"].As<int>();
-            ArmorSet set = (ArmorSet) equipmentDictionary["Set"].As<int>();
+            ArmorCategory category = (ArmorCategory)equipmentDictionary["Category"].As<int>();
+            ArmorSet set = (ArmorSet)equipmentDictionary["Set"].As<int>();
             AddStartingArmor(category, set, grade, subGrade);
          }
       }
@@ -146,6 +154,7 @@ public partial class HunterManager : Node
 
       EquipmentManager.CraftedArmor.Add(armor);
    }
+   // * END - Starting Methods
 
    // Used for resetting
    private static void FillMonstersSlayedDictionary()
@@ -294,12 +303,36 @@ public partial class HunterManager : Node
       }
    }
 
-   public static void OnMonsterSlayed(Monster monster)
+   public static void Unequip(Equipment equipment)
    {
-      MonstersSlayed[monster.Name]++;
+      if (equipment is Weapon)
+      {
+         Hunter.Weapon = null;
+      }
+      else if (equipment is Armor armor)
+      {
+         switch (armor.Category)
+         {
+            case ArmorCategory.Head:
+               Hunter.Head = null;
+               break;
+            case ArmorCategory.Arm:
+               Hunter.Arm = null;
+               break;
+            case ArmorCategory.Chest:
+               Hunter.Chest = null;
+               break;
+            case ArmorCategory.Waist:
+               Hunter.Waist = null;
+               break;
+            case ArmorCategory.Leg:
+               Hunter.Leg = null;
+               break;
+         }
+      }
    }
 
-   // Data methods
+   // * START - Data Methods
    /// <see cref="GameManager.SaveGame"/>
    public static GC.Dictionary<string, Variant> GetData()
    {
@@ -359,4 +392,5 @@ public partial class HunterManager : Node
       MonstersSlayed.Clear();
       FillMonstersSlayedDictionary();
    }
+   // * END - Data Methods
 }
